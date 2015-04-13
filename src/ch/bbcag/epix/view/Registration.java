@@ -12,13 +12,26 @@ public class Registration extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	
+	/*
+	 * JTextField
+	 */
 	protected JTextField username = new JTextField();
 	protected JTextField email = new JTextField();
+	
+	/*
+	 * JPasswordField
+	 */
 	protected JPasswordField password = new JPasswordField();
 	protected JPasswordField passwordConfirm = new JPasswordField();
 	
+	/*
+	 * JButton
+	 */
 	protected JButton registrierenButton = new JButton("Registrieren");
 	
+	/*
+	 * JLabel
+	 */
 	protected JLabel titelLabel = new JLabel("Epix Registration");
 	protected JLabel usernameLabel = new JLabel("Username");
 	protected JLabel emailLabel = new JLabel("E-mail");
@@ -46,24 +59,24 @@ public class Registration extends JFrame{
 		username.setBounds(181, 47, 176, 20);
 		this.add(username);
 		
-		email.setBounds(181, 72, 176, 20);
-		this.add(email);
-				
 		emailLabel.setBounds(48, 70, 102, 24);
 		this.add(emailLabel);
 		
-		password.setBounds(181, 98, 176, 20);
-		this.add(password);
-				
+		email.setBounds(181, 72, 176, 20);
+		this.add(email);
+					
 		passwordLabel.setBounds(48, 96, 102, 24);
 		this.add(passwordLabel);
-				
-		passwordConfirm.setBounds(181, 125, 176, 20);
-		this.add(passwordConfirm);
-				
+		
+		password.setBounds(181, 98, 176, 20);
+		this.add(password);
+
 		passwordConfirmLabel.setBounds(48, 123, 123, 24);
 		this.add(passwordConfirmLabel);
-		
+
+		passwordConfirm.setBounds(181, 125, 176, 20);
+		this.add(passwordConfirm);
+						
 		registrierenButton.setBounds(251, 154, 106, 23);
 		this.add(registrierenButton);
 	}

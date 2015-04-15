@@ -1,11 +1,21 @@
 package ch.bbcag.epix.view;
 
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseListener;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.JPasswordField;
-import javax.swing.JButton;
-import java.awt.Font;
+import javax.swing.JTextField;
+
+import com.sun.glass.events.MouseEvent;
+import com.sun.xml.internal.bind.v2.model.core.Adapter;
 
 public class Login extends JFrame{
 
@@ -44,6 +54,7 @@ public class Login extends JFrame{
 		this.setVisible(true);
 		this.setResizable(false);
 		
+			
 		
 		titelLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		titelLabel.setBounds(48, 11, 141, 23);
@@ -63,6 +74,13 @@ public class Login extends JFrame{
 		this.add(password);
 								
 		registrierenButton.setBounds(160, 120, 106, 23);
+		registrierenButton.addActionListener(new ActionListener() {
+			
+			@Override public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new Registration();
+			}
+		});
 		this.add(registrierenButton);
 				
 		loginbButton.setBounds(273, 120, 84, 23);
@@ -71,7 +89,6 @@ public class Login extends JFrame{
 	
 
 	public static void main(String[] args) {
-		
 		new Login();
-	}
+	   }
 }

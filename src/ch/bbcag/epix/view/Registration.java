@@ -2,12 +2,16 @@ package ch.bbcag.epix.view;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
-public class Registration extends JFrame{
+public class Registration extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -48,6 +52,8 @@ public class Registration extends JFrame{
 		this.setResizable(false);
 		
 		
+		
+		
 		titelLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		titelLabel.setBounds(48, 11, 141, 23);
 		this.getContentPane().add(titelLabel);
@@ -80,10 +86,4 @@ public class Registration extends JFrame{
 		registrierenButton.setBounds(251, 154, 106, 23);
 		this.add(registrierenButton);
 	}
-
-	
-	public static void main(String[] args) {
-		new Registration();
-	}
-
 }

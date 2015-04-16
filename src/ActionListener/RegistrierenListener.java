@@ -17,8 +17,9 @@ public class RegistrierenListener implements ActionListener {
 		this.setLogin(login);
 	}
 
-	@Override public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) {
 		getLogin().dispose();
+		
 		
 		new Registration();
 	}	

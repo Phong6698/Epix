@@ -15,7 +15,7 @@ public class LoginListener implements ActionListener {
 		this.setLogin(login);
 	}
 
-	@Override public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) {
 		getLogin().dispose();
 		EpixView frame = new EpixView();
 		frame.setVisible(true);

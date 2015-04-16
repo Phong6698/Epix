@@ -1,15 +1,12 @@
 package ch.bbcag.epix.view;
 
+import java.awt.Font;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
-import java.awt.Font;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
-import javax.swing.JTextField;
 import javax.swing.JPasswordField;
-import javax.swing.JButton;
+import javax.swing.JTextField;
 
 import ActionListener.SignUpListener;
 
@@ -88,7 +85,7 @@ public class Registration extends JFrame {
 		registration.add(passwordConfirm);
 						
 		registrierenButton.setBounds(251, 154, 106, 23);
-		registrierenButton.addActionListener(new SignUpListener(registration));
+		registrierenButton.addActionListener(new SignUpListener(username, email, password, passwordConfirm, registration));
 		registration.add(registrierenButton);
 	}
 }

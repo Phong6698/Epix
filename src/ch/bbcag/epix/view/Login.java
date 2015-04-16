@@ -1,6 +1,7 @@
 package ch.bbcag.epix.view;
 
 import java.awt.Font;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,6 +11,9 @@ import javax.swing.JTextField;
 
 import ActionListener.LoginListener;
 import ActionListener.RegistrierenListener;
+import DBC.Database;
+
+import com.mysql.jdbc.Statement;
 
 public class Login extends JFrame{
 
@@ -76,8 +80,8 @@ public class Login extends JFrame{
 		login.add(loginbButton);			
 	}
 	
-
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
+		
 		new Login();
 	}
 }

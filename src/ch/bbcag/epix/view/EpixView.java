@@ -47,13 +47,13 @@ public class EpixView extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_1.setIcon(new ImageIcon("D:\\Users\\zjorgm\\Dropbox\\Epix\\GUI\\Coin spin.gif"));
+		lblNewLabel_1.setIcon(new ImageIcon("Resources/Coin spin.gif"));
 		lblNewLabel_1.setBounds(0, 0, 64, 64);
 		contentPane.add(lblNewLabel_1);
 		
 		
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("D:\\Users\\zjorgm\\Dropbox\\Epix\\GUI\\PixelGame.png"));
+		lblNewLabel.setIcon(new ImageIcon("Resources/PixelGame.png"));
 		lblNewLabel.setBounds(0, 0, 785, 485);
 		contentPane.add(lblNewLabel);
 		

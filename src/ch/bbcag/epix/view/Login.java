@@ -42,6 +42,7 @@ public class Login extends JFrame{
 
 	public Login() {
 		JFrame login = new JFrame();
+		
 		login.setTitle("Epix");
 		login.setBounds(500, 400, 419, 238);
 		login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

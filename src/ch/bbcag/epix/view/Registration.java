@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
+import ActionListener.SignUpListener;
+
 public class Registration extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -44,46 +46,49 @@ public class Registration extends JFrame {
 
 
 	public Registration() {
-		this.setTitle("Epix");
-		this.setBounds(500, 400, 419, 238);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.getContentPane().setLayout(null);
-		this.setVisible(true);
-		this.setResizable(false);
+		JFrame registration = new JFrame();
+		
+		registration.setTitle("Epix");
+		registration.setBounds(500, 400, 419, 238);
+		registration.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		registration.getContentPane().setLayout(null);
+		registration.setVisible(true);
+		registration.setResizable(false);
 		
 		
 		
 		
 		titelLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		titelLabel.setBounds(48, 11, 141, 23);
-		this.getContentPane().add(titelLabel);
+		registration.getContentPane().add(titelLabel);
 				
 		usernameLabel.setBounds(48, 45, 102, 24);
-		this.getContentPane().add(usernameLabel);
+		registration.getContentPane().add(usernameLabel);
 				
 		username.setColumns(10);
 		username.setBounds(181, 47, 176, 20);
-		this.add(username);
+		registration.add(username);
 		
 		emailLabel.setBounds(48, 70, 102, 24);
-		this.add(emailLabel);
+		registration.add(emailLabel);
 		
 		email.setBounds(181, 72, 176, 20);
-		this.add(email);
+		registration.add(email);
 					
 		passwordLabel.setBounds(48, 96, 102, 24);
-		this.add(passwordLabel);
+		registration.add(passwordLabel);
 		
 		password.setBounds(181, 98, 176, 20);
-		this.add(password);
+		registration.add(password);
 
 		passwordConfirmLabel.setBounds(48, 123, 123, 24);
-		this.add(passwordConfirmLabel);
+		registration.add(passwordConfirmLabel);
 
 		passwordConfirm.setBounds(181, 125, 176, 20);
-		this.add(passwordConfirm);
+		registration.add(passwordConfirm);
 						
 		registrierenButton.setBounds(251, 154, 106, 23);
-		this.add(registrierenButton);
+		registrierenButton.addActionListener(new SignUpListener(registration));
+		registration.add(registrierenButton);
 	}
 }

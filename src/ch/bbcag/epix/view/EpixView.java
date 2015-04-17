@@ -17,6 +17,7 @@ public class EpixView extends JFrame {
 	private Player player;
 
 	private JPanel contentPane;
+	JLabel  backgroundImage = new JLabel("");
 	
 
 	/**
@@ -26,7 +27,7 @@ public class EpixView extends JFrame {
 		
 		this.setPlayer(player);
 		
-		JLabel  lblNewLabel = new JLabel("");
+		
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,9 +61,13 @@ public class EpixView extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("Resources/PixelGame.png"));
-		lblNewLabel.setBounds(0, 0, 785, 485);
+		backgroundImage.setHorizontalAlignment(SwingConstants.CENTER);
+		backgroundImage.setIcon(new ImageIcon("Resources/PixelGame.png"));
+		backgroundImage.setBounds(0, 0, 785, 485);
+		contentPane.add(backgroundImage);
+		
+		JLabel lblNewLabel = new JLabel("Willkommen zurück, " + getPlayer().getUsername());
+		lblNewLabel.setBounds(569, 18, 139, 36);
 		contentPane.add(lblNewLabel);
 		
 	}

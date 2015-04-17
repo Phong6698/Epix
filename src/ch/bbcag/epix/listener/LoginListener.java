@@ -42,7 +42,6 @@ public class LoginListener implements ActionListener {
 		if (EpixController.getInstance().login(loginUser) == true) {
 			loginView.dispose();
 			Player player = EpixController.getInstance().playerLogin(user);
-			System.out.println(player);
 			EpixView frame = new EpixView(player);
 			frame.setVisible(true);
 		} 

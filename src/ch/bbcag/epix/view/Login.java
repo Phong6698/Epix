@@ -51,7 +51,7 @@ public class Login extends JFrame{
 		login.setBounds(500, 400, 419, 238);
 		login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		login.getContentPane().setLayout(null);
-		login.setVisible(true);
+		
 		login.setResizable(false);
 	
 		titelLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -77,7 +77,9 @@ public class Login extends JFrame{
 				
 		loginbButton.setBounds(160, 120, 84, 23);
 		loginbButton.addActionListener(new LoginListener(username, password, login));
-		login.add(loginbButton);			
+		login.add(loginbButton);
+		
+		login.setVisible(true);
 	}
 	
 	public static void main(String[] args) throws SQLException {	

@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 import ch.bbcag.epix.dao.UserDao;
 import ch.bbcag.epix.dao.UserJDBCdao;
+import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.utils.CryptUtils;
-import User.User;
 
 public class EpixController {
 	private static EpixController instance = new EpixController();

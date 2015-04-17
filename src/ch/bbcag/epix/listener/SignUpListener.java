@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import User.User;
 import ch.bbcag.epix.controller.EpixController;
+import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.view.Login;
 
 

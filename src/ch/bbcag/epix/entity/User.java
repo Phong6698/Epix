@@ -1,4 +1,4 @@
-package User;
+package ch.bbcag.epix.entity;
 
 public class User {
 	//Instanzvariablen

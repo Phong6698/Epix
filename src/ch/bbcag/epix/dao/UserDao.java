@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import java.util.List;
 
-import User.User;
+import ch.bbcag.epix.entity.User;
 
 public interface UserDao {
 

@@ -11,10 +11,7 @@ public class Player {
 	private int maxHealth = 50;	
 	private boolean dead = false;
 	
-	
-	
-	
-	
+
 	//Getter
 	public String getUsername() {
 		return username;

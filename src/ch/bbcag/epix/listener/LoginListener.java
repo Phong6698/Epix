@@ -3,10 +3,16 @@ package ch.bbcag.epix.listener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.Popup;
+import javax.swing.PopupFactory;
+import javax.swing.Timer;
 
+import ch.bbcag.epix.popup.LoginFailed;
 import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.view.EpixView;
@@ -37,6 +43,8 @@ public class LoginListener implements ActionListener {
 			loginView.dispose();
 			EpixView frame = new EpixView();
 			frame.setVisible(true);
+		} else {
+			new LoginFailed();
 		}
 	}
 

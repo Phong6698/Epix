@@ -80,8 +80,7 @@ public class Login extends JFrame{
 		login.add(loginbButton);			
 	}
 	
-	public static void main(String[] args) throws SQLException {
-		
+	public static void main(String[] args) throws SQLException {	
 		new Login();
 	}
 }

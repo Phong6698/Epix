@@ -9,6 +9,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import ch.bbcag.epix.listener.SignUpListener;
+import ch.bbcag.epix.listener.ZurueckListener;
 
 public class Registration extends JFrame {
 
@@ -31,7 +32,7 @@ public class Registration extends JFrame {
 	 * JButton
 	 */
 	protected JButton registrierenButton = new JButton("Registrieren");
-	protected JButton zurueckButton = new JButton("Login");
+	protected JButton zurueckButton = new JButton("Zurück");
 	
 	/*
 	 * JLabel
@@ -87,8 +88,8 @@ public class Registration extends JFrame {
 		registrierenButton.addActionListener(new SignUpListener(username, email, password, passwordConfirm, registration));
 		registration.add(registrierenButton);
 		
-		zurueckButton.setBounds(138, 154, 106, 23);
-//		zurueckButton.addActionListener(new 
+		zurueckButton.setBounds(158, 154,  84, 23);
+		zurueckButton.addActionListener(new ZurueckListener(registration));
 		registration.add(zurueckButton);
 	}
 }

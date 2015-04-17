@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import ch.bbcag.epix.dao.UserDao;
 import ch.bbcag.epix.dao.UserJDBCdao;
 import ch.bbcag.epix.entity.Player;
+import ch.bbcag.epix.popup.FalsePassword;
+import ch.bbcag.epix.popup.UsernameVergeben;
 import ch.bbcag.epix.utils.CryptUtils;
 
 public class EpixController {
@@ -56,7 +58,7 @@ public class EpixController {
 							
 							for (Player dbUser : dbUsers){
 								if (newUser.getUsername().equals(dbUser.getUsername())){
-									System.out.println("Username ist bereits vergeben");
+									new UsernameVergeben();
 									break;
 								}
 								else{
@@ -77,7 +79,7 @@ public class EpixController {
 				}
 			}
 			else{
-				System.out.println("Passw\u00f6rter stimmen nicht \u00fcberein");
+				new FalsePassword(); 
 			}
 		}
 	}

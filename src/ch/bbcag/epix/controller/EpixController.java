@@ -1,13 +1,19 @@
 package ch.bbcag.epix.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Pattern;
-import java.sql.SQLException;
 
 import ch.bbcag.epix.dao.UserDao;
 import ch.bbcag.epix.dao.UserJDBCdao;
 import ch.bbcag.epix.entity.Player;
+import ch.bbcag.epix.popup.EmailEmpty;
 import ch.bbcag.epix.popup.FalsePassword;
+import ch.bbcag.epix.popup.LoginFailed;
+import ch.bbcag.epix.popup.PasswordConfirmEmpty;
+import ch.bbcag.epix.popup.PasswordEmpty;
+import ch.bbcag.epix.popup.Registriert;
+import ch.bbcag.epix.popup.UsernameEmpty;
 import ch.bbcag.epix.popup.UsernameVergeben;
 import ch.bbcag.epix.utils.CryptUtils;
 
@@ -38,7 +44,10 @@ public class EpixController {
 				.compile("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$");
 		
 		if(newUser.getPassword().isEmpty()){
-			System.out.println("Passwort muss ausgef\u00fcllt sein");
+			new PasswordEmpty();
+		}
+		if (newUser.getPasswordConfirm().isEmpty()){
+			new PasswordConfirmEmpty();
 		}
 		else{
 			newUser.setPassword(CryptUtils.base64encode(newUser.getPassword()));
@@ -46,11 +55,11 @@ public class EpixController {
 			
 			if(newUser.getPassword().equals(newUser.getPasswordConfirm())){
 				if(newUser.getUsername().isEmpty()){
-					System.out.println("Username muss ausgef\u00fcllt sein");
+					new UsernameEmpty();
 				}
 				else{
 					if(newUser.getEmail().isEmpty()){
-						System.out.println("Email muss ausgef\u00fcllt sein");
+						new EmailEmpty();
 					}
 					else{
 						try {
@@ -67,7 +76,7 @@ public class EpixController {
 								
 								if (userAlreadyExists == false){
 								USER_DAO.registrieren(newUser);
-								System.out.println("Sie wurden erfolgreich eingetragen");
+								new Registriert(); 
 								break;
 								}
 							}
@@ -88,11 +97,11 @@ public class EpixController {
 		List<Player> dbUsers = null;
 		boolean login = false;
 		if (user.getUsername().isEmpty()) {
-			System.out.println("Bitte Username ausf\u00fcllen");
+			new UsernameEmpty();
 		}
 		else {
 			if (user.getPassword().isEmpty()) {
-				System.out.println("Bitte Passwort ausf\u00fcllen");
+				new PasswordEmpty(); 
 			}
 			else {
 				user.setPassword(CryptUtils.base64encode(user.getPassword()));
@@ -107,14 +116,13 @@ public class EpixController {
 				for (Player dbUser : dbUsers) {
 					if (user.getUsername().equals(dbUser.getUsername())) {
 						if (user.getPassword().equals(dbUser.getPassword())) {
-							System.out
-									.println("Sie haben sich erfolgreich angemeldet");
+							System.out.println("Sie haben sich erfolgreich angemeldet");
 							login = true;
 						}
 					} 
 				}
 				if (login == false) {
-					System.out.println("Benutername oder Passwort falsch");
+					new LoginFailed();
 				}
 			}
 		}
@@ -124,3 +132,4 @@ public class EpixController {
 
 
 }
+;

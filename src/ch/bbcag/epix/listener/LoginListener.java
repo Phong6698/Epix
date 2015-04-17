@@ -43,9 +43,7 @@ public class LoginListener implements ActionListener {
 			loginView.dispose();
 			EpixView frame = new EpixView();
 			frame.setVisible(true);
-		} else {
-			new LoginFailed();
-		}
+		} 
 	}
 
 	public JFrame getLoginView() {

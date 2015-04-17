@@ -31,6 +31,7 @@ public class Registration extends JFrame {
 	 * JButton
 	 */
 	protected JButton registrierenButton = new JButton("Registrieren");
+	protected JButton zurueckButton = new JButton("Login");
 	
 	/*
 	 * JLabel
@@ -50,9 +51,7 @@ public class Registration extends JFrame {
 		registration.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		registration.getContentPane().setLayout(null);
 		registration.setVisible(true);
-		registration.setResizable(false);
-		
-		
+		registration.setResizable(false);		
 		
 		
 		titelLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -87,5 +86,9 @@ public class Registration extends JFrame {
 		registrierenButton.setBounds(251, 154, 106, 23);
 		registrierenButton.addActionListener(new SignUpListener(username, email, password, passwordConfirm, registration));
 		registration.add(registrierenButton);
+		
+		zurueckButton.setBounds(138, 154, 106, 23);
+//		zurueckButton.addActionListener(new 
+		registration.add(zurueckButton);
 	}
 }

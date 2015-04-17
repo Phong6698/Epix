@@ -6,9 +6,9 @@ public class Player {
 	private String email = null;
 	private String password = null;
 	private String passwordConfirm = null;
-	private int coin = 0;
-	private int health = 0;
-	private int maxHealth = 0;	
+	private int coin;
+	private int health = 50;
+	private int maxHealth = 50;	
 	private boolean dead = false;
 	
 	

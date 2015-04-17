@@ -22,9 +22,17 @@ public interface UserDao {
 	/**
 	 * Methode um einen neuen User einzutragen
 	 * @author Elia Perenzin
-	 * @param Player
+	 * @param user
 	 * @throws SQLException
 	 */
 	public abstract void registrieren(Player user) throws SQLException;
 
+	/**
+	 * Methode welches ein Objekt {@link Player} erstellt wenn sich der User ein loggt
+	 * @author Chiramet Phong Penglerd
+	 * @param username
+	 * @throws SQLException
+	 */
+	public abstract Player playerLogin(String username) throws SQLException;
+	
 }

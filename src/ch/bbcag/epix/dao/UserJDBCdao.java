@@ -47,4 +47,25 @@ public class UserJDBCdao extends Database implements UserDao {
 			ps.executeUpdate();
 			closeCon();
 		}
+
+		@Override
+		public Player playerLogin(String username) throws SQLException {
+			String sql = "SELECT * FROM player WHERE Username = ?;";
+			Player player = new Player();
+			con = getCon();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, username);
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				player.setUsername(rs.getString("Username"));
+				player.setEmail(rs.getString("Email"));
+				player.setCoin(rs.getInt("Coins"));
+				break;
+			}
+			closeCon();
+			
+			
+			return player;
+		}
 }

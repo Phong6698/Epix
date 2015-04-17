@@ -118,5 +118,15 @@ public class EpixController {
 		System.out.println(login);
 		return login;
 	}
+	
+	public Player playerLogin(String username) {
+		try {
+			Player player = USER_DAO.playerLogin(username);
+			return player;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 };

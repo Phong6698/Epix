@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import ch.bbcag.epix.dao.UserDao;
 import ch.bbcag.epix.dao.UserJDBCdao;
-import ch.bbcag.epix.entity.User;
+import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.utils.CryptUtils;
 
 public class EpixController {
@@ -28,10 +28,10 @@ public class EpixController {
 	 * dies zutrifft wird er in die DB eingetragen
 	 * 
 	 * @author Elia Perenzin
-	 * @param User
+	 * @param Player
 	 */
-	public void registrieren (User newUser){
-		List<User> dbUsers = null;
+	public void registrieren (Player newUser){
+		List<Player> dbUsers = null;
 		boolean userAlreadyExists = true;
 		final Pattern pattern = Pattern
 				.compile("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$");
@@ -55,7 +55,7 @@ public class EpixController {
 						try {
 							dbUsers = USER_DAO.findAllUsers();
 							
-							for (User dbUser : dbUsers){
+							for (Player dbUser : dbUsers){
 								if (newUser.getUsername().equals(dbUser.getUsername())){
 									System.out.println("Username ist bereits vergeben");
 									break;
@@ -83,8 +83,8 @@ public class EpixController {
 		}
 	}
 
-	public boolean login(User user) {
-		List<User> dbUsers = null;
+	public boolean login(Player user) {
+		List<Player> dbUsers = null;
 		boolean login = false;
 
 		if (user.getUsername().isEmpty()) {
@@ -101,7 +101,7 @@ public class EpixController {
 					e.printStackTrace();
 				}
 
-				for (User dbUser : dbUsers) {
+				for (Player dbUser : dbUsers) {
 					if (user.getUsername().equals(dbUser.getUsername())) {
 						if (user.getPassword().equals(dbUser.getPassword())) {
 							System.out.println("Sie haben sich erfolgreich angemeldet");

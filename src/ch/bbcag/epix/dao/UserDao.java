@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import java.util.List;
 
-import ch.bbcag.epix.entity.User;
+import ch.bbcag.epix.entity.Player;
 
 public interface UserDao {
 
@@ -17,14 +17,14 @@ public interface UserDao {
 	 * @return Liste mit allen User
 	 * @throws SQLException
 	 */
-	public abstract List<User> findAllUsers() throws SQLException;
+	public abstract List<Player> findAllUsers() throws SQLException;
 	
 	/**
 	 * Methode um einen neuen User einzutragen
 	 * @author Elia Perenzin
-	 * @param User
+	 * @param Player
 	 * @throws SQLException
 	 */
-	public abstract void registrieren(User user) throws SQLException;
+	public abstract void registrieren(Player user) throws SQLException;
 
 }

@@ -8,7 +8,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import ch.bbcag.epix.controller.EpixController;
-import ch.bbcag.epix.entity.User;
+import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.view.Login;
 
 
@@ -40,7 +40,7 @@ public class SignUpListener implements ActionListener {
 //		getLogin().dispose();
 //		new Login();
 		
-		User newUser = new User();
+		Player newUser = new Player();
 		
 		String user = this.getUser().getText();
 		String password = this.getPassword().getText();

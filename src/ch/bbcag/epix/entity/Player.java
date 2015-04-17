@@ -1,6 +1,6 @@
 package ch.bbcag.epix.entity;
 
-public class User {
+public class Player {
 	//Instanzvariablen
 	private String username = null;
 	private String email = null;

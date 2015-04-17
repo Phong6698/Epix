@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import ch.bbcag.epix.entity.User;
+import ch.bbcag.epix.entity.Player;
 import DBC.Database;
 
 public class UserJDBCdao extends Database implements UserDao {
@@ -16,16 +16,16 @@ public class UserJDBCdao extends Database implements UserDao {
 		/**
 		 * Auslesen aller User aus der DB
 		 */
-		public List<User> findAllUsers() throws SQLException {
+		public List<Player> findAllUsers() throws SQLException {
 			String sql = "SELECT * FROM USER";
-			List<User> p = new ArrayList<User>();
+			List<Player> p = new ArrayList<Player>();
 			
 			con = getCon();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				User user = new User();
+				Player user = new Player();
 				user.setUsername(rs.getString("ID_User"));
 				user.setPassword(rs.getString("Password"));
 				p.add(user);
@@ -37,7 +37,7 @@ public class UserJDBCdao extends Database implements UserDao {
 		/**
 		 * Eintragen eines neuen Users in DB
 		 */
-		public void registrieren(User user) throws SQLException {
+		public void registrieren(Player user) throws SQLException {
 			String sql = "INSERT INTO USER (Username, Email, Password, Coins, MaxHealth, MaxJump, MoveSpeed, PlayerWeapon_ID) VALUES (?, ?, ?,0,0,0,0,1)";
 			con = getCon();
 			ps = con.prepareStatement(sql);

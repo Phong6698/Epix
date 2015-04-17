@@ -9,9 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import ActionListener.LoginListener;
-import ActionListener.RegistrierenListener;
 import DBC.Database;
+import ch.bbcag.epix.listener.LoginListener;
+import ch.bbcag.epix.listener.RegistrierenListener;
 
 import com.mysql.jdbc.Statement;
 

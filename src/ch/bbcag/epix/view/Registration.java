@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import ActionListener.SignUpListener;
+import ch.bbcag.epix.listener.SignUpListener;
 
 public class Registration extends JFrame {
 

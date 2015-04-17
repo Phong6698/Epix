@@ -1,13 +1,13 @@
-package Controller;
+package ch.bbcag.epix.controller;
 
 import java.util.List;
 import java.util.regex.Pattern;
 import java.sql.SQLException;
 
+import ch.bbcag.epix.dao.UserDao;
+import ch.bbcag.epix.dao.UserJDBCdao;
+import ch.bbcag.epix.utils.CryptUtils;
 import User.User;
-import Utils.CryptUtils;
-import dao.UserDao;
-import dao.UserJDBCdao;
 
 public class EpixController {
 	private static EpixController instance = new EpixController();

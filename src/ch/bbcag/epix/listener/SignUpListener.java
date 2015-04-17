@@ -1,4 +1,4 @@
-package ActionListener;
+package ch.bbcag.epix.listener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import Controller.EpixController;
 import User.User;
+import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.view.Login;
 
 

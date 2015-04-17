@@ -1,4 +1,4 @@
-package dao;
+package ch.bbcag.epix.dao;
 
 import java.util.List;
 import java.sql.Connection;

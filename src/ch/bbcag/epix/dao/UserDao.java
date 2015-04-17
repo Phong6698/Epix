@@ -1,4 +1,4 @@
-package dao;
+package ch.bbcag.epix.dao;
 
 
 import java.sql.SQLException;

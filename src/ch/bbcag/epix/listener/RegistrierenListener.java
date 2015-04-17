@@ -1,4 +1,4 @@
-package ActionListener;
+package ch.bbcag.epix.listener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

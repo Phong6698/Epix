@@ -1,4 +1,4 @@
-package Utils;
+package ch.bbcag.epix.utils;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -12,7 +12,7 @@ public class CryptUtils {
 	private static BASE64Decoder dec = new BASE64Decoder();
 
 	/**
-	 * Hier wird das Passwort des Users verschlüsselt
+	 * Hier wird das Passwort des Users verschlï¿½sselt
 	 *
 	 */
 	public static String base64encode(String password) {

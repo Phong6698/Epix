@@ -6,9 +6,11 @@ public class Player {
 	private String email = null;
 	private String password = null;
 	private String passwordConfirm = null;
+	private int coin = 0;
 	private int health = 0;
-	private int maxHealth = 0;
+	private int maxHealth = 0;	
 	private boolean dead = false;
+	
 	
 	
 	
@@ -27,6 +29,20 @@ public class Player {
 		return passwordConfirm;
 	}
 	
+	public int getCoin() {
+		return coin;
+	}
+	public int getHealth() {
+		return health;
+	}
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+	public boolean isDead() {
+		return dead;
+	}
+	
+	
 	//Setter
 	public void setUsername(String username) {
 		this.username = username;
@@ -40,6 +56,19 @@ public class Player {
 	
 	public void setPasswordConfirm(String passwordConfirm) {
 		this.passwordConfirm = passwordConfirm;
+	}
+	
+	public void setCoin(int coin) {
+		this.coin = coin;
+	}
+	public void setHealth(int health) {
+		this.health = health;
+	}
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
+	}
+	public void setDead(boolean dead) {
+		this.dead = dead;
 	}
 	
 	

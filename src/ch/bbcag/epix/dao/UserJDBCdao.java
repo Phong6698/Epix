@@ -38,7 +38,7 @@ public class UserJDBCdao extends Database implements UserDao {
 		 * Eintragen eines neuen Users in DB
 		 */
 		public void registrieren(Player user) throws SQLException {
-			String sql = "INSERT INTO USER (Username, Email, Password, Coins, MaxHealth, MaxJump, MoveSpeed, PlayerWeapon_ID) VALUES (?, ?, ?,0,0,0,0,1)";
+			String sql = "INSERT INTO USER (Username, Email, Password, Coins, PlayerWeapon_ID) VALUES (?, ?, ?,0, 1)";
 			con = getCon();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, user.getUsername());

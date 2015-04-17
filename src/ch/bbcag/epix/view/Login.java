@@ -76,7 +76,7 @@ public class Login extends JFrame{
 		login.add(registrierenButton);
 				
 		loginbButton.setBounds(273, 120, 84, 23);
-		loginbButton.addActionListener(new LoginListener(login));
+		loginbButton.addActionListener(new LoginListener(username, password, login));
 		login.add(loginbButton);			
 	}
 	

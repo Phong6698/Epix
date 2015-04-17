@@ -47,5 +47,4 @@ public class UserJDBCdao extends Database implements UserDao {
 			ps.executeUpdate();
 			closeCon();
 		}
-
 }

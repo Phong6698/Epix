@@ -12,7 +12,6 @@ import ch.bbcag.epix.utils.CryptUtils;
 public class EpixController {
 	private static EpixController instance = new EpixController();
 	private final static UserDao USER_DAO = new UserJDBCdao();
-
 	/**
 	 * Konstruktor der Klasse GMCController nur Privat
 	 */
@@ -86,36 +85,40 @@ public class EpixController {
 	public boolean login(Player user) {
 		List<Player> dbUsers = null;
 		boolean login = false;
-
 		if (user.getUsername().isEmpty()) {
 			System.out.println("Bitte Username ausf\u00fcllen");
-		} else {
+		}
+		else {
 			if (user.getPassword().isEmpty()) {
 				System.out.println("Bitte Passwort ausf\u00fcllen");
-			} else {
+			}
+			else {
 				user.setPassword(CryptUtils.base64encode(user.getPassword()));
 
 				try {
 					dbUsers = USER_DAO.findAllUsers();
-				} catch (SQLException e) {
+				}
+				catch (SQLException e) {
 					e.printStackTrace();
 				}
 
 				for (Player dbUser : dbUsers) {
 					if (user.getUsername().equals(dbUser.getUsername())) {
 						if (user.getPassword().equals(dbUser.getPassword())) {
-							System.out.println("Sie haben sich erfolgreich angemeldet");
+							System.out
+									.println("Sie haben sich erfolgreich angemeldet");
 							login = true;
-						} else {
-							System.out.println("Username und/oder Passwort stimmen nicht");
 						}
-					} else {
-						System.out.println("Username und/oder Passwort stimmen nicht");
-					}
+					} 
+				}
+				if (login == false) {
+					System.out.println("Benutername oder Passwort falsch");
 				}
 			}
 		}
+		System.out.println(login);
 		return login;
 	}
+
 
 }

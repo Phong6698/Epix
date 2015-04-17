@@ -17,7 +17,7 @@ public class UserJDBCdao extends Database implements UserDao {
 		 * Auslesen aller User aus der DB
 		 */
 		public List<Player> findAllUsers() throws SQLException {
-			String sql = "SELECT * FROM USER";
+			String sql = "SELECT * FROM player";
 			List<Player> p = new ArrayList<Player>();
 			
 			con = getCon();
@@ -26,7 +26,7 @@ public class UserJDBCdao extends Database implements UserDao {
 
 			while (rs.next()) {
 				Player user = new Player();
-				user.setUsername(rs.getString("ID_User"));
+				user.setUsername(rs.getString("Username"));
 				user.setPassword(rs.getString("Password"));
 				p.add(user);
 			}
@@ -38,12 +38,12 @@ public class UserJDBCdao extends Database implements UserDao {
 		 * Eintragen eines neuen Users in DB
 		 */
 		public void registrieren(Player user) throws SQLException {
-			String sql = "INSERT INTO USER (Username, Email, Password, Coins, PlayerWeapon_ID) VALUES (?, ?, ?,0, 1)";
+			String sql = "INSERT INTO player (Username, Password, Email, Coins, PlayerWeapon_ID) VALUES (?, ?, ?,0, 1)";
 			con = getCon();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, user.getUsername());
-			ps.setString(2, user.getEmail());
-			ps.setString(3, user.getPassword());
+			ps.setString(2, user.getPassword());
+			ps.setString(3, user.getEmail());
 			ps.executeUpdate();
 			closeCon();
 		}

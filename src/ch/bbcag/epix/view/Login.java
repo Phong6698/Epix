@@ -51,7 +51,6 @@ public class Login extends JFrame{
 		login.setBounds(500, 400, 419, 238);
 		login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		login.getContentPane().setLayout(null);
-		
 		login.setResizable(false);
 	
 		titelLabel.setFont(new Font("Tahoma", Font.BOLD, 13));

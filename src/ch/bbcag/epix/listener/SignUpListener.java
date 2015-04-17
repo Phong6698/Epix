@@ -47,9 +47,6 @@ public class SignUpListener implements ActionListener {
 		String passwordConfirm = this.getPasswordConfirm().getText();
 		String email = this.getEmail().getText();
 		
-		System.out.println(password);
-		System.out.println(passwordConfirm);
-		
 		newUser.setUsername(user);
 		newUser.setPassword(password);
 		newUser.setPasswordConfirm(passwordConfirm);

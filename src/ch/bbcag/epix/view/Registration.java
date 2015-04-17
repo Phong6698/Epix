@@ -51,7 +51,6 @@ public class Registration extends JFrame {
 		registration.setBounds(500, 400, 419, 238);
 		registration.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		registration.getContentPane().setLayout(null);
-		registration.setVisible(true);
 		registration.setResizable(false);		
 		
 		
@@ -91,5 +90,7 @@ public class Registration extends JFrame {
 		zurueckButton.setBounds(158, 154,  84, 23);
 		zurueckButton.addActionListener(new ZurueckListener(registration));
 		registration.add(zurueckButton);
+	
+		registration.setVisible(true);
 	}
 }

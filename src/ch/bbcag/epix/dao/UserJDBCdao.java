@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import ch.bbcag.epix.entity.Player;
+import ch.bbcag.epix.entity.User;
 import DBC.Database;
 
 public class UserJDBCdao extends Database implements UserDao {
@@ -16,16 +16,16 @@ public class UserJDBCdao extends Database implements UserDao {
 		/**
 		 * Auslesen aller User aus der DB
 		 */
-		public List<Player> findAllUsers() throws SQLException {
+		public List<User> findAllUsers() throws SQLException {
 			String sql = "SELECT * FROM player";
-			List<Player> p = new ArrayList<Player>();
+			List<User> p = new ArrayList<User>();
 			
 			con = getCon();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				Player user = new Player();
+				User user = new User();
 				user.setUsername(rs.getString("Username"));
 				user.setPassword(rs.getString("Password"));
 				p.add(user);
@@ -37,7 +37,7 @@ public class UserJDBCdao extends Database implements UserDao {
 		/**
 		 * Eintragen eines neuen Users in DB
 		 */
-		public void registrieren(Player user) throws SQLException {
+		public void registrieren(User user) throws SQLException {
 			String sql = "INSERT INTO player (Username, Password, Email, Coins, PlayerWeapon_ID) VALUES (?, ?, ?,0, 1)";
 			con = getCon();
 			ps = con.prepareStatement(sql);
@@ -49,9 +49,9 @@ public class UserJDBCdao extends Database implements UserDao {
 		}
 
 		@Override
-		public Player playerLogin(String username) throws SQLException {
+		public User playerLogin(String username) throws SQLException {
 			String sql = "SELECT * FROM player WHERE Username = ?;";
-			Player player = new Player();
+			User player = new User();
 			con = getCon();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, username);

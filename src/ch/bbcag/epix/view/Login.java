@@ -1,6 +1,7 @@
 package ch.bbcag.epix.view;
 
 import java.awt.Font;
+import java.awt.Graphics;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
@@ -10,6 +11,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import DBC.Database;
+import ch.bbcag.epix.Main.Game;
 import ch.bbcag.epix.listener.LoginListener;
 import ch.bbcag.epix.listener.RegistrierenListener;
 
@@ -33,7 +35,7 @@ public class Login extends JFrame{
 	 * JButton
 	 */
 	protected JButton registrierenButton = new JButton("Registrieren");
-	protected JButton loginbButton = new JButton("Login");
+	protected JButton loginbButton = new JButton("Login")  ;
 
 	/*
 	 * JLabel
@@ -82,6 +84,8 @@ public class Login extends JFrame{
 	}
 	
 	public static void main(String[] args) throws SQLException {	
-		new Login();
+		new Game();
+		
+		
 	}
 }

@@ -13,8 +13,13 @@ import javax.swing.PopupFactory;
 import javax.swing.Timer;
 
 import ch.bbcag.epix.popup.LoginFailed;
+import ch.bbcag.epix.Main.Game;
 import ch.bbcag.epix.controller.EpixController;
-import ch.bbcag.epix.entity.Player;
+import ch.bbcag.epix.entity.User;
+import ch.bbcag.epix.gamestate.GameState;
+import ch.bbcag.epix.gamestate.GameStateManager;
+import ch.bbcag.epix.gamestate.Level_1_State;
+import ch.bbcag.epix.tilemap.TileMap;
 import ch.bbcag.epix.view.EpixView;
 import ch.bbcag.epix.view.EpixView;
 
@@ -32,7 +37,7 @@ public class LoginListener implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 
-		Player loginUser = new Player();
+		User loginUser = new User();
 
 		String user = this.getUsername().getText();
 		String password = this.getPassword().getText();
@@ -42,10 +47,10 @@ public class LoginListener implements ActionListener {
 
 		if (EpixController.getInstance().login(loginUser) == true) {
 			loginView.dispose();
-			Player player = EpixController.getInstance().playerLogin(user);
+			User player = EpixController.getInstance().playerLogin(user);
 			new EpixView(player);
-			
-		} 
+		}
+		new Game();
 	}
 
 	public JFrame getLoginView() {

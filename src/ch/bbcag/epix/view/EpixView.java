@@ -7,7 +7,7 @@ import java.awt.Font;
 
 import javax.swing.JButton;
 
-import ch.bbcag.epix.entity.Player;
+import ch.bbcag.epix.entity.User;
 
 public class EpixView extends JFrame {
 
@@ -16,7 +16,7 @@ public class EpixView extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Player player;
+	private User player;
 	
 	//JButton
 	JButton spielenButton = new JButton("Spielen");
@@ -29,7 +29,7 @@ public class EpixView extends JFrame {
 	JLabel backgroundImage = new JLabel("");
 	
 
-	public EpixView(Player player) {
+	public EpixView(User player) {
 		this.setPlayer(player);
 		
 		JFrame epix = new JFrame();
@@ -37,7 +37,7 @@ public class EpixView extends JFrame {
 		epix.setBounds(100, 100, 801, 523);
 		epix.getContentPane().setLayout(null);
 				
-		coinImage.setIcon(new ImageIcon("Resources/Coin spin.gif"));
+		coinImage.setIcon(new ImageIcon("Resources2/Coin spin.gif"));
 		coinImage.setBounds(0, 10, 64, 64);
 		epix.getContentPane().add(coinImage);
 				
@@ -47,7 +47,7 @@ public class EpixView extends JFrame {
 		epix.getContentPane().add(coinLabel);
 		
 		playerLabel = new JLabel("Willkommen zurück, " + getPlayer().getUsername());
-		playerLabel.setBounds(558, 28, 139, 36);
+		playerLabel.setBounds(598, 18, 239, 36);
 		epix.getContentPane().add(playerLabel);
 		
 		spielenButton.setBounds(485, 319, 89, 23);
@@ -56,7 +56,7 @@ public class EpixView extends JFrame {
 		ranglisteButton.setBounds(485, 353, 89, 23);
 		epix.getContentPane().add(ranglisteButton);
 
-		backgroundImage.setIcon(new ImageIcon("Resources/PixelGame.png"));
+		backgroundImage.setIcon(new ImageIcon("Resources2/PixelGame.png"));
 		backgroundImage.setBounds(0, 0, 785, 485);
 		epix.getContentPane().add(backgroundImage);
 
@@ -65,12 +65,12 @@ public class EpixView extends JFrame {
 	}
 
 
-	public Player getPlayer() {
+	public User getPlayer() {
 		return player;
 	}
 
 
-	public void setPlayer(Player player) {
+	public void setPlayer(User player) {
 		this.player = player;
 	}
 }

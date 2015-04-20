@@ -50,7 +50,7 @@ public class LoginListener implements ActionListener {
 			User player = EpixController.getInstance().playerLogin(user);
 			new EpixView(player);
 		}
-		new Game();
+
 	}
 
 	public JFrame getLoginView() {

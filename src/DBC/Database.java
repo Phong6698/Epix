@@ -20,7 +20,7 @@ public class Database {
 	 * @throws SQLException
 	 */
 	protected Connection getCon() throws SQLException {
-		String filename = "data.csv"; //File mit allen Informationen
+		String filename = "dataPhong.csv"; //File mit allen Informationen
 		File file = new File(filename);
 		String [] database = new String[3];
 		

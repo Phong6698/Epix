@@ -19,8 +19,7 @@ public class ZurueckListener implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 			loginView.dispose();
-			Login frame = new Login();
-			frame.setVisible(true);
+			new Login();
 	}
 	
 	public void setLoginView(JFrame loginView) {

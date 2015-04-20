@@ -1,7 +1,6 @@
 package ch.bbcag.epix.view;
 
 import java.awt.Font;
-import java.awt.Graphics;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
@@ -10,12 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import DBC.Database;
-import ch.bbcag.epix.Main.Game;
 import ch.bbcag.epix.listener.LoginListener;
 import ch.bbcag.epix.listener.RegistrierenListener;
-
-import com.mysql.jdbc.Statement;
 
 public class Login extends JFrame{
 
@@ -84,7 +79,7 @@ public class Login extends JFrame{
 	}
 	
 	public static void main(String[] args) throws SQLException {	
-		new Game();
+		new Login();
 		
 		
 	}

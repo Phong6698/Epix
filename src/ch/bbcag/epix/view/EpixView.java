@@ -3,6 +3,8 @@ package ch.bbcag.epix.view;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -34,7 +36,9 @@ public class EpixView extends JFrame {
 		
 		JFrame epix = new JFrame();
 		epix.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		epix.setBounds(100, 100, 801, 523);
+		epix.setLocationRelativeTo(null);
 		epix.getContentPane().setLayout(null);
 				
 		coinImage.setIcon(new ImageIcon("Resources2/Coin spin.gif"));

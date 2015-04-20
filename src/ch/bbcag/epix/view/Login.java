@@ -46,6 +46,7 @@ public class Login extends JFrame{
 		
 		login.setTitle("Epix");
 		login.setBounds(500, 400, 419, 238);
+		login.setLocationRelativeTo(null);
 		login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		login.getContentPane().setLayout(null);
 		login.setResizable(false);

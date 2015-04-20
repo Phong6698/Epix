@@ -49,6 +49,7 @@ public class Registration extends JFrame {
 		
 		registration.setTitle("Epix");
 		registration.setBounds(500, 400, 419, 238);
+		registration.setLocationRelativeTo(null);
 		registration.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		registration.getContentPane().setLayout(null);
 		registration.setResizable(false);		

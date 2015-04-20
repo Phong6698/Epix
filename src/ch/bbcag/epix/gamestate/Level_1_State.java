@@ -24,11 +24,11 @@ public class Level_1_State extends GameState{
 	public void init() {
 	
 		tilemap = new TileMap(16);
-		tilemap.loadTiles("/Ground/GroundTileSet.png");
-		tilemap.loadMap("/Map/level2-1.map");
+		tilemap.loadTiles("/TileSets/GroundTileSet.png");
+		tilemap.loadMap("/Maps/level2-1.map");
 		tilemap.setPosition(0, 0);
 
-		bg = new Background("/Background/mid-NSMBintro.ogv.png", 0.1);
+		bg = new Background("/Backgrounds/mid-NSMBintro.ogv.png", 0.1);
 
 		player = new Player(tilemap);
 

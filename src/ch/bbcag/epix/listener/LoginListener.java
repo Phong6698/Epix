@@ -16,6 +16,7 @@ import ch.bbcag.epix.popup.LoginFailed;
 import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.view.EpixView;
+import ch.bbcag.epix.view.EpixView;
 
 public class LoginListener implements ActionListener {
 
@@ -42,8 +43,8 @@ public class LoginListener implements ActionListener {
 		if (EpixController.getInstance().login(loginUser) == true) {
 			loginView.dispose();
 			Player player = EpixController.getInstance().playerLogin(user);
-			EpixView frame = new EpixView(player);
-			frame.setVisible(true);
+			new EpixView(player);
+			
 		} 
 	}
 

@@ -55,18 +55,18 @@ public class Player extends MapObject {
 		
 		
 		// load sprites
-//		try {
-//			
-//			BufferedImage spritesheet = ImageIO.read(
-//				getClass().getResourceAsStream(
-//					"Resources/mid-NSMBintro.ogv.png"
-//				)
-//			);
-//			
-//		}
-//		catch(Exception e) {
-//			e.printStackTrace();
-//		}
+		try {
+			
+			BufferedImage spritesheet = ImageIO.read(
+				getClass().getResourceAsStream(
+					"Player/Player.png"
+				)
+			);
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 	

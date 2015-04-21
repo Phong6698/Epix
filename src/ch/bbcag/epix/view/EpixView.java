@@ -228,7 +228,7 @@ public class EpixView extends JFrame{
 		levelAuswahlCardCoinImage.setIcon(new ImageIcon("Resources2/Coin spin.gif"));
 		levelAuswahlCard.add(levelAuswahlCardCoinImage);
 				
-		levelAuswahlCardCoinLabel = new JLabel("100" + getPlayer().getCoin());
+		levelAuswahlCardCoinLabel = new JLabel("" + getPlayer().getCoin());
 		levelAuswahlCardCoinLabel.setBounds(67, 10, 56, 64);
 		levelAuswahlCardCoinLabel.setFont(new Font("Modern No. 20", Font.PLAIN, 26));
 		levelAuswahlCard.add(levelAuswahlCardCoinLabel);

@@ -10,6 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import ch.bbcag.epix.entity.User;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Level_Auswahl extends JFrame {
 
@@ -25,7 +28,10 @@ public class Level_Auswahl extends JFrame {
 	JLabel coinLabel;
 	JLabel playerLabel;
 	JLabel backgroundImage = new JLabel("");
-	private final JLabel lblNewLabel = new JLabel("New label");
+	private final JButton btnNewButton = new JButton("Level 1");
+	private final JButton btnLevel = new JButton("Level 2");
+	private final JButton btnBossLevel = new JButton("Boss Level");
+	private final JButton btnNewButton_1 = new JButton("Zur\u00FCck");
 	/**
 	 * Launch the application.
 	 */
@@ -53,17 +59,30 @@ public class Level_Auswahl extends JFrame {
 		epix.setBounds(100, 100, 801, 523);
 		epix.setLocationRelativeTo(null);
 		epix.getContentPane().setLayout(null);
+		
+		btnNewButton.setBounds(67, 159, 171, 170);		
+		epix.getContentPane().add(btnNewButton);
+		
+		btnLevel.setBounds(308, 159, 171, 170);		
+		epix.getContentPane().add(btnLevel);
+		
+		btnBossLevel.setBounds(550, 159, 171, 170);		
+		epix.getContentPane().add(btnBossLevel);
+		
+		btnNewButton_1.setBounds(334, 378, 121, 28);		
+		epix.getContentPane().add(btnNewButton_1);
+		
 		coinImage.setBounds(0, 10, 64, 64);
 				
 		coinImage.setIcon(new ImageIcon("Resources2/Coin spin.gif"));
 		epix.getContentPane().add(coinImage);
 				
-		coinLabel = new JLabel("100"+ getPlayer().getCoin());
+		coinLabel = new JLabel("100"/*+ getPlayer().getCoin()*/);
 		coinLabel.setBounds(67, 10, 56, 64);
 		coinLabel.setFont(new Font("Modern No. 20", Font.PLAIN, 26));
 		epix.getContentPane().add(coinLabel);
 		
-		playerLabel = new JLabel("Willkommen zurück, " + getPlayer().getUsername());
+		playerLabel = new JLabel("Willkommen zurück, "/* + getPlayer().getUsername()*/);
 		playerLabel.setBounds(598, 18, 239, 36);
 		epix.getContentPane().add(playerLabel);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,9 +91,6 @@ public class Level_Auswahl extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		lblNewLabel.setBounds(103, 178, 137, 149);
-		
-		epix.getContentPane().add(lblNewLabel);
 		
 		backgroundImage.setIcon(new ImageIcon("Resources2/PixelGame.png"));
 		backgroundImage.setBounds(0, 0, 785, 485);

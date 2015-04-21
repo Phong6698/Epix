@@ -10,8 +10,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import ch.bbcag.epix.entity.User;
+import ch.bbcag.epix.listener.LevelAuswahlCardButtonListener;
 import ch.bbcag.epix.listener.MenuCardButtonListener;
 import ch.bbcag.epix.listener.UpgradeCardButtonListener;
 
@@ -31,6 +33,7 @@ public class EpixView extends JFrame{
 	
 	protected JPanel menuCard = new JPanel();
 	protected JPanel upgradeCard = new JPanel();
+	protected JPanel levelAuswahlCard = new JPanel();
 	
 	
 	/*
@@ -46,7 +49,13 @@ public class EpixView extends JFrame{
 	protected JButton plusSpeedButton = new JButton("+");
 	protected JButton plusDamageButton = new JButton("+");
 	protected JButton levelAuswählenButton = new JButton("Level ausw\u00E4hlen");
-	protected JButton zurückButton = new JButton("Zurück");
+	protected JButton upgradeZurückButton = new JButton("Zurück");
+	
+	//levelAuswahlCard
+	protected JButton level1Button = new JButton("Level 1");
+	protected JButton level2Button = new JButton("Level 2");
+	protected JButton bossLevelButton = new JButton("Boss Level");
+	protected JButton levelZurückBtton = new JButton("Zur\u00FCck");
 	
 	
 	/*
@@ -68,6 +77,13 @@ public class EpixView extends JFrame{
 	protected JLabel speedLabel = new JLabel("MaxSpeed");
 	protected JLabel damageLabel = new JLabel("Damage");
 	
+	//levelAuswahlCard
+	protected JLabel levelAuswahlCardCoinImage = new JLabel("");
+	protected JLabel levelAuswahlCardCoinLabel;
+	protected JLabel levelAuswahlCardPlayerLabel;
+	protected JLabel levelAuswahlCardBackgroundImage = new JLabel("");
+
+	
 	
 	
 	public EpixView(User player) {
@@ -83,7 +99,6 @@ public class EpixView extends JFrame{
 		/*
 		 * menuCard
 		 */
-		getContentPane().setLayout(null);
 		menuCard.setLayout(null);
 		
 		//coin
@@ -182,8 +197,8 @@ public class EpixView extends JFrame{
 		levelAuswählenButton.setBounds(395, 361, 168, 30);
 		upgradeCard.add(levelAuswählenButton);
 				
-		zurückButton.setBounds(254, 361, 131, 30);
-		upgradeCard.add(zurückButton);
+		upgradeZurückButton.setBounds(254, 361, 131, 30);
+		upgradeCard.add(upgradeZurückButton);
 		
 		upgradeCardBackgroundImage.setBounds(0, 0, 801, 523);		
 		upgradeCardBackgroundImage.setIcon(new ImageIcon("Resources2/PixelGame.png"));
@@ -193,10 +208,54 @@ public class EpixView extends JFrame{
 		
 		
 		/*
+		 * levelAuswahlCard
+		 */
+		levelAuswahlCard.setLayout(null);
+		
+		level1Button.setBounds(67, 159, 171, 170);		
+		levelAuswahlCard.add(level1Button);
+		
+		level2Button.setBounds(308, 159, 171, 170);		
+		levelAuswahlCard.add(level2Button);
+		
+		bossLevelButton.setBounds(550, 159, 171, 170);		
+		levelAuswahlCard.add(bossLevelButton);
+		
+		levelZurückBtton.setBounds(334, 378, 121, 28);		
+		levelAuswahlCard.add(levelZurückBtton);
+		
+		levelAuswahlCardCoinImage.setBounds(0, 10, 64, 64);				
+		levelAuswahlCardCoinImage.setIcon(new ImageIcon("Resources2/Coin spin.gif"));
+		levelAuswahlCard.add(levelAuswahlCardCoinImage);
+				
+		levelAuswahlCardCoinLabel = new JLabel("100" + getPlayer().getCoin());
+		levelAuswahlCardCoinLabel.setBounds(67, 10, 56, 64);
+		levelAuswahlCardCoinLabel.setFont(new Font("Modern No. 20", Font.PLAIN, 26));
+		levelAuswahlCard.add(levelAuswahlCardCoinLabel);
+		
+		levelAuswahlCardPlayerLabel = new JLabel("Willkommen zurück, "  + getPlayer().getUsername());
+		levelAuswahlCardPlayerLabel.setBounds(598, 18, 239, 36);
+		levelAuswahlCard.add(levelAuswahlCardPlayerLabel);
+		
+		levelAuswahlCardBackgroundImage.setIcon(new ImageIcon("Resources2/PixelGame.png"));
+		levelAuswahlCardBackgroundImage.setBounds(0, 0, 801, 523);
+		levelAuswahlCard.add(levelAuswahlCardBackgroundImage);
+	
+		cards.add(levelAuswahlCard, "levelAuswahlCard");
+		
+		
+		/*
 		 * Listener
 		 */
+		//menuCard
 		spielenButton.addActionListener(new MenuCardButtonListener(cards));
-		zurückButton.addActionListener(new UpgradeCardButtonListener(cards));
+		
+		//upgradeCard
+		upgradeZurückButton.addActionListener(new UpgradeCardButtonListener(cards));
+		levelAuswählenButton.addActionListener(new UpgradeCardButtonListener(cards));
+		
+		//levelAuswahlCard
+		levelZurückBtton.addActionListener(new LevelAuswahlCardButtonListener(cards));
 		
 		
 		this.setContentPane(cards);

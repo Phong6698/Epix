@@ -6,27 +6,32 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
-public class UpgradeCardButtonListener implements ActionListener {
+public class LevelAuswahlCardButtonListener implements ActionListener {
 
 	private JPanel card;
 	
-	public UpgradeCardButtonListener(JPanel card) {
+	public LevelAuswahlCardButtonListener(JPanel card) {
 		this.setCard(card);
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals("Level ausw\u00E4hlen")) {
-			CardLayout cardLayout = (CardLayout) getCard().getLayout();
-			cardLayout.show(getCard(), "levelAuswahlCard");
+		if (e.getActionCommand().equals("Level 1")) {
+			
+		}
+		else if (e.getActionCommand().equals("Level 2")) {
+
+		}
+		else if (e.getActionCommand().equals("Boss Level")) {
+	
 		}
 		else if (e.getActionCommand().equals("Zurück")) {
 			CardLayout cardLayout = (CardLayout) getCard().getLayout();
-			cardLayout.show(getCard(), "menuCard");
+			cardLayout.show(getCard(), "upgradeCard");
 		}
 		
 	}
-
+	
 	public JPanel getCard() {
 		return card;
 	}

@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import ch.bbcag.epix.Main.GamePanel;
+import ch.bbcag.epix.Main.Game;
 import ch.bbcag.epix.listener.LoginListener;
 import ch.bbcag.epix.listener.RegistrierenListener;
 
@@ -43,6 +43,8 @@ public class Login extends JFrame{
 	
 
 	public Login() {
+		
+		Game.game();	
 		JFrame login = new JFrame();
 		
 		
@@ -82,9 +84,7 @@ public class Login extends JFrame{
 	}
 	
 	public static void main(String[] args) throws SQLException {
-		new Login();
-		
-		
-		
+		Game.game();
+		Game.setVisible(true);
 	}
 }

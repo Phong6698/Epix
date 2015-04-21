@@ -14,7 +14,7 @@ public class LevelAuswahlCardButtonListener implements ActionListener {
 		this.setCard(card);
 	}
 	
-	@Override
+	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("Level 1")) {
 			

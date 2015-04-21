@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
+import ch.bbcag.epix.Main.Game;
 import ch.bbcag.epix.entity.User;
 
 public class MenuCardButtonListener implements ActionListener {
@@ -19,6 +20,8 @@ public class MenuCardButtonListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("Spielen")) {
+			Game.setVisible(true);
+			
 			CardLayout cardLayout = (CardLayout) getCard().getLayout();
 			cardLayout.show(getCard(), "upgradeCard");
 		}

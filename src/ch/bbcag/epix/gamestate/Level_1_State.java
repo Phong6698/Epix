@@ -3,12 +3,10 @@ package ch.bbcag.epix.gamestate;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JFrame;
-
+import ch.bbcag.epix.Main.GamePanel;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.Background;
 import ch.bbcag.epix.tilemap.TileMap;
-import ch.bbcag.epix.view.EpixView;
 
 public class Level_1_State extends GameState{
 
@@ -26,13 +24,14 @@ public class Level_1_State extends GameState{
 		tilemap = new TileMap(16);
 		tilemap.loadTiles("/TileSets/GroundTileSet.png");
 		tilemap.loadMap("/Maps/level2-1.map");
-		tilemap.setPosition(0, 0);
-
-		bg = new Background("/Backgrounds/mid-NSMBintro.ogv.png", 0.1);
-
+		tilemap.setPosition(30, 30);
+		
+		
+		bg = new Background("/Backgrounds/Background.png", 1);
+		
 		player = new Player(tilemap);
-
-		player.setPosition(100, 100);
+		
+		player.setPosition(28, 28);
 
 	}
 
@@ -40,10 +39,11 @@ public class Level_1_State extends GameState{
 
 		// update player
 		player.update();
-		tilemap.setPosition(EpixView.WIDTH / 2 - player.getx(), EpixView.HEIGHT / 2 - player.gety());
+		tilemap.setPosition(GamePanel.WIDTH / 2 - player.getx(), GamePanel.HEIGHT / 2 - player.gety());
 
 		// set background
 		bg.setPosition(tilemap.getx(), tilemap.gety());
+		
 
 	}
 
@@ -57,7 +57,10 @@ public class Level_1_State extends GameState{
 
 		// draw player
 		player.draw(g);	
+		
+		
 	}
+	
 
 	public void keyPressed(int k) {
 		if(k == KeyEvent.VK_LEFT) player.setLeft(true);

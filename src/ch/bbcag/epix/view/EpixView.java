@@ -122,7 +122,7 @@ public class EpixView extends JFrame{
 		ranglisteButton.setBounds(485, 353, 89, 23);
 		menuCard.add(ranglisteButton);
 
-		menuCardBackgroundImage.setIcon(new ImageIcon("Resources2/PixelGame.png"));
+		menuCardBackgroundImage.setIcon(new ImageIcon("Resources2/EpixTitleScreen.png"));
 		menuCardBackgroundImage.setBounds(0, 0, 801, 523);
 		menuCard.add(menuCardBackgroundImage);
 
@@ -201,7 +201,7 @@ public class EpixView extends JFrame{
 		upgradeCard.add(upgradeZurückButton);
 		
 		upgradeCardBackgroundImage.setBounds(0, 0, 801, 523);		
-		upgradeCardBackgroundImage.setIcon(new ImageIcon("Resources2/PixelGame.png"));
+		upgradeCardBackgroundImage.setIcon(new ImageIcon("Resources2/EpixTitleScreen.png"));
 		upgradeCard.add(upgradeCardBackgroundImage);
 		
 		cards.add(upgradeCard, "upgradeCard");
@@ -237,7 +237,7 @@ public class EpixView extends JFrame{
 		levelAuswahlCardPlayerLabel.setBounds(598, 18, 239, 36);
 		levelAuswahlCard.add(levelAuswahlCardPlayerLabel);
 		
-		levelAuswahlCardBackgroundImage.setIcon(new ImageIcon("Resources2/PixelGame.png"));
+		levelAuswahlCardBackgroundImage.setIcon(new ImageIcon("Resources2/EpixTitleScreen.png"));
 		levelAuswahlCardBackgroundImage.setBounds(0, 0, 801, 523);
 		levelAuswahlCard.add(levelAuswahlCardBackgroundImage);
 	

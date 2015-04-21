@@ -14,13 +14,13 @@ import javax.swing.Timer;
 
 import ch.bbcag.epix.popup.LoginFailed;
 import ch.bbcag.epix.Main.Game;
+import ch.bbcag.epix.Main.GamePanel;
 import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.gamestate.GameState;
 import ch.bbcag.epix.gamestate.GameStateManager;
 import ch.bbcag.epix.gamestate.Level_1_State;
 import ch.bbcag.epix.tilemap.TileMap;
-import ch.bbcag.epix.view.EpixView;
 import ch.bbcag.epix.view.EpixView;
 
 public class LoginListener implements ActionListener {
@@ -49,6 +49,7 @@ public class LoginListener implements ActionListener {
 			loginView.dispose();
 			User player = EpixController.getInstance().playerLogin(user);
 			new EpixView(player);
+			
 		}
 
 	}

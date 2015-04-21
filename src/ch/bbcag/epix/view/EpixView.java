@@ -63,17 +63,16 @@ public class EpixView extends JFrame{
 	protected JLabel upgradeCardCoinLabel;
 	protected JLabel upgradeCardPlayerLabel;
 	protected JLabel upgradeCardBackgroundImage = new JLabel("");
-	protected JLabel HealthLabel = new JLabel("MaxHealth");
-	protected JLabel JumpLabel = new JLabel("MaxJump");
-	protected JLabel SpeedLabel = new JLabel("MaxSpeed");
-	protected JLabel DamageLabel = new JLabel("Damage");
+	protected JLabel healthLabel = new JLabel("MaxHealth");
+	protected JLabel jumpLabel = new JLabel("MaxJump");
+	protected JLabel speedLabel = new JLabel("MaxSpeed");
+	protected JLabel damageLabel = new JLabel("Damage");
 	
 	
 	
 	public EpixView(User player) {
 		this.setPlayer(player);
-		
-//		JFrame epix = new JFrame();
+
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setBounds(100, 100, 801, 523);
@@ -86,24 +85,25 @@ public class EpixView extends JFrame{
 		 */
 		getContentPane().setLayout(null);
 		menuCard.setLayout(null);
-		menuCardCoinImage.setBounds(0, 0, 64, 64);
-		menuCard.add(menuCardCoinImage);
 		
-		menuCardCoinImage.setIcon(new ImageIcon("Resources2/Coin spin.gif"));
-				
+		//coin
+		menuCardCoinImage.setBounds(0, 10, 64, 64);
+		menuCard.add(menuCardCoinImage);		
+		menuCardCoinImage.setIcon(new ImageIcon("Resources2/Coin spin.gif"));				
 		menuCardCoinLabel = new JLabel("" + getPlayer().getCoin());
 		menuCardCoinLabel.setFont(new Font("Modern No. 20", Font.PLAIN, 26));
 		menuCardCoinLabel.setBounds(67, 10, 56, 64);
 		menuCard.add(menuCardCoinLabel);
 		
+		//player
 		menuCardPlayerLabel = new JLabel("Willkommen zurück, " + getPlayer().getUsername());
 		menuCardPlayerLabel.setBounds(598, 18, 239, 36);
 		menuCard.add(menuCardPlayerLabel);
+
 		
 		spielenButton.setBounds(485, 319, 89, 23);
 		menuCard.add(spielenButton);
-		
-		
+				
 		ranglisteButton.setBounds(485, 353, 89, 23);
 		menuCard.add(ranglisteButton);
 
@@ -120,72 +120,64 @@ public class EpixView extends JFrame{
 		 */
 		upgradeCard.setLayout(null);
 		
-		upgradeCardCoinImage.setBounds(0, 10, 64, 64);
-		
+		//coin
+		upgradeCardCoinImage.setBounds(0, 10, 64, 64);		
 		upgradeCardCoinImage.setIcon(new ImageIcon("Resources2/Coin spin.gif"));
-		upgradeCard.add(upgradeCardCoinImage);
-				
+		upgradeCard.add(upgradeCardCoinImage);				
 		upgradeCardCoinLabel = new JLabel(""+ getPlayer().getCoin());
 		upgradeCardCoinLabel.setBounds(67, 10, 56, 64);
 		upgradeCardCoinLabel.setFont(new Font("Modern No. 20", Font.PLAIN, 26));
 		upgradeCard.add(upgradeCardCoinLabel);
 		
+		//player
 		upgradeCardPlayerLabel = new JLabel("Willkommen zurück, " + getPlayer().getUsername());
 		upgradeCardPlayerLabel.setBounds(598, 18, 239, 36);
 		upgradeCard.add(upgradeCardPlayerLabel);
-		
-		HealthLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		HealthLabel.setBounds(191, 127, 110, 36);
-		upgradeCard.add(HealthLabel);
-		
-		JumpLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		JumpLabel.setBounds(191, 174, 110, 36);
-		upgradeCard.add(JumpLabel);
-		
-		SpeedLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		SpeedLabel.setBounds(191, 221, 110, 36);
-		upgradeCard.add(SpeedLabel);
-		
-		DamageLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		DamageLabel.setBounds(191, 268, 110, 36);
-		upgradeCard.add(DamageLabel);
-		
-		
-		JProgressBar progressBar = new JProgressBar();
-		progressBar.setValue(23);
-		progressBar.setBounds(327, 127, 185, 36);
-		upgradeCard.add(progressBar);
-		
-		plusHealthButton.setBounds(522, 130, 41, 30);
+			
+		//maxHealthBar
+		healthLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		healthLabel.setBounds(191, 127, 110, 36);
+		upgradeCard.add(healthLabel);
+		JProgressBar maxHealthBar = new JProgressBar();
+		maxHealthBar.setValue(20);
+		maxHealthBar.setBounds(327, 127, 185, 36);
+		upgradeCard.add(maxHealthBar);		
+		plusHealthButton.setBounds(522, 130, 41, 30);		
 		upgradeCard.add(plusHealthButton);
-		JProgressBar progressBar_1 = new JProgressBar();
-		progressBar_1.setValue(54);
 		
-		progressBar_1.setBounds(327, 174, 185, 36);
-		upgradeCard.add(progressBar_1);
-		
+		//maxJumpBar	
+		jumpLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		jumpLabel.setBounds(191, 174, 110, 36);
+		upgradeCard.add(jumpLabel);
+		JProgressBar maxJumpBar = new JProgressBar();
+		maxJumpBar.setValue(40);		
+		maxJumpBar.setBounds(327, 174, 185, 36);
+		upgradeCard.add(maxJumpBar);		
 		plusJumpButton.setBounds(522, 177, 41, 30);
 		upgradeCard.add(plusJumpButton);
 		
-		JProgressBar progressBar_2 = new JProgressBar();
-		progressBar_2.setValue(38);
-		
-		progressBar_2.setBounds(327, 221, 185, 36);
-		upgradeCard.add(progressBar_2);
-		
+		//maxSpeed
+		speedLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		speedLabel.setBounds(191, 221, 110, 36);
+		upgradeCard.add(speedLabel);
+		JProgressBar maxSpeedBar = new JProgressBar();
+		maxSpeedBar.setValue(60);		
+		maxSpeedBar.setBounds(327, 221, 185, 36);
+		upgradeCard.add(maxSpeedBar);	
 		plusSpeedButton.setBounds(522, 224, 41, 30);
 		upgradeCard.add(plusSpeedButton);
 		
-		JProgressBar progressBar_3 = new JProgressBar();
-		progressBar_3.setValue(69);
-		
-		progressBar_3.setBounds(327, 268, 185, 36);
-		upgradeCard.add(progressBar_3);
-		
+		//damageBar
+		damageLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		damageLabel.setBounds(191, 268, 110, 36);
+		upgradeCard.add(damageLabel);
+		JProgressBar damageBar = new JProgressBar();
+		damageBar.setValue(80);	
+		damageBar.setBounds(327, 268, 185, 36);
+		upgradeCard.add(damageBar);	
 		plusDamageButton.setBounds(522, 271, 41, 30);
 		upgradeCard.add(plusDamageButton);
 		
-
 		
 		levelAuswählenButton.setBounds(395, 361, 168, 30);
 		upgradeCard.add(levelAuswählenButton);
@@ -193,8 +185,7 @@ public class EpixView extends JFrame{
 		zurückButton.setBounds(254, 361, 131, 30);
 		upgradeCard.add(zurückButton);
 		
-		upgradeCardBackgroundImage.setBounds(0, 0, 801, 523);
-		
+		upgradeCardBackgroundImage.setBounds(0, 0, 801, 523);		
 		upgradeCardBackgroundImage.setIcon(new ImageIcon("Resources2/PixelGame.png"));
 		upgradeCard.add(upgradeCardBackgroundImage);
 		

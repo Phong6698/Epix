@@ -3,24 +3,12 @@ package ch.bbcag.epix.listener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.Popup;
-import javax.swing.PopupFactory;
-import javax.swing.Timer;
 
-import ch.bbcag.epix.popup.LoginFailed;
-import ch.bbcag.epix.Main.Game;
-import ch.bbcag.epix.Main.GamePanel;
 import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.User;
-import ch.bbcag.epix.gamestate.GameState;
-import ch.bbcag.epix.gamestate.GameStateManager;
-import ch.bbcag.epix.gamestate.Level_1_State;
-import ch.bbcag.epix.tilemap.TileMap;
 import ch.bbcag.epix.view.EpixView;
 
 public class LoginListener implements ActionListener {
@@ -40,6 +28,7 @@ public class LoginListener implements ActionListener {
 		User loginUser = new User();
 
 		String user = this.getUsername().getText();
+		@SuppressWarnings("deprecation")
 		String password = this.getPassword().getText();
 
 		loginUser.setPassword(password);

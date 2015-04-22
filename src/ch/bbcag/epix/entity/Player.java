@@ -56,7 +56,7 @@ public class Player extends MapObject {
 		cwidth = 10;
 		cheight = 16;
 		
-		moveSpeed = 0.3;
+		moveSpeed = 0.1;
 		maxSpeed = 1.6;
 		stopSpeed = 0.4;
 		fallSpeed = 0.15;
@@ -263,7 +263,7 @@ public class Player extends MapObject {
 			if(currentAction != WALKING) {
 				currentAction = WALKING;
 				animation.setFrames(sprites.get(WALKING));
-				animation.setDelay(40);
+				animation.setDelay(60);
 				width = 16;
 			}
 		}

@@ -20,8 +20,7 @@ public class MenuCardButtonListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("Spielen")) {
-			Game.setVisible(true);
-			
+		
 			CardLayout cardLayout = (CardLayout) getCard().getLayout();
 			cardLayout.show(getCard(), "upgradeCard");
 		}

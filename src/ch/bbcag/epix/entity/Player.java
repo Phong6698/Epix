@@ -15,15 +15,17 @@ public class Player extends MapObject {
 	// player stuff
 	private int health;
 	private int maxHealth;
-	private int fire;
-	private int maxFire;
+	private int rainbow;
+	private int maxRainbow;
 	private boolean dead;
 	private boolean flinching;
 	private long flinchTimer;
 	
 	// fireball
-	private boolean firing;
-	
+	private boolean rainbowing;
+	private int rainbowcost;
+	private int rainbowdamage;
+	private ArrayList<Rainbow> rainbows;
 	
 	// scratch
 	private boolean scratching;
@@ -43,7 +45,7 @@ public class Player extends MapObject {
 	private static final int JUMPING = 2;
 	private static final int FALLING = 2;
 	private static final int GLIDING = 2;
-	private static final int FIREBALL = 3;
+	private static final int RAINBOW = 3;
 	
 	public Player(TileMap tm) {
 		
@@ -61,13 +63,15 @@ public class Player extends MapObject {
 		stopSpeed = 0.4;
 		fallSpeed = 0.15;
 		maxFallSpeed = 2.0;
-		jumpStart = -4.8;
+		jumpStart = -2.5;
 		stopJumpSpeed = 0.3;
 		
 		facingRight = true;
 		
 		health = maxHealth = 5;
-		fire = maxFire = 2500;
+		rainbow = maxRainbow = 2500;
+		
+		rainbows = new ArrayList<Rainbow>();
 		
 		// load sprites
 		try {
@@ -86,7 +90,7 @@ public class Player extends MapObject {
 				
 				for(int j = 0; j < numFrames[i]; j++) {
 					
-					if(i != FIREBALL) {
+					if(i != RAINBOW) {
 						bi[j] = spritesheet.getSubimage(
 								j * width,
 								i * height,
@@ -123,12 +127,32 @@ public class Player extends MapObject {
 	
 	public int getHealth() { return health; }
 	public int getMaxHealth() { return maxHealth; }
-	public int getFire() { return fire; }
-	public int getMaxFire() { return maxFire; }
+	public int getRainbow() { return rainbow; }
+	public int getMaxRainbow() { return maxRainbow; }
 	
-	public void setFiring() { 
-		firing = true;
+	public void setRainbowing() { 
+		rainbowing = true;
 	}
+	public int getRainbowcost() {
+		return rainbowcost;
+	}
+
+	public void setRainbowcost(int rainbowcost) {
+		this.rainbowcost = rainbowcost;
+	}
+
+	public int getRainbowdamage() {
+		return rainbowdamage;
+	}
+
+	public void setRainbowdamage(int rainbowdamage) {
+		this.rainbowdamage = rainbowdamage;
+	}
+
+	public ArrayList<Rainbow> getRainbows() {
+		return rainbows;
+	}
+
 	public void setScratching() {
 		scratching = true;
 	}
@@ -168,8 +192,7 @@ public class Player extends MapObject {
 		
 		// cannot move while attacking, except in air
 		if(
-		(currentAction == FIREBALL || currentAction == FIREBALL) &&
-		!(jumping || falling)) {
+		(currentAction == RAINBOW ) && !(jumping || falling)) {
 			dx = 0;
 		}
 		
@@ -202,12 +225,23 @@ public class Player extends MapObject {
 		setPosition(xtemp, ytemp);
 		
 		// check attack has stopped
-		if(currentAction == FIREBALL) {
-			if(animation.hasPlayedOnce()) scratching = false;
+		if(currentAction == RAINBOW) {
+			if(animation.hasPlayedOnce()) rainbowing = false;
 		}
-		if(currentAction == FIREBALL) {
-			if(animation.hasPlayedOnce()) firing = false;
+		// fireball attack
+		if (rainbowing && currentAction != RAINBOW) {
+				Rainbow fb = new Rainbow(tileMap, facingRight);
+				fb.setPosition(x, y);
+				rainbows.add(fb);
 		}
+		// update fireballs
+				for (int i = 0; i < rainbows.size(); i++) {
+					rainbows.get(i).update();
+					if (rainbows.get(i).shouldRemove()) {
+						rainbows.remove(i);
+						i--;
+					}
+				}
 		
 		// check done flinching
 		if(flinching) {
@@ -219,18 +253,10 @@ public class Player extends MapObject {
 		}
 		
 		// set animation
-		if(scratching) {
-			if(currentAction != FIREBALL) {
-				currentAction = FIREBALL;
-				animation.setFrames(sprites.get(FIREBALL));
-				animation.setDelay(50);
-				width = 16;
-			}
-		}
-		else if(firing) {
-			if(currentAction != FIREBALL) {
-				currentAction = FIREBALL;
-				animation.setFrames(sprites.get(FIREBALL));
+		else if(rainbowing) {
+			if(currentAction != RAINBOW) {
+				currentAction = RAINBOW;
+				animation.setFrames(sprites.get(RAINBOW));
 				animation.setDelay(100);
 				width = 16;
 			}
@@ -279,7 +305,7 @@ public class Player extends MapObject {
 		animation.update();
 		
 		// set direction
-		if(currentAction != FIREBALL && currentAction != FIREBALL) {
+		if(currentAction != RAINBOW ) {
 			if(right) facingRight = true;
 			if(left) facingRight = false;
 		}
@@ -291,7 +317,9 @@ public class Player extends MapObject {
 		setMapPosition();
 		
 		// draw fireballs
-		
+		for (int i = 0; i < rainbows.size(); i++) {
+			rainbows.get(i).draw(g);
+		}
 		// draw player
 		if(flinching) {
 			long elapsed =

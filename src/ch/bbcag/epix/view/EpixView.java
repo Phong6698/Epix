@@ -256,6 +256,7 @@ public class EpixView extends JFrame{
 		
 		//levelAuswahlCard
 		levelZurückBtton.addActionListener(new LevelAuswahlCardButtonListener(cards));
+		level1Button.addActionListener(new LevelAuswahlCardButtonListener(cards));
 		
 		
 		this.setContentPane(cards);

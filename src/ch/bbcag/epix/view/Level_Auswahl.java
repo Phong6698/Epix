@@ -10,7 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import ch.bbcag.epix.entity.User;
+import ch.bbcag.epix.listener.TutorialListener;
+
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -60,7 +63,8 @@ public class Level_Auswahl extends JFrame {
 		epix.setLocationRelativeTo(null);
 		epix.getContentPane().setLayout(null);
 		
-		btnNewButton.setBounds(67, 159, 171, 170);		
+		btnNewButton.setBounds(67, 159, 171, 170);
+		btnNewButton.addActionListener(new TutorialListener(epix));
 		epix.getContentPane().add(btnNewButton);
 		
 		btnLevel.setBounds(308, 159, 171, 170);		

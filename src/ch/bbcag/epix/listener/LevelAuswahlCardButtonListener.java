@@ -4,7 +4,10 @@ import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import ch.bbcag.epix.Main.Game;
 
 public class LevelAuswahlCardButtonListener implements ActionListener {
 
@@ -17,8 +20,8 @@ public class LevelAuswahlCardButtonListener implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("Level 1")) {
-			
-		}
+			Game.setVisible(true);
+			}
 		else if (e.getActionCommand().equals("Level 2")) {
 
 		}

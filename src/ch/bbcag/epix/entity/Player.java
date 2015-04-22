@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 
 import ch.bbcag.entity.enemies.Plant;
 import ch.bbcag.epix.tilemap.TileMap;
+import ch.bbcg.entity.enemies.ShootingPlant;
 
 public class Player extends MapObject {
 
@@ -17,7 +18,15 @@ public class Player extends MapObject {
 	private int rainbow;
 	private int maxRainbow;
 	private boolean dead;
-	private boolean flinching;
+	private static boolean flinching;
+	public static boolean isFlinching() {
+		return flinching;
+	}
+
+	public void setFlinching(boolean flinching) {
+		Player.flinching = flinching;
+	}
+
 	private long flinchTimer;
 
 	// fireball
@@ -139,8 +148,7 @@ public class Player extends MapObject {
 	public ArrayList<Rainbow> getRainbows() {
 		return rainbows;
 	}
-	public void checkAttack(ArrayList<Plant> plants) {
-
+	public void checkAttackPlants(ArrayList<Plant> plants) {
 		// loop through enemies
 		for (int i = 0; i < plants.size(); i++) {
 
@@ -152,17 +160,38 @@ public class Player extends MapObject {
 					e.hit(rainbowdamage);
 					rainbows.get(j).setHit();
 					break;
-					
 				}
 			}
-
 			// check enemy collision
 			if (intersects(e)) {
 				hit(e.getDamage());
 			}
 
 		}
+	}
+	public void checkAttackShootingPlants(ArrayList<ShootingPlant> shootingplants) {
 
+		// loop through enemies
+		for (int i = 0; i < shootingplants.size(); i++) {
+
+			ShootingPlant e = shootingplants.get(i);
+
+			// fireballs
+			for (int j = 0; j < rainbows.size(); j++) {
+				if (rainbows.get(j).intersects(e)) {
+					e.hit(rainbowdamage);
+					rainbows.get(j).setHit();
+					break;
+					
+				}
+			}
+			// check enemy collision
+			if (intersects(e)) {
+				e.update();
+				hit(e.getDamage());
+			}
+
+		}
 	}
 	
 	public void hit(int damage) {

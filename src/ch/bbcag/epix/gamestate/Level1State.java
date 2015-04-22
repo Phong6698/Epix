@@ -10,6 +10,7 @@ import ch.bbcag.epix.Main.GamePanel;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.Background;
 import ch.bbcag.epix.tilemap.TileMap;
+import ch.bbcg.entity.enemies.ShootingPlant;
 
 public class Level1State extends GameState{
 
@@ -18,6 +19,7 @@ public class Level1State extends GameState{
 	private Background bg;
 	
 	private ArrayList<Plant> plant;
+	private ArrayList<ShootingPlant> shootingplant;
 	
 	public Level1State(GameStateManager gsm) {
 		this.gsm = gsm;	
@@ -31,8 +33,7 @@ public class Level1State extends GameState{
 		tilemap.loadMap("/Maps/level1.map");
 		tilemap.setPosition(30, 30);
 		
-		
-		
+	
 		bg = new Background("/Backgrounds/Background.png", 1);
 		
 		player = new Player(tilemap);
@@ -61,6 +62,24 @@ private void populateEnemies() {
 			plant.add(s);
 		}
 		
+		shootingplant = new ArrayList<ShootingPlant>();
+		
+		ShootingPlant p;
+		Point[] point = new Point[] {
+			new Point(160, 10),
+			new Point(260, 10),
+			new Point(230, 10),
+			new Point(375, 10),
+			new Point(480, 10),
+			new Point(420, 10),
+			new Point(606, 10),
+		};
+		for(int i = 0; i < point.length; i++) {
+			p = new ShootingPlant(tilemap, false);
+			p.setPosition(point[i].x, point[i].y);
+			shootingplant.add(p);
+			}
+		
 	}
 
 	public void update() {
@@ -72,13 +91,25 @@ private void populateEnemies() {
 		// set background
 		bg.setPosition(tilemap.getx(), tilemap.gety());
 		
-		player.checkAttack(plant);
+		player.checkAttackPlants(plant);
+		player.checkAttackShootingPlants(shootingplant);
 		
 		for(int i = 0; i < plant.size(); i++) {
 			Plant e = plant.get(i);
 			e.update();
+			
+			
 			if(e.isDead()) {
 				plant.remove(i);
+				i--;
+			}
+		}
+		
+		for(int i = 0; i < shootingplant.size(); i++) {
+			ShootingPlant e = shootingplant.get(i);
+			e.update();
+			if(e.isDead()) {
+				shootingplant.remove(i);
 				i--;
 			}
 		}
@@ -97,10 +128,12 @@ private void populateEnemies() {
 			plant.get(i).draw(g);
 		}
 		
+		for(int i = 0; i < shootingplant.size(); i++) {
+			shootingplant.get(i).draw(g);
+		}
+		
 		// draw player
 		player.draw(g);	
-		
-		
 	}
 	
 

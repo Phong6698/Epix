@@ -1,18 +1,23 @@
 package ch.bbcag.epix.gamestate;
 
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import ch.bbcag.epix.Main.GamePanel;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.Background;
 import ch.bbcag.epix.tilemap.TileMap;
+import ch.bbcg.entity.enemies.Plant;
 
 public class Level1State extends GameState{
 
 	private TileMap tilemap;
 	private Player player;
 	private Background bg;
+	
+	private ArrayList<Plant> plant;
 	
 	public Level1State(GameStateManager gsm) {
 		this.gsm = gsm;	
@@ -27,12 +32,29 @@ public class Level1State extends GameState{
 		tilemap.setPosition(30, 30);
 		
 		
+		
 		bg = new Background("/Backgrounds/Background.png", 1);
 		
 		player = new Player(tilemap);
-		
+		populateEnemies();
 		player.setPosition(28, 28);
 
+	}
+	
+private void populateEnemies() {
+		
+		plant = new ArrayList<Plant>();
+	
+		Plant s;
+		Point[] points = new Point[] {
+			new Point(120, 120)
+		};
+		for(int i = 0; i < points.length; i++) {
+			s = new Plant(tilemap);
+			s.setPosition(points[i].x, points[i].y);
+			plant.add(s);
+		}
+		
 	}
 
 	public void update() {
@@ -44,6 +66,16 @@ public class Level1State extends GameState{
 		// set background
 		bg.setPosition(tilemap.getx(), tilemap.gety());
 		
+		player.checkAttack(plant);
+		
+		for(int i = 0; i < plant.size(); i++) {
+			Plant e = plant.get(i);
+			e.update();
+			if(e.isDead()) {
+				plant.remove(i);
+				i--;
+			}
+		}
 
 	}
 
@@ -55,6 +87,10 @@ public class Level1State extends GameState{
 		// draw tilemap
 		tilemap.draw(g);
 
+		for(int i = 0; i < plant.size(); i++) {
+			plant.get(i).draw(g);
+		}
+		
 		// draw player
 		player.draw(g);	
 		

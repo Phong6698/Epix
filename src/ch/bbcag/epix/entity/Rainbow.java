@@ -26,8 +26,8 @@ public class Rainbow extends MapObject {
 		
 		width = 16;
 		height = 16;
-		cwidth = 9;
-		cheight = 9;
+		cwidth = 1;
+		cheight = 1;
 		
 		// load sprites
 		try {
@@ -60,7 +60,7 @@ public class Rainbow extends MapObject {
 			
 			animation = new Animation();
 			animation.setFrames(sprites);
-			animation.setDelay(70);
+			animation.setDelay(10);
 			
 		}
 		catch(Exception e) {

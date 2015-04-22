@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import ch.bbcag.epix.tilemap.TileMap;
+import ch.bbcg.entity.enemies.Plant;
 
 public class Player extends MapObject {
 
@@ -53,14 +54,15 @@ public class Player extends MapObject {
 		stopSpeed = 0.4;
 		fallSpeed = 0.15;
 		maxFallSpeed = 2.0;
-		jumpStart = -2.5;
+		jumpStart = -6;
 		stopJumpSpeed = 0.3;
 
 		facingRight = true;
 
 		health = maxHealth = 5;
 		rainbow = maxRainbow = 2500;
-
+		
+		rainbowdamage = 5;
 		rainbows = new ArrayList<Rainbow>();
 
 		// load sprites
@@ -137,7 +139,43 @@ public class Player extends MapObject {
 	public ArrayList<Rainbow> getRainbows() {
 		return rainbows;
 	}
+	public void checkAttack(ArrayList<Plant> plants) {
 
+		// loop through enemies
+		for (int i = 0; i < plants.size(); i++) {
+
+			Plant e = plants.get(i);
+
+			// fireballs
+			for (int j = 0; j < rainbows.size(); j++) {
+				if (rainbows.get(j).intersects(e)) {
+					e.hit(rainbowdamage);
+					rainbows.get(j).setHit();
+					break;
+					
+				}
+			}
+
+			// check enemy collision
+			if (intersects(e)) {
+				hit(e.getDamage());
+			}
+
+		}
+
+	}
+	
+	public void hit(int damage) {
+		if (flinching)
+			return;
+		health -= damage;
+		if (health < 0)
+			health = 0;
+		if (health == 0)
+			dead = true;
+		flinching = true;
+		flinchTimer = System.nanoTime();
+	}
 	private void getNextPosition() {
 
 		// movement

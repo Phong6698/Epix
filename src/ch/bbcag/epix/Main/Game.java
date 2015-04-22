@@ -7,7 +7,7 @@ public class Game {
 	private boolean visible;
 	
 	public static void game() {
-		window.setContentPane(new GamePanel());
+//		window.setContentPane(new GamePanel());
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(false);
 		window.pack();

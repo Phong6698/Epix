@@ -5,11 +5,11 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import ch.bbcag.entity.enemies.Plant;
 import ch.bbcag.epix.Main.GamePanel;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.Background;
 import ch.bbcag.epix.tilemap.TileMap;
-import ch.bbcg.entity.enemies.Plant;
 
 public class Level1State extends GameState{
 

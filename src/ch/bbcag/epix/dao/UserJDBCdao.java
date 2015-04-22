@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import ch.bbcag.epix.entity.User;
-import DBC.Database;
 
 public class UserJDBCdao extends Database implements UserDao {
 	

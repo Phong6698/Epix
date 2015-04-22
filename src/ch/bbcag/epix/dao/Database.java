@@ -1,4 +1,4 @@
-package DBC;
+package ch.bbcag.epix.dao;
 
 import java.io.File;
 import java.io.FileNotFoundException;

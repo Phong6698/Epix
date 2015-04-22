@@ -85,8 +85,8 @@ public class Login extends JFrame{
 	}
 	
 	public static void main(String[] args) throws SQLException {
-//		new Login();
-		Game.game();
-		Game.setVisible(true);	
+		new Login();
+//		Game.game();
+//		Game.setVisible(true);	
 	}
 }

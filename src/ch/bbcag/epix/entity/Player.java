@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import ch.bbcag.entity.enemies.Plant;
 import ch.bbcag.epix.tilemap.TileMap;
-import ch.bbcg.entity.enemies.Plant;
 
 public class Player extends MapObject {
 
@@ -54,7 +54,7 @@ public class Player extends MapObject {
 		stopSpeed = 0.4;
 		fallSpeed = 0.15;
 		maxFallSpeed = 2.0;
-		jumpStart = -6;
+		jumpStart = -2.5;
 		stopJumpSpeed = 0.3;
 
 		facingRight = true;

@@ -7,13 +7,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import ch.bbcag.epix.gamestate.GameState;
 import ch.bbcag.epix.gamestate.GameStateManager;
 
 
-public class GamePanel extends JPanel implements Runnable, KeyListener{	
+public class GamePanel extends JFrame implements Runnable, KeyListener{	
 	/**
 	 * 
 	 */
@@ -37,14 +38,24 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	private BufferedImage image;
 	private Graphics2D g;
 	
+	//level
+	private int level;
+	
 	// game state manager
 	private GameStateManager gsm;
 	
-	public GamePanel() {
-		super();
-		setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-		setFocusable(true);
-		requestFocus();
+	public GamePanel(int level) {
+		this.level = level;
+//		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setResizable(true);
+		this.pack();
+		this.setLocationRelativeTo(null);
+		this.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
+		this.setBounds(100, 100, WIDTH * SCALE, HEIGHT * SCALE);
+		this.setLocationRelativeTo(null);
+		this.setFocusable(true);
+		this.requestFocus();
+		this.setVisible(true);
 	}
 	
 	public void addNotify() {
@@ -63,7 +74,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 		
 		running = true;
 		
-		gsm = new GameStateManager();
+		gsm = new GameStateManager(level);
 		
 	}
 	

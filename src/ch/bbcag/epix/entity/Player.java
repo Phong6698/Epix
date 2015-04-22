@@ -261,23 +261,15 @@ public class Player extends MapObject {
 				width = 16;
 			}
 		}
-		else if(dy > 0) {
-			if(gliding) {
-				if(currentAction != GLIDING) {
-					currentAction = GLIDING;
-					animation.setFrames(sprites.get(GLIDING));
-					animation.setDelay(100);
-					width = 16;
-				}
-			}
-			else if(currentAction != FALLING) {
+		else if(dy < 0) {
+			if(falling) {
 				currentAction = FALLING;
 				animation.setFrames(sprites.get(FALLING));
 				animation.setDelay(100);
 				width = 16;
 			}
 		}
-		else if(dy < 0) {
+		else if(dy > 0) {
 			if(currentAction != JUMPING) {
 				currentAction = JUMPING;
 				animation.setFrames(sprites.get(JUMPING));

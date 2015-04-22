@@ -17,8 +17,8 @@ public class Plant extends Enemy {
 		super(tm);
 		moveSpeed = 0;
 		maxSpeed = 0;
-		fallSpeed = 0;
-		maxFallSpeed = 0;
+		fallSpeed = 1;
+		maxFallSpeed = 1.1;
 
 		width = 16;
 		height = 16;
@@ -46,11 +46,19 @@ public class Plant extends Enemy {
 		facingRight = true;
 
 	}
+	
+	private void getNextPosition() {
+		// falling
+		if(falling) {
+			dy += fallSpeed;
+		}
+		
+	}
 
 	public void update() {
 
 		// update position
-		
+		getNextPosition();
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
 

@@ -21,7 +21,7 @@ public class GameStateManager {
 	
 	private void loadState(int state) {
 		if(state == LEVEL1STATE)
-			gameStates[state] = new Level_1_State(this);
+			gameStates[state] = new Level1State(this);
 	}
 	
 	private void unloadState(int state) {

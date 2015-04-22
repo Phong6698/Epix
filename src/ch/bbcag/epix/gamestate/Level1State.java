@@ -8,13 +8,13 @@ import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.Background;
 import ch.bbcag.epix.tilemap.TileMap;
 
-public class Level_1_State extends GameState{
+public class Level1State extends GameState{
 
 	private TileMap tilemap;
 	private Player player;
 	private Background bg;
 	
-	public Level_1_State(GameStateManager gsm) {
+	public Level1State(GameStateManager gsm) {
 		this.gsm = gsm;	
 		init();
 	}

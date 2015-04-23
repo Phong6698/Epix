@@ -23,7 +23,7 @@ public class DamageUp extends Powerup {
 		super(tm);
 		plusHealth = 0;
 		plusJump = 0;
-		plusDamage = 2;
+		plusDamage = 20;
 		plusSpeed = 0;
 		expireTime = 1000;
 		
@@ -46,7 +46,7 @@ public class DamageUp extends Powerup {
 		
 		animation = new Animation();
 		animation.setFrames(sprites);
-		animation.setDelay(300);
+		animation.setDelay(100);
 
 		right = true;
 		facingRight = true;

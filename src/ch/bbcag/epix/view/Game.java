@@ -7,7 +7,8 @@ public class Game {
 	
 	public static void main(String[] args) throws SQLException {
 
-		new GameFrame(1);
+		GameFrame game = new GameFrame(1);
+		game.setDefaultCloseOperation(game.EXIT_ON_CLOSE);
 		
 	}
 

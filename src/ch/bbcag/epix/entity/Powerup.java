@@ -10,13 +10,23 @@ public class Powerup extends MapObject{
 	protected double plusSpeed;
 	protected double expireTime;
 	
+	protected boolean taken;
+	
+	
+	public boolean isTaken() {
+		return taken;
+	}
+
+	public void setTaken(boolean taken) {
+		this.taken = taken;
+	}
+
 	public Powerup(TileMap tm) {
 		super(tm);
 		
 	}
 
-	
-	
-	
-	
+	public void update() {
+		
+	}
 }

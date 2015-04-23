@@ -14,6 +14,10 @@ public class Player extends MapObject {
 
 	// player stuff
 	private int health;
+	public void setHealth(int health) {
+		this.health = health;
+	}
+
 	private int maxHealth;
 	private int rainbow;
 	private int maxRainbow;
@@ -194,6 +198,32 @@ public class Player extends MapObject {
 		}
 	}
 	
+	public void checkDamageUp(ArrayList<Powerup> powerup) {
+
+		// loop through enemies
+		for (int i = 0; i < powerup.size(); i++) {
+
+			Powerup e = powerup.get(i);
+
+			// fireballs
+			
+			// check enemy collision
+			if (intersects(e)) {
+				e.update();
+				System.out.println("upgrade");
+				
+				
+				setHealth(getHealth() + e.plusHealth);
+				setRainbowdamage(getRainbowdamage() + e.plusDamage);
+				e.setTaken(true);
+				
+				
+				
+			}
+
+		}
+	}
+	
 	
 	
 	public void hit(int damage) {
@@ -265,6 +295,9 @@ public class Player extends MapObject {
 
 	public void update() {
 
+		System.out.println("Health: " + getHealth() + "/" + getMaxHealth());
+		System.out.println("Damage: " + rainbowdamage);
+		
 		// update position
 		getNextPosition();
 		checkTileMapCollision();

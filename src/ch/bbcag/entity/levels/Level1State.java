@@ -26,7 +26,7 @@ public class Level1State extends GameState{
 	private ArrayList<Plant> plant;
 	private ArrayList<ShootingPlant> shootingPlant;
 	
-	private ArrayList<DamageUp> damageup;
+	private ArrayList<Powerup> powerups;
 	
 	public Level1State(GameStateManager gsm) {
 		this.gsm = gsm;	
@@ -53,7 +53,7 @@ public class Level1State extends GameState{
 	
 private void populateEnemies() {
 		
-		damageup = new ArrayList<DamageUp>();
+	powerups = new ArrayList<Powerup>();
 
 		DamageUp d;
 		Point[] damagUpPoints = new Point[] {
@@ -64,7 +64,7 @@ private void populateEnemies() {
 		for(int i = 0; i < damagUpPoints.length; i++) {
 			d = new DamageUp(tilemap);
 			d.setPosition(damagUpPoints[i].x, damagUpPoints[i].y);
-			damageup.add(d);
+			powerups.add(d);
 		}
 	
 	
@@ -109,6 +109,7 @@ private void populateEnemies() {
 		
 		player.checkAttackPlants(plant);
 		player.checkAttackShootingPlants(shootingPlant);
+		player.checkDamageUp(powerups);
 		
 		for(int i = 0; i < plant.size(); i++) {
 			Plant e = plant.get(i);
@@ -130,8 +131,17 @@ private void populateEnemies() {
 		
 		}
 		
-		for(int i = 0; i < damageup.size(); i++) {
-			DamageUp e = damageup.get(i);
+		for(int i = 0; i < powerups.size(); i++) {
+			Powerup e = powerups.get(i);
+			e.update();
+			if(e.isTaken()) {
+				powerups.remove(i);
+				i--;
+			}
+		}
+		
+		for(int i = 0; i < powerups.size(); i++) {
+			Powerup e = powerups.get(i);
 			e.update();
 		}
 	}
@@ -152,8 +162,8 @@ private void populateEnemies() {
 			shootingPlant.get(i).draw(g);
 		}
 		
-		for(int i = 0; i < damageup.size(); i++) {
-			damageup.get(i).draw(g);
+		for(int i = 0; i < powerups.size(); i++) {
+			powerups.get(i).draw(g);
 		}
 		
 		// draw player

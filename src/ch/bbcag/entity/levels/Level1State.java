@@ -56,7 +56,7 @@ private void populateEnemies() {
 		DamageUp d;
 		Point[] damagUpPoints = new Point[] {
 			new Point(100, 120),
-			new Point(290, 70),
+			new Point(290, 70)
 			
 		};
 		for(int i = 0; i < damagUpPoints.length; i++) {
@@ -85,7 +85,8 @@ private void populateEnemies() {
 		ShootingPlant p;
 		Point[] shootingPlantPoints = new Point[] {
 			new Point(240, 10),
-			new Point(640, 10)
+			new Point(1000, 10)
+			
 		};
 		for(int i = 0; i < shootingPlantPoints.length; i++) {
 			p = new ShootingPlant(tilemap, false);
@@ -120,21 +121,18 @@ private void populateEnemies() {
 		for(int i = 0; i < shootingPlant.size(); i++) {
 			ShootingPlant e = shootingPlant.get(i);
 //				PlantShot ps = new PlantShot(tilemap);
-				
-			e.update();
+			e.update(e);
 			if(e.isDead()) {
 				shootingPlant.remove(i);
 				i--;
 			}
+		
 		}
 		
 		for(int i = 0; i < damageup.size(); i++) {
 			DamageUp e = damageup.get(i);
 			e.update();
-			
-		
 		}
-
 	}
 
 	public void draw(Graphics2D g) {

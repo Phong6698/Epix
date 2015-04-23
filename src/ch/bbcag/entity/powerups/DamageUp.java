@@ -46,7 +46,7 @@ public class DamageUp extends Powerup {
 		
 		animation = new Animation();
 		animation.setFrames(sprites);
-		animation.setDelay(100);
+		animation.setDelay(300);
 
 		right = true;
 		facingRight = true;

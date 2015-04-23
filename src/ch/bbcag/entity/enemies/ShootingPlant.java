@@ -18,7 +18,6 @@ public class ShootingPlant extends Enemy {
 	private static final int IDLE = 0;
 	private static final int SHOOT = 1;
 	private boolean onscreen;
-	private double a;
 
 	// position and vector
 
@@ -79,7 +78,7 @@ public class ShootingPlant extends Enemy {
 
 	}
 
-	public void update() {
+	public void update(ShootingPlant e) {
 
 		// update position
 		getNextPosition();
@@ -94,14 +93,12 @@ public class ShootingPlant extends Enemy {
 			}
 		}
 //		System.out.println("Plant:");
-//		System.out.println("xmap = "+ xmap + "      ||     ymap = " + ymap);
-//		System.out.println("x =    "+ x +    "      ||     y = " + y);
+//		System.out.println("xmap = "+ xmap + " );     
+//		System.out.println("x =    "+ x +    ");
 
 		// fireball attack
 		
-		a = xmap - xmap - xmap;
-		
-			OnScreen(a);
+			OnScreen(e);
 
 		// update animation
 		animation.update();
@@ -109,9 +106,12 @@ public class ShootingPlant extends Enemy {
 	
 	
 	
-	public void OnScreen(double a) {
-		if (a < x && xmap < 0 ){
-			System.out.println(a);
+	public void OnScreen(ShootingPlant e) {
+		double a = e.getXmap();
+		double spielerkoordinaten = (a - a -a) +112;
+
+		if( e.getx() + 112 > spielerkoordinaten && e.getx() - spielerkoordinaten < 112) {
+			
 		}
 	}
 

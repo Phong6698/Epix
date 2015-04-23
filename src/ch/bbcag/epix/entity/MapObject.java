@@ -8,6 +8,13 @@ import ch.bbcag.epix.tilemap.TileMap;
 import ch.bbcag.epix.view.EpixView;
 
 public abstract class MapObject {
+		public double getXmap() {
+		return xmap;
+	}
+	public void setXmap(double xmap) {
+		this.xmap = xmap;
+	}
+
 		// tile stuff
 		protected TileMap tileMap;
 		protected int tileSize;

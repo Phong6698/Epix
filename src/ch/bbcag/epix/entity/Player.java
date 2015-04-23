@@ -85,17 +85,12 @@ public class Player extends MapObject {
 			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Player/Player.png"));
 
 			sprites = new ArrayList<BufferedImage[]>();
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < 4; i++) {
 
 				BufferedImage[] bi = new BufferedImage[numFrames[i]];
 
 				for (int j = 0; j < numFrames[i]; j++) {
-
-					if (i != RAINBOW) {
 						bi[j] = spritesheet.getSubimage(j * width, i * height, width, height);
-					} else {
-						bi[j] = spritesheet.getSubimage(j * width * 2, i * height, width * 2, height);
-					}
 
 				}
 

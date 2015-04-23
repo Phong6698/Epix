@@ -31,7 +31,7 @@ public class ShootingPlant extends Enemy {
 		fallSpeed = 1;
 		maxFallSpeed = 1.1;
 
-		width = 32;
+		width = 16;
 		height = 16;
 		cwidth = 8;
 		cheight = 16;
@@ -43,17 +43,19 @@ public class ShootingPlant extends Enemy {
 		// load sprites
 		try {
 
-			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/PlantShooting_2.png"));
+			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/PlantShooting.png"));
 
 			sprites = new ArrayList<BufferedImage[]>();
 			for (int i = 0; i < 2; i++) {
 
 				BufferedImage[] bi = new BufferedImage[numFrames[i]];
-
 				for (int j = 0; j < numFrames[i]; j++) {
+					if (i != SHOOT) {
 						bi[j] = spritesheet.getSubimage(j * width, i * height, width, height);
+					} else {
+						bi[j] = spritesheet.getSubimage(j * width * 2, i * height, width * 2, height);
+					}
 				}
-
 				sprites.add(bi);
 
 			}
@@ -63,6 +65,7 @@ public class ShootingPlant extends Enemy {
 		}
 
 		animation = new Animation();
+		currentAction = IDLE;
 		animation.setFrames(sprites.get(IDLE));
 		animation.setDelay(100);
 
@@ -92,35 +95,35 @@ public class ShootingPlant extends Enemy {
 				flinching = false;
 			}
 		}
-		if (currentAction == SHOOT) {
-			if (animation.hasPlayedOnce()) {
-				shooting = false;
-			} else {
-				animation.setFrames(sprites.get(SHOOT));
-				animation.setDelay(100);
-				width = 16;
-			}
-		} else {
-			currentAction = IDLE;
-			animation.setFrames(sprites.get(IDLE));
-			animation.setDelay(400);
-			width = 16;
-		}
+		// if (shooting) {
+		// if (currentAction != SHOOT) {
+		// currentAction = SHOOT;
+		// animation.setFrames(sprites.get(SHOOT));
+		// animation.setDelay(100);
+		// width = 16;
+		// }
+		//
+		// // } else {
+		currentAction = IDLE;
+		animation.setFrames(sprites.get(IDLE));
+		animation.setDelay(400);
+		width = 16;
+		// }
 		// fireball attack
-		if (shooting && currentAction != SHOOT) {
-			PlantShot fb = new PlantShot(tileMap);
-			fb.setPosition(x, y);
-			plantshots.add(fb);
-		}
+		// if (shooting && currentAction != SHOOT) {
+		// PlantShot fb = new PlantShot(tileMap);
+		// fb.setPosition(x, y);
+		// plantshots.add(fb);
+		// }
 
 		// update fireballs
-//		for (int i = 0; i < plantshots.size(); i++) {
-//			plantshots.get(i).update();
-//			if (plantshots.get(i).shouldRemove()) {
-//				plantshots.remove(i);
-//				i--;
-//			}
-//		}
+		// for (int i = 0; i < plantshots.size(); i++) {
+		// plantshots.get(i).update();
+		// if (plantshots.get(i).shouldRemove()) {
+		// plantshots.remove(i);
+		// i--;
+		// }
+		// }
 
 		// fireball attack
 		if (OnScreen(e, range) == true) {

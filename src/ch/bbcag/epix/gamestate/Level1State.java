@@ -6,8 +6,10 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import ch.bbcag.entity.enemies.Plant;
+import ch.bbcag.entity.powerups.DamageUp;
 import ch.bbcag.epix.Main.GamePanel;
 import ch.bbcag.epix.entity.Player;
+import ch.bbcag.epix.entity.Powerup;
 import ch.bbcag.epix.tilemap.Background;
 import ch.bbcag.epix.tilemap.TileMap;
 import ch.bbcg.entity.enemies.ShootingPlant;
@@ -19,7 +21,9 @@ public class Level1State extends GameState{
 	private Background bg;
 	
 	private ArrayList<Plant> plant;
-	private ArrayList<ShootingPlant> shootingplant;
+	private ArrayList<ShootingPlant> shootingPlant;
+	
+	private ArrayList<DamageUp> damageup;
 	
 	public Level1State(GameStateManager gsm) {
 		this.gsm = gsm;	
@@ -44,10 +48,27 @@ public class Level1State extends GameState{
 	
 private void populateEnemies() {
 		
-		plant = new ArrayList<Plant>();
+		damageup = new ArrayList<DamageUp>();
+
+		DamageUp d;
+		Point[] damagUpPoints = new Point[] {
+			new Point(100, 120),
+			new Point(290, 70),
+			
+		};
+		for(int i = 0; i < damagUpPoints.length; i++) {
+			d = new DamageUp(tilemap);
+			d.setPosition(damagUpPoints[i].x, damagUpPoints[i].y);
+			damageup.add(d);
+		}
 	
+	
+		plant = new ArrayList<Plant>();
+			
+		
+		
 		Plant s;
-		Point[] points = new Point[] {
+		Point[] plantPoints = new Point[] {
 			new Point(120, 10),
 			new Point(200, 10),
 			new Point(250, 10),
@@ -56,16 +77,16 @@ private void populateEnemies() {
 			new Point(450, 10),
 			new Point(576, 10),
 		};
-		for(int i = 0; i < points.length; i++) {
+		for(int i = 0; i < plantPoints.length; i++) {
 			s = new Plant(tilemap);
-			s.setPosition(points[i].x, points[i].y);
+			s.setPosition(plantPoints[i].x, plantPoints[i].y);
 			plant.add(s);
 		}
 		
-		shootingplant = new ArrayList<ShootingPlant>();
+		shootingPlant = new ArrayList<ShootingPlant>();
 		
 		ShootingPlant p;
-		Point[] point = new Point[] {
+		Point[] shootingPlantPoints = new Point[] {
 			new Point(160, 10),
 			new Point(260, 10),
 			new Point(230, 10),
@@ -74,10 +95,10 @@ private void populateEnemies() {
 			new Point(420, 10),
 			new Point(606, 10),
 		};
-		for(int i = 0; i < point.length; i++) {
+		for(int i = 0; i < shootingPlantPoints.length; i++) {
 			p = new ShootingPlant(tilemap, false);
-			p.setPosition(point[i].x, point[i].y);
-			shootingplant.add(p);
+			p.setPosition(shootingPlantPoints[i].x, shootingPlantPoints[i].y);
+			shootingPlant.add(p);
 			}
 		
 	}
@@ -92,7 +113,7 @@ private void populateEnemies() {
 		bg.setPosition(tilemap.getx(), tilemap.gety());
 		
 		player.checkAttackPlants(plant);
-		player.checkAttackShootingPlants(shootingplant);
+		player.checkAttackShootingPlants(shootingPlant);
 		
 		for(int i = 0; i < plant.size(); i++) {
 			Plant e = plant.get(i);
@@ -105,13 +126,20 @@ private void populateEnemies() {
 			}
 		}
 		
-		for(int i = 0; i < shootingplant.size(); i++) {
-			ShootingPlant e = shootingplant.get(i);
+		for(int i = 0; i < shootingPlant.size(); i++) {
+			ShootingPlant e = shootingPlant.get(i);
 			e.update();
 			if(e.isDead()) {
-				shootingplant.remove(i);
+				shootingPlant.remove(i);
 				i--;
 			}
+		}
+		
+		for(int i = 0; i < damageup.size(); i++) {
+			DamageUp e = damageup.get(i);
+			e.update();
+			
+		
 		}
 
 	}
@@ -128,8 +156,12 @@ private void populateEnemies() {
 			plant.get(i).draw(g);
 		}
 		
-		for(int i = 0; i < shootingplant.size(); i++) {
-			shootingplant.get(i).draw(g);
+		for(int i = 0; i < shootingPlant.size(); i++) {
+			shootingPlant.get(i).draw(g);
+		}
+		
+		for(int i = 0; i < damageup.size(); i++) {
+			damageup.get(i).draw(g);
 		}
 		
 		// draw player

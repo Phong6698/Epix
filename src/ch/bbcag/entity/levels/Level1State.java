@@ -44,7 +44,9 @@ public class Level1State extends GameState{
 		bg = new Background("/Backgrounds/Background.png", 1);
 		
 		player = new Player(tilemap);
+		
 		populateEnemies();
+		
 		player.setPosition(28, 28);
 
 	}
@@ -72,7 +74,7 @@ private void populateEnemies() {
 		
 		Plant s;
 		Point[] plantPoints = new Point[] {
-			new Point(120, 10)
+			
 		};
 		for(int i = 0; i < plantPoints.length; i++) {
 			s = new Plant(tilemap);
@@ -119,8 +121,7 @@ private void populateEnemies() {
 		
 		
 		for(int i = 0; i < shootingPlant.size(); i++) {
-			ShootingPlant e = shootingPlant.get(i);
-//				PlantShot ps = new PlantShot(tilemap);
+			ShootingPlant e = shootingPlant.get(i);	
 			e.update(e);
 			if(e.isDead()) {
 				shootingPlant.remove(i);

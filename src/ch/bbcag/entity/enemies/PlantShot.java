@@ -63,6 +63,8 @@ public class PlantShot extends MapObject {
 		}
 		
 	}
+	
+	public boolean shouldRemove() { return remove; }
 
 	public void update() {
 

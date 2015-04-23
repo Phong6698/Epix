@@ -50,6 +50,7 @@ public abstract class MapObject {
 		// animation
 		protected Animation animation;
 		protected int currentAction;
+
 		protected int previousAction;
 		protected boolean facingRight;
 		
@@ -166,6 +167,14 @@ public abstract class MapObject {
 			}
 			
 		}
+		
+		public int getCurrentAction() {
+			return currentAction;
+		}
+		public void setCurrentAction(int currentAction) {
+			this.currentAction = currentAction;
+		}
+		
 		public int getx() { return (int)x; }
 		public int gety() { return (int)y; }
 		public int getWidth() { return width; }
@@ -202,6 +211,7 @@ public abstract class MapObject {
 		}
 		
 		public void draw(java.awt.Graphics2D g) {
+		
 			if(facingRight) {
 				g.drawImage(animation.getImage(), (int)(x + xmap - width / 2), (int)(y + ymap - height / 2), null);
 			}

@@ -9,7 +9,6 @@ import javax.imageio.ImageIO;
 import ch.bbcag.entity.enemies.Plant;
 import ch.bbcag.entity.enemies.ShootingPlant;
 import ch.bbcag.epix.tilemap.TileMap;
-import ch.bbcag.epix.view.EpixView;
 
 public class Player extends MapObject {
 
@@ -61,7 +60,7 @@ public class Player extends MapObject {
 		cheight = 16;
 
 		moveSpeed = 0.1;
-		maxSpeed = 1.6;
+		maxSpeed = 2.6;
 		stopSpeed = 0.4;
 		fallSpeed = 0.15;
 		maxFallSpeed = 2.0;
@@ -73,7 +72,7 @@ public class Player extends MapObject {
 		health = maxHealth = 5;
 		rainbow = maxRainbow = 2500;
 		
-		rainbowdamage = 5;
+		rainbowdamage = 10;
 		rainbows = new ArrayList<Rainbow>();
 
 		// load sprites
@@ -151,7 +150,7 @@ public class Player extends MapObject {
 		return rainbows;
 	}
 	public void checkAttackPlants(ArrayList<Plant> plants) {
-		// loop through enemies
+		// loop through enemies 
 		for (int i = 0; i < plants.size(); i++) {
 
 			Plant e = plants.get(i);
@@ -184,7 +183,6 @@ public class Player extends MapObject {
 					e.hit(rainbowdamage);
 					rainbows.get(j).setHit();
 					break;
-					
 				}
 			}
 			// check enemy collision
@@ -374,7 +372,4 @@ public class Player extends MapObject {
 		super.draw(g);
 
 	}
-
-
-
 }

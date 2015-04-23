@@ -1,6 +1,7 @@
 package ch.bbcag.entity.enemies;
 
 import java.awt.Graphics2D;
+
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -10,6 +11,7 @@ import ch.bbcag.epix.entity.Animation;
 import ch.bbcag.epix.entity.Enemy;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.TileMap;
+
 
 public class Plant extends Enemy {
 
@@ -35,7 +37,7 @@ public class Plant extends Enemy {
 		try {
 			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/PlantStanding.png"));
 			sprites = new ArrayList<BufferedImage[]>();
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < 2; i++) {
 
 				BufferedImage[] bi = new BufferedImage[numFrames[i]];
 

@@ -1,5 +1,11 @@
 package ch.bbcag.epix.entity;
 
+/**
+ * 
+ * @author Chiramet Phong Penglerd, ICT Berufsbildungscenter AG, chirametphong.penglerd@bbcag.ch
+ *
+ */
+
 public class User {
 	//Instanzvariablen
 	private String username = null;

@@ -1,5 +1,14 @@
 package ch.bbcag.epix.gamestate;
 
+import ch.bbcag.entity.levels.BossState;
+import ch.bbcag.entity.levels.Level1State;
+import ch.bbcag.entity.levels.Level2State;
+
+/**
+ * 
+ * @author Chiramet Phong Penglerd, ICT Berufsbildungscenter AG, chirametphong.penglerd@bbcag.ch
+ *
+ */
 
 public class GameStateManager {
 	
@@ -35,13 +44,13 @@ public class GameStateManager {
 		}
 	}
 	
-	private void unloadState(int state) {
-		gameStates[state] = null;
+	private void unloadState(int level) {
+		gameStates[level] = null;
 	}
 	
-	public void setState(int state) {
+	public void setState(int level) {
 		unloadState(currentLevel);
-		currentLevel = state;
+		currentLevel = level;
 		loadState(currentLevel);
 		//gameStates[currentState].init();
 	}

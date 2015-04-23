@@ -1,20 +1,22 @@
-package ch.bbcag.epix.gamestate;
+package ch.bbcag.entity.levels;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 import ch.bbcag.epix.entity.Player;
+import ch.bbcag.epix.gamestate.GameState;
+import ch.bbcag.epix.gamestate.GameStateManager;
 import ch.bbcag.epix.tilemap.Background;
 import ch.bbcag.epix.tilemap.TileMap;
 import ch.bbcag.epix.view.GameFrame;
 
-public class Level2State extends GameState{
+public class BossState extends GameState{
 
 	private TileMap tilemap;
 	private Player player;
 	private Background bg;
 	
-	public Level2State(GameStateManager gsm) {
+	public BossState(GameStateManager gsm) {
 		this.gsm = gsm;	
 		init();
 	}
@@ -23,7 +25,7 @@ public class Level2State extends GameState{
 	
 		tilemap = new TileMap(16);
 		tilemap.loadTiles("/TileSets/GroundTileSet.png");
-		tilemap.loadMap("/Maps/level2.map");
+		tilemap.loadMap("/Maps/Boss.map");
 		tilemap.setPosition(30, 30);
 		
 		

@@ -9,6 +9,12 @@ import ch.bbcag.epix.entity.Animation;
 import ch.bbcag.epix.entity.Powerup;
 import ch.bbcag.epix.tilemap.TileMap;
 
+/**
+ * 
+ * @author Chiramet Phong Penglerd, ICT Berufsbildungscenter AG, chirametphong.penglerd@bbcag.ch
+ *
+ */
+
 public class DamageUp extends Powerup {
 
 	private BufferedImage[] sprites;

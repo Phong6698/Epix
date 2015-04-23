@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 
 import ch.bbcag.entity.enemies.Plant;
 import ch.bbcag.epix.tilemap.TileMap;
+import ch.bbcag.epix.view.EpixView;
 import ch.bbcg.entity.enemies.ShootingPlant;
 
 public class Player extends MapObject {
@@ -18,13 +19,14 @@ public class Player extends MapObject {
 	private int rainbow;
 	private int maxRainbow;
 	private boolean dead;
-	private static boolean flinching;
-	public static boolean isFlinching() {
+	private boolean flinching;
+	
+	public boolean isFlinching() {
 		return flinching;
 	}
 
 	public void setFlinching(boolean flinching) {
-		Player.flinching = flinching;
+		this.flinching = flinching;
 	}
 
 	private long flinchTimer;
@@ -193,6 +195,8 @@ public class Player extends MapObject {
 
 		}
 	}
+	
+	
 	
 	public void hit(int damage) {
 		if (flinching)
@@ -370,5 +374,7 @@ public class Player extends MapObject {
 		super.draw(g);
 
 	}
+
+
 
 }

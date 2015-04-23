@@ -86,7 +86,6 @@ public class PlantShot extends MapObject {
 	public void draw(Graphics2D g) {
 
 		// if(notOnScreen()) return;
-
 		setMapPosition();
 
 		super.draw(g);

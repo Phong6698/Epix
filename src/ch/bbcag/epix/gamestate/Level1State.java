@@ -12,6 +12,7 @@ import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.entity.Powerup;
 import ch.bbcag.epix.tilemap.Background;
 import ch.bbcag.epix.tilemap.TileMap;
+import ch.bbcg.entity.enemies.PlantShot;
 import ch.bbcg.entity.enemies.ShootingPlant;
 
 public class Level1State extends GameState{
@@ -69,13 +70,7 @@ private void populateEnemies() {
 		
 		Plant s;
 		Point[] plantPoints = new Point[] {
-			new Point(120, 10),
-			new Point(200, 10),
-			new Point(250, 10),
-			new Point(325, 10),
-			new Point(400, 10),
-			new Point(450, 10),
-			new Point(576, 10),
+			new Point(120, 10)
 		};
 		for(int i = 0; i < plantPoints.length; i++) {
 			s = new Plant(tilemap);
@@ -87,13 +82,8 @@ private void populateEnemies() {
 		
 		ShootingPlant p;
 		Point[] shootingPlantPoints = new Point[] {
-			new Point(160, 10),
-			new Point(260, 10),
-			new Point(230, 10),
-			new Point(375, 10),
-			new Point(480, 10),
-			new Point(420, 10),
-			new Point(606, 10),
+			new Point(240, 10),
+			new Point(640, 10)
 		};
 		for(int i = 0; i < shootingPlantPoints.length; i++) {
 			p = new ShootingPlant(tilemap, false);
@@ -118,16 +108,17 @@ private void populateEnemies() {
 		for(int i = 0; i < plant.size(); i++) {
 			Plant e = plant.get(i);
 			e.update();
-			
-			
 			if(e.isDead()) {
 				plant.remove(i);
 				i--;
 			}
 		}
 		
+		
 		for(int i = 0; i < shootingPlant.size(); i++) {
 			ShootingPlant e = shootingPlant.get(i);
+//				PlantShot ps = new PlantShot(tilemap);
+				
 			e.update();
 			if(e.isDead()) {
 				shootingPlant.remove(i);

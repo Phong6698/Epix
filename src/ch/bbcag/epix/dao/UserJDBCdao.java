@@ -22,7 +22,7 @@ public class UserJDBCdao extends Database implements UserDao {
 			con = getCon();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
-
+ 
 			while (rs.next()) {
 				User user = new User();
 				user.setUsername(rs.getString("Username"));

@@ -2,18 +2,26 @@ package ch.bbcg.entity.enemies;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import ch.bbcag.epix.entity.Animation;
-import ch.bbcag.epix.entity.Enemy;
-import ch.bbcag.epix.entity.Player;
+import ch.bbcag.entity.enemies.Plant;
+import ch.bbcag.epix.entity.*;
 import ch.bbcag.epix.tilemap.TileMap;
+import ch.bbcag.epix.view.EpixView;
 
 public class ShootingPlant extends Enemy {
 
-	private BufferedImage[] sprites;
-	private BufferedImage[] hitsprites;
+	private ArrayList<BufferedImage[]> sprites;
+	private final int[] numFrames = { 4, 6 };
+
+	private static final int IDLE = 0;
+	private static final int SHOOT = 1;
+	private boolean onscreen;
+	private double a;
+
+	// position and vector
 
 	public ShootingPlant(TileMap tm, boolean b) {
 		super(tm);
@@ -28,27 +36,40 @@ public class ShootingPlant extends Enemy {
 
 		health = maxHealth = 20;
 		damage = 10;
-			// load sprites
-			try {
+		// load sprites
+		try {
 
-				BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/PlantShooting_Attack.png"));
+			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/PlantShooting_2.png"));
 
-				sprites = new BufferedImage[6];
-				for (int i = 0; i < sprites.length; i++) {
-					sprites[i] = spritesheet.getSubimage(i * width, 0, width, height);
+			sprites = new ArrayList<BufferedImage[]>();
+			for (int i = 0; i < 2; i++) {
+
+				BufferedImage[] bi = new BufferedImage[numFrames[i]];
+
+				for (int j = 0; j < numFrames[i]; j++) {
+
+					if (i != SHOOT) {
+						bi[j] = spritesheet.getSubimage(j * width, i * height, width, height);
+					} else {
+						bi[j] = spritesheet.getSubimage(j * width, i * height, width, height);
+					}
+
 				}
 
-			} catch (Exception e) {
-				e.printStackTrace();
+				sprites.add(bi);
+
 			}
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		animation = new Animation();
-		animation.setFrames(sprites);
+		animation.setFrames(sprites.get(IDLE));
 		animation.setDelay(300);
 
 		right = true;
 		facingRight = true;
-
 	}
 
 	private void getNextPosition() {
@@ -73,9 +94,34 @@ public class ShootingPlant extends Enemy {
 				flinching = false;
 			}
 		}
+//		System.out.println("Plant:");
+//		System.out.println("xmap = "+ xmap + "      ||     ymap = " + ymap);
+//		System.out.println("x =    "+ x +    "      ||     y = " + y);
+
+		// fireball attack
+		
+		a = xmap - xmap - xmap;
+		
+			OnScreen(a);
 
 		// update animation
 		animation.update();
+	}
+	
+	
+	
+	public void OnScreen(double a) {
+		if (a < x && xmap < 0 ){
+			System.out.println(a);
+		}
+	}
+
+	public boolean isOnscreen() {
+		return onscreen;
+	}
+
+	public void setOnscreen(boolean onscreen) {
+		this.onscreen = onscreen;
 	}
 
 	public void draw(Graphics2D g) {

@@ -190,7 +190,8 @@ public abstract class MapObject {
 			return x + xmap + width < 0 ||
 				x + xmap - width > EpixView.WIDTH ||
 				y + ymap + height < 0 ||
-				y + ymap - height > EpixView.HEIGHT;
+				y + ymap - height > EpixView.HEIGHT
+				;
 		}
 		
 		public void draw(java.awt.Graphics2D g) {

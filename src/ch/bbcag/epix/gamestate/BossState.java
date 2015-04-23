@@ -3,10 +3,10 @@ package ch.bbcag.epix.gamestate;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
-import ch.bbcag.epix.Main.GamePanel;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.Background;
 import ch.bbcag.epix.tilemap.TileMap;
+import ch.bbcag.epix.view.GameFrame;
 
 public class BossState extends GameState{
 
@@ -39,7 +39,7 @@ public class BossState extends GameState{
 
 		// update player
 		player.update();
-		tilemap.setPosition(GamePanel.WIDTH / 2 - player.getx(), GamePanel.HEIGHT / 2 - player.gety());
+		tilemap.setPosition(GameFrame.WIDTH / 2 - player.getx(), GameFrame.HEIGHT / 2 - player.gety());
 
 		// set background
 		bg.setPosition(tilemap.getx(), tilemap.gety());

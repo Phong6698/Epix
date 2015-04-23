@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import ch.bbcag.epix.Main.Game;
+import ch.bbcag.epix.view.Game;
 
 public class TutorialListener implements ActionListener {
 	

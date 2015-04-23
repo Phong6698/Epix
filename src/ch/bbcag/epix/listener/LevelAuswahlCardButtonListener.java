@@ -7,8 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import ch.bbcag.epix.Main.Game;
-import ch.bbcag.epix.Main.GamePanel;
+import ch.bbcag.epix.view.Game;
+import ch.bbcag.epix.view.GameFrame;
 
 public class LevelAuswahlCardButtonListener implements ActionListener {
 
@@ -21,13 +21,13 @@ public class LevelAuswahlCardButtonListener implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("Level 1")) {
-			new GamePanel(1);
+			new GameFrame(1);
 			}
 		else if (e.getActionCommand().equals("Level 2")) {
-			new GamePanel(2);
+			new GameFrame(2);
 		}
 		else if (e.getActionCommand().equals("Boss Level")) {
-			new GamePanel(3);
+			new GameFrame(3);
 		}
 		else if (e.getActionCommand().equals("Zurück")) {
 			CardLayout cardLayout = (CardLayout) getCard().getLayout();

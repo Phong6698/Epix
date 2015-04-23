@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 
 import javax.imageio.ImageIO;
 
-import ch.bbcag.epix.Main.GamePanel;
+import ch.bbcag.epix.view.GameFrame;
 
 public class TileMap {
 
@@ -45,8 +45,8 @@ public class TileMap {
 
 	public TileMap(int tileSize) {
 		this.tileSize = tileSize;
-		numRowsToDraw = GamePanel.HEIGHT / tileSize + 2;
-		numColsToDraw = GamePanel.WIDTH / tileSize + 2;
+		numRowsToDraw = GameFrame.HEIGHT / tileSize + 2;
+		numColsToDraw = GameFrame.WIDTH / tileSize + 2;
 		tween = 0.07;
 	}
 
@@ -86,9 +86,9 @@ public class TileMap {
 			width = numCols * tileSize;
 			height = numRows * tileSize;
 
-			xmin = GamePanel.WIDTH - width;
+			xmin = GameFrame.WIDTH - width;
 			xmax = 0;
-			ymin = GamePanel.HEIGHT - height;
+			ymin = GameFrame.HEIGHT - height;
 			ymax = 0;
 
 			String delims = "\\s+";

@@ -1,4 +1,4 @@
-package ch.bbcg.entity.enemies;
+package ch.bbcag.entity.enemies;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import ch.bbcag.entity.enemies.Plant;
 import ch.bbcag.epix.entity.*;
 import ch.bbcag.epix.tilemap.TileMap;
 import ch.bbcag.epix.view.EpixView;

@@ -27,6 +27,12 @@ public class EpixView extends JFrame{
 	private User player;
 	
 	/*
+	 * 
+	 */
+	protected String backgroundPath = "Resources/Backgrounds/EpixTitleScreen.png";
+	protected String coinSpinPath = "Resources/Backgrounds/Coin spin.gif";
+	
+	/*
 	 * Cards
 	 */
 	protected JPanel cards = new JPanel(new CardLayout());
@@ -104,7 +110,7 @@ public class EpixView extends JFrame{
 		//coin
 		menuCardCoinImage.setBounds(0, 10, 64, 64);
 		menuCard.add(menuCardCoinImage);		
-		menuCardCoinImage.setIcon(new ImageIcon("Resources2/Coin spin.gif"));				
+		menuCardCoinImage.setIcon(new ImageIcon(coinSpinPath));				
 		menuCardCoinLabel = new JLabel("" + getPlayer().getCoin());
 		menuCardCoinLabel.setFont(new Font("Modern No. 20", Font.PLAIN, 26));
 		menuCardCoinLabel.setBounds(67, 10, 56, 64);
@@ -122,7 +128,7 @@ public class EpixView extends JFrame{
 		ranglisteButton.setBounds(485, 353, 89, 23);
 		menuCard.add(ranglisteButton);
 
-		menuCardBackgroundImage.setIcon(new ImageIcon("Resources2/EpixTitleScreen.png"));
+		menuCardBackgroundImage.setIcon(new ImageIcon(backgroundPath));
 		menuCardBackgroundImage.setBounds(0, 0, 801, 523);
 		menuCard.add(menuCardBackgroundImage);
 
@@ -137,7 +143,7 @@ public class EpixView extends JFrame{
 		
 		//coin
 		upgradeCardCoinImage.setBounds(0, 10, 64, 64);		
-		upgradeCardCoinImage.setIcon(new ImageIcon("Resources2/Coin spin.gif"));
+		upgradeCardCoinImage.setIcon(new ImageIcon(coinSpinPath));
 		upgradeCard.add(upgradeCardCoinImage);				
 		upgradeCardCoinLabel = new JLabel(""+ getPlayer().getCoin());
 		upgradeCardCoinLabel.setBounds(67, 10, 56, 64);
@@ -201,7 +207,7 @@ public class EpixView extends JFrame{
 		upgradeCard.add(upgradeZurückButton);
 		
 		upgradeCardBackgroundImage.setBounds(0, 0, 801, 523);		
-		upgradeCardBackgroundImage.setIcon(new ImageIcon("Resources2/EpixTitleScreen.png"));
+		upgradeCardBackgroundImage.setIcon(new ImageIcon(backgroundPath));
 		upgradeCard.add(upgradeCardBackgroundImage);
 		
 		cards.add(upgradeCard, "upgradeCard");
@@ -225,7 +231,7 @@ public class EpixView extends JFrame{
 		levelAuswahlCard.add(levelZurückBtton);
 		
 		levelAuswahlCardCoinImage.setBounds(0, 10, 64, 64);				
-		levelAuswahlCardCoinImage.setIcon(new ImageIcon("Resources2/Coin spin.gif"));
+		levelAuswahlCardCoinImage.setIcon(new ImageIcon(coinSpinPath));
 		levelAuswahlCard.add(levelAuswahlCardCoinImage);
 				
 		levelAuswahlCardCoinLabel = new JLabel("" + getPlayer().getCoin());
@@ -237,7 +243,7 @@ public class EpixView extends JFrame{
 		levelAuswahlCardPlayerLabel.setBounds(598, 18, 239, 36);
 		levelAuswahlCard.add(levelAuswahlCardPlayerLabel);
 		
-		levelAuswahlCardBackgroundImage.setIcon(new ImageIcon("Resources2/EpixTitleScreen.png"));
+		levelAuswahlCardBackgroundImage.setIcon(new ImageIcon(backgroundPath));
 		levelAuswahlCardBackgroundImage.setBounds(0, 0, 801, 523);
 		levelAuswahlCard.add(levelAuswahlCardBackgroundImage);
 	

@@ -6,14 +6,14 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import ch.bbcag.entity.enemies.Plant;
+import ch.bbcag.entity.enemies.PlantShot;
+import ch.bbcag.entity.enemies.ShootingPlant;
 import ch.bbcag.entity.powerups.DamageUp;
-import ch.bbcag.epix.Main.GamePanel;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.entity.Powerup;
 import ch.bbcag.epix.tilemap.Background;
 import ch.bbcag.epix.tilemap.TileMap;
-import ch.bbcg.entity.enemies.PlantShot;
-import ch.bbcg.entity.enemies.ShootingPlant;
+import ch.bbcag.epix.view.GameFrame;
 
 public class Level1State extends GameState{
 
@@ -97,7 +97,7 @@ private void populateEnemies() {
 
 		// update player
 		player.update();
-		tilemap.setPosition(GamePanel.WIDTH / 2 - player.getx(), GamePanel.HEIGHT / 2 - player.gety());
+		tilemap.setPosition(GameFrame.WIDTH / 2 - player.getx(), GameFrame.HEIGHT / 2 - player.gety());
 
 		// set background
 		bg.setPosition(tilemap.getx(), tilemap.gety());

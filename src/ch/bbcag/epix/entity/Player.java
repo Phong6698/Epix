@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import ch.bbcag.entity.enemies.Plant;
+import ch.bbcag.entity.enemies.ShootingPlant;
 import ch.bbcag.epix.tilemap.TileMap;
 import ch.bbcag.epix.view.EpixView;
-import ch.bbcg.entity.enemies.ShootingPlant;
 
 public class Player extends MapObject {
 

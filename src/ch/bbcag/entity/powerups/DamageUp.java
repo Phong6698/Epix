@@ -30,7 +30,7 @@ public class DamageUp extends Powerup {
 
 			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Powerups/PowerUps_Weapon Up.png"));
 
-			sprites = new BufferedImage[3];
+			sprites = new BufferedImage[4];
 			for (int i = 0; i < sprites.length; i++) {
 				sprites[i] = spritesheet.getSubimage(i * width, 0, width, height);
 			}
@@ -40,7 +40,7 @@ public class DamageUp extends Powerup {
 		
 		animation = new Animation();
 		animation.setFrames(sprites);
-		animation.setDelay(300);
+		animation.setDelay(20);
 
 		right = true;
 		facingRight = true;

@@ -212,8 +212,6 @@ public class Player extends MapObject {
 				setRainbowdamage(getRainbowdamage() + e.plusDamage);
 				e.setTaken(true);
 				
-				
-				
 			}
 
 		}

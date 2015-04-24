@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 
 import ch.bbcag.epix.entity.Animation;
 import ch.bbcag.epix.entity.MapObject;
+import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.TileMap;
 
 public class PlantShot extends MapObject {
@@ -15,12 +16,11 @@ public class PlantShot extends MapObject {
 	private boolean remove;
 	private BufferedImage[] sprites;
 	private BufferedImage[] hitSprites;
-	
 
 	protected boolean flinching;
 	protected long flinchTimer;
 
-	public PlantShot(TileMap tm, boolean shotright) {
+	public PlantShot(TileMap tm, boolean shotright, Player player) {
 		super(tm);
 
 		facingRight = right;
@@ -34,72 +34,62 @@ public class PlantShot extends MapObject {
 		height = 16;
 		cwidth = 1;
 		cheight = 1;
-try {
-			
-			BufferedImage spritesheet = ImageIO.read(
-				getClass().getResourceAsStream(
-					"/Enemies/PlantShooting_Shot.png"
-				)
-			);
-			
+		try {
+			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/PlantShooting_Shot.png"));
+
 			sprites = new BufferedImage[2];
-			for(int i = 0; i < sprites.length; i++) {
-				sprites[i] = spritesheet.getSubimage(
-					i * width,
-					0,
-					width,
-					height
-				);
+			for (int i = 0; i < sprites.length; i++) {
+				sprites[i] = spritesheet.getSubimage(i * width, 0, width, height);
 			}
-			
+
 			hitSprites = new BufferedImage[2];
-			for(int i = 0; i < hitSprites.length; i++) {
-				hitSprites[i] = spritesheet.getSubimage(
-					i * width,
-					height,
-					width,
-					height
-				);
+			for (int i = 0; i < hitSprites.length; i++) {
+				hitSprites[i] = spritesheet.getSubimage(i * width, height, width, height);
 			}
-			
+
 			animation = new Animation();
 			animation.setFrames(sprites);
-			animation.setDelay(10);
-			
-		}
-		catch(Exception e) {
+			animation.setDelay(100);
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 	}
+
 	public void setHit() {
-		if(hit) return;
+		if (hit)
+			return;
 		hit = true;
 		animation.setFrames(hitSprites);
-		animation.setDelay(70);
+		animation.setDelay(100);
 		dx = 0;
 	}
-	
 
 	public boolean shouldRemove() {
 		return remove;
 	}
 
-	public void update() {
+	public void update(Player player, ShootingPlant e) {
 
 		// update position
-		
-		checkTileMapCollision();
-		setPosition(xtemp, ytemp);
 
+		checkTileMapCollision();
+		if (e.gety() < player.gety()) {
+			setPosition(xtemp, ytemp + player.gety() / 70);
+		} else {
+			setPosition(xtemp, ytemp);
+		}
 		// check flinching
-		if(dx == 0 && !hit) {
+		// System.out.println(xtemp+"    " +ytemp + "      "+ player.getx() /
+		// 100 );
+		if (dx == 0  && !hit) {
 			setHit();
 		}
-		
-		
+
 		// update animation
 		animation.update();
-		if(hit && animation.hasPlayedOnce()) {
+		if (hit && animation.hasPlayedOnce()) {
 			remove = true;
 		}
 	}
@@ -108,7 +98,6 @@ try {
 
 		// if(notOnScreen()) return;
 		setMapPosition();
-		
 
 		super.draw(g);
 

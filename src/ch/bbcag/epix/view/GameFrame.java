@@ -126,9 +126,11 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 	}
 	
 	public void keyTyped(KeyEvent key) {}
+	
 	public void keyPressed(KeyEvent key) {
 		gsm.keyPressed(key.getKeyCode());
 	}
+	
 	public void keyReleased(KeyEvent key) {
 		gsm.keyReleased(key.getKeyCode());
 	}

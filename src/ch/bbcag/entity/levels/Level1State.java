@@ -6,9 +6,9 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import ch.bbcag.entity.enemies.Plant;
-import ch.bbcag.entity.enemies.PlantShot;
 import ch.bbcag.entity.enemies.ShootingPlant;
 import ch.bbcag.entity.powerups.DamageUp;
+import ch.bbcag.entity.powerups.Heart;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.entity.Powerup;
 import ch.bbcag.epix.gamestate.GameState;
@@ -45,33 +45,53 @@ public class Level1State extends GameState{
 		
 		player = new Player(tilemap);
 		
-		populateEnemies();
+		spawnEnemies();
+		spawnPowerups();
 		
 		player.setPosition(28, 28);
 
 	}
 	
-private void populateEnemies() {
-		
-	powerups = new ArrayList<Powerup>();
+	private void spawnPowerups() {
+		powerups = new ArrayList<Powerup>();
 
-		DamageUp d;
+		/*
+		 * damageup
+		 */
+		DamageUp damageUp;
 		Point[] damagUpPoints = new Point[] {
 			new Point(100, 120),
 			new Point(290, 70)
 			
 		};
 		for(int i = 0; i < damagUpPoints.length; i++) {
-			d = new DamageUp(tilemap);
-			d.setPosition(damagUpPoints[i].x, damagUpPoints[i].y);
-			powerups.add(d);
+			damageUp = new DamageUp(tilemap);
+			damageUp.setPosition(damagUpPoints[i].x, damagUpPoints[i].y);
+			powerups.add(damageUp);
 		}
+		
+		/*
+		 * heart
+		 */
+		Heart heart;
+		Point[] hearthPoints = new Point[] {
+			new Point(120, 120),
+			
+		};
+		for(int i = 0; i < hearthPoints.length; i++) {
+			heart = new Heart(tilemap);
+			heart.setPosition(hearthPoints[i].x, hearthPoints[i].y);
+			powerups.add(heart);
+		}
+	}
 	
-	
+	private void spawnEnemies() {
+		
+		/*
+		 * plant
+		 */
 		plant = new ArrayList<Plant>();
 			
-		
-		
 		Plant s;
 		Point[] plantPoints = new Point[] {
 				new Point(330, 70)
@@ -81,7 +101,11 @@ private void populateEnemies() {
 			s.setPosition(plantPoints[i].x, plantPoints[i].y);
 			plant.add(s);
 		}
+			
 		
+		/*
+		 * shootingPlant
+		 */
 		shootingPlant = new ArrayList<ShootingPlant>();
 		
 		ShootingPlant p;
@@ -94,7 +118,7 @@ private void populateEnemies() {
 			p = new ShootingPlant(tilemap, false);
 			p.setPosition(shootingPlantPoints[i].x, shootingPlantPoints[i].y);
 			shootingPlant.add(p);
-			}
+		}
 		
 	}
 

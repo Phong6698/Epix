@@ -136,7 +136,7 @@ public class Level1State extends GameState{
 		
 		for(int i = 0; i < plant.size(); i++) {
 			Plant e = plant.get(i);
-			e.update();
+			e.update(e, player);
 			if(e.isDead()) {
 				plant.remove(i);
 				i--;

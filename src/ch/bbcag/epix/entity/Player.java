@@ -186,7 +186,7 @@ public class Player extends MapObject {
 			}
 			// check enemy collision
 			if (intersects(e)) {
-				e.update();
+				e.update(e, this);
 				hit(e.getDamage());
 			}
 

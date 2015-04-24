@@ -71,7 +71,7 @@ public class Plant extends Enemy {
 		}
 	}
 
-	public void update(ShootingPlant e, Player player) {
+	public void update(Plant e, Player player) {
 
 		// update position
 		getNextPosition();
@@ -114,7 +114,7 @@ public class Plant extends Enemy {
 
 	}
 
-	public boolean OnScreen(ShootingPlant e, int range) {
+	public boolean OnScreen(Plant e, int range) {
 		double a = e.getXmap();
 		double spielerkoordinaten = (a - a - a) + range;
 		if (e.getx() + range > spielerkoordinaten && e.getx() - spielerkoordinaten < range) {

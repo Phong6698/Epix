@@ -21,6 +21,7 @@ public class Level1State extends GameState{
 
 	private TileMap tilemap;
 	private Player player;
+	private Player player2;
 	private Background bg;
 	
 	private ArrayList<Plant> plant;

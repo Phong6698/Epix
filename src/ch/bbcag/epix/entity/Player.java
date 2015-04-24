@@ -290,9 +290,6 @@ public class Player extends MapObject {
 
 	public void update() {
 
-		System.out.println("Health: " + getHealth() + "/" + getMaxHealth());
-		System.out.println("Damage: " + rainbowdamage);
-		
 		// update position
 		getNextPosition();
 		checkTileMapCollision();

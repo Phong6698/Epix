@@ -20,6 +20,15 @@ public class ShootingPlant extends Enemy {
 	private boolean onscreen;
 	private boolean shooting;
 	private boolean remove;
+	private boolean shotright;
+
+	public boolean isShotright() {
+		return shotright;
+	}
+
+	public void setShotright(boolean shotright) {
+		this.shotright = shotright;
+	}
 
 	private ArrayList<PlantShot> plantshots;
 
@@ -41,6 +50,8 @@ public class ShootingPlant extends Enemy {
 		health = maxHealth = 20;
 		damage = 10;
 		// load sprites
+		
+		plantshots = new ArrayList<PlantShot>();
 
 		try {
 			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/PlantShooting.png"));
@@ -64,8 +75,8 @@ public class ShootingPlant extends Enemy {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
-	
+		}
+
 		animation = new Animation();
 		currentAction = IDLE;
 		animation.setFrames(sprites.get(currentAction));
@@ -88,16 +99,34 @@ public class ShootingPlant extends Enemy {
 		getNextPosition();
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
-		
-		shooting = false;
 
+		
+		if (currentAction == SHOOT) {
+			if (facingRight){
+				shotright = true;
+			} else {
+				shotright = false;
+			}
+			 PlantShot ps = new PlantShot(tileMap, shotright);
+			 ps.setPosition(e.getx(), e.gety());
+			 plantshots.add(ps);
+			 
+		}
+
+		for (int i = 0; i < plantshots.size(); i++) {
+			plantshots.get(i).update();
+			if (plantshots.get(i).shouldRemove()) {
+				plantshots.remove(i);
+				i--;
+			}
+		}
 		// check flinching
 		if (flinching) {
 			long elapsed = (System.nanoTime() - flinchTimer) / 1000000;
 			if (elapsed > 400) {
 				flinching = false;
 			}
-		} else if (OnScreen(e,range)) {
+		} else if (OnScreen(e, range) ) {
 			if (currentAction != SHOOT) {
 				currentAction = SHOOT;
 				animation.setFrames(sprites.get(SHOOT));
@@ -112,37 +141,20 @@ public class ShootingPlant extends Enemy {
 				width = 16;
 			}
 		}
-		
-		animation.update();
 
-		// set direction
+		animation.update();
 		if (true) {
-			if (e.getx() > player.getx())
+			if (e.getx() > player.getx()) {
 				facingRight = true;
-			else 
+			} else {
 				facingRight = false;
+			}
 		}
+		// set direction
 		
-//		  }
-//		
-//		  } else {
-//		
-//		 }
 		// fireball attack
-//		 if (shooting && currentAction != SHOOT) {
-//		 PlantShot fb = new PlantShot(tileMap);
-//		 fb.setPosition(x, y);
-//		 plantshots.add(fb);
-//		 }
-//
-//		// update fireballs
-//		 for (int i = 0; i < plantshots.size(); i++) {
-//		 plantshots.get(i).update();
-//		 if (plantshots.get(i).shouldRemove()) {
-//		 plantshots.remove(i);
-//		 i--;
-//		 }
-//		 }
+
+		// // update fireballs
 
 		// update animation
 	}
@@ -170,6 +182,18 @@ public class ShootingPlant extends Enemy {
 		// if(notOnScreen()) return;
 
 		setMapPosition();
+
+		for (int i = 0; i < plantshots.size(); i++) {
+			plantshots.get(i).draw(g);
+		}
+		
+		if (flinching) {
+			long elapsed = (System.nanoTime() - flinchTimer) / 1000000;
+			if (elapsed / 100 % 2 == 0) {
+				return;
+			}
+		}
+
 		// draw fireballs
 		super.draw(g);
 

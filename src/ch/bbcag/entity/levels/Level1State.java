@@ -123,7 +123,7 @@ private void populateEnemies() {
 		
 		for(int i = 0; i < shootingPlant.size(); i++) {
 			ShootingPlant e = shootingPlant.get(i);	
-			e.update(e);
+			e.update(e, player);
 			if(e.isDead()) {
 				shootingPlant.remove(i);
 				i--;

@@ -11,6 +11,11 @@ import ch.bbcag.epix.entity.Animation;
 import ch.bbcag.epix.entity.Enemy;
 import ch.bbcag.epix.tilemap.TileMap;
 
+/**
+ * 
+ * @author Miguel Jorge, ICT Berufsbildungs AG, miguel.jorge@bbcag.ch
+ *			***.java Copyright Berufsbildungscenter 2015
+ */
 
 public class Plant extends Enemy {
 
@@ -74,8 +79,6 @@ public class Plant extends Enemy {
 		}
 	}
 	
-	
-
 	public void update() {
 
 
@@ -92,6 +95,7 @@ public class Plant extends Enemy {
 				flinching = false;
 			}
 		}
+		
 		// update animation
 		animation.update();
 

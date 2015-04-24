@@ -41,36 +41,37 @@ public class ShootingPlant extends Enemy {
 		health = maxHealth = 20;
 		damage = 10;
 		// load sprites
+
 		try {
-
 			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/PlantShooting.png"));
-
 			sprites = new ArrayList<BufferedImage[]>();
 			for (int i = 0; i < 2; i++) {
 
 				BufferedImage[] bi = new BufferedImage[numFrames[i]];
+
 				for (int j = 0; j < numFrames[i]; j++) {
+
 					if (i != SHOOT) {
 						bi[j] = spritesheet.getSubimage(j * width, i * height, width, height);
 					} else {
 						bi[j] = spritesheet.getSubimage(j * width * 2, i * height, width * 2, height);
 					}
+
 				}
+
 				sprites.add(bi);
 
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-
+		} 
+	
 		animation = new Animation();
 		currentAction = IDLE;
-		animation.setFrames(sprites.get(IDLE));
+		animation.setFrames(sprites.get(currentAction));
 		animation.setDelay(100);
+		width = 16;
 
-		right = true;
-		facingRight = true;
 	}
 
 	private void getNextPosition() {
@@ -81,12 +82,14 @@ public class ShootingPlant extends Enemy {
 
 	}
 
-	public void update(ShootingPlant e) {
+	public void update(ShootingPlant e, Player player) {
 
 		// update position
 		getNextPosition();
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
+		
+		shooting = false;
 
 		// check flinching
 		if (flinching) {
@@ -94,54 +97,54 @@ public class ShootingPlant extends Enemy {
 			if (elapsed > 400) {
 				flinching = false;
 			}
-		}
-		// if (shooting) {
-		// if (currentAction != SHOOT) {
-		// currentAction = SHOOT;
-		// animation.setFrames(sprites.get(SHOOT));
-		// animation.setDelay(100);
-		// width = 16;
-		// }
-		//
-		// // } else {
-		currentAction = IDLE;
-		animation.setFrames(sprites.get(currentAction));
-		animation.setDelay(400);
-		width = 16;
-		// }
-		// fireball attack
-		// if (shooting && currentAction != SHOOT) {
-		// PlantShot fb = new PlantShot(tileMap);
-		// fb.setPosition(x, y);
-		// plantshots.add(fb);
-		// }
-
-		// update fireballs
-		// for (int i = 0; i < plantshots.size(); i++) {
-		// plantshots.get(i).update();
-		// if (plantshots.get(i).shouldRemove()) {
-		// plantshots.remove(i);
-		// i--;
-		// }
-		// }
-
-		// fireball attack
-		if (OnScreen(e, range) == true) {
-			e.setCurrentAction(SHOOT);
-
+		} else if (OnScreen(e,range)) {
+			if (currentAction != SHOOT) {
+				currentAction = SHOOT;
+				animation.setFrames(sprites.get(SHOOT));
+				animation.setDelay(100);
+				width = 32;
+			}
 		} else {
-			e.setCurrentAction(IDLE);
+			if (currentAction != IDLE) {
+				currentAction = IDLE;
+				animation.setFrames(sprites.get(IDLE));
+				animation.setDelay(400);
+				width = 16;
+			}
 		}
-
-		// update animation
+		
 		animation.update();
 
-		if (currentAction != SHOOT) {
-			if (right)
+		// set direction
+		if (true) {
+			if (e.getx() > player.getx())
 				facingRight = true;
-			if (left)
+			else 
 				facingRight = false;
 		}
+		
+//		  }
+//		
+//		  } else {
+//		
+//		 }
+		// fireball attack
+//		 if (shooting && currentAction != SHOOT) {
+//		 PlantShot fb = new PlantShot(tileMap);
+//		 fb.setPosition(x, y);
+//		 plantshots.add(fb);
+//		 }
+//
+//		// update fireballs
+//		 for (int i = 0; i < plantshots.size(); i++) {
+//		 plantshots.get(i).update();
+//		 if (plantshots.get(i).shouldRemove()) {
+//		 plantshots.remove(i);
+//		 i--;
+//		 }
+//		 }
+
+		// update animation
 	}
 
 	public boolean OnScreen(ShootingPlant e, int range) {

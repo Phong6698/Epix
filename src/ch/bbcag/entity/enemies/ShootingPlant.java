@@ -105,7 +105,7 @@ public class ShootingPlant extends Enemy {
 		//
 		// // } else {
 		currentAction = IDLE;
-		animation.setFrames(sprites.get(IDLE));
+		animation.setFrames(sprites.get(currentAction));
 		animation.setDelay(400);
 		width = 16;
 		// }

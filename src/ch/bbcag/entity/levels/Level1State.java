@@ -74,7 +74,7 @@ private void populateEnemies() {
 		
 		Plant s;
 		Point[] plantPoints = new Point[] {
-			
+				new Point(330, 70)
 		};
 		for(int i = 0; i < plantPoints.length; i++) {
 			s = new Plant(tilemap);

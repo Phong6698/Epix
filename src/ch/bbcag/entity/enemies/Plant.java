@@ -9,7 +9,6 @@ import javax.imageio.ImageIO;
 
 import ch.bbcag.epix.entity.Animation;
 import ch.bbcag.epix.entity.Enemy;
-import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.TileMap;
 
 
@@ -60,7 +59,7 @@ public class Plant extends Enemy {
 	
 		animation = new Animation();
 		currentAction = IDLE;
-		animation.setFrames(sprites.get(IDLE));
+		animation.setFrames(sprites.get(currentAction));
 		animation.setDelay(100);
 
 		right = true;

@@ -1,7 +1,6 @@
 package ch.bbcag.entity.enemies;
 
 import java.awt.Graphics2D;
-
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -9,24 +8,19 @@ import javax.imageio.ImageIO;
 
 import ch.bbcag.epix.entity.Animation;
 import ch.bbcag.epix.entity.Enemy;
+import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.TileMap;
-
-/**
- * 
- * @author Miguel Jorge, ICT Berufsbildungs AG, miguel.jorge@bbcag.ch
- *			***.java Copyright Berufsbildungscenter 2015
- */
 
 public class Plant extends Enemy {
 
 	private ArrayList<BufferedImage[]> sprites;
-	private final int[] numFrames = { 4, 5};
+	private final int[] numFrames = { 4, 5 };
 	private static final int IDLE = 0;
 	private static final int ATTACK = 1;
-	
+
 	public Plant(TileMap tm) {
 		super(tm);
-		fallSpeed = 1;
+		fallSpeed = 0.1;
 		maxFallSpeed = 1.1;
 
 		width = 16;
@@ -36,8 +30,7 @@ public class Plant extends Enemy {
 
 		health = maxHealth = 10;
 		damage = 1;
-		
-		
+
 		try {
 			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/PlantStanding.png"));
 			sprites = new ArrayList<BufferedImage[]>();
@@ -60,45 +53,75 @@ public class Plant extends Enemy {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
-	
+		}
+
 		animation = new Animation();
 		currentAction = IDLE;
 		animation.setFrames(sprites.get(currentAction));
 		animation.setDelay(100);
-
-		right = true;
-		facingRight = true;
+		width = 16;
 
 	}
-	
+
 	private void getNextPosition() {
 		// falling
-		if(falling) {
+		System.out.println("pls");
+		if (falling) {
 			dy += fallSpeed;
 		}
 	}
-	
-	public void update() {
 
+	public void update(ShootingPlant e, Player player) {
 
 		// update position
 		getNextPosition();
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
 
-		
 		// check flinching
 		if (flinching) {
 			long elapsed = (System.nanoTime() - flinchTimer) / 1000000;
 			if (elapsed > 400) {
 				flinching = false;
 			}
+		} else if (OnScreen(e, 112)) {
+			if (currentAction != ATTACK) {
+				currentAction = ATTACK;
+				animation.setFrames(sprites.get(ATTACK));
+				animation.setDelay(150);
+				width = 32;
+			}
+		} else {
+			if (currentAction != IDLE) {
+				currentAction = IDLE;
+				animation.setFrames(sprites.get(IDLE));
+				animation.setDelay(400);
+				width = 16;
+			}
 		}
 		
+
 		// update animation
 		animation.update();
+		
+		if (true) {
+			if (e.getx() > player.getx()) {
+				facingRight = true;
+			} else {
+				facingRight = false;
+			}
+		}
 
+	}
+
+	public boolean OnScreen(ShootingPlant e, int range) {
+		double a = e.getXmap();
+		double spielerkoordinaten = (a - a - a) + range;
+		if (e.getx() + range > spielerkoordinaten && e.getx() - spielerkoordinaten < range) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public void draw(Graphics2D g) {

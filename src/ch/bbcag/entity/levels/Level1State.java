@@ -76,7 +76,6 @@ public class Level1State extends GameState{
 		Heart heart;
 		Point[] hearthPoints = new Point[] {
 			new Point(120, 120),
-			
 		};
 		for(int i = 0; i < hearthPoints.length; i++) {
 			heart = new Heart(tilemap);
@@ -94,7 +93,7 @@ public class Level1State extends GameState{
 			
 		Plant s;
 		Point[] plantPoints = new Point[] {
-				new Point(330, 70)
+				new Point(180, 70)
 		};
 		for(int i = 0; i < plantPoints.length; i++) {
 			s = new Plant(tilemap);
@@ -110,8 +109,7 @@ public class Level1State extends GameState{
 		
 		ShootingPlant p;
 		Point[] shootingPlantPoints = new Point[] {
-			new Point(240, 10),
-			new Point(1000, 10)
+
 			
 		};
 		for(int i = 0; i < shootingPlantPoints.length; i++) {

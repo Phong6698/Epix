@@ -136,4 +136,3 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 	}
 
 }
-

@@ -22,9 +22,8 @@ public class ShootingPlant extends Enemy {
 	private boolean shooting;
 	private boolean remove;
 	private boolean shotright;
-	private int counter = 1;
 	private long timer;
-	private long time = 150;
+	private long time = 151;
 
 	public boolean isShotright() {
 		return shotright;
@@ -35,6 +34,7 @@ public class ShootingPlant extends Enemy {
 	}
 
 	private ArrayList<PlantShot> plantshots;
+	private int range = 112;
 
 	// position and vector
 
@@ -117,7 +117,7 @@ public class ShootingPlant extends Enemy {
 			if (elapsed > 400) {
 				flinching = false;
 			}
-		} else if (OnScreen(e, range)) {
+		} else if (OnScreen(e, range )) {
 			if (currentAction != SHOOT) {
 				currentAction = SHOOT;
 				animation.setFrames(sprites.get(SHOOT));

@@ -80,9 +80,7 @@ public class PlantShot extends MapObject {
 		} else {
 			setPosition(xtemp, ytemp);
 		}
-		// check flinching
-		// System.out.println(xtemp+"    " +ytemp + "      "+ player.getx() /
-		// 100 );
+		
 		if (dx == 0  && !hit) {
 			setHit();
 		}
@@ -96,7 +94,7 @@ public class PlantShot extends MapObject {
 
 	public void draw(Graphics2D g) {
 
-		// if(notOnScreen()) return;
+		
 		setMapPosition();
 
 		super.draw(g);

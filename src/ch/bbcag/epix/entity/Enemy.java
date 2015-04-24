@@ -11,8 +11,7 @@ public class Enemy extends MapObject {
 
 	protected boolean flinching;
 	protected long flinchTimer;
-	
-	protected int range;
+
 
 	public Enemy(TileMap tm) {
 		super(tm);
@@ -37,6 +36,8 @@ public class Enemy extends MapObject {
 		flinching = true;
 		flinchTimer = System.nanoTime();
 	}
+	
+	
 
 	public void update() {
 	}

@@ -164,7 +164,7 @@ public class Level1State extends GameState{
 		
 		for(int i = 0; i < powerups.size(); i++) {
 			Powerup e = powerups.get(i);
-			e.update(player);
+			e.update();
 			if(e.isTaken()) {
 				powerups.remove(i);
 				i--;
@@ -173,7 +173,21 @@ public class Level1State extends GameState{
 		
 		for(int i = 0; i < powerups.size(); i++) {
 			Powerup e = powerups.get(i);
-			e.update(player);
+			e.update();
+		}
+		
+		if(player.getPowerups().size() != 0) {	
+			
+			for (int i = 0; i < powerups.size(); i++) {
+
+				Powerup powerup = powerups.get(i);
+				powerup.checkExpireTime();
+				powerup.checkPowerupAvailable(player);
+				powerup.update();
+				if (!powerup.isPowerupAvailable()){
+					player.getPowerups().remove(i);
+				}
+			}
 		}
 	}
 

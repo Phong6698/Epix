@@ -202,7 +202,7 @@ public class Player extends MapObject {
 			
 			// check powerup collision
 			if (intersects(e)) {
-				e.update(this);
+				e.update();
 				System.out.println("upgrade");
 				e.addPowerupToPlayer(this);
 				getPowerups().add(e);	

@@ -25,7 +25,10 @@ public class Powerup extends MapObject{
 	}
 	
 	public void checkPowerupAvailable(Player player) {
-	
+		if (!powerupAvailable && isTaken()) {
+			player.setHealth(player.getHealth() - plusHealth);
+			player.setRainbowdamage(player.getRainbowdamage() - plusDamage);
+		};
 	}
 	
 	public void addPowerupToPlayer(Player player) {
@@ -39,7 +42,9 @@ public class Powerup extends MapObject{
 	}
 	
 	public void checkExpireTime() {
-
+		if (expireTime != 0 && isTaken() && takenTime + expireTime <= System.currentTimeMillis()) {
+			setPowerupAvailable(false);
+		};
 	}
 	
 	
@@ -53,15 +58,10 @@ public class Powerup extends MapObject{
 
 
 
-	public void update(Player player) {
-		if (expireTime != 0 && isTaken() && takenTime + expireTime <= System.currentTimeMillis()) {
-			setPowerupAvailable(false);
-		};
+	public void update() {
+	
 		
-		if (!powerupAvailable && isTaken()) {
-			player.setHealth(player.getHealth() - plusHealth);
-			player.setRainbowdamage(player.getRainbowdamage() - plusDamage);
-		};
+		
 		
 
 	}

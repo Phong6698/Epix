@@ -1,6 +1,8 @@
 package ch.bbcag.entity.levels;
 
 import java.awt.Graphics2D;
+
+import ch.bbcag.epix.entity.HUD;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -24,6 +26,8 @@ public class Level1State extends GameState{
 	private Player player2;
 	private Background bg;
 	
+	private HUD hud;
+	
 	private ArrayList<Plant> plant;
 	private ArrayList<ShootingPlant> shootingPlant;
 	
@@ -43,6 +47,7 @@ public class Level1State extends GameState{
 		
 	
 		bg = new Background("/Backgrounds/Background.png", 1);
+	
 		
 		player = new Player(tilemap);
 		
@@ -94,7 +99,7 @@ public class Level1State extends GameState{
 			
 		Plant s;
 		Point[] plantPoints = new Point[] {
-				new Point(180, 70)
+				new Point(190, 70)
 		};
 		for(int i = 0; i < plantPoints.length; i++) {
 			s = new Plant(tilemap);
@@ -134,6 +139,7 @@ public class Level1State extends GameState{
 		player.checkAttackShootingPlants(shootingPlant);
 		player.checkDamageUp(powerups);
 		
+		
 		for(int i = 0; i < plant.size(); i++) {
 			Plant e = plant.get(i);
 			e.update(e, player);
@@ -150,8 +156,10 @@ public class Level1State extends GameState{
 			if(e.isDead()) {
 				shootingPlant.remove(i);
 				i--;
+			}else {
+				e.checkAttackPlayer(player);
 			}
-		
+					
 		}
 		
 		for(int i = 0; i < powerups.size(); i++) {
@@ -191,6 +199,7 @@ public class Level1State extends GameState{
 		
 		// draw player
 		player.draw(g);	
+		
 	}
 	
 

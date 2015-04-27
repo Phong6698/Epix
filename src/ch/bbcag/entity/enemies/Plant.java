@@ -25,7 +25,7 @@ public class Plant extends Enemy {
 
 		width = 16;
 		height = 16;
-		cwidth = 8;
+		cwidth = 16;
 		cheight = 16;
 
 		health = maxHealth = 10;
@@ -83,7 +83,7 @@ public class Plant extends Enemy {
 			if (elapsed > 400) {
 				flinching = false;
 			}
-		} else if (OnScreen(e, 112)) {
+		} else if (OnScreen(e, player)) {
 			if (currentAction != ATTACK) {
 				currentAction = ATTACK;
 				animation.setFrames(sprites.get(ATTACK));
@@ -113,10 +113,8 @@ public class Plant extends Enemy {
 
 	}
 
-	public boolean OnScreen(Plant e, int range) {
-		double a = e.getXmap();
-		double spielerkoordinaten = (a - a - a) + range;
-		if (e.getx() + range > spielerkoordinaten && e.getx() - spielerkoordinaten < range) {
+	public boolean OnScreen(Plant e, Player player) {
+		if (e.getx() - 24 < player.getx() && e.getx() + 16  - player.getx() > 0) {
 			return true;
 		} else {
 			return false;

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import ch.bbcag.entity.enemies.Plant;
+import ch.bbcag.entity.enemies.PlantShot;
 import ch.bbcag.entity.enemies.ShootingPlant;
 import ch.bbcag.epix.tilemap.TileMap;
 
@@ -43,6 +44,7 @@ public class Player extends MapObject {
 	// animations
 	private ArrayList<BufferedImage[]> sprites;
 	private final int[] numFrames = { 1, 6, 1, 3 };
+	private ArrayList<PlantShot> plantshots;
 
 	// animation actions
 	private static final int IDLE = 0;
@@ -166,16 +168,13 @@ public class Player extends MapObject {
 			if (intersects(e)) {
 				hit(e.getDamage());
 			}
-
 		}
 	}
+	
 	public void checkAttackShootingPlants(ArrayList<ShootingPlant> shootingplants) {
-
 		// loop through enemies
 		for (int i = 0; i < shootingplants.size(); i++) {
-
 			ShootingPlant e = shootingplants.get(i);
-
 			// fireballs
 			for (int j = 0; j < rainbows.size(); j++) {
 				if (rainbows.get(j).intersects(e)) {
@@ -189,7 +188,6 @@ public class Player extends MapObject {
 				e.update(e, this);
 				hit(e.getDamage());
 			}
-
 		}
 	}
 	
@@ -291,8 +289,8 @@ public class Player extends MapObject {
 		// update position
 		getNextPosition();
 		checkTileMapCollision();
-		setPosition(xtemp, ytemp);
-
+		setPosition(xtemp, ytemp);		
+		
 		// check attack has stopped
 		if (currentAction == RAINBOW) {
 			if (animation.hasPlayedOnce())

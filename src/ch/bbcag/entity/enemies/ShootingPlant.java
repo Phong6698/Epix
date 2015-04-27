@@ -24,14 +24,9 @@ public class ShootingPlant extends Enemy {
 	private boolean shotright;
 	private long timer;
 	private long time = 151;
+	private int plantshotsdamage = 10;
 
-	public boolean isShotright() {
-		return shotright;
-	}
-
-	public void setShotright(boolean shotright) {
-		this.shotright = shotright;
-	}
+	
 
 	private ArrayList<PlantShot> plantshots;
 	private int range = 112;
@@ -95,6 +90,16 @@ public class ShootingPlant extends Enemy {
 			dy += fallSpeed;
 		}
 
+	}
+	
+	public void checkAttackPlayer(Player player){
+		for (int j = 0; j < plantshots.size(); j++) {
+			if (plantshots.get(j).intersects(player)) {
+				player.hit(plantshotsdamage);
+				plantshots.get(j).setHit();
+				break;
+			}
+		}
 	}
 
 	public void update(ShootingPlant e, Player player) {
@@ -214,5 +219,12 @@ public class ShootingPlant extends Enemy {
 
 	public void setTimer(long timer) {
 		this.timer = timer;
+	}
+	public boolean isShotright() {
+		return shotright;
+	}
+
+	public void setShotright(boolean shotright) {
+		this.shotright = shotright;
 	}
 }

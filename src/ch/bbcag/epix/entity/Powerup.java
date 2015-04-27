@@ -28,6 +28,7 @@ public class Powerup extends MapObject{
 		if (!powerupAvailable && isTaken()) {
 			player.setHealth(player.getHealth() - plusHealth);
 			player.setRainbowdamage(player.getRainbowdamage() - plusDamage);
+			System.out.println("powerup removed");
 		};
 	}
 	

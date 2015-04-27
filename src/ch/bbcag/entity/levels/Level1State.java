@@ -176,11 +176,11 @@ public class Level1State extends GameState{
 			e.update();
 		}
 		
-		if(player.getPowerups().size() != 0) {	
-			
-			for (int i = 0; i < powerups.size(); i++) {
+//		if(player.getPowerups().size() != 0) {	
+			System.out.println("powerup check");
+			for (int i = 0; i < player.getPowerups().size(); i++) {
 
-				Powerup powerup = powerups.get(i);
+				Powerup powerup = player.getPowerups().get(i);
 				powerup.checkExpireTime();
 				powerup.checkPowerupAvailable(player);
 				powerup.update();
@@ -188,7 +188,7 @@ public class Level1State extends GameState{
 					player.getPowerups().remove(i);
 				}
 			}
-		}
+//		}
 	}
 
 	public void draw(Graphics2D g) {

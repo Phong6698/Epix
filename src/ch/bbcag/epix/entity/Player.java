@@ -34,6 +34,8 @@ public class Player extends MapObject {
 	}
 
 	private long flinchTimer;
+	
+	private ArrayList<Powerup> powerups;
 
 	// fireball
 	private boolean rainbowing;
@@ -191,24 +193,19 @@ public class Player extends MapObject {
 		}
 	}
 	
-	public void checkDamageUp(ArrayList<Powerup> powerup) {
+	public void checkPowerup(ArrayList<Powerup> powerup) {
 
-		// loop through enemies
+		// loop through powerups
 		for (int i = 0; i < powerup.size(); i++) {
 
 			Powerup e = powerup.get(i);
-
-			// fireballs
 			
-			// check enemy collision
+			// check powerup collision
 			if (intersects(e)) {
-				e.update();
+				e.update(this);
 				System.out.println("upgrade");
-				
-				
-				setHealth(getHealth() + e.plusHealth);
-				setRainbowdamage(getRainbowdamage() + e.plusDamage);
-				e.setTaken(true);
+				e.addPowerupToPlayer(this);
+				getPowerups().add(e);	
 				
 			}
 
@@ -392,5 +389,13 @@ public class Player extends MapObject {
 
 		super.draw(g);
 
+	}
+
+	public ArrayList<Powerup> getPowerups() {
+		return powerups;
+	}
+
+	public void setPowerups(ArrayList<Powerup> powerups) {
+		this.powerups = powerups;
 	}
 }

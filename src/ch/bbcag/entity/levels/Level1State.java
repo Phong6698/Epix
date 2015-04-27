@@ -137,7 +137,7 @@ public class Level1State extends GameState{
 		
 		player.checkAttackPlants(plant);
 		player.checkAttackShootingPlants(shootingPlant);
-		player.checkDamageUp(powerups);
+		player.checkPowerup(powerups);
 		
 		
 		for(int i = 0; i < plant.size(); i++) {
@@ -164,7 +164,7 @@ public class Level1State extends GameState{
 		
 		for(int i = 0; i < powerups.size(); i++) {
 			Powerup e = powerups.get(i);
-			e.update();
+			e.update(player);
 			if(e.isTaken()) {
 				powerups.remove(i);
 				i--;
@@ -173,7 +173,7 @@ public class Level1State extends GameState{
 		
 		for(int i = 0; i < powerups.size(); i++) {
 			Powerup e = powerups.get(i);
-			e.update();
+			e.update(player);
 		}
 	}
 

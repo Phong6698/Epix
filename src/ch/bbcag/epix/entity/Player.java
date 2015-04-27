@@ -35,13 +35,13 @@ public class Player extends MapObject {
 
 	private long flinchTimer;
 	
-	private ArrayList<Powerup> powerups;
+	private ArrayList<Powerup> powerups = new ArrayList<Powerup>();
 
 	// fireball
 	private boolean rainbowing;
 	private int rainbowcost;
 	private int rainbowdamage;
-	private ArrayList<Rainbow> rainbows;
+	private ArrayList<Rainbow> rainbows ;
 
 	// animations
 	private ArrayList<BufferedImage[]> sprites;
@@ -193,23 +193,49 @@ public class Player extends MapObject {
 		}
 	}
 	
-	public void checkPowerup(ArrayList<Powerup> powerup) {
+	public void checkPowerup(ArrayList<Powerup> powerups) {
 
-		// loop through powerups
-		for (int i = 0; i < powerup.size(); i++) {
+		// loop through enemies
+		for (int i = 0; i < powerups.size(); i++) {
 
-			Powerup e = powerup.get(i);
+			Powerup powerup = powerups.get(i);
+
+			// fireballs
 			
-			// check powerup collision
-			if (intersects(e)) {
-				e.update();
-				System.out.println("powerup");
-				e.addPowerupToPlayer(this);
-				getPowerups().add(e);	
+			// check enemy collision
+			if (intersects(powerup)) {
+				powerup.update();
+				System.out.println("upgrade");
+				addPowerupToPlayer(powerup);
+				
+				
+				
 				
 			}
 
 		}
+	}
+	
+	public void addPowerupToPlayer(Powerup powerup){
+		setHealth(getHealth() + powerup.plusHealth);
+		setRainbowdamage(getRainbowdamage() + powerup.plusDamage);
+		powerups.add(powerup);
+		System.out.println(getHealth());
+		System.out.println(getRainbowdamage());
+		powerup.setTaken(true);
+		powerup.setAvailable(true);
+		powerup.setTakenTime(System.currentTimeMillis());
+		System.out.println("Powerup added");
+	}
+	
+	public void removePowerupFromPlayer(Powerup powerup){
+		setHealth(getHealth() - powerup.plusHealth);
+		setRainbowdamage(getRainbowdamage() - powerup.plusDamage);
+		System.out.println(getHealth());
+		System.out.println(getRainbowdamage());
+		powerups.remove(powerup);
+		System.out.println("Powerup removed");
+		
 	}
 	
 	
@@ -282,11 +308,25 @@ public class Player extends MapObject {
 	}
 
 	public void update() {
+		
+		
+
 
 		// update position
 		getNextPosition();
 		checkTileMapCollision();
-		setPosition(xtemp, ytemp);		
+		setPosition(xtemp, ytemp);	
+
+		if (powerups.size() != 0) {			
+			for(int i = 0; i < powerups.size(); i++) {
+				Powerup powerup = powerups.get(i);
+				if(powerup.getExpireTime() > 0 && powerup.getTakenTime() + powerup.getExpireTime() <= System.currentTimeMillis()){
+					removePowerupFromPlayer(powerup);
+					
+				}
+			}
+		}
+		
 		
 		// check attack has stopped
 		if (currentAction == RAINBOW) {

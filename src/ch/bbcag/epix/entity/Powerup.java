@@ -8,46 +8,13 @@ public class Powerup extends MapObject{
 	protected double plusJump;
 	protected int plusDamage;
 	protected double plusSpeed;
-	protected long expireTime;
-	protected boolean powerupAvailable;
-	
-	protected boolean taken;
-	
-	protected long takenTime;
+	protected double expireTime;
 	
 
-	
-	public Powerup(TileMap tm) {
-		super(tm);
-		
-		
-		
-	}
-	
-	public void checkPowerupAvailable(Player player) {
-		if (!powerupAvailable && isTaken()) {
-			player.setHealth(player.getHealth() - plusHealth);
-			player.setRainbowdamage(player.getRainbowdamage() - plusDamage);
-			System.out.println("powerup removed");
-		};
-	}
-	
-	public void addPowerupToPlayer(Player player) {
-		
-		player.setHealth(player.getHealth() + plusHealth);
-		player.setRainbowdamage(player.getRainbowdamage() + plusDamage);
-		powerupAvailable = true;
-		takenTime = System.currentTimeMillis();
-		taken = true;
-			
-	}
-	
-	public void checkExpireTime() {
-		if (expireTime != 0 && isTaken() && takenTime + expireTime <= System.currentTimeMillis()) {
-			setPowerupAvailable(false);
-		};
-	}
-	
+
+	protected boolean taken;
+	protected long takenTime;
+	protected boolean available;
 	
 	public boolean isTaken() {
 		return taken;
@@ -57,25 +24,36 @@ public class Powerup extends MapObject{
 		this.taken = taken;
 	}
 
-
+	public Powerup(TileMap tm) {
+		super(tm);
+		
+	}
 
 	public void update() {
+		
+	}
+
+	public long getTakenTime() {
+		return takenTime;
+	}
+
+	public boolean isAvailable() {
+		return available;
+	}
+
+	public void setTakenTime(long takenTime) {
+		this.takenTime = takenTime;
+	}
+
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
 	
-		
-		
-		
-
+	public double getExpireTime() {
+		return expireTime;
 	}
 
-
-	public boolean isPowerupAvailable() {
-		return powerupAvailable;
+	public void setExpireTime(double expireTime) {
+		this.expireTime = expireTime;
 	}
-
-
-	public void setPowerupAvailable(boolean powerupAvailable) {
-		this.powerupAvailable = powerupAvailable;
-	}
-
-
 }

@@ -110,7 +110,7 @@ public class Level1State extends GameState{
 		
 		ShootingPlant p;
 		Point[] shootingPlantPoints = new Point[] {
-
+				new Point(240, 70)
 			
 		};
 		for(int i = 0; i < shootingPlantPoints.length; i++) {

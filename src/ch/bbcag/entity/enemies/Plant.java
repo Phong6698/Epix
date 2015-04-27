@@ -65,7 +65,6 @@ public class Plant extends Enemy {
 
 	private void getNextPosition() {
 		// falling
-		System.out.println("pls");
 		if (falling) {
 			dy += fallSpeed;
 		}

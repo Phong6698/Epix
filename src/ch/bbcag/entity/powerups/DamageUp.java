@@ -25,7 +25,7 @@ public class DamageUp extends Powerup {
 		plusJump = 0;
 		plusDamage = 20;
 		plusSpeed = 0;
-		expireTime = 3000;
+		expireTime = 10000;
 		
 		width = 16;
 		height = 16;

@@ -20,14 +20,14 @@ public class Rainbow extends MapObject {
 		
 		facingRight = right;
 		
-		moveSpeed = 4.8;
-		if(right) dx = moveSpeed;
-		else dx = -moveSpeed;
+		setMoveSpeed(4.8);
+		if(right) dx = getMoveSpeed();
+		else dx = -getMoveSpeed();
 		
-		width = 16;
-		height = 16;
-		cwidth = 1;
-		cheight = 1;
+		width = 32;
+		height = 32;
+		cwidth = 3;
+		cheight = 3;
 		
 		// load sprites
 		try {

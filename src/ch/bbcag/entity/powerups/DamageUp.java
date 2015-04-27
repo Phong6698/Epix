@@ -27,10 +27,10 @@ public class DamageUp extends Powerup {
 		plusSpeed = 0;
 		expireTime = 10000;
 		
-		width = 16;
-		height = 16;
-		cwidth = 8;
-		cheight = 16;
+		width = 32;
+		height = 32;
+		cwidth = 32;
+		cheight = 32;
 		
 		try {
 
@@ -55,7 +55,7 @@ public class DamageUp extends Powerup {
 	private void getNextPosition() {
 		// falling
 		if(falling) {
-			dy += fallSpeed;
+			dy += getFallSpeed();
 		}
 		
 	}

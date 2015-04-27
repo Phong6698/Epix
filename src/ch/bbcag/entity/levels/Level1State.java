@@ -43,7 +43,7 @@ public class Level1State extends GameState{
 
 	public void init() {
 	
-		tilemap = new TileMap(16);
+		tilemap = new TileMap(32);
 		tilemap.loadTiles("/TileSets/GroundTileSet.png");
 		tilemap.loadMap("/Maps/level1.map");
 		tilemap.setPosition(30, 30);
@@ -57,7 +57,7 @@ public class Level1State extends GameState{
 		spawnEnemies();
 		spawnPowerups();
 		
-		player.setPosition(28, 28);
+		player.setPosition(40, 40);
 
 	}
 	
@@ -69,7 +69,7 @@ public class Level1State extends GameState{
 		 */
 		DamageUp damageUp;
 		Point[] damagUpPoints = new Point[] {
-			new Point(290, 70)
+			new Point(350, 140)
 			
 		};
 		for(int i = 0; i < damagUpPoints.length; i++) {
@@ -83,7 +83,7 @@ public class Level1State extends GameState{
 		 */
 		Heart heart;
 		Point[] hearthPoints = new Point[] {
-			new Point(120, 120),
+			new Point(400, 240),
 
 		};
 		for(int i = 0; i < hearthPoints.length; i++) {
@@ -102,7 +102,7 @@ public class Level1State extends GameState{
 			
 		Plant s;
 		Point[] plantPoints = new Point[] {
-				new Point(190, 70)
+				new Point(380, 70)
 		};
 		for(int i = 0; i < plantPoints.length; i++) {
 			s = new Plant(tilemap);
@@ -118,7 +118,10 @@ public class Level1State extends GameState{
 		
 		Magican m;
 		Point[] magicanPoints = new Point[] {
-				new Point(100, 70)
+				new Point(200, 70),
+				new Point(210, 70),
+				new Point(220, 70),
+				new Point(230, 70)
 		};
 		for(int i = 0; i < magicanPoints.length; i++) {
 			m = new Magican(tilemap , player);
@@ -134,8 +137,8 @@ public class Level1State extends GameState{
 		
 		ShootingPlant p;
 		Point[] shootingPlantPoints = new Point[] {
-				new Point(350, 70),
-				new Point(500, 70)
+				new Point(450, 70),
+				new Point(1000, 70)
 			
 		};
 		for(int i = 0; i < shootingPlantPoints.length; i++) {
@@ -150,7 +153,11 @@ public class Level1State extends GameState{
 
 		// update player
 		player.update();
-		tilemap.setPosition(GameFrame.WIDTH / 2 - player.getx(), GameFrame.HEIGHT / 2 - player.gety());
+		tilemap.setPosition(GameFrame.WIDTH / 4 - player.getx(), GameFrame.HEIGHT / 4 - player.gety());
+		
+		//update hud
+		
+		hud = new HUD(player);
 
 		// set background
 		bg.setPosition(tilemap.getx(), tilemap.gety());
@@ -242,6 +249,7 @@ public class Level1State extends GameState{
 		
 		// draw player
 		player.draw(g);	
+		hud.draw(g);
 		
 	}
 	

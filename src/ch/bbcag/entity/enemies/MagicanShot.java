@@ -32,10 +32,10 @@ public class MagicanShot extends MapObject {
 			dx = -moveSpeed;
 		else dx = moveSpeed;
 
-		width = 16;
-		height = 16;
-		cwidth = 1;
-		cheight = 1;
+		width = 32;
+		height = 32;
+		cwidth = 2;
+		cheight = 2;
 		try {
 			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/Wizard_Shot.png"));
 

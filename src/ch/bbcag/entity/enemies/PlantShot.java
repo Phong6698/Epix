@@ -32,10 +32,10 @@ public class PlantShot extends MapObject {
 			dx = -moveSpeed;
 		else dx = moveSpeed;
 
-		width = 16;
-		height = 16;
-		cwidth = 1;
-		cheight = 1;
+		width = 32;
+		height = 32;
+		cwidth = 2;
+		cheight = 2;
 		try {
 			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/PlantShooting_Shot.png"));
 
@@ -78,7 +78,7 @@ public class PlantShot extends MapObject {
 
 		checkTileMapCollision();
 		if (e.gety() < player.gety()) {
-			setPosition(xtemp, ytemp + player.gety() / 70);
+			setPosition(xtemp, ytemp + player.gety() / 140);
 		} else {
 			setPosition(xtemp, ytemp);
 		}

@@ -60,12 +60,12 @@ public class Player extends MapObject {
 
 		super(tm);
 
-		width = 16;
-		height = 16;
+		width = 32;
+		height = 32;
 
 		// hitbox
-		cwidth = 10;
-		cheight = 16;
+		cwidth = 20;
+		cheight = 32;
 
 		moveSpeed = 0.1;
 		maxSpeed = 2.6;
@@ -77,7 +77,7 @@ public class Player extends MapObject {
 
 		facingRight = true;
 
-		health = maxHealth = 5;
+		health = maxHealth = 6900;
 		rainbow = maxRainbow = 2500;
 		
 		rainbowdamage = 10;
@@ -358,14 +358,14 @@ public class Player extends MapObject {
 				currentAction = RAINBOW;
 				animation.setFrames(sprites.get(RAINBOW));
 				animation.setDelay(100);
-				width = 16;
+				width = 32;
 			}
 		} else if (dy > 0) {
 			if (currentAction != JUMPING) {
 				currentAction = JUMPING;
 				animation.setFrames(sprites.get(JUMPING));
 				animation.setDelay(-4);
-				width = 16;
+				width = 32;
 			}
 		}
 
@@ -375,7 +375,7 @@ public class Player extends MapObject {
 				
 				animation.setFrames(sprites.get(FALLING));
 				animation.setDelay(100);
-				width = 16;
+				width = 32;
 			}
 		}
 
@@ -384,14 +384,14 @@ public class Player extends MapObject {
 				currentAction = WALKING;
 				animation.setFrames(sprites.get(WALKING));
 				animation.setDelay(60);
-				width = 16;
+				width = 32;
 			}
 		} else {
 			if (currentAction != IDLE) {
 				currentAction = IDLE;
 				animation.setFrames(sprites.get(IDLE));
 				animation.setDelay(400);
-				width = 16;
+				width = 32;
 			}
 		}
 

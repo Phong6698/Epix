@@ -219,4 +219,16 @@ public abstract class MapObject {
 				g.drawImage(animation.getImage(), (int)(x + xmap - width / 2 + width), (int)(y + ymap - height / 2), -width, height, null);
 			}
 		}
+		public double getMoveSpeed() {
+			return moveSpeed;
+		}
+		public void setMoveSpeed(double moveSpeed) {
+			this.moveSpeed = moveSpeed;
+		}
+		public double getFallSpeed() {
+			return fallSpeed;
+		}
+		public void setFallSpeed(double fallSpeed) {
+			this.fallSpeed = fallSpeed;
+		}
 }

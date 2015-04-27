@@ -39,12 +39,12 @@ public class ShootingPlant extends Enemy {
 		fallSpeed = 1;
 		maxFallSpeed = 1.1;
 
-		width = 16;
-		height = 16;
-		cwidth = 8;
-		cheight = 16;
+		width = 32;
+		height = 32;
+		cwidth = 32;
+		cheight = 32;
 
-		range = 112;
+		range = 224;
 		timer = System.currentTimeMillis();
 		health = maxHealth = 20;
 		damage = 10;
@@ -80,7 +80,7 @@ public class ShootingPlant extends Enemy {
 		currentAction = IDLE;
 		animation.setFrames(sprites.get(currentAction));
 		animation.setDelay(100);
-		width = 16;
+		width = 32;
 
 	}
 
@@ -127,14 +127,14 @@ public class ShootingPlant extends Enemy {
 				currentAction = SHOOT;
 				animation.setFrames(sprites.get(SHOOT));
 				animation.setDelay(150);
-				width = 32;
+				width = 64;
 			}
 		} else {
 			if (currentAction != IDLE) {
 				currentAction = IDLE;
 				animation.setFrames(sprites.get(IDLE));
 				animation.setDelay(400);
-				width = 16;
+				width = 32;
 			}
 		}
 

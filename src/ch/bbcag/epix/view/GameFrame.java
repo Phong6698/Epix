@@ -21,9 +21,9 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 	private static final long serialVersionUID = 1L;
 	
 	// dimensions
-	public static final int WIDTH = 224;
-	public static final int HEIGHT = 144;
-	public static final int SCALE = 5;	
+	public static final int WIDTH = 448;
+	public static final int HEIGHT = 288;
+	public static final double SCALE = 2.5;	
 	/* Tiles
 	 * 9 Height, 14 Width
 	 */
@@ -50,8 +50,8 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 		this.setResizable(true);
 		this.pack();
 		this.setLocationRelativeTo(null);
-		this.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-		this.setBounds(100, 100, WIDTH * SCALE, HEIGHT * SCALE);
+		this.setPreferredSize(new Dimension((int)(WIDTH * SCALE), (int)(HEIGHT * SCALE)));
+		this.setBounds(100, 100, (int)(WIDTH * SCALE), (int)(HEIGHT * SCALE));
 		this.setLocationRelativeTo(null);
 		this.setFocusable(true);
 		this.requestFocus();
@@ -119,9 +119,7 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 	}
 	private void drawToScreen() {
 		Graphics g2 = getGraphics();
-		g2.drawImage(image, 0, 0,
-				WIDTH * SCALE, HEIGHT * SCALE,
-				null);
+		g2.drawImage(image, 0, 0, (int)(WIDTH * SCALE), (int)(HEIGHT * SCALE), null);
 		g2.dispose();
 	}
 	

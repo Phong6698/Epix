@@ -45,11 +45,11 @@ import ch.bbcag.epix.tilemap.TileMap;
 		fallSpeed = 0.2;
 		maxFallSpeed = 10.0;
 
-		width = 16;
-		height = 16;
-		cwidth = 16;
-		cheight = 16;
-		range = 112;
+		width = 32;
+		height = 32;
+		cwidth = 32;
+		cheight = 32;
+		range = 224;
 
 		health = maxHealth = 2;
 		damage = 0;
@@ -80,7 +80,7 @@ import ch.bbcag.epix.tilemap.TileMap;
 		currentAction = IDLE;
 		animation.setFrames(sprites.get(currentAction));
 		animation.setDelay(100);
-		width = 16;
+		width = 32;
 
 		right = true;
 		facingRight = false;
@@ -138,7 +138,7 @@ import ch.bbcag.epix.tilemap.TileMap;
 				currentAction = SHOOT;
 				animation.setFrames(sprites.get(SHOOT));
 				animation.setDelay(150);
-				width = 16;
+				width = 32;
 			}
 		} else {
 			if (currentAction != IDLE) {
@@ -146,7 +146,7 @@ import ch.bbcag.epix.tilemap.TileMap;
 
 				animation.setFrames(sprites.get(IDLE));
 				animation.setDelay(400);
-				width = 16;
+				width = 32;
 			}
 		}
 

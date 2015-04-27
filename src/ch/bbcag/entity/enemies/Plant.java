@@ -20,13 +20,13 @@ public class Plant extends Enemy {
 
 	public Plant(TileMap tm) {
 		super(tm);
-		fallSpeed = 0.1;
+		setFallSpeed(0.1);
 		maxFallSpeed = 1.1;
 
-		width = 16;
-		height = 16;
-		cwidth = 16;
-		cheight = 16;
+		width = 32;
+		height = 32;
+		cwidth = 32;
+		cheight = 32;
 
 		health = maxHealth = 10;
 		damage = 1;
@@ -59,14 +59,14 @@ public class Plant extends Enemy {
 		currentAction = IDLE;
 		animation.setFrames(sprites.get(currentAction));
 		animation.setDelay(100);
-		width = 16;
+		width = 32;
 
 	}
 
 	private void getNextPosition() {
 		// falling
 		if (falling) {
-			dy += fallSpeed;
+			dy += getFallSpeed();
 		}
 	}
 
@@ -88,14 +88,14 @@ public class Plant extends Enemy {
 				currentAction = ATTACK;
 				animation.setFrames(sprites.get(ATTACK));
 				animation.setDelay(150);
-				width = 32;
+				width = 64;
 			}
 		} else {
 			if (currentAction != IDLE) {
 				currentAction = IDLE;
 				animation.setFrames(sprites.get(IDLE));
 				animation.setDelay(400);
-				width = 16;
+				width = 32;
 			}
 		}
 		
@@ -114,7 +114,7 @@ public class Plant extends Enemy {
 	}
 
 	public boolean OnScreen(Plant e, Player player) {
-		if (e.getx() - 24 < player.getx() && e.getx() + 16  - player.getx() > 0) {
+		if (e.getx() - 48 < player.getx() && e.getx() + 32  - player.getx() > 0) {
 			return true;
 		} else {
 			return false;

@@ -10,7 +10,7 @@ import ch.bbcag.epix.entity.MapObject;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.TileMap;
 
-public class PlantShot extends MapObject {
+public class MagicanShot extends MapObject {
 
 	private boolean hit;
 	private boolean remove;
@@ -22,7 +22,7 @@ public class PlantShot extends MapObject {
 	protected boolean flinching;
 	protected long flinchTimer;
 
-	public PlantShot(TileMap tm, boolean shotright, Player player) {
+	public MagicanShot(TileMap tm, boolean shotright, Player player) {
 		super(tm);
 
 		facingRight = right;
@@ -37,7 +37,7 @@ public class PlantShot extends MapObject {
 		cwidth = 1;
 		cheight = 1;
 		try {
-			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/PlantShooting_Shot.png"));
+			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/Wizard_Shot.png"));
 
 			sprites = new BufferedImage[2];
 			for (int i = 0; i < sprites.length; i++) {
@@ -72,12 +72,12 @@ public class PlantShot extends MapObject {
 		return remove;
 	}
 
-	public void update(Player player, ShootingPlant e) {
+	public void update(Magican m, Player player) {
 
 		// update position
 
 		checkTileMapCollision();
-		if (e.gety() < player.gety()) {
+		if (m.gety() < player.gety()) {
 			setPosition(xtemp, ytemp + player.gety() / 70);
 		} else {
 			setPosition(xtemp, ytemp);
@@ -95,12 +95,10 @@ public class PlantShot extends MapObject {
 	}
 
 	public void draw(Graphics2D g) {
-
 		
 		setMapPosition();
 
 		super.draw(g);
 
 	}
-
 }

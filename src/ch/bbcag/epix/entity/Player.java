@@ -205,7 +205,6 @@ public class Player extends MapObject {
 			// check enemy collision
 			if (intersects(powerup)) {
 				powerup.update();
-				System.out.println("upgrade");
 				addPowerupToPlayer(powerup);
 				
 				
@@ -220,12 +219,9 @@ public class Player extends MapObject {
 		setHealth(getHealth() + powerup.plusHealth);
 		setRainbowdamage(getRainbowdamage() + powerup.plusDamage);
 		powerups.add(powerup);
-		System.out.println(getHealth());
-		System.out.println(getRainbowdamage());
 		powerup.setTaken(true);
 		powerup.setAvailable(true);
 		powerup.setTakenTime(System.currentTimeMillis());
-		System.out.println("Powerup added");
 	}
 	
 	public void removePowerupFromPlayer(Powerup powerup){

@@ -3,10 +3,12 @@ package ch.bbcag.entity.levels;
 import java.awt.Graphics2D;
 
 import ch.bbcag.epix.entity.HUD;
+
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import ch.bbcag.entity.enemies.Magican;
 import ch.bbcag.entity.enemies.Plant;
 import ch.bbcag.entity.enemies.ShootingPlant;
 import ch.bbcag.entity.powerups.DamageUp;
@@ -30,6 +32,7 @@ public class Level1State extends GameState{
 	
 	private ArrayList<Plant> plant;
 	private ArrayList<ShootingPlant> shootingPlant;
+	private ArrayList<Magican> magicans;
 	
 	private ArrayList<Powerup> powerups;
 	
@@ -107,6 +110,22 @@ public class Level1State extends GameState{
 			plant.add(s);
 		}
 			
+		/*
+		 * Magicans
+		 */
+		
+		magicans = new ArrayList<Magican>();
+		
+		Magican m;
+		Point[] magicanPoints = new Point[] {
+				new Point(100, 70)
+		};
+		for(int i = 0; i < magicanPoints.length; i++) {
+			m = new Magican(tilemap , player);
+			m.setPosition(magicanPoints[i].x, magicanPoints[i].y);
+			magicans.add(m);
+		}
+		
 		
 		/*
 		 * shootingPlant
@@ -140,6 +159,24 @@ public class Level1State extends GameState{
 		player.checkAttackShootingPlants(shootingPlant);
 		player.checkPowerup(powerups);
 		
+		
+		for(int i = 0; i < plant.size(); i++) {
+			Plant e = plant.get(i);
+			e.update(e, player);
+			if(e.isDead()) {
+				plant.remove(i);
+				i--;
+			}
+		}
+		
+		for(int i = 0; i < magicans.size(); i++) {
+			Magican e = magicans.get(i);
+			e.update(e, player);
+			if(e.isDead()) {
+				magicans.remove(i);
+				i--;
+			}
+		}
 		
 		for(int i = 0; i < plant.size(); i++) {
 			Plant e = plant.get(i);
@@ -193,6 +230,11 @@ public class Level1State extends GameState{
 		for(int i = 0; i < shootingPlant.size(); i++) {
 			shootingPlant.get(i).draw(g);
 		}
+		
+		for(int i = 0; i < magicans.size(); i++) {
+			magicans.get(i).draw(g);
+		}
+		
 		
 		for(int i = 0; i < powerups.size(); i++) {
 			powerups.get(i).draw(g);

@@ -11,62 +11,62 @@ import ch.bbcag.epix.entity.Enemy;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.TileMap;
 
-public class ShootingPlant extends Enemy {
+@SuppressWarnings("unused") public class Magican extends Enemy {
+
+	private boolean hit;
+	private boolean remove;
 
 	private ArrayList<BufferedImage[]> sprites;
-	private final int[] numFrames = { 4, 6 };
+	private final int[] numFrames = { 6, 3 };
 
 	private static final int IDLE = 0;
 	private static final int SHOOT = 1;
+
+	protected boolean flinching;
+	protected long flinchTimer;
 	private boolean onscreen;
+
 	private boolean shooting;
-	private boolean remove;
 	private boolean shotright;
+
 	private long timer;
 	private long time = 151;
-	private int plantshotsdamage = 10;
+	private int wizarddamage = 10;
+	private int range;
 
-	
+	private ArrayList<MagicanShot> magicanshots;
 
-	private ArrayList<PlantShot> plantshots;
-	private int range = 112;
+	public Magican(TileMap tm, Player player) {
 
-	// position and vector
-
-	public ShootingPlant(TileMap tm, boolean b) {
 		super(tm);
 
-		fallSpeed = 1;
-		maxFallSpeed = 1.1;
+		moveSpeed = 1;
+		maxSpeed = 1;
+		fallSpeed = 0.2;
+		maxFallSpeed = 10.0;
 
 		width = 16;
 		height = 16;
-		cwidth = 8;
+		cwidth = 16;
 		cheight = 16;
-
 		range = 112;
-		timer = System.currentTimeMillis();
-		health = maxHealth = 20;
-		damage = 10;
+
+		health = maxHealth = 2;
+		damage = 0;
+
+		magicanshots = new ArrayList<MagicanShot>();
+
 		// load sprites
 
-		plantshots = new ArrayList<PlantShot>();
-
 		try {
-			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/PlantShooting.png"));
+			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/Wizard.png"));
 			sprites = new ArrayList<BufferedImage[]>();
 			for (int i = 0; i < 2; i++) {
 
 				BufferedImage[] bi = new BufferedImage[numFrames[i]];
 
 				for (int j = 0; j < numFrames[i]; j++) {
-
-					if (i != SHOOT) {
-						bi[j] = spritesheet.getSubimage(j * width, i * height, width, height);
-					} else {
-						bi[j] = spritesheet.getSubimage(j * width * 2, i * height, width * 2, height);
-					}
-
+					bi[j] = spritesheet.getSubimage(j * width, i * height, width, height);
 				}
 
 				sprites.add(bi);
@@ -82,56 +82,68 @@ public class ShootingPlant extends Enemy {
 		animation.setDelay(100);
 		width = 16;
 
+		right = true;
+		facingRight = false;
+
 	}
 
 	private void getNextPosition() {
+		// falling
+		if (left) {
+			dx -= moveSpeed;
+			if (dx < -maxSpeed) {
+				dx = -maxSpeed;
+			}
+		} else if (right) {
+			dx += moveSpeed;
+			if (dx > maxSpeed) {
+				dx = maxSpeed;
+			}
+		}
+
 		// falling
 		if (falling) {
 			dy += fallSpeed;
 		}
 
 	}
-	
-	public void checkAttackPlayer(Player player){
-		for (int j = 0; j < plantshots.size(); j++) {
-			if (plantshots.get(j).intersects(player)) {
-				player.hit(plantshotsdamage);
-				plantshots.get(j).setHit();
-				break;
-			}
-		}
-	}
 
-	public void update(ShootingPlant e, Player player) {
+	public void update(Magican m, Player player) {
 
 		// update position
 		getNextPosition();
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
+		
+		
 
-		for (int i = 0; i < plantshots.size(); i++) {
-			plantshots.get(i).update(player, e);
-			if (plantshots.get(i).shouldRemove()) {
-				plantshots.remove(i);
+		for (int i = 0; i < magicanshots.size(); i++) {
+			magicanshots.get(i).update(m, player);
+			if (magicanshots.get(i).shouldRemove()) {
+				magicanshots.remove(i);
 				i--;
 			}
 		}
+
 		// check flinching
 		if (flinching) {
 			long elapsed = (System.nanoTime() - flinchTimer) / 1000000;
 			if (elapsed > 400) {
 				flinching = false;
 			}
-		} else if (OnScreen(e, range )) {
+		} else if (OnScreen(m, range)) {
 			if (currentAction != SHOOT) {
+				moveSpeed = 0.2;
+				maxSpeed = 0.2;
 				currentAction = SHOOT;
 				animation.setFrames(sprites.get(SHOOT));
 				animation.setDelay(150);
-				width = 32;
+				width = 16;
 			}
 		} else {
 			if (currentAction != IDLE) {
 				currentAction = IDLE;
+
 				animation.setFrames(sprites.get(IDLE));
 				animation.setDelay(400);
 				width = 16;
@@ -144,28 +156,44 @@ public class ShootingPlant extends Enemy {
 			} else {
 				shotright = false;
 			}
+			
 			if (animation.getFrame() == 3) {
-				PlantShot ps = new PlantShot(tileMap, shotright , player);
-				ps.setPosition(e.getx(), e.gety());
+				MagicanShot ps = new MagicanShot(tileMap, shotright, player);
+				ps.setPosition(m.getx(), m.gety());
 				if (timer + time <= System.currentTimeMillis()) {
-					plantshots.add(ps);
+					magicanshots.add(ps);
 					timer = System.currentTimeMillis();
 				}
+			}
+
+			MagicanShot ps = new MagicanShot(tileMap, shotright, player);
+			ps.setPosition(m.getx(), m.gety());
+			if (timer + time <= System.currentTimeMillis()) {
+				magicanshots.add(ps);
+				timer = System.currentTimeMillis();
 			}
 		}
 
 		animation.update();
-	
-		if (true) {
-			if (e.getx() > player.getx()) {
-				facingRight = true;
-			} else {
-				facingRight = false;
-			}
+
+		// if it hits a wall, go other direction
+		if(left && dx == 0 || m.getx() > player.getx()) {
+			right = false;
+			left = true;
+			facingRight = true;
+			shotright = true;
 		}
+		else if(right && dx == 0 || m.getx() < player.getx()) {
+			right = true;
+			left = false;
+			facingRight = false;
+			shotright = false;
+		}
+		// update animation
+
 	}
 
-	public boolean OnScreen(ShootingPlant e, int range) {
+	public boolean OnScreen(Magican e, int range) {
 		double a = e.getXmap();
 		double spielerkoordinaten = (a - a - a) + range;
 		if (e.getx() + range > spielerkoordinaten && e.getx() - spielerkoordinaten < range) {
@@ -175,22 +203,14 @@ public class ShootingPlant extends Enemy {
 		}
 	}
 
-	public boolean isOnscreen() {
-		return onscreen;
-	}
-
-	public void setOnscreen(boolean onscreen) {
-		this.onscreen = onscreen;
-	}
-
 	public void draw(Graphics2D g) {
 
 		// if(notOnScreen()) return;
 
 		setMapPosition();
 
-		for (int i = 0; i < plantshots.size(); i++) {
-			plantshots.get(i).draw(g);
+		for (int i = 0; i < magicanshots.size(); i++) {
+			magicanshots.get(i).draw(g);
 		}
 
 		if (flinching) {
@@ -200,32 +220,7 @@ public class ShootingPlant extends Enemy {
 			}
 		}
 
-		// draw fireballs
 		super.draw(g);
 
-	}
-	
-	
-	public ArrayList<PlantShot> getPlantshots() {
-		return plantshots;
-	}
-
-	public void setPlantshots(ArrayList<PlantShot> plantshots) {
-		this.plantshots = plantshots;
-	}
-
-	public long getTimer() {
-		return timer;
-	}
-
-	public void setTimer(long timer) {
-		this.timer = timer;
-	}
-	public boolean isShotright() {
-		return shotright;
-	}
-
-	public void setShotright(boolean shotright) {
-		this.shotright = shotright;
 	}
 }

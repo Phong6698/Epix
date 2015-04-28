@@ -30,7 +30,7 @@ import ch.bbcag.epix.tilemap.TileMap;
 	private boolean shotright;
 
 	private long timer;
-	private long time = 151;
+	private long time = 250;
 	private int wizarddamage = 10;
 	private int range;
 
@@ -78,44 +78,46 @@ import ch.bbcag.epix.tilemap.TileMap;
 
 		animation = new Animation();
 		currentAction = IDLE;
-		animation.setFrames(sprites.get(currentAction));
+		animation.setFrames(sprites.get(IDLE));
 		animation.setDelay(100);
 		width = 32;
 
 		right = true;
 		facingRight = false;
-
 	}
 
 	private void getNextPosition() {
 		// falling
-		if (left) {
-			dx -= moveSpeed;
-			if (dx < -maxSpeed) {
-				dx = -maxSpeed;
+
+		if (this.currentAction == IDLE) {
+			if (left) {
+				dx -= moveSpeed;
+				if (dx < -maxSpeed) {
+					dx = -maxSpeed;
+				}
+			} else if (right) {
+				dx += moveSpeed;
+				if (dx > maxSpeed) {
+					dx = maxSpeed;
+				}
+
 			}
-		} else if (right) {
-			dx += moveSpeed;
-			if (dx > maxSpeed) {
-				dx = maxSpeed;
+
+			// falling
+			if (falling) {
+				dy += fallSpeed;
 			}
 		}
-
-		// falling
-		if (falling) {
-			dy += fallSpeed;
-		}
-
 	}
 
 	public void update(Magican m, Player player) {
 
 		// update position
+
+		
 		getNextPosition();
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
-		
-		
 
 		for (int i = 0; i < magicanshots.size(); i++) {
 			magicanshots.get(i).update(m, player);
@@ -131,33 +133,36 @@ import ch.bbcag.epix.tilemap.TileMap;
 			if (elapsed > 400) {
 				flinching = false;
 			}
-		} else if (OnScreen(m, range)) {
+		} else if (OnScreen(m, 224)) {
 			if (currentAction != SHOOT) {
-				moveSpeed = 0.2;
-				maxSpeed = 0.2;
 				currentAction = SHOOT;
 				animation.setFrames(sprites.get(SHOOT));
-				animation.setDelay(150);
+				animation.setDelay(250);
 				width = 32;
 			}
 		} else {
 			if (currentAction != IDLE) {
 				currentAction = IDLE;
-
 				animation.setFrames(sprites.get(IDLE));
-				animation.setDelay(400);
+				animation.setDelay(100);
 				width = 32;
 			}
 		}
 
 		if (currentAction == SHOOT) {
+			if (m.getx() > player.getx()) {
+				facingRight = true;
+			} else {
+				facingRight = false;
+			}
+
 			if (facingRight) {
 				shotright = true;
 			} else {
 				shotright = false;
 			}
-			
-			if (animation.getFrame() == 3) {
+
+			if (animation.getFrame() == 2) {
 				MagicanShot ps = new MagicanShot(tileMap, shotright, player);
 				ps.setPosition(m.getx(), m.gety());
 				if (timer + time <= System.currentTimeMillis()) {
@@ -176,21 +181,19 @@ import ch.bbcag.epix.tilemap.TileMap;
 
 		animation.update();
 
-		// if it hits a wall, go other direction
-		if(left && dx == 0 || m.getx() > player.getx()) {
-			right = false;
-			left = true;
-			facingRight = true;
-			shotright = true;
+		if (currentAction == IDLE) {
+			if (left && dx == 0) {
+				right = true;
+				left = false;
+				facingRight = false;
+				shotright = true;
+			} else if (right && dx == 0) {
+				right = false;
+				left = true;
+				facingRight = true;
+				shotright = false;
+			}
 		}
-		else if(right && dx == 0 || m.getx() < player.getx()) {
-			right = true;
-			left = false;
-			facingRight = false;
-			shotright = false;
-		}
-		// update animation
-
 	}
 
 	public boolean OnScreen(Magican e, int range) {

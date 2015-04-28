@@ -133,7 +133,7 @@ public class Level1State extends GameState{
 		
 		Magican m;
 		Point[] magicanPoints = new Point[] {
-				new Point(1800, 70)
+				new Point(210, 240)
 		};
 		for(int i = 0; i < magicanPoints.length; i++) {
 			m = new Magican(tilemap , player);

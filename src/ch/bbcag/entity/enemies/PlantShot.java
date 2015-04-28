@@ -10,32 +10,48 @@ import ch.bbcag.epix.entity.MapObject;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.TileMap;
 
+/**
+ * Schüsse von eine gegnerische Pflanze die auf den Spieler schiesst
+ * 
+ * @author Chiramet Phong Penglerd, Miguel Jorge, 
+ *  ICT Berufsbildungscenter AG, 
+ *  Epix 2015
+ */
 public class PlantShot extends MapObject {
 
 	private boolean hit;
 	private boolean remove;
 	private BufferedImage[] sprites;
 	private BufferedImage[] hitSprites;
-	
-	
 
-	protected boolean flinching;
-	protected long flinchTimer;
-
+	/**
+	 * Konstruktor
+	 * 
+	 * @param tm
+	 * @param shotright
+	 * @param player
+	 */
 	public PlantShot(TileMap tm, boolean shotright, Player player) {
 		super(tm);
 
 		facingRight = right;
 
 		moveSpeed = 4.8;
-		if (shotright)
+		
+		if (shotright){
 			dx = -moveSpeed;
-		else dx = moveSpeed;
+		} else { 
+			dx = moveSpeed;
+		}
 
 		width = 32;
 		height = 32;
 		cwidth = 1;
 		cheight = 1;
+		
+		/*
+		 * Bilder laden
+		 */
 		try {
 			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/PlantShooting_Shot.png"));
 
@@ -44,9 +60,9 @@ public class PlantShot extends MapObject {
 				sprites[i] = spritesheet.getSubimage(i * width, 0, width, height);
 			}
 
-			hitSprites = new BufferedImage[2];
-			for (int i = 0; i < hitSprites.length; i++) {
-				hitSprites[i] = spritesheet.getSubimage(i * width, height, width, height);
+			setHitSprites(new BufferedImage[2]);
+			for (int i = 0; i < getHitSprites().length; i++) {
+				getHitSprites()[i] = spritesheet.getSubimage(i * width, height, width, height);
 			}
 
 			animation = new Animation();
@@ -59,19 +75,26 @@ public class PlantShot extends MapObject {
 
 	}
 
+	
+	/**
+	 * Animation wechseln wenn der Schuss abprallt
+	 */
 	public void setHit() {
-		if (hit)
+		if (isHit())
 			return;
-		hit = true;
-		animation.setFrames(hitSprites);
+		setHit(true);
+		animation.setFrames(getHitSprites());
 		animation.setDelay(100);
 		dx = 0;
 	}
 
-	public boolean shouldRemove() {
-		return remove;
-	}
-
+	
+	/**
+	 * Schuss updaten
+	 * 
+	 * @param player
+	 * @param e
+	 */
 	public void update(Player player, ShootingPlant e) {
 
 		// update position
@@ -83,24 +106,61 @@ public class PlantShot extends MapObject {
 			setPosition(xtemp, ytemp);
 		}
 		
-		if (dx == 0  && !hit) {
+		if (dx == 0  && !isHit()) {
 			setHit();
 		}
 
 		// update animation
 		animation.update();
-		if (hit && animation.hasPlayedOnce()) {
-			remove = true;
+		if (isHit() && animation.hasPlayedOnce()) {
+			setRemove(true);
 		}
 	}
 
+	
+	/**
+	 * Schuss zeichnen
+	 */
 	public void draw(Graphics2D g) {
 
-		
 		setMapPosition();
-
 		super.draw(g);
+	}
 
+	
+	/*
+	 * Getter und Setter
+	 */
+	public boolean isHit() {
+		return hit;
+	}
+
+	public boolean isRemove() {
+		return remove;
+	}
+
+	public BufferedImage[] getSprites() {
+		return sprites;
+	}
+
+	public BufferedImage[] getHitSprites() {
+		return hitSprites;
+	}
+
+	public void setHit(boolean hit) {
+		this.hit = hit;
+	}
+
+	public void setRemove(boolean remove) {
+		this.remove = remove;
+	}
+
+	public void setSprites(BufferedImage[] sprites) {
+		this.sprites = sprites;
+	}
+
+	public void setHitSprites(BufferedImage[] hitSprites) {
+		this.hitSprites = hitSprites;
 	}
 
 }

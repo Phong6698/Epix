@@ -20,7 +20,7 @@ private Player player;
 		setPlayer(p);
 		
 		try {
-			coin = ImageIO.read(getClass().getResourceAsStream("/Backgrounds/Coin spin 16x16.gif"));
+			coin = ImageIO.read(getClass().getResourceAsStream("/HUD/Coin spin 16x16.gif"));
 			font = new Font("Arial", Font.PLAIN, 10);
 		}
 		catch(Exception e) {

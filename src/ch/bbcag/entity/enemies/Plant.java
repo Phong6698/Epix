@@ -11,6 +11,13 @@ import ch.bbcag.epix.entity.Enemy;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.TileMap;
 
+/**
+ * Eine gegnerische Pflanze
+ * 
+ * @author Chiramet Phong Penglerd, Miguel Jorge, 
+ *  ICT Berufsbildungscenter AG, 
+ *  Epix 2015
+ */
 public class Plant extends Enemy {
 
 	private ArrayList<BufferedImage[]> sprites;
@@ -18,6 +25,11 @@ public class Plant extends Enemy {
 	private static final int IDLE = 0;
 	private static final int ATTACK = 1;
 
+
+	/**
+	 * Konstruktor
+	 * @param tm
+	 */
 	public Plant(TileMap tm) {
 		super(tm);
 		setFallSpeed(0.1);
@@ -31,16 +43,20 @@ public class Plant extends Enemy {
 		health = maxHealth = 10;
 		damage = 1;
 
+		
+		/*
+		 * Bilder laden
+		 */
 		try {
 			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/PlantStanding.png"));
-			sprites = new ArrayList<BufferedImage[]>();
+			this.setSprites(new ArrayList<BufferedImage[]>());
 			for (int i = 0; i < 2; i++) {
 
-				BufferedImage[] bi = new BufferedImage[numFrames[i]];
+				BufferedImage[] bi = new BufferedImage[getNumFrames()[i]];
 
-				for (int j = 0; j < numFrames[i]; j++) {
+				for (int j = 0; j < getNumFrames()[i]; j++) {
 
-					if (i != ATTACK) {
+					if (i != getAttack()) {
 						bi[j] = spritesheet.getSubimage(j * width, i * height, width, height);
 					} else {
 						bi[j] = spritesheet.getSubimage(j * width * 2, i * height, width * 2, height);
@@ -48,7 +64,7 @@ public class Plant extends Enemy {
 
 				}
 
-				sprites.add(bi);
+				getSprites().add(bi);
 
 			}
 		} catch (Exception e) {
@@ -56,20 +72,31 @@ public class Plant extends Enemy {
 		}
 
 		animation = new Animation();
-		currentAction = IDLE;
-		animation.setFrames(sprites.get(currentAction));
+		currentAction = getIdle();
+		animation.setFrames(getSprites().get(currentAction));
 		animation.setDelay(100);
 		width = 32;
-
 	}
 
+	
+	/**
+	 * nächste Position
+	 */
 	private void getNextPosition() {
+		
 		// falling
 		if (falling) {
 			dy += getFallSpeed();
 		}
 	}
 
+	
+	/**
+	 * Die Pflanze updaten
+	 * 
+	 * @param e
+	 * @param player
+	 */
 	public void update(Plant e, Player player) {
 
 		// update position
@@ -84,23 +111,23 @@ public class Plant extends Enemy {
 				flinching = false;
 			}
 		} else if (OnScreen(e, player)) {
-			if (currentAction != ATTACK) {
-				currentAction = ATTACK;
-				animation.setFrames(sprites.get(ATTACK));
+			if (currentAction != getAttack()) {
+				currentAction = getAttack();
+				animation.setFrames(getSprites().get(getAttack()));
 				animation.setDelay(150);
 				width = 64;
 			}
 		} else {
-			if (currentAction != IDLE) {
-				currentAction = IDLE;
-				animation.setFrames(sprites.get(IDLE));
+			if (currentAction != getIdle()) {
+				currentAction = getIdle();
+				animation.setFrames(getSprites().get(getIdle()));
 				animation.setDelay(400);
 				width = 32;
 			}
 		}
 		
 
-		// update animation
+		//update animation
 		animation.update();
 		
 		if (true) {
@@ -110,10 +137,19 @@ public class Plant extends Enemy {
 				facingRight = false;
 			}
 		}
-
+		
 	}
+	
 
+	/**
+	 * Schaut ob der Spieler die Pflanze auf dem Bildschirm sieht
+	 * 
+	 * @param e
+	 * @param player
+	 * @return ob der Spieler die Plfanze auf dem Bildschirm sieht
+	 */
 	public boolean OnScreen(Plant e, Player player) {
+		
 		if (e.getx() - 48 < player.getx() && e.getx() + 32  - player.getx() > 0) {
 			return true;
 		} else {
@@ -121,13 +157,38 @@ public class Plant extends Enemy {
 		}
 	}
 
+	
+	/**
+	 * zeichnet die Pflanze
+	 */
 	public void draw(Graphics2D g) {
-
+		
 		// if(notOnScreen()) return;
-
 		setMapPosition();
-
 		super.draw(g);
+	}
 
+	
+	/*
+	 * Getter und Setter
+	 */
+	public ArrayList<BufferedImage[]> getSprites() {
+		return sprites;
+	}
+
+	public int[] getNumFrames() {
+		return numFrames;
+	}
+
+	public static final int getIdle() {
+		return IDLE;
+	}
+
+	public static final int getAttack() {
+		return ATTACK;
+	}
+
+	public void setSprites(ArrayList<BufferedImage[]> sprites) {
+		this.sprites = sprites;
 	}
 }

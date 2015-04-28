@@ -18,6 +18,7 @@ public class LevelAuswahlCardButtonListener implements ActionListener {
 	
 	public LevelAuswahlCardButtonListener(JPanel card, User user) {
 		this.setCard(card);
+		this.setUser(user);
 	}
 	
 	

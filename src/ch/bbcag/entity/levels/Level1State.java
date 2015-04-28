@@ -184,7 +184,7 @@ public class Level1State extends GameState{
 
 		// update player
 		player.update();
-		tilemap.setPosition(GameFrame.WIDTH / 4 - player.getx(), GameFrame.HEIGHT / 4 - player.gety());
+		tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());
 		
 		//update hud
 		

@@ -284,9 +284,7 @@ public class Player extends MapObject {
 
 	public void update() {
 		
-		
-
-
+	
 		// update position
 		getNextPosition();
 		checkTileMapCollision();

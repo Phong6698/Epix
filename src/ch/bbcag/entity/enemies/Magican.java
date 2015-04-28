@@ -82,14 +82,24 @@ import ch.bbcag.epix.tilemap.TileMap;
 		animation.setDelay(100);
 		width = 32;
 
-		right = true;
-		facingRight = false;
 	}
 
 	private void getNextPosition() {
-		// falling
 
-		if (this.currentAction == IDLE) {
+		if (left && dx == 0) {
+			right = true;
+			left = false;
+			facingRight = false;
+			shotright = true;
+		} else if (right && dx == 0) {
+			right = false;
+			left = true;
+			facingRight = true;
+			shotright = false;
+
+		}
+
+		if (currentAction == IDLE) {
 			if (left) {
 				dx -= moveSpeed;
 				if (dx < -maxSpeed) {
@@ -100,21 +110,22 @@ import ch.bbcag.epix.tilemap.TileMap;
 				if (dx > maxSpeed) {
 					dx = maxSpeed;
 				}
-
 			}
-
-			// falling
-			if (falling) {
-				dy += fallSpeed;
-			}
+		} else {
+			dx = 0;
 		}
+
+		// falling
+		if (falling) {
+			dy += fallSpeed;
+		}
+
 	}
 
 	public void update(Magican m, Player player) {
 
 		// update position
 
-		
 		getNextPosition();
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
@@ -142,6 +153,7 @@ import ch.bbcag.epix.tilemap.TileMap;
 			}
 		} else {
 			if (currentAction != IDLE) {
+				right = true;
 				currentAction = IDLE;
 				animation.setFrames(sprites.get(IDLE));
 				animation.setDelay(100);
@@ -155,7 +167,6 @@ import ch.bbcag.epix.tilemap.TileMap;
 			} else {
 				facingRight = false;
 			}
-
 			if (facingRight) {
 				shotright = true;
 			} else {
@@ -178,22 +189,9 @@ import ch.bbcag.epix.tilemap.TileMap;
 				timer = System.currentTimeMillis();
 			}
 		}
-
+		
 		animation.update();
 
-		if (currentAction == IDLE) {
-			if (left && dx == 0) {
-				right = true;
-				left = false;
-				facingRight = false;
-				shotright = true;
-			} else if (right && dx == 0) {
-				right = false;
-				left = true;
-				facingRight = true;
-				shotright = false;
-			}
-		}
 	}
 
 	public boolean OnScreen(Magican e, int range) {

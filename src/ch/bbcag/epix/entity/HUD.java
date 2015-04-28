@@ -43,6 +43,10 @@ private Player player;
 		g.drawString(getPlayer().getUsername(), 20, 36);
 		g.drawString("" + getPlayer().getCoin(), 117, 36);
 		
+		//Player Coordinates
+		g.drawString("x: " + getPlayer().getx(), 400, 36);
+		g.drawString("y: " + getPlayer().gety(), 400, 50);
+		
 
 		//Player health bar
 		g.setColor(new Color(1f,0f,0f,.3f));

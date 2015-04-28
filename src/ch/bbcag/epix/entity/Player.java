@@ -117,50 +117,7 @@ public class Player extends MapObject {
 
 	}
 	
-	public void setMaxHealth(int maxHealth) {
-		this.maxHealth = maxHealth;
-	}
-
-
-	public int getHealth() {
-		return health;
-	}
-
-	public int getMaxHealth() {
-		return maxHealth;
-	}
-
-	public int getRainbow() {
-		return rainbow;
-	}
-
-	public int getMaxRainbow() {
-		return maxRainbow;
-	}
-
-	public void setRainbowing() {
-		rainbowing = true;
-	}
-
-	public int getRainbowcost() {
-		return rainbowcost;
-	}
-
-	public void setRainbowcost(int rainbowcost) {
-		this.rainbowcost = rainbowcost;
-	}
-
-	public int getRainbowdamage() {
-		return rainbowdamage;
-	}
-
-	public void setRainbowdamage(int rainbowdamage) {
-		this.rainbowdamage = rainbowdamage;
-	}
-
-	public ArrayList<Rainbow> getRainbows() {
-		return rainbows;
-	}
+	
 	public void checkAttackPlants(ArrayList<Plant> plants) {
 		// loop through enemies 
 		for (int i = 0; i < plants.size(); i++) {
@@ -204,24 +161,37 @@ public class Player extends MapObject {
 	
 	public void checkPowerup(ArrayList<Powerup> powerups) {
 
-		// loop through enemies
+		// loop through powerups
 		for (int i = 0; i < powerups.size(); i++) {
 
 			Powerup powerup = powerups.get(i);
-
-			// fireballs
 			
 			// check enemy collision
 			if (intersects(powerup)) {
 				powerup.update();
 				addPowerupToPlayer(powerup);
 				
-				
-				
-				
 			}
 
 		}
+	}
+	
+	public void checkCoin(ArrayList<Coin> coins) {
+		// loop through powerups
+			for (int i = 0; i < coins.size(); i++) {
+
+				Coin coin = coins.get(i);
+				
+				// check enemy collision
+				if (intersects(coin)) {
+					coin.update();
+					this.setCoin(this.getCoin() + coin.getCoinValue());
+					coin.setTaken(true);
+											
+				}
+
+			}
+		
 	}
 	
 	public void addPowerupToPlayer(Powerup powerup){
@@ -458,5 +428,50 @@ public class Player extends MapObject {
 
 	public void setCoin(int coin) {
 		this.coin = coin;
+	}
+	
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
+	}
+
+
+	public int getHealth() {
+		return health;
+	}
+
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+
+	public int getRainbow() {
+		return rainbow;
+	}
+
+	public int getMaxRainbow() {
+		return maxRainbow;
+	}
+
+	public void setRainbowing() {
+		rainbowing = true;
+	}
+
+	public int getRainbowcost() {
+		return rainbowcost;
+	}
+
+	public void setRainbowcost(int rainbowcost) {
+		this.rainbowcost = rainbowcost;
+	}
+
+	public int getRainbowdamage() {
+		return rainbowdamage;
+	}
+
+	public void setRainbowdamage(int rainbowdamage) {
+		this.rainbowdamage = rainbowdamage;
+	}
+
+	public ArrayList<Rainbow> getRainbows() {
+		return rainbows;
 	}
 }

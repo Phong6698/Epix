@@ -10,17 +10,19 @@ import ch.bbcag.epix.tilemap.TileMap;
 public class Coin extends MapObject {
 	
 	private BufferedImage[] sprites;
+	private int coinValue;
+	private boolean taken;
 
 	public Coin(TileMap tm) {
 		super(tm);
 		
-		setFallSpeed(0.1);
-		maxFallSpeed = 1.1;
-		
 		width = 32;
 		height = 32;
-		cwidth = 32;
-		cheight = 32;
+		cwidth = 30;
+		cheight = 30;
+		
+		setCoinValue(1);
+		taken = false;
 		
 		try {
 
@@ -36,7 +38,7 @@ public class Coin extends MapObject {
 		
 		animation = new Animation();
 		animation.setFrames(sprites);
-		animation.setDelay(100);
+		animation.setDelay(60);
 
 		right = true;
 		facingRight = true;
@@ -69,6 +71,23 @@ public class Coin extends MapObject {
 
 		super.draw(g);
 
+	}
+
+	public boolean isTaken() {
+		return taken;
+	}
+
+	public void setTaken(boolean taken) {
+		this.taken = taken;
+	}
+
+
+	public int getCoinValue() {
+		return coinValue;
+	}
+
+	public void setCoinValue(int coinValue) {
+		this.coinValue = coinValue;
 	}
 
 }

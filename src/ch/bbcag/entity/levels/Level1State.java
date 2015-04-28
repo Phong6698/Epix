@@ -117,7 +117,7 @@ public class Level1State extends GameState{
 			
 		Plant s;
 		Point[] plantPoints = new Point[] {
-				new Point(380, 70)
+				new Point(460, 70)
 		};
 		for(int i = 0; i < plantPoints.length; i++) {
 			s = new Plant(tilemap);
@@ -126,14 +126,14 @@ public class Level1State extends GameState{
 		}
 			
 		/*
-		 * Magicans
+		 * Magicians
 		 */
 		
 		magicans = new ArrayList<Magican>();
 		
 		Magican m;
 		Point[] magicanPoints = new Point[] {
-				new Point(200, 70)
+				new Point(1800, 70)
 		};
 		for(int i = 0; i < magicanPoints.length; i++) {
 			m = new Magican(tilemap , player);
@@ -149,7 +149,7 @@ public class Level1State extends GameState{
 		
 		ShootingPlant p;
 		Point[] shootingPlantPoints = new Point[] {
-				new Point(450, 70),
+				new Point(700, 70),
 				new Point(1000, 70)
 			
 		};
@@ -169,7 +169,8 @@ public class Level1State extends GameState{
 		 */
 		Coin coin;
 		Point[] coinPoints = new Point[] {
-			new Point(100, 140)
+			new Point(337, 208),
+			new Point(562, 144)
 			
 		};
 		for(int i = 0; i < coinPoints.length; i++) {
@@ -195,6 +196,7 @@ public class Level1State extends GameState{
 		player.checkAttackPlants(plant);
 		player.checkAttackShootingPlants(shootingPlant);
 		player.checkPowerup(powerups);
+		player.checkCoin(coins);
 		
 		
 		for(int i = 0; i < plant.size(); i++) {
@@ -246,9 +248,13 @@ public class Level1State extends GameState{
 			}
 		}
 		
-		for(int i = 0; i < powerups.size(); i++) {
-			Powerup e = powerups.get(i);
-			e.update();
+		for(int i = 0; i < coins.size(); i++) {
+			Coin coin = coins.get(i);
+			coin.update();
+			if(coin.isTaken()) {
+				coins.remove(i);
+				i--;
+			}
 		}
 	}
 

@@ -28,7 +28,7 @@ public class ShootingPlant extends Enemy {
 	private boolean onscreen;
 	private boolean shotright;
 	private long timer;
-	private long time = 151;
+	private long time = 1000; //animation delay * anzahl sprites 
 	private int plantshotsdamage = 10;
 
 
@@ -156,7 +156,7 @@ public class ShootingPlant extends Enemy {
 			if (currentAction != getShoot()) {
 				currentAction = getShoot();
 				animation.setFrames(getSprites().get(getShoot()));
-				animation.setDelay(150);
+				animation.setDelay(250);
 				width = 64;
 			}
 		} else {
@@ -180,6 +180,7 @@ public class ShootingPlant extends Enemy {
 				if (getTimer() + getTime() <= System.currentTimeMillis()) {
 					getPlantshots().add(ps);
 					setTimer(System.currentTimeMillis());
+					
 				}
 			}
 		}

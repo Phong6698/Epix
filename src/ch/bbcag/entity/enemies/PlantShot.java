@@ -85,6 +85,8 @@ public class PlantShot extends MapObject {
 		setHit(true);
 		animation.setFrames(getHitSprites());
 		animation.setDelay(100);
+		cwidth = 0;
+		cheight = 0;
 		dx = 0;
 	}
 

@@ -11,7 +11,7 @@ import ch.bbcag.epix.entity.Enemy;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.TileMap;
 
-@SuppressWarnings("unused") public class Magican extends Enemy {
+public class Magician extends Enemy {
 
 	private boolean hit;
 	private boolean remove;
@@ -30,13 +30,13 @@ import ch.bbcag.epix.tilemap.TileMap;
 	private boolean shotright;
 
 	private long timer;
-	private long time = 250;
+	private long time = 450; //animation delay * anzahl sprites 
 	private int wizarddamage = 10;
 	private int range;
 
-	private ArrayList<MagicanShot> magicanshots;
+	private ArrayList<MagicianShot> magicianshots;
 
-	public Magican(TileMap tm, Player player) {
+	public Magician(TileMap tm, Player player) {
 
 		super(tm);
 
@@ -54,7 +54,7 @@ import ch.bbcag.epix.tilemap.TileMap;
 		health = maxHealth = 2;
 		damage = 0;
 
-		magicanshots = new ArrayList<MagicanShot>();
+		magicianshots = new ArrayList<MagicianShot>();
 
 		// load sprites
 
@@ -121,8 +121,19 @@ import ch.bbcag.epix.tilemap.TileMap;
 		}
 
 	}
+	
+	public void checkAttackPlayer(Player player){
+		for (int j = 0; j < magicianshots.size(); j++) {
+			if (magicianshots.get(j).intersects(player)) {
+				player.hit(wizarddamage);
+				magicianshots.get(j).setHit();
+				break;
+			}
+		}
+	}
 
-	public void update(Magican m, Player player) {
+
+	public void update(Magician m, Player player) {
 
 		// update position
 
@@ -130,10 +141,10 @@ import ch.bbcag.epix.tilemap.TileMap;
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
 
-		for (int i = 0; i < magicanshots.size(); i++) {
-			magicanshots.get(i).update(m, player);
-			if (magicanshots.get(i).shouldRemove()) {
-				magicanshots.remove(i);
+		for (int i = 0; i < magicianshots.size(); i++) {
+			magicianshots.get(i).update(m, player);
+			if (magicianshots.get(i).shouldRemove()) {
+				magicianshots.remove(i);
 				i--;
 			}
 		}
@@ -148,7 +159,7 @@ import ch.bbcag.epix.tilemap.TileMap;
 			if (currentAction != SHOOT) {
 				currentAction = SHOOT;
 				animation.setFrames(sprites.get(SHOOT));
-				animation.setDelay(250);
+				animation.setDelay(150);
 				width = 32;
 			}
 		} else {
@@ -174,27 +185,21 @@ import ch.bbcag.epix.tilemap.TileMap;
 			}
 
 			if (animation.getFrame() == 2) {
-				MagicanShot ps = new MagicanShot(tileMap, shotright, player);
+				MagicianShot ps = new MagicianShot(tileMap, shotright, player);
 				ps.setPosition(m.getx(), m.gety());
 				if (timer + time <= System.currentTimeMillis()) {
-					magicanshots.add(ps);
+					magicianshots.add(ps);
 					timer = System.currentTimeMillis();
 				}
 			}
 
-			MagicanShot ps = new MagicanShot(tileMap, shotright, player);
-			ps.setPosition(m.getx(), m.gety());
-			if (timer + time <= System.currentTimeMillis()) {
-				magicanshots.add(ps);
-				timer = System.currentTimeMillis();
-			}
 		}
 		
 		animation.update();
 
 	}
 
-	public boolean OnScreen(Magican e, int range) {
+	public boolean OnScreen(Magician e, int range) {
 		double a = e.getXmap();
 		double spielerkoordinaten = (a - a - a) + range;
 		if (e.getx() + range > spielerkoordinaten && e.getx() - spielerkoordinaten < range) {
@@ -210,8 +215,8 @@ import ch.bbcag.epix.tilemap.TileMap;
 
 		setMapPosition();
 
-		for (int i = 0; i < magicanshots.size(); i++) {
-			magicanshots.get(i).draw(g);
+		for (int i = 0; i < magicianshots.size(); i++) {
+			magicianshots.get(i).draw(g);
 		}
 
 		if (flinching) {

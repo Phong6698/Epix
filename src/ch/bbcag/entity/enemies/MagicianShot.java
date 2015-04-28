@@ -10,7 +10,7 @@ import ch.bbcag.epix.entity.MapObject;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.TileMap;
 
-public class MagicanShot extends MapObject {
+public class MagicianShot extends MapObject {
 
 	private boolean hit;
 	private boolean remove;
@@ -22,7 +22,7 @@ public class MagicanShot extends MapObject {
 	protected boolean flinching;
 	protected long flinchTimer;
 
-	public MagicanShot(TileMap tm, boolean shotright, Player player) {
+	public MagicianShot(TileMap tm, boolean shotright, Player player) {
 		super(tm);
 
 		facingRight = right;
@@ -34,8 +34,8 @@ public class MagicanShot extends MapObject {
 
 		width = 32;
 		height = 32;
-		cwidth = 2;
-		cheight = 2;
+		cwidth = 1;
+		cheight = 1;
 		try {
 			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/Wizard_Shot.png"));
 
@@ -65,6 +65,9 @@ public class MagicanShot extends MapObject {
 		hit = true;
 		animation.setFrames(hitSprites);
 		animation.setDelay(100);
+		cwidth = 0;
+		cheight = 0;
+		
 		dx = 0;
 	}
 
@@ -72,13 +75,15 @@ public class MagicanShot extends MapObject {
 		return remove;
 	}
 
-	public void update(Magican m, Player player) {
+	public void update(Magician m, Player player) {
 
 		// update position
 
 		checkTileMapCollision();
 		if (m.gety() < player.gety()) {
-			setPosition(xtemp, ytemp + player.gety() / 70);
+			setPosition(xtemp, ytemp + player.gety() / 140);
+		} else if (m.gety() > player.gety()) {
+			setPosition(xtemp, ytemp - player.gety() / 140);
 		} else {
 			setPosition(xtemp, ytemp);
 		}
@@ -90,6 +95,9 @@ public class MagicanShot extends MapObject {
 		// update animation
 		animation.update();
 		if (hit && animation.hasPlayedOnce()) {
+			remove = true;
+		}
+		if (this.gety() <= 0) {
 			remove = true;
 		}
 	}

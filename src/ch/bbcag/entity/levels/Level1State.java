@@ -8,7 +8,7 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import ch.bbcag.entity.enemies.Magican;
+import ch.bbcag.entity.enemies.Magician;
 import ch.bbcag.entity.enemies.Plant;
 import ch.bbcag.entity.enemies.ShootingPlant;
 import ch.bbcag.entity.powerups.DamageUp;
@@ -37,7 +37,7 @@ public class Level1State extends GameState{
 	
 	private ArrayList<Plant> plant;
 	private ArrayList<ShootingPlant> shootingPlant;
-	private ArrayList<Magican> magicans;
+	private ArrayList<Magician> magicians;
 	
 	private ArrayList<Powerup> powerups;
 	
@@ -117,7 +117,8 @@ public class Level1State extends GameState{
 			
 		Plant s;
 		Point[] plantPoints = new Point[] {
-				new Point(460, 70)
+				new Point(460, 70),
+				new Point(2315, 70)
 		};
 		for(int i = 0; i < plantPoints.length; i++) {
 			s = new Plant(tilemap);
@@ -129,16 +130,18 @@ public class Level1State extends GameState{
 		 * Magicians
 		 */
 		
-		magicans = new ArrayList<Magican>();
+		magicians = new ArrayList<Magician>();
 		
-		Magican m;
+		Magician m;
 		Point[] magicanPoints = new Point[] {
-				new Point(210, 240)
+				new Point(460, 70),
+				new Point(2000, 240),
+				new Point(3150, 240)
 		};
 		for(int i = 0; i < magicanPoints.length; i++) {
-			m = new Magican(tilemap , player);
+			m = new Magician(tilemap , player);
 			m.setPosition(magicanPoints[i].x, magicanPoints[i].y);
-			magicans.add(m);
+			magicians.add(m);
 		}
 		
 		
@@ -150,7 +153,9 @@ public class Level1State extends GameState{
 		ShootingPlant p;
 		Point[] shootingPlantPoints = new Point[] {
 				new Point(700, 70),
-				new Point(1000, 70)
+				new Point(1000, 70),
+				new Point(1520, 70),
+				new Point(2610, 70)
 			
 		};
 		for(int i = 0; i < shootingPlantPoints.length; i++) {
@@ -195,6 +200,8 @@ public class Level1State extends GameState{
 		
 		player.checkAttackPlants(plant);
 		player.checkAttackShootingPlants(shootingPlant);
+		player.checkAttackMagician(magicians);
+		
 		player.checkPowerup(powerups);
 		player.checkCoin(coins);
 		
@@ -208,12 +215,14 @@ public class Level1State extends GameState{
 			}
 		}
 		
-		for(int i = 0; i < magicans.size(); i++) {
-			Magican e = magicans.get(i);
+		for(int i = 0; i < magicians.size(); i++) {
+			Magician e = magicians.get(i);
 			e.update(e, player);
 			if(e.isDead()) {
-				magicans.remove(i);
+				magicians.remove(i);
 				i--;
+			}else {
+				e.checkAttackPlayer(player);
 			}
 		}
 		
@@ -274,8 +283,8 @@ public class Level1State extends GameState{
 			shootingPlant.get(i).draw(g);
 		}
 		
-		for(int i = 0; i < magicans.size(); i++) {
-			magicans.get(i).draw(g);
+		for(int i = 0; i < magicians.size(); i++) {
+			magicians.get(i).draw(g);
 		}
 		
 		

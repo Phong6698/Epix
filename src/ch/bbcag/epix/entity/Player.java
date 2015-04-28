@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import ch.bbcag.entity.enemies.Magician;
 import ch.bbcag.entity.enemies.Plant;
 import ch.bbcag.entity.enemies.PlantShot;
 import ch.bbcag.entity.enemies.ShootingPlant;
@@ -155,6 +156,26 @@ public class Player extends MapObject {
 			if (intersects(e)) {
 				e.update(e, this);
 				hit(e.getDamage());
+			}
+		}
+	}
+	
+	public void checkAttackMagician(ArrayList<Magician> magicians) {
+		// loop through enemies
+		for (int i = 0; i < magicians.size(); i++) {
+			Magician magician = magicians.get(i);
+			// fireballs
+			for (int j = 0; j < rainbows.size(); j++) {
+				if (rainbows.get(j).intersects(magician)) {
+					magician.hit(rainbowdamage);
+					rainbows.get(j).setHit();
+					break;
+				}
+			}
+			// check enemy collision
+			if (intersects(magician)) {
+				magician.update(magician, this);
+				hit(magician.getDamage());
 			}
 		}
 	}

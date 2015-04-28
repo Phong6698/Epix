@@ -24,7 +24,7 @@ public class EpixView extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private User player;
+	private User user;
 	
 	/*
 	 * 
@@ -92,8 +92,8 @@ public class EpixView extends JFrame{
 	
 	
 	
-	public EpixView(User player) {
-		this.setPlayer(player);
+	public EpixView(User user) {
+		this.setUser(user);
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
@@ -111,13 +111,13 @@ public class EpixView extends JFrame{
 		menuCardCoinImage.setBounds(0, 10, 64, 64);
 		menuCard.add(menuCardCoinImage);		
 		menuCardCoinImage.setIcon(new ImageIcon(coinSpinPath));				
-		menuCardCoinLabel = new JLabel("" + getPlayer().getCoin());
+		menuCardCoinLabel = new JLabel("" + getUser().getCoin());
 		menuCardCoinLabel.setFont(new Font("Modern No. 20", Font.PLAIN, 26));
 		menuCardCoinLabel.setBounds(67, 10, 56, 64);
 		menuCard.add(menuCardCoinLabel);
 		
 		//player
-		menuCardPlayerLabel = new JLabel("Willkommen zurück, " + getPlayer().getUsername());
+		menuCardPlayerLabel = new JLabel("Willkommen zurück, " + getUser().getUsername());
 		menuCardPlayerLabel.setBounds(598, 18, 239, 36);
 		menuCard.add(menuCardPlayerLabel);
 
@@ -145,13 +145,13 @@ public class EpixView extends JFrame{
 		upgradeCardCoinImage.setBounds(0, 10, 64, 64);		
 		upgradeCardCoinImage.setIcon(new ImageIcon(coinSpinPath));
 		upgradeCard.add(upgradeCardCoinImage);				
-		upgradeCardCoinLabel = new JLabel(""+ getPlayer().getCoin());
+		upgradeCardCoinLabel = new JLabel(""+ getUser().getCoin());
 		upgradeCardCoinLabel.setBounds(67, 10, 56, 64);
 		upgradeCardCoinLabel.setFont(new Font("Modern No. 20", Font.PLAIN, 26));
 		upgradeCard.add(upgradeCardCoinLabel);
 		
 		//player
-		upgradeCardPlayerLabel = new JLabel("Willkommen zurück, " + getPlayer().getUsername());
+		upgradeCardPlayerLabel = new JLabel("Willkommen zurück, " + getUser().getUsername());
 		upgradeCardPlayerLabel.setBounds(598, 18, 239, 36);
 		upgradeCard.add(upgradeCardPlayerLabel);
 			
@@ -234,12 +234,12 @@ public class EpixView extends JFrame{
 		levelAuswahlCardCoinImage.setIcon(new ImageIcon(coinSpinPath));
 		levelAuswahlCard.add(levelAuswahlCardCoinImage);
 				
-		levelAuswahlCardCoinLabel = new JLabel("" + getPlayer().getCoin());
+		levelAuswahlCardCoinLabel = new JLabel("" + getUser().getCoin());
 		levelAuswahlCardCoinLabel.setBounds(67, 10, 56, 64);
 		levelAuswahlCardCoinLabel.setFont(new Font("Modern No. 20", Font.PLAIN, 26));
 		levelAuswahlCard.add(levelAuswahlCardCoinLabel);
 		
-		levelAuswahlCardPlayerLabel = new JLabel("Willkommen zurück, "  + getPlayer().getUsername());
+		levelAuswahlCardPlayerLabel = new JLabel("Willkommen zurück, "  + getUser().getUsername());
 		levelAuswahlCardPlayerLabel.setBounds(598, 18, 239, 36);
 		levelAuswahlCard.add(levelAuswahlCardPlayerLabel);
 		
@@ -261,21 +261,21 @@ public class EpixView extends JFrame{
 		levelAuswählenButton.addActionListener(new UpgradeCardButtonListener(cards));
 		
 		//levelAuswahlCard
-		levelZurückBtton.addActionListener(new LevelAuswahlCardButtonListener(cards));
-		level1Button.addActionListener(new LevelAuswahlCardButtonListener(cards));
-		level2Button.addActionListener(new LevelAuswahlCardButtonListener(cards));
-		bossLevelButton.addActionListener(new LevelAuswahlCardButtonListener(cards));
+		levelZurückBtton.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser()));
+		level1Button.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser()));
+		level2Button.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser()));
+		bossLevelButton.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser()));
 		
 		
 		this.setContentPane(cards);
 		this.setVisible(true);
 	}
 
-	public User getPlayer() {
-		return player;
+	public User getUser() {
+		return user;
 	}
 
-	public void setPlayer(User player) {
-		this.player = player;
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

@@ -15,6 +15,7 @@ import ch.bbcag.entity.powerups.DamageUp;
 import ch.bbcag.entity.powerups.Heart;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.entity.Powerup;
+import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.gamestate.GameState;
 import ch.bbcag.epix.gamestate.GameStateManager;
 import ch.bbcag.epix.tilemap.Background;
@@ -23,9 +24,12 @@ import ch.bbcag.epix.view.GameFrame;
 
 public class Level1State extends GameState{
 
-	private TileMap tilemap;
+	private User user;
+	
 	private Player player;
 	private Player player2;
+	
+	private TileMap tilemap;
 	private Background bg;
 	
 	private HUD hud;
@@ -36,13 +40,16 @@ public class Level1State extends GameState{
 	
 	private ArrayList<Powerup> powerups;
 	
-	public Level1State(GameStateManager gsm) {
+	public Level1State(GameStateManager gsm, User user) {
 		this.gsm = gsm;	
+		setUser(user);
+		
 		init();
 	}
 
 	public void init() {
 	
+		
 		tilemap = new TileMap(32);
 		tilemap.loadTiles("/TileSets/GroundTileSet.png");
 		tilemap.loadMap("/Maps/level1.map");
@@ -53,6 +60,10 @@ public class Level1State extends GameState{
 	
 		
 		player = new Player(tilemap);
+		player.setUsername(user.getUsername());
+		player.setCoin(user.getCoin());
+		player.setMaxHealth(user.getMaxHealth());
+		player.setHealth(user.getMaxHealth());
 		
 		spawnEnemies();
 		spawnPowerups();
@@ -265,5 +276,13 @@ public class Level1State extends GameState{
 		if(k == KeyEvent.VK_DOWN) player.setDown(false);
 		if(k == KeyEvent.VK_UP) player.setJumping(false);
 		
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

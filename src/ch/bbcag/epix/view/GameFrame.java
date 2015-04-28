@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.gamestate.GameState;
 import ch.bbcag.epix.gamestate.GameStateManager;
 
@@ -20,6 +21,16 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private User user;
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	// dimensions
 	public static final int WIDTH = 448;
 	public static final int HEIGHT = 288;
@@ -44,7 +55,9 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 	// game state manager
 	private GameStateManager gsm;
 	
-	public GameFrame(int level) {
+	public GameFrame(int level, User user) {
+		setUser(user);
+		
 		this.level = level;
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(true);
@@ -74,7 +87,7 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 		
 		running = true;
 		
-		gsm = new GameStateManager(level);
+		gsm = new GameStateManager(level, getUser());
 		
 	}
 	

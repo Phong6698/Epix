@@ -20,9 +20,7 @@ private Player player;
 		setPlayer(p);
 		
 		try {
-			coin = ImageIO.read(getClass().getResourceAsStream("/Backgrounds/Coin spin.gif"
-				)
-			);
+			coin = ImageIO.read(getClass().getResourceAsStream("/Backgrounds/Coin spin 16x16.gif"));
 			font = new Font("Arial", Font.PLAIN, 10);
 		}
 		catch(Exception e) {
@@ -37,20 +35,23 @@ private Player player;
 	
 	public void draw(Graphics2D g) {
 		
-		g.drawImage(coin, 0, 10, null);
+		//Player Information
+		g.drawImage(coin, 100, 25, null);
 		g.setFont(font);
 		g.setColor(Color.BLACK);
 		g.drawString(getPlayer().getHealth() + "/" + getPlayer().getMaxHealth(), 51, 20);
+		g.drawString(getPlayer().getUsername(), 20, 36);
+		g.drawString("" + getPlayer().getCoin(), 117, 36);
 		
 
-		 //Player 1 health bar
-		 g.setColor(new Color(1f,0f,0f,.3f ));
-	     Rectangle backgroundBar = new Rectangle(20, 20, 120, 5);
-	     g.fill(backgroundBar);
-		
-	     g.setColor(Color.RED);
-	     Rectangle healthBar = new Rectangle(20, 20, (int)(((float)getPlayer().getHealth() / (float)getPlayer().getMaxHealth()) * 120), 5);
-	     g.fill(healthBar);
+		//Player health bar
+		g.setColor(new Color(1f,0f,0f,.3f));
+	    Rectangle backgroundBar = new Rectangle(20, 20, 120, 5);
+	    g.fill(backgroundBar);
+	
+	    g.setColor(Color.RED);
+	    Rectangle healthBar = new Rectangle(20, 20, (int)(((float)getPlayer().getHealth() / (float)getPlayer().getMaxHealth()) * 120), 5);
+	    g.fill(healthBar);
 
        
 		

@@ -3,6 +3,7 @@ package ch.bbcag.epix.gamestate;
 import ch.bbcag.entity.levels.BossState;
 import ch.bbcag.entity.levels.Level1State;
 import ch.bbcag.entity.levels.Level2State;
+import ch.bbcag.epix.entity.User;
 
 /**
  * 
@@ -21,20 +22,20 @@ public class GameStateManager {
 	public static final int LEVEL2 = 2;
 	public static final int BOSSLEVEL = 3;
 	
-	public GameStateManager(int level) {
+	public GameStateManager(int level, User user) {
 		
 		gameStates = new GameState[NUMLEVELS];
 		
 		this.setCurrentLevel(level);
-		loadState(getCurrentLevel());
+		loadState(getCurrentLevel(), user);
 		
 	}
 	
 
 
-	private void loadState(int level) {
+	private void loadState(int level, User user) {
 		if(level == LEVEL1){
-			gameStates[level] = new Level1State(this);
+			gameStates[level] = new Level1State(this, user);
 		}
 		else if(level == LEVEL2) {
 			gameStates[level] = new Level2State(this);
@@ -48,10 +49,10 @@ public class GameStateManager {
 		gameStates[level] = null;
 	}
 	
-	public void setState(int level) {
+	public void setState(int level, User user) {
 		unloadState(currentLevel);
 		currentLevel = level;
-		loadState(currentLevel);
+		loadState(currentLevel, user);
 		//gameStates[currentState].init();
 	}
 	

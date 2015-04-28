@@ -18,8 +18,12 @@ public class Player extends MapObject {
 	public void setHealth(int health) {
 		this.health = health;
 	}
-
+	
+	private int coin;
+	private String username;
 	private int maxHealth;
+		
+
 	private int rainbow;
 	private int maxRainbow;
 	private boolean dead;
@@ -112,6 +116,11 @@ public class Player extends MapObject {
 		animation.setDelay(100);
 
 	}
+	
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
+	}
+
 
 	public int getHealth() {
 		return health;
@@ -433,5 +442,21 @@ public class Player extends MapObject {
 
 	public void setPowerups(ArrayList<Powerup> powerups) {
 		this.powerups = powerups;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public int getCoin() {
+		return coin;
+	}
+
+	public void setCoin(int coin) {
+		this.coin = coin;
 	}
 }

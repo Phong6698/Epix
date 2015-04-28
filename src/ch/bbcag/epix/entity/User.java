@@ -13,7 +13,6 @@ public class User {
 	private String password = null;
 	private String passwordConfirm = null;
 	private int coin;
-	private int health = 50;
 	private int maxHealth = 50;	
 	private boolean dead = false;
 	
@@ -35,9 +34,7 @@ public class User {
 	public int getCoin() {
 		return coin;
 	}
-	public int getHealth() {
-		return health;
-	}
+
 	public int getMaxHealth() {
 		return maxHealth;
 	}
@@ -64,9 +61,7 @@ public class User {
 	public void setCoin(int coin) {
 		this.coin = coin;
 	}
-	public void setHealth(int health) {
-		this.health = health;
-	}
+
 	public void setMaxHealth(int maxHealth) {
 		this.maxHealth = maxHealth;
 	}

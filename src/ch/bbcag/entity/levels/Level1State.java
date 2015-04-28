@@ -13,6 +13,7 @@ import ch.bbcag.entity.enemies.Plant;
 import ch.bbcag.entity.enemies.ShootingPlant;
 import ch.bbcag.entity.powerups.DamageUp;
 import ch.bbcag.entity.powerups.Heart;
+import ch.bbcag.epix.entity.Coin;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.entity.Powerup;
 import ch.bbcag.epix.entity.User;
@@ -39,6 +40,8 @@ public class Level1State extends GameState{
 	private ArrayList<Magican> magicans;
 	
 	private ArrayList<Powerup> powerups;
+	
+	private ArrayList<Coin> coins;
 	
 	public Level1State(GameStateManager gsm, User user) {
 		this.gsm = gsm;	
@@ -67,6 +70,7 @@ public class Level1State extends GameState{
 		
 		spawnEnemies();
 		spawnPowerups();
+		spawnCoins();
 		
 		player.setPosition(50, 40);
 
@@ -155,6 +159,24 @@ public class Level1State extends GameState{
 			shootingPlant.add(p);
 		}
 		
+	}
+	
+	private void spawnCoins() {
+		coins = new ArrayList<Coin>();
+
+		/*
+		 * coin
+		 */
+		Coin coin;
+		Point[] coinPoints = new Point[] {
+			new Point(100, 140)
+			
+		};
+		for(int i = 0; i < coinPoints.length; i++) {
+			coin = new Coin(tilemap);
+			coin.setPosition(coinPoints[i].x, coinPoints[i].y);
+			coins.add(coin);
+		}
 	}
 
 	public void update() {
@@ -253,6 +275,10 @@ public class Level1State extends GameState{
 		
 		for(int i = 0; i < powerups.size(); i++) {
 			powerups.get(i).draw(g);
+		}
+		
+		for(int i = 0; i < coins.size(); i++) {
+			coins.get(i).draw(g);
 		}
 		
 		// draw player

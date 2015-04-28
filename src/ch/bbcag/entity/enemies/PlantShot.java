@@ -34,8 +34,8 @@ public class PlantShot extends MapObject {
 
 		width = 32;
 		height = 32;
-		cwidth = 2;
-		cheight = 2;
+		cwidth = 1;
+		cheight = 1;
 		try {
 			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/PlantShooting_Shot.png"));
 

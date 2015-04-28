@@ -12,7 +12,7 @@ public class Game {
 		
 		User user = new User();
 		user.setUsername("Epix");
-		user.setCoin(690);
+		user.setCoin(100);
 		user.setMaxHealth(100);
 
 		GameFrame game = new GameFrame(1, user);

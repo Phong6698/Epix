@@ -14,6 +14,12 @@ public abstract class MapObject {
 	public void setXmap(double xmap) {
 		this.xmap = xmap;
 	}
+	public double getYmap() {
+		return ymap;
+	}
+	public void setYmap(double ymap) {
+		this.ymap = ymap;
+	}
 
 		// tile stuff
 		protected TileMap tileMap;
@@ -21,6 +27,8 @@ public abstract class MapObject {
 		protected double xmap;
 		protected double ymap;
 		
+		
+
 		// position and vector
 		protected double x;
 		protected double y;

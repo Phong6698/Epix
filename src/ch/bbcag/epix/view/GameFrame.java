@@ -46,7 +46,7 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 	
 	public GameFrame(int level) {
 		this.level = level;
-//		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(true);
 		this.pack();
 		this.setLocationRelativeTo(null);

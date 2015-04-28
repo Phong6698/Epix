@@ -57,7 +57,7 @@ public class Level1State extends GameState{
 		spawnEnemies();
 		spawnPowerups();
 		
-		player.setPosition(40, 40);
+		player.setPosition(50, 40);
 
 	}
 	
@@ -118,10 +118,7 @@ public class Level1State extends GameState{
 		
 		Magican m;
 		Point[] magicanPoints = new Point[] {
-				new Point(200, 70),
-				new Point(210, 70),
-				new Point(220, 70),
-				new Point(230, 70)
+				new Point(200, 70)
 		};
 		for(int i = 0; i < magicanPoints.length; i++) {
 			m = new Magican(tilemap , player);

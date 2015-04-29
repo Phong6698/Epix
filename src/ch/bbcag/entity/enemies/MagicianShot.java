@@ -81,10 +81,10 @@ public class MagicianShot extends MapObject {
 
 		checkTileMapCollision();
 		if (m.gety() < player.gety()) {
-			setPosition(xtemp, ytemp + player.gety() / 100);
+			setPosition(xtemp, ytemp + player.gety() / 140);
 		} else if (m.gety() > player.gety()) {
-			setPosition(xtemp, ytemp - player.gety() / 100);
-		} else if (m.gety() == player.gety()) {
+			setPosition(xtemp, ytemp - player.gety() / 140);
+		} else {
 			setPosition(xtemp, ytemp);
 		}
 		
@@ -97,8 +97,6 @@ public class MagicianShot extends MapObject {
 		if (hit && animation.hasPlayedOnce()) {
 			remove = true;
 		}
-		
-		//löschen falls es die y koordinate <= 0
 		if (this.gety() <= 0) {
 			remove = true;
 		}

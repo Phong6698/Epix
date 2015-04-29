@@ -22,16 +22,15 @@ public class Magician extends Enemy {
 	private static final int IDLE = 0;
 	private static final int SHOOT = 1;
 
-	protected boolean flinching;
-	protected long flinchTimer;
+
 	private boolean onscreen;
 
 	private boolean shooting;
+	
 	private boolean shotright;
 
 	private long timer;
 	private long time = 450; //animation delay * anzahl sprites 
-	private int wizarddamage = 10;
 	private int range;
 
 	private ArrayList<MagicianShot> magicianshots;
@@ -51,8 +50,8 @@ public class Magician extends Enemy {
 		cheight = 32;
 		range = 224;
 
-		health = maxHealth = 2;
-		damage = 0;
+		health = maxHealth = 40;
+		damage = 10;
 
 		magicianshots = new ArrayList<MagicianShot>();
 
@@ -125,7 +124,7 @@ public class Magician extends Enemy {
 	public void checkAttackPlayer(Player player){
 		for (int j = 0; j < magicianshots.size(); j++) {
 			if (magicianshots.get(j).intersects(player)) {
-				player.hit(wizarddamage);
+				player.hit(damage);
 				magicianshots.get(j).setHit();
 				break;
 			}
@@ -229,4 +228,96 @@ public class Magician extends Enemy {
 		super.draw(g);
 
 	}
+	public boolean isHit() {
+		return hit;
+	}
+
+	public boolean isRemove() {
+		return remove;
+	}
+
+	public ArrayList<BufferedImage[]> getSprites() {
+		return sprites;
+	}
+
+	public int[] getNumFrames() {
+		return numFrames;
+	}
+
+	public static int getIdle() {
+		return IDLE;
+	}
+
+	public static int getShoot() {
+		return SHOOT;
+	}
+
+	public boolean isOnscreen() {
+		return onscreen;
+	}
+
+	public boolean isShooting() {
+		return shooting;
+	}
+
+	public boolean isShotright() {
+		return shotright;
+	}
+
+	public long getTimer() {
+		return timer;
+	}
+
+	public long getTime() {
+		return time;
+	}
+
+	public int getRange() {
+		return range;
+	}
+
+	public ArrayList<MagicianShot> getMagicianshots() {
+		return magicianshots;
+	}
+
+	public void setHit(boolean hit) {
+		this.hit = hit;
+	}
+
+	public void setRemove(boolean remove) {
+		this.remove = remove;
+	}
+
+	public void setSprites(ArrayList<BufferedImage[]> sprites) {
+		this.sprites = sprites;
+	}
+
+	public void setOnscreen(boolean onscreen) {
+		this.onscreen = onscreen;
+	}
+
+	public void setShooting(boolean shooting) {
+		this.shooting = shooting;
+	}
+
+	public void setShotright(boolean shotright) {
+		this.shotright = shotright;
+	}
+
+	public void setTimer(long timer) {
+		this.timer = timer;
+	}
+
+	public void setTime(long time) {
+		this.time = time;
+	}
+
+	public void setRange(int range) {
+		this.range = range;
+	}
+
+	public void setMagicianshots(ArrayList<MagicianShot> magicianshots) {
+		this.magicianshots = magicianshots;
+	}
+
 }

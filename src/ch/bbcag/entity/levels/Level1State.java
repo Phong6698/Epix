@@ -1,6 +1,5 @@
 package ch.bbcag.entity.levels;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 
 import ch.bbcag.epix.entity.HUD;
@@ -135,7 +134,6 @@ public class Level1State extends GameState{
 		
 		Magician m;
 		Point[] magicanPoints = new Point[] {
-				new Point(460, 70),
 				new Point(2000, 240),
 				new Point(3150, 240)
 		};
@@ -278,7 +276,6 @@ public class Level1State extends GameState{
 
 		for(int i = 0; i < plant.size(); i++) {
 			plant.get(i).draw(g);
-			
 		}
 		
 		for(int i = 0; i < shootingPlant.size(); i++) {

@@ -9,21 +9,24 @@ import ch.bbcag.epix.entity.Animation;
 import ch.bbcag.epix.entity.Powerup;
 import ch.bbcag.epix.tilemap.TileMap;
 
-/**
- * 
- * @author Chiramet Phong Penglerd, ICT Berufsbildungscenter AG, chirametphong.penglerd@bbcag.ch
- *
- */
-
-public class DamageUp extends Powerup {
+public class Jetpack extends Powerup {
 
 	private BufferedImage[] sprites;
 	
-	public DamageUp(TileMap tm) {
+	public Jetpack(TileMap tm) {
 		super(tm);
 		plusHealth = 0;
 		plusDamage = 20;
 		expireTime = 10000;
+		
+		jetpack = true;
+		plusMoveSpeed = 0;
+		plusMaxSpeed = 0;
+		plusStopSpeed = 0;
+		plusFallSpeed = 0;
+		plusMaxFallSpeed = 0;
+		plusJumpStart = 0;
+		plusStopJumpSpeed = 0;
 		
 		width = 32;
 		height = 32;
@@ -32,7 +35,7 @@ public class DamageUp extends Powerup {
 		
 		try {
 
-			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Powerups/PowerUps_Weapon Up.png"));
+			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Powerups/PowerUps_Jet Pack.png"));
 
 			sprites = new BufferedImage[4];
 			for (int i = 0; i < sprites.length; i++) {

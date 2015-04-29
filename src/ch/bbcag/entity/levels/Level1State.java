@@ -13,6 +13,7 @@ import ch.bbcag.entity.enemies.Plant;
 import ch.bbcag.entity.enemies.ShootingPlant;
 import ch.bbcag.entity.powerups.DamageUp;
 import ch.bbcag.entity.powerups.Heart;
+import ch.bbcag.entity.powerups.Jetpack;
 import ch.bbcag.epix.entity.Coin;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.entity.Powerup;
@@ -93,6 +94,7 @@ public class Level1State extends GameState{
 			powerups.add(damageUp);
 		}
 		
+		
 		/*
 		 * heart
 		 */
@@ -106,6 +108,22 @@ public class Level1State extends GameState{
 			heart.setPosition(hearthPoints[i].x, hearthPoints[i].y);
 			powerups.add(heart);
 		}
+		
+		
+		/*
+		 * Jetpack
+		 */
+		Jetpack jetpack;
+		Point[] jetpackPoints = new Point[] {
+			new Point(200, 240),
+
+		};
+		for(int i = 0; i < jetpackPoints.length; i++) {
+			jetpack = new Jetpack(tilemap);
+			jetpack.setPosition(jetpackPoints[i].x, jetpackPoints[i].y);
+			powerups.add(jetpack);
+		}
+		
 	}
 	
 	private void spawnEnemies() {

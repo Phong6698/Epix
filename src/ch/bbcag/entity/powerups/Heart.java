@@ -18,9 +18,8 @@ public class Heart extends Powerup {
 		super(tm);
 	
 		plusHealth = 3;
-		plusJump = 0;
 		plusDamage = 0;
-		plusSpeed = 0;
+		
 		expireTime = 0;
 		
 		width = 32;

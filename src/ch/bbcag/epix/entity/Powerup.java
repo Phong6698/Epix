@@ -5,9 +5,18 @@ import ch.bbcag.epix.tilemap.TileMap;
 public class Powerup extends MapObject{
 
 	protected int plusHealth;
-	protected double plusJump;
 	protected int plusDamage;
-	protected double plusSpeed;
+
+	
+	protected boolean jetpack;
+	protected double plusMoveSpeed;
+	protected double plusMaxSpeed;
+	protected double plusStopSpeed;
+	protected double plusFallSpeed;
+	protected double plusMaxFallSpeed;
+	protected double plusJumpStart;
+	protected double plusStopJumpSpeed;
+	
 	protected double expireTime;
 	
 

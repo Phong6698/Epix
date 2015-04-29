@@ -16,9 +16,7 @@ public class Player extends MapObject {
 
 	// player stuff
 	private int health;
-	public void setHealth(int health) {
-		this.health = health;
-	}
+
 	
 	private int coin;
 	private String username;
@@ -29,20 +27,14 @@ public class Player extends MapObject {
 	private int maxRainbow;
 	private boolean dead;
 	private boolean flinching;
-	
-	public boolean isFlinching() {
-		return flinching;
-	}
-
-	public void setFlinching(boolean flinching) {
-		this.flinching = flinching;
-	}
 
 	private long flinchTimer;
 	
 	private ArrayList<Powerup> powerups = new ArrayList<Powerup>();
+	
+	private boolean jetpack;
 
-	// fireball
+	// rainbow
 	private boolean rainbowing;
 	private int rainbowcost;
 	private int rainbowdamage;
@@ -50,7 +42,7 @@ public class Player extends MapObject {
 
 	// animations
 	private ArrayList<BufferedImage[]> sprites;
-	private final int[] numFrames = { 1, 6, 1, 3 };
+	private final int[] numFrames = { 1, 6, 1, 3, 1, 1};
 	private ArrayList<PlantShot> plantshots;
 
 	// animation actions
@@ -60,6 +52,9 @@ public class Player extends MapObject {
 	private static final int FALLING = 2;
 
 	private static final int RAINBOW = 3;
+	
+	private static final int JETPACK = 4;
+	private static final int JETPACKFALLING = 5;
 
 	public Player(TileMap tm) {
 
@@ -73,11 +68,11 @@ public class Player extends MapObject {
 		cheight = 32;
 
 		moveSpeed = 0.2;
-		maxSpeed = 5.2;
+		maxSpeed = 2.2;
 		stopSpeed = 0.8;
 		fallSpeed = 0.30;
 		maxFallSpeed = 4.0;
-		jumpStart = -11.0;
+		jumpStart = -5.0;
 		stopJumpSpeed = 0.6;
 
 		facingRight = true;
@@ -218,6 +213,17 @@ public class Player extends MapObject {
 	public void addPowerupToPlayer(Powerup powerup){
 		setHealth(getHealth() + powerup.plusHealth);
 		setRainbowdamage(getRainbowdamage() + powerup.plusDamage);
+		if (powerup.jetpack == true) {
+			jetpack = powerup.jetpack;
+		}
+		moveSpeed = moveSpeed + powerup.moveSpeed;
+		maxSpeed = maxSpeed + powerup.moveSpeed;
+		stopSpeed = stopSpeed + powerup.moveSpeed;
+		fallSpeed = fallSpeed + powerup.moveSpeed;
+		maxFallSpeed = maxFallSpeed + powerup.moveSpeed;
+		jumpStart = jumpStart + powerup.moveSpeed;
+		stopJumpSpeed = stopJumpSpeed + powerup.moveSpeed;
+		
 		powerups.add(powerup);
 		powerup.setTaken(true);
 		powerup.setAvailable(true);
@@ -227,8 +233,16 @@ public class Player extends MapObject {
 	public void removePowerupFromPlayer(Powerup powerup){
 		setHealth(getHealth() - powerup.plusHealth);
 		setRainbowdamage(getRainbowdamage() - powerup.plusDamage);
-		System.out.println(getHealth());
-		System.out.println(getRainbowdamage());
+		
+		jetpack = false;
+		moveSpeed = moveSpeed - powerup.moveSpeed;
+		maxSpeed = maxSpeed - powerup.moveSpeed;
+		stopSpeed = stopSpeed - powerup.moveSpeed;
+		fallSpeed = fallSpeed - powerup.moveSpeed;
+		maxFallSpeed = maxFallSpeed - powerup.moveSpeed;
+		jumpStart = jumpStart - powerup.moveSpeed;
+		stopJumpSpeed = stopJumpSpeed - powerup.moveSpeed;
+		
 		powerups.remove(powerup);
 		System.out.println("Powerup removed");
 		
@@ -280,9 +294,15 @@ public class Player extends MapObject {
 		}
 
 		// jumping
-		if (jumping && !falling) {
+		if (jumping && !falling && !jetpack) {
 			dy = jumpStart;
 			falling = true;
+		}
+		
+		// jetpack
+		if (jumping && jetpack) {
+			dy = jumpStart;
+			falling = false;
 		}
 
 		// falling
@@ -328,10 +348,11 @@ public class Player extends MapObject {
 				rainbowing = false;
 		}
 		// fireball attack
-		if (rainbowing && currentAction != RAINBOW) {
+		if (rainbowing && currentAction != RAINBOW && rainbows.size() < 2) {
 			Rainbow fb = new Rainbow(tileMap, facingRight);
 			fb.setPosition(x, y);
 			rainbows.add(fb);
+			System.out.println(rainbows.size());
 		}
 		// update fireballs
 		for (int i = 0; i < rainbows.size(); i++) {
@@ -492,5 +513,17 @@ public class Player extends MapObject {
 
 	public ArrayList<Rainbow> getRainbows() {
 		return rainbows;
+	}
+	
+	public boolean isFlinching() {
+		return flinching;
+	}
+
+	public void setFlinching(boolean flinching) {
+		this.flinching = flinching;
+	}
+	
+	public void setHealth(int health) {
+		this.health = health;
 	}
 }

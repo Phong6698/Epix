@@ -85,7 +85,7 @@ public class Level1State extends GameState{
 		 */
 		DamageUp damageUp;
 		Point[] damagUpPoints = new Point[] {
-			new Point(350, 140)
+			new Point(560, 144),
 			
 		};
 		for(int i = 0; i < damagUpPoints.length; i++) {
@@ -100,7 +100,7 @@ public class Level1State extends GameState{
 		 */
 		Heart heart;
 		Point[] hearthPoints = new Point[] {
-			new Point(400, 240),
+			new Point(3100, 240),
 
 		};
 		for(int i = 0; i < hearthPoints.length; i++) {
@@ -191,7 +191,8 @@ public class Level1State extends GameState{
 		Coin coin;
 		Point[] coinPoints = new Point[] {
 			new Point(337, 208),
-			new Point(562, 144)
+			new Point(910, 176),
+			new Point(1265, 176),
 			
 		};
 		for(int i = 0; i < coinPoints.length; i++) {

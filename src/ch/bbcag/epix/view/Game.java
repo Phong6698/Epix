@@ -13,7 +13,7 @@ public class Game {
 		User user = new User();
 		user.setUsername("Epix");
 		user.setCoin(100);
-		user.setMaxHealth(1000);
+		user.setMaxHealth(100);
 
 		GameFrame game = new GameFrame(1, user);
 		game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

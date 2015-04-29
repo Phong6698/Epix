@@ -17,7 +17,7 @@ public class Heart extends Powerup {
 	public Heart(TileMap tm) {
 		super(tm);
 	
-		plusHealth = 25;
+		plusHealth = 40;
 		plusDamage = 0;
 		
 		expireTime = 0;

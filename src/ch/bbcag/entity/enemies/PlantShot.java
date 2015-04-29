@@ -103,8 +103,10 @@ public class PlantShot extends MapObject {
 
 		checkTileMapCollision();
 		if (e.gety() < player.gety()) {
-			setPosition(xtemp, ytemp + player.gety() / 140);
-		} else {
+			setPosition(xtemp, ytemp + player.gety() / 100);
+		} else if (e.gety() > player.gety()) {
+			setPosition(xtemp, ytemp - player.gety() / 100);
+		} else if (e.gety() == player.gety()) {
 			setPosition(xtemp, ytemp);
 		}
 		
@@ -116,6 +118,17 @@ public class PlantShot extends MapObject {
 		animation.update();
 		if (isHit() && animation.hasPlayedOnce()) {
 			setRemove(true);
+		}
+		
+		// update animation
+		animation.update();
+		if (hit && animation.hasPlayedOnce()) {
+			remove = true;
+		}
+		
+		//löschen falls es die y koordinate <= 0
+		if (this.gety() <= 0) {
+			remove = true;
 		}
 	}
 

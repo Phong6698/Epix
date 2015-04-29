@@ -406,7 +406,7 @@ public class Player extends MapObject {
 			if (currentAction != FALLING) {
 				currentAction = FALLING;
 				
-				animation.setFrames(sprites.get(JETPACKFALLING));
+				animation.setFrames(sprites.get(FALLING));
 				animation.setDelay(100);
 				width = 32;
 			}

@@ -24,6 +24,12 @@ import ch.bbcag.epix.tilemap.Background;
 import ch.bbcag.epix.tilemap.TileMap;
 import ch.bbcag.epix.view.GameFrame;
 
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			Level1State.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class Level1State extends GameState{
 
 	private User user;
@@ -208,7 +214,7 @@ public class Level1State extends GameState{
 	public void update() {
 
 		// update player
-		player.update();
+		player.update(player);
 		tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());
 		
 		//update hud

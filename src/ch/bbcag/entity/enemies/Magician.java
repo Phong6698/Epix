@@ -11,6 +11,12 @@ import ch.bbcag.epix.entity.Enemy;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.TileMap;
 
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			Magician.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class Magician extends Enemy {
 
 	private boolean hit;

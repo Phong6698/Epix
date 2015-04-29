@@ -10,6 +10,12 @@ import javax.imageio.ImageIO;
 
 import ch.bbcag.epix.view.GameFrame;
 
+/**
+ * 
+ * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			TileMap.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class TileMap {
 
 	// position

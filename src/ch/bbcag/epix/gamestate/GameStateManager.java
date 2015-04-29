@@ -7,8 +7,8 @@ import ch.bbcag.epix.entity.User;
 
 /**
  * 
- * @author Chiramet Phong Penglerd, ICT Berufsbildungscenter AG, chirametphong.penglerd@bbcag.ch
- *
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			GameStateManager.java.java Copyright Berufsbildungscenter 2015
  */
 
 public class GameStateManager {

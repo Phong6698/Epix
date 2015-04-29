@@ -11,6 +11,12 @@ import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.view.Game;
 import ch.bbcag.epix.view.GameFrame;
 
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			LevelAuswahlCardButtonListener.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class LevelAuswahlCardButtonListener implements ActionListener {
 
 	private JPanel card;

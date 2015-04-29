@@ -11,6 +11,11 @@ import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.view.Login;
 
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			SignUpListener.java.java Copyright Berufsbildungscenter 2015
+ */
 
 public class SignUpListener implements ActionListener {
 	

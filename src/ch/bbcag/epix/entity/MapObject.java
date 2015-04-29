@@ -7,6 +7,12 @@ import ch.bbcag.epix.entity.Animation;
 import ch.bbcag.epix.tilemap.TileMap;
 import ch.bbcag.epix.view.EpixView;
 
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			MapObject.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public abstract class MapObject {
 		public double getXmap() {
 		return xmap;

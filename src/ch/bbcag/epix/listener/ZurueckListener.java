@@ -7,7 +7,11 @@ import javax.swing.JFrame;
 
 import ch.bbcag.epix.view.Login;
 
-
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			ZurueckListener.java.java Copyright Berufsbildungscenter 2015
+ */
 
 public class ZurueckListener implements ActionListener {
 	

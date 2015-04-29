@@ -10,6 +10,12 @@ import ch.bbcag.epix.tilemap.Background;
 import ch.bbcag.epix.tilemap.TileMap;
 import ch.bbcag.epix.view.GameFrame;
 
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			BossState.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class BossState extends GameState{
 
 	private TileMap tilemap;
@@ -40,7 +46,7 @@ public class BossState extends GameState{
 	public void update() {
 
 		// update player
-		player.update();
+		player.update(player);
 		tilemap.setPosition(GameFrame.WIDTH / 2 - player.getx(), GameFrame.HEIGHT / 2 - player.gety());
 
 		// set background

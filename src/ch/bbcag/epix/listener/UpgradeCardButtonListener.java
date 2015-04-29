@@ -6,6 +6,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			UpgradeCardButtonListener.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class UpgradeCardButtonListener implements ActionListener {
 
 	private JPanel card;

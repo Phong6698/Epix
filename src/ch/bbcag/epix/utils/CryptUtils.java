@@ -6,6 +6,12 @@ import java.io.UnsupportedEncodingException;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
+/**
+ * 
+ * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			CryptUtils.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class CryptUtils {
 	private static final String DEFAULT_CODING = "UTF-8";
 	private static BASE64Encoder enc = new BASE64Encoder();

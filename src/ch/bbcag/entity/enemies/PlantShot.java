@@ -11,11 +11,9 @@ import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.TileMap;
 
 /**
- * Schüsse von eine gegnerische Pflanze die auf den Spieler schiesst
  * 
- * @author Chiramet Phong Penglerd, Miguel Jorge, 
- *  ICT Berufsbildungscenter AG, 
- *  Epix 2015
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			PlantShot.java.java Copyright Berufsbildungscenter 2015
  */
 public class PlantShot extends MapObject {
 

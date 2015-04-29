@@ -7,6 +7,12 @@ import javax.swing.JFrame;
 
 import ch.bbcag.epix.view.Game;
 
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			TutorialListener.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class TutorialListener implements ActionListener {
 	
 	private JFrame frame;

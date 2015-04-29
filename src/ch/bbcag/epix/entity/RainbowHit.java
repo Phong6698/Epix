@@ -5,6 +5,12 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			RainbowHit.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class RainbowHit {
 	private int x;
 	private int y;

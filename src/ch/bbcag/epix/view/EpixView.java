@@ -16,6 +16,12 @@ import ch.bbcag.epix.listener.LevelAuswahlCardButtonListener;
 import ch.bbcag.epix.listener.MenuCardButtonListener;
 import ch.bbcag.epix.listener.UpgradeCardButtonListener;
 
+/**
+ * 
+ * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			EpixView.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class EpixView extends JFrame{
 
 	/**

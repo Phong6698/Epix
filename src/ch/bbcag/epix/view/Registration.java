@@ -11,6 +11,11 @@ import javax.swing.JTextField;
 import ch.bbcag.epix.listener.SignUpListener;
 import ch.bbcag.epix.listener.ZurueckListener;
 
+/**
+ * 
+ * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			Registration.java.java Copyright Berufsbildungscenter 2015
+ */
 public class Registration extends JFrame {
 
 	private static final long serialVersionUID = 1L;

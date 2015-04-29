@@ -12,16 +12,21 @@ import ch.bbcag.entity.enemies.PlantShot;
 import ch.bbcag.entity.enemies.ShootingPlant;
 import ch.bbcag.epix.tilemap.TileMap;
 
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			Player.java.java Copyright Berufsbildungscenter 2015
+ */
+
+
 public class Player extends MapObject {
 
 	// player stuff
 	private int health;
 
-	
 	private int coin;
 	private String username;
 	private int maxHealth;
-		
 
 	private int rainbow;
 	private int maxRainbow;
@@ -29,20 +34,20 @@ public class Player extends MapObject {
 	private boolean flinching;
 
 	private long flinchTimer;
-	
+
 	private ArrayList<Powerup> powerups = new ArrayList<Powerup>();
-	
+
 	private boolean jetpack;
 
 	// rainbow
 	private boolean rainbowing;
 	private int rainbowcost;
 	private int rainbowdamage;
-	private ArrayList<Rainbow> rainbows ;
+	private ArrayList<Rainbow> rainbows;
 
 	// animations
 	private ArrayList<BufferedImage[]> sprites;
-	private final int[] numFrames = { 1, 6, 1, 3, 1, 1};
+	private final int[] numFrames = { 1, 6, 1, 3, 1, 1 };
 	private ArrayList<PlantShot> plantshots;
 
 	// animation actions
@@ -52,7 +57,7 @@ public class Player extends MapObject {
 	private static final int FALLING = 2;
 
 	private static final int RAINBOW = 3;
-	
+
 	private static final int JETPACK = 4;
 	private static final int JETPACKFALLING = 5;
 
@@ -79,7 +84,7 @@ public class Player extends MapObject {
 
 		health = maxHealth = 6900;
 		rainbow = maxRainbow = 2500;
-		
+
 		rainbowdamage = 10;
 		rainbows = new ArrayList<Rainbow>();
 
@@ -94,7 +99,7 @@ public class Player extends MapObject {
 				BufferedImage[] bi = new BufferedImage[numFrames[i]];
 
 				for (int j = 0; j < numFrames[i]; j++) {
-						bi[j] = spritesheet.getSubimage(j * width, i * height, width, height);
+					bi[j] = spritesheet.getSubimage(j * width, i * height, width, height);
 
 				}
 
@@ -112,10 +117,9 @@ public class Player extends MapObject {
 		animation.setDelay(100);
 
 	}
-	
-	
+
 	public void checkAttackPlants(ArrayList<Plant> plants) {
-		// loop through enemies 
+		// loop through enemies
 		for (int i = 0; i < plants.size(); i++) {
 
 			Plant e = plants.get(i);
@@ -134,7 +138,7 @@ public class Player extends MapObject {
 			}
 		}
 	}
-	
+
 	public void checkAttackShootingPlants(ArrayList<ShootingPlant> shootingplants) {
 		// loop through enemies
 		for (int i = 0; i < shootingplants.size(); i++) {
@@ -154,7 +158,7 @@ public class Player extends MapObject {
 			}
 		}
 	}
-	
+
 	public void checkAttackMagician(ArrayList<Magician> magicians) {
 		// loop through enemies
 		for (int i = 0; i < magicians.size(); i++) {
@@ -174,72 +178,73 @@ public class Player extends MapObject {
 			}
 		}
 	}
-	
+
 	public void checkPowerup(ArrayList<Powerup> powerups, Player player) {
 
 		// loop through powerups
 		for (int i = 0; i < powerups.size(); i++) {
 
 			Powerup powerup = powerups.get(i);
-			
+
 			// check enemy collision
 			if (intersects(powerup)) {
 				powerup.update();
 				addPowerupToPlayer(powerup, player);
-				
+
 			}
 
 		}
 	}
-	
+
 	public void checkCoin(ArrayList<Coin> coins) {
 		// loop through powerups
-			for (int i = 0; i < coins.size(); i++) {
+		for (int i = 0; i < coins.size(); i++) {
 
-				Coin coin = coins.get(i);
-				
-				// check enemy collision
-				if (intersects(coin)) {
-					coin.update();
-					this.setCoin(this.getCoin() + coin.getCoinValue());
-					coin.setTaken(true);
-											
-				}
+			Coin coin = coins.get(i);
+
+			// check enemy collision
+			if (intersects(coin)) {
+				coin.update();
+				this.setCoin(this.getCoin() + coin.getCoinValue());
+				coin.setTaken(true);
 
 			}
-		
+
+		}
+
 	}
-	
-	public void addPowerupToPlayer(Powerup powerup, Player player){
-		if (player.getHealth() + powerup.plusHealth >= player.getMaxHealth()){
+
+	public void addPowerupToPlayer(Powerup powerup, Player player) {
+		if (player.getHealth() + powerup.plusHealth >= player.getMaxHealth()) {
 			player.setHealth(player.getMaxHealth());
-		} else{
+		} else {
 			setHealth(getHealth() + powerup.plusHealth);
 		}
-		
+
 		setRainbowdamage(getRainbowdamage() + powerup.plusDamage);
 		if (powerup.jetpack == true) {
 			jetpack = powerup.jetpack;
 		}
-		moveSpeed = moveSpeed + powerup.moveSpeed;
-		maxSpeed = maxSpeed + powerup.moveSpeed;
-		stopSpeed = stopSpeed + powerup.moveSpeed;
-		fallSpeed = fallSpeed + powerup.moveSpeed;
-		maxFallSpeed = maxFallSpeed + powerup.moveSpeed;
-		jumpStart = jumpStart + powerup.moveSpeed;
-		stopJumpSpeed = stopJumpSpeed + powerup.moveSpeed;
-		
+		 moveSpeed = moveSpeed + powerup.moveSpeed;
+		 maxSpeed = maxSpeed + powerup.moveSpeed;
+		 stopSpeed = stopSpeed + powerup.moveSpeed;
+		 fallSpeed = fallSpeed + powerup.moveSpeed;
+		 maxFallSpeed = maxFallSpeed + powerup.moveSpeed;
+		 jumpStart = jumpStart + powerup.moveSpeed;
+		 stopJumpSpeed = stopJumpSpeed + powerup.moveSpeed;
+
 		powerups.add(powerup);
 		powerup.setTaken(true);
 		powerup.setAvailable(true);
 		powerup.setTakenTime(System.currentTimeMillis());
 	}
-	
-	public void removePowerupFromPlayer(Powerup powerup){
+
+	public void removePowerupFromPlayer(Powerup powerup) {
 		setHealth(getHealth() - powerup.plusHealth);
 		setRainbowdamage(getRainbowdamage() - powerup.plusDamage);
-		
-		jetpack = false;
+		if (powerup.jetpack == true) {
+			jetpack = false;
+		}
 		moveSpeed = moveSpeed - powerup.moveSpeed;
 		maxSpeed = maxSpeed - powerup.moveSpeed;
 		stopSpeed = stopSpeed - powerup.moveSpeed;
@@ -247,14 +252,12 @@ public class Player extends MapObject {
 		maxFallSpeed = maxFallSpeed - powerup.moveSpeed;
 		jumpStart = jumpStart - powerup.moveSpeed;
 		stopJumpSpeed = stopJumpSpeed - powerup.moveSpeed;
-		
+
 		powerups.remove(powerup);
 		System.out.println("Powerup removed");
-		
+
 	}
-	
-	
-	
+
 	public void hit(int damage) {
 		if (flinching)
 			return;
@@ -266,7 +269,8 @@ public class Player extends MapObject {
 		flinching = true;
 		flinchTimer = System.nanoTime();
 	}
-	private void getNextPosition() {
+
+	private void getNextPosition(Player player) {
 
 		// movement
 		if (left) {
@@ -303,14 +307,15 @@ public class Player extends MapObject {
 			dy = jumpStart;
 			falling = true;
 		}
-		
+
 		// jetpack
-		if (jumping && jetpack) {
+		if (jumping && jetpack && player.gety() > 20) {
 			dy = jumpStart;
 			falling = false;
-			
-			
-			
+		} else if (jumping && jetpack && player.gety() < 20) {
+			falling = true;
+			System.out.println(player.gety());
+
 		}
 
 		// falling
@@ -331,25 +336,23 @@ public class Player extends MapObject {
 
 	}
 
-	public void update() {
-		
-	
-		// update position
-		getNextPosition();
-		checkTileMapCollision();
-		setPosition(xtemp, ytemp);	
+	public void update(Player player) {
 
-		if (powerups.size() != 0) {			
-			for(int i = 0; i < powerups.size(); i++) {
+		// update position
+		getNextPosition(player);
+		checkTileMapCollision();
+		setPosition(xtemp, ytemp);
+
+		if (powerups.size() != 0) {
+			for (int i = 0; i < powerups.size(); i++) {
 				Powerup powerup = powerups.get(i);
-				if(powerup.getExpireTime() > 0 && powerup.getTakenTime() + powerup.getExpireTime() <= System.currentTimeMillis()){
+				if (powerup.getExpireTime() > 0 && powerup.getTakenTime() + powerup.getExpireTime() <= System.currentTimeMillis()) {
 					removePowerupFromPlayer(powerup);
-					
+
 				}
 			}
 		}
-		
-		
+
 		// check attack has stopped
 		if (currentAction == RAINBOW) {
 			if (animation.hasPlayedOnce())
@@ -360,7 +363,6 @@ public class Player extends MapObject {
 			Rainbow fb = new Rainbow(tileMap, facingRight);
 			fb.setPosition(x, y);
 			rainbows.add(fb);
-			System.out.println(rainbows.size());
 		}
 		// update fireballs
 		for (int i = 0; i < rainbows.size(); i++) {
@@ -393,24 +395,24 @@ public class Player extends MapObject {
 				animation.setFrames(sprites.get(JUMPING));
 				animation.setDelay(-4);
 				width = 32;
-			} 
-//			if (jetpack && currentAction != JETPACKFALLING && falling) {
-//				currentAction = JETPACKFALLING;
-//				animation.setFrames(sprites.get(JETPACKFALLING));
-//				animation.setDelay(60);
-//				width = 32;
-//			} else if (jetpack && currentAction != JETPACK && !falling) {
-//				currentAction = JETPACK;
-//				animation.setFrames(sprites.get(JETPACK));
-//				animation.setDelay(60);
-//				width = 32;
-//			}
+			}
+			// if (jetpack && currentAction != JETPACKFALLING && falling) {
+			// currentAction = JETPACKFALLING;
+			// animation.setFrames(sprites.get(JETPACKFALLING));
+			// animation.setDelay(60);
+			// width = 32;
+			// } else if (jetpack && currentAction != JETPACK && !falling) {
+			// currentAction = JETPACK;
+			// animation.setFrames(sprites.get(JETPACK));
+			// animation.setDelay(60);
+			// width = 32;
+			// }
 		}
 
 		else if (dy < 0) {
 			if (currentAction != FALLING) {
 				currentAction = FALLING;
-				
+
 				animation.setFrames(sprites.get(FALLING));
 				animation.setDelay(100);
 				width = 32;
@@ -488,11 +490,10 @@ public class Player extends MapObject {
 	public void setCoin(int coin) {
 		this.coin = coin;
 	}
-	
+
 	public void setMaxHealth(int maxHealth) {
 		this.maxHealth = maxHealth;
 	}
-
 
 	public int getHealth() {
 		return health;
@@ -533,7 +534,7 @@ public class Player extends MapObject {
 	public ArrayList<Rainbow> getRainbows() {
 		return rainbows;
 	}
-	
+
 	public boolean isFlinching() {
 		return flinching;
 	}
@@ -541,7 +542,7 @@ public class Player extends MapObject {
 	public void setFlinching(boolean flinching) {
 		this.flinching = flinching;
 	}
-	
+
 	public void setHealth(int health) {
 		this.health = health;
 	}

@@ -1,5 +1,11 @@
 package ch.bbcag.epix.gamestate;
 
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			GameState.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public abstract class GameState {
 	
 	protected GameStateManager gsm;

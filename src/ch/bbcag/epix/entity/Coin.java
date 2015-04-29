@@ -7,6 +7,12 @@ import javax.imageio.ImageIO;
 
 import ch.bbcag.epix.tilemap.TileMap;
 
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			Coin.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class Coin extends MapObject {
 	
 	private BufferedImage[] sprites;

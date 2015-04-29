@@ -10,6 +10,12 @@ import ch.bbcag.epix.entity.MapObject;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.TileMap;
 
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			MagicianShot.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class MagicianShot extends MapObject {
 
 	private boolean hit;

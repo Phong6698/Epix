@@ -12,8 +12,8 @@ import ch.bbcag.epix.view.GameFrame;
 
 /**
  * 
- * @author Chiramet Phong Penglerd, ICT Berufsbildungscenter AG, chirametphong.penglerd@bbcag.ch
- *
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			Level2State.java.java Copyright Berufsbildungscenter 2015
  */
 
 public class Level2State extends GameState{
@@ -46,7 +46,7 @@ public class Level2State extends GameState{
 	public void update() {
 
 		// update player
-		player.update();
+		player.update(player);
 		tilemap.setPosition(GameFrame.WIDTH / 2 - player.getx(), GameFrame.HEIGHT / 2 - player.gety());
 
 		// set background

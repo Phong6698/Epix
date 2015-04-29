@@ -7,6 +7,11 @@ import javax.swing.JFrame;
 
 import ch.bbcag.epix.view.Registration;
 
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			RegistrierenListener.java.java Copyright Berufsbildungscenter 2015
+ */
 
 public class RegistrierenListener implements ActionListener {
 	

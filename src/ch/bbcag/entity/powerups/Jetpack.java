@@ -9,6 +9,12 @@ import ch.bbcag.epix.entity.Animation;
 import ch.bbcag.epix.entity.Powerup;
 import ch.bbcag.epix.tilemap.TileMap;
 
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			Jetpack.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class Jetpack extends Powerup {
 
 	private BufferedImage[] sprites;

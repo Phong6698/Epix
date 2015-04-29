@@ -2,6 +2,12 @@ package ch.bbcag.epix.entity;
 
 import ch.bbcag.epix.tilemap.TileMap;
 
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			Enemy.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class Enemy extends MapObject {
 
 	protected int health;

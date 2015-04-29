@@ -2,6 +2,12 @@ package ch.bbcag.epix.tilemap;
 
 import java.awt.image.BufferedImage;
 
+/**
+ * 
+ * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			Tile.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class Tile {
 	
 	private BufferedImage image;

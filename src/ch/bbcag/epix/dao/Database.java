@@ -9,6 +9,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			Database.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class Database {
 	private Connection con = null;
 	protected PreparedStatement ps = null;

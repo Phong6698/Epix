@@ -9,6 +9,12 @@ import javax.swing.JPanel;
 import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.view.Game;
 
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			MenuCardButtonListener.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class MenuCardButtonListener implements ActionListener {
 
 	private JPanel card;

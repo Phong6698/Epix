@@ -11,8 +11,8 @@ import ch.bbcag.epix.tilemap.TileMap;
 
 /**
  * 
- * @author Chiramet Phong Penglerd, ICT Berufsbildungscenter AG, chirametphong.penglerd@bbcag.ch
- *
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			DamageUp.java.java Copyright Berufsbildungscenter 2015
  */
 
 public class DamageUp extends Powerup {

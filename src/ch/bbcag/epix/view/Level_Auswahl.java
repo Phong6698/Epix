@@ -17,6 +17,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * 
+ * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			Level_Auswahl.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class Level_Auswahl extends JFrame {
 
 	/**

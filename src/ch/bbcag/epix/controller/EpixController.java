@@ -17,6 +17,12 @@ import ch.bbcag.epix.popup.UsernameEmpty;
 import ch.bbcag.epix.popup.UsernameVergeben;
 import ch.bbcag.epix.utils.CryptUtils;
 
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			EpixController.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class EpixController {
 	private static EpixController instance = new EpixController();
 	private final static UserDao USER_DAO = new UserJDBCdao();

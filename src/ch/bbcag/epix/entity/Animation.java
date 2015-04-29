@@ -2,6 +2,12 @@ package ch.bbcag.epix.entity;
 
 import java.awt.image.BufferedImage;
 
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			Animation.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class Animation {
 	
 	private BufferedImage[] frames;

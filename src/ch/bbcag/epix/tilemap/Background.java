@@ -8,6 +8,13 @@ import java.io.*;
 import javax.imageio.ImageIO;
 
 import ch.bbcag.epix.view.EpixView;
+
+/**
+ * 
+ * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			Background.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class Background {
 	
 	private BufferedImage image;

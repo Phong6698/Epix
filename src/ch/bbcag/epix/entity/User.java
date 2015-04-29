@@ -2,8 +2,8 @@ package ch.bbcag.epix.entity;
 
 /**
  * 
- * @author Chiramet Phong Penglerd, ICT Berufsbildungscenter AG, chirametphong.penglerd@bbcag.ch
- *
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			User.java.java Copyright Berufsbildungscenter 2015
  */
 
 public class User {

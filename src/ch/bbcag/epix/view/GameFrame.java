@@ -12,6 +12,11 @@ import javax.swing.JFrame;
 import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.gamestate.GameStateManager;
 
+/**
+ * 
+ * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			GameFrame.java.java Copyright Berufsbildungscenter 2015
+ */
 
 public class GameFrame extends JFrame implements Runnable, KeyListener{	
 	/**

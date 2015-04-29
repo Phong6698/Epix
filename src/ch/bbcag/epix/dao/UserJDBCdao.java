@@ -7,6 +7,12 @@ import java.util.ArrayList;
 
 import ch.bbcag.epix.entity.User;
 
+/**
+ * 
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			UserJDBCdao.java.java Copyright Berufsbildungscenter 2015
+ */
+
 public class UserJDBCdao extends Database implements UserDao {
 	
 	//Variable fuer Verbindung

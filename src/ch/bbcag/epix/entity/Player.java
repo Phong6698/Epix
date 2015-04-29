@@ -175,7 +175,7 @@ public class Player extends MapObject {
 		}
 	}
 	
-	public void checkPowerup(ArrayList<Powerup> powerups) {
+	public void checkPowerup(ArrayList<Powerup> powerups, Player player) {
 
 		// loop through powerups
 		for (int i = 0; i < powerups.size(); i++) {
@@ -185,7 +185,7 @@ public class Player extends MapObject {
 			// check enemy collision
 			if (intersects(powerup)) {
 				powerup.update();
-				addPowerupToPlayer(powerup);
+				addPowerupToPlayer(powerup, player);
 				
 			}
 
@@ -210,8 +210,13 @@ public class Player extends MapObject {
 		
 	}
 	
-	public void addPowerupToPlayer(Powerup powerup){
-		setHealth(getHealth() + powerup.plusHealth);
+	public void addPowerupToPlayer(Powerup powerup, Player player){
+		if (player.getHealth() + powerup.plusHealth >= player.getMaxHealth()){
+			player.setHealth(player.getMaxHealth());
+		} else{
+			setHealth(getHealth() + powerup.plusHealth);
+		}
+		
 		setRainbowdamage(getRainbowdamage() + powerup.plusDamage);
 		if (powerup.jetpack == true) {
 			jetpack = powerup.jetpack;

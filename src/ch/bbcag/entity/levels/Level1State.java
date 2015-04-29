@@ -115,7 +115,7 @@ public class Level1State extends GameState{
 		 */
 		Jetpack jetpack;
 		Point[] jetpackPoints = new Point[] {
-			new Point(200, 240),
+			new Point(2000, 240),
 
 		};
 		for(int i = 0; i < jetpackPoints.length; i++) {
@@ -152,7 +152,6 @@ public class Level1State extends GameState{
 		
 		Magician m;
 		Point[] magicanPoints = new Point[] {
-				new Point(2000, 240),
 				new Point(3150, 240)
 		};
 		for(int i = 0; i < magicanPoints.length; i++) {
@@ -219,7 +218,7 @@ public class Level1State extends GameState{
 		player.checkAttackShootingPlants(shootingPlant);
 		player.checkAttackMagician(magicians);
 		
-		player.checkPowerup(powerups);
+		player.checkPowerup(powerups, player);
 		player.checkCoin(coins);
 		
 		

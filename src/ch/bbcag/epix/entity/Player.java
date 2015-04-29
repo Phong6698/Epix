@@ -73,11 +73,11 @@ public class Player extends MapObject {
 		cheight = 32;
 
 		moveSpeed = 0.2;
-		maxSpeed = 5.2;
+		maxSpeed = 2.2;
 		stopSpeed = 0.8;
 		fallSpeed = 0.30;
 		maxFallSpeed = 4.0;
-		jumpStart = -11.0;
+		jumpStart = -5.0;
 		stopJumpSpeed = 0.6;
 
 		facingRight = true;
@@ -328,10 +328,11 @@ public class Player extends MapObject {
 				rainbowing = false;
 		}
 		// fireball attack
-		if (rainbowing && currentAction != RAINBOW) {
+		if (rainbowing && currentAction != RAINBOW && rainbows.size() < 2) {
 			Rainbow fb = new Rainbow(tileMap, facingRight);
 			fb.setPosition(x, y);
 			rainbows.add(fb);
+			System.out.println(rainbows.size());
 		}
 		// update fireballs
 		for (int i = 0; i < rainbows.size(); i++) {

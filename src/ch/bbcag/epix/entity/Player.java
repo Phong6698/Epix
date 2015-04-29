@@ -68,12 +68,12 @@ public class Player extends MapObject {
 		cheight = 32;
 
 		moveSpeed = 0.2;
-		maxSpeed = 2.2;
+		maxSpeed = 3.2;
 		stopSpeed = 0.8;
 		fallSpeed = 0.30;
 		maxFallSpeed = 4.0;
-		jumpStart = -5.0;
-		stopJumpSpeed = 0.6;
+		jumpStart = -6.0;
+		stopJumpSpeed = 0.9;
 
 		facingRight = true;
 
@@ -89,7 +89,7 @@ public class Player extends MapObject {
 			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Player/Player.png"));
 
 			sprites = new ArrayList<BufferedImage[]>();
-			for (int i = 0; i < 4; i++) {
+			for (int i = 0; i < 6; i++) {
 
 				BufferedImage[] bi = new BufferedImage[numFrames[i]];
 
@@ -303,6 +303,9 @@ public class Player extends MapObject {
 		if (jumping && jetpack) {
 			dy = jumpStart;
 			falling = false;
+			
+			
+			
 		}
 
 		// falling
@@ -385,14 +388,25 @@ public class Player extends MapObject {
 				animation.setFrames(sprites.get(JUMPING));
 				animation.setDelay(-4);
 				width = 32;
-			}
+			} 
+//			if (jetpack && currentAction != JETPACKFALLING && falling) {
+//				currentAction = JETPACKFALLING;
+//				animation.setFrames(sprites.get(JETPACKFALLING));
+//				animation.setDelay(60);
+//				width = 32;
+//			} else if (jetpack && currentAction != JETPACK && !falling) {
+//				currentAction = JETPACK;
+//				animation.setFrames(sprites.get(JETPACK));
+//				animation.setDelay(60);
+//				width = 32;
+//			}
 		}
 
 		else if (dy < 0) {
 			if (currentAction != FALLING) {
 				currentAction = FALLING;
 				
-				animation.setFrames(sprites.get(FALLING));
+				animation.setFrames(sprites.get(JETPACKFALLING));
 				animation.setDelay(100);
 				width = 32;
 			}

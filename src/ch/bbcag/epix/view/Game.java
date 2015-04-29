@@ -1,14 +1,12 @@
 package ch.bbcag.epix.view;
 
-import java.sql.SQLException;
-
 import javax.swing.JFrame;
 
 import ch.bbcag.epix.entity.User;
 
 public class Game {
 	
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) {
 		
 		User user = new User();
 		user.setUsername("Epix");

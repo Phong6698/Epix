@@ -50,7 +50,10 @@ public class Level1State extends GameState{
 		
 		init();
 	}
-
+    
+	/**
+	 * 
+	 */
 	public void init() {
 	
 		

@@ -28,7 +28,7 @@ public class Plant extends Enemy {
 
 	/**
 	 * Konstruktor
-	 * @param tm
+	 * @param tm {@link TileMap}
 	 */
 	public Plant(TileMap tm) {
 		super(tm);
@@ -148,7 +148,7 @@ public class Plant extends Enemy {
 	 * @param player
 	 * @return ob der Spieler die Plfanze auf dem Bildschirm sieht
 	 */
-	public boolean OnScreen(Plant e, Player player) {
+	private boolean OnScreen(Plant e, Player player) {
 		
 		if (e.getx() - 48 < player.getx() && e.getx() + 32  - player.getx() > 0) {
 			return true;

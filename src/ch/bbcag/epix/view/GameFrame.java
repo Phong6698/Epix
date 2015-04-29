@@ -8,10 +8,8 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import ch.bbcag.epix.entity.User;
-import ch.bbcag.epix.gamestate.GameState;
 import ch.bbcag.epix.gamestate.GameStateManager;
 
 

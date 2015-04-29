@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 
 import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.listener.LevelAuswahlCardButtonListener;

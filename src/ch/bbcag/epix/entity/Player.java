@@ -396,17 +396,18 @@ public class Player extends MapObject {
 				animation.setDelay(-4);
 				width = 32;
 			}
-			// if (jetpack && currentAction != JETPACKFALLING && falling) {
-			// currentAction = JETPACKFALLING;
-			// animation.setFrames(sprites.get(JETPACKFALLING));
-			// animation.setDelay(60);
-			// width = 32;
-			// } else if (jetpack && currentAction != JETPACK && !falling) {
-			// currentAction = JETPACK;
-			// animation.setFrames(sprites.get(JETPACK));
-			// animation.setDelay(60);
-			// width = 32;
-			// }
+//			else if (jetpack && currentAction != JETPACKFALLING && falling) {
+//				currentAction = JETPACKFALLING;
+//				animation.setFrames(sprites.get(JETPACKFALLING));
+//				animation.setDelay(60);
+//				width = 32;
+//				
+//			} else if (jetpack && currentAction != JETPACK && !falling) {
+//				currentAction = JETPACK;
+//				animation.setFrames(sprites.get(JETPACK));
+//				animation.setDelay(60);
+//				width = 32;
+//			}
 		}
 
 		else if (dy < 0) {

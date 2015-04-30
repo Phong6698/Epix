@@ -200,9 +200,15 @@ public class Level1State extends GameState{
 		Coin coin;
 		Point[] coinPoints = new Point[] {
 			new Point(337, 208),
-			new Point(910, 176),
-			new Point(1265, 176),
-			
+			new Point(436, 176),
+			new Point(466, 176),
+			new Point(496, 176),
+			new Point(886, 208),
+			new Point(942, 176),
+			new Point(1234, 176),
+			new Point(1270, 176),
+			new Point(2578, 80),
+			new Point(2635, 80)
 		};
 		for(int i = 0; i < coinPoints.length; i++) {
 			coin = new Coin(tilemap);
@@ -271,7 +277,6 @@ public class Level1State extends GameState{
 			}else {
 				e.checkAttackPlayer(player);
 			}
-					
 		}
 		
 		for(int i = 0; i < powerups.size(); i++) {

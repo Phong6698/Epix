@@ -38,7 +38,7 @@ public class GameStateManager {
 			gameStates[level] = new Level1State(this, user);
 		}
 		else if(level == LEVEL2) {
-			gameStates[level] = new Level2State(this);
+			gameStates[level] = new Level2State(this,user);
 		}
 		else if(level == BOSSLEVEL) {
 			gameStates[level] = new BossState(this);

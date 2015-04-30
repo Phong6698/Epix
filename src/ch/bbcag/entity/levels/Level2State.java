@@ -72,7 +72,7 @@ public class Level2State extends GameState{
 		bg = new Background("/Backgrounds/Background.png", 1);
 	
 		
-		player = new Player(tilemap);
+		player = new Player(tilemap, user);
 		player.setUsername(user.getUsername());
 		player.setCoin(user.getCoin());
 		player.setMaxHealth(user.getMaxHealth());

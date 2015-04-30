@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 import ch.bbcag.epix.entity.Player;
+import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.gamestate.GameState;
 import ch.bbcag.epix.gamestate.GameStateManager;
 import ch.bbcag.epix.tilemap.Background;
@@ -18,6 +19,9 @@ import ch.bbcag.epix.view.GameFrame;
 
 public class BossState extends GameState{
 
+	private User user;
+	
+	
 	private TileMap tilemap;
 	private Player player;
 	private Background bg;
@@ -37,7 +41,7 @@ public class BossState extends GameState{
 		
 		bg = new Background("/Backgrounds/Background.png", 1);
 		
-		player = new Player(tilemap);
+		player = new Player(tilemap, user);
 		
 		player.setPosition(28, 28);
 

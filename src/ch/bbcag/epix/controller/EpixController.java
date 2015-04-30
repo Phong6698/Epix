@@ -134,5 +134,13 @@ public class EpixController {
 		}
 		return null;
 	}
+	
+	public void coinsUpdate(User user){
+		try {
+			 USER_DAO.coinsUpdate(user);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 };

@@ -10,6 +10,7 @@ import ch.bbcag.entity.enemies.Magician;
 import ch.bbcag.entity.enemies.Plant;
 import ch.bbcag.entity.enemies.PlantShot;
 import ch.bbcag.entity.enemies.ShootingPlant;
+import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.tilemap.TileMap;
 
 /**
@@ -34,6 +35,8 @@ public class Player extends MapObject {
 	private boolean flinching;
 
 	private long flinchTimer;
+	
+	private User user;
 
 	private ArrayList<Powerup> powerups = new ArrayList<Powerup>();
 
@@ -61,7 +64,7 @@ public class Player extends MapObject {
 	private static final int JETPACK = 4;
 	private static final int JETPACKFALLING = 5;
 
-	public Player(TileMap tm) {
+	public Player(TileMap tm, User user) {
 
 		super(tm);
 
@@ -69,7 +72,7 @@ public class Player extends MapObject {
 		height = 32;
 
 		// hitbox
-		cwidth = 20;
+		cwidth = 32;
 		cheight = 32;
 
 		moveSpeed = 0.2;
@@ -115,6 +118,8 @@ public class Player extends MapObject {
 		currentAction = IDLE;
 		animation.setFrames(sprites.get(IDLE));
 		animation.setDelay(100);
+		
+		this.user = user;
 
 	}
 
@@ -190,7 +195,6 @@ public class Player extends MapObject {
 			if (intersects(powerup)) {
 				powerup.update();
 				addPowerupToPlayer(powerup, player);
-
 			}
 
 		}
@@ -207,7 +211,7 @@ public class Player extends MapObject {
 				coin.update();
 				this.setCoin(this.getCoin() + coin.getCoinValue());
 				coin.setTaken(true);
-
+				
 			}
 
 		}

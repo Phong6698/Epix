@@ -2,6 +2,7 @@ package ch.bbcag.entity.levels;
 
 import java.awt.Graphics2D;
 
+import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.HUD;
 
 import java.awt.Point;
@@ -72,7 +73,7 @@ public class Level1State extends GameState{
 		bg = new Background("/Backgrounds/Background.png", 1);
 	
 		
-		player = new Player(tilemap);
+		player = new Player(tilemap, user);
 		player.setUsername(user.getUsername());
 		player.setCoin(user.getCoin());
 		player.setMaxHealth(user.getMaxHealth());
@@ -81,6 +82,8 @@ public class Level1State extends GameState{
 		spawnEnemies();
 		spawnPowerups();
 		spawnCoins();
+		
+		
 		
 		player.setPosition(50, 40);
 
@@ -294,6 +297,9 @@ public class Level1State extends GameState{
 			if(coin.isTaken()) {
 				coins.remove(i);
 				i--;
+				user.setCoin(user.getCoin() + 1);
+				EpixController.getInstance().coinsUpdate(user);
+
 			}
 		}
 	}

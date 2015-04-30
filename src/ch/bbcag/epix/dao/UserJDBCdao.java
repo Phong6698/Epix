@@ -35,7 +35,7 @@ public class UserJDBCdao extends Database implements UserDao {
 				user.setPassword(rs.getString("Password"));
 				p.add(user);
 			}
-			closeCon();
+//			closeCon();
 			return p;
 		}
 
@@ -50,7 +50,7 @@ public class UserJDBCdao extends Database implements UserDao {
 			ps.setString(2, user.getPassword());
 			ps.setString(3, user.getEmail());
 			ps.executeUpdate();
-			closeCon();
+//			closeCon();
 		}
 
 		@Override
@@ -68,9 +68,15 @@ public class UserJDBCdao extends Database implements UserDao {
 				player.setCoin(rs.getInt("Coins"));
 				break;
 			}
-			closeCon();
-			
+//			closeCon();
 			
 			return player;
+		}
+		
+		public void coinsUpdate(User user) throws SQLException{
+			String sql = "UPDATE player SET coins = "+ user.getCoin() +" WHERE Username = ? ;";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, user.getUsername());
+			ps.executeUpdate();
 		}
 }

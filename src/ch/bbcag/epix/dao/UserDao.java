@@ -23,4 +23,6 @@ public interface UserDao {
 
 	public abstract User playerLogin(String username) throws SQLException;
 	
+	public abstract void coinsUpdate(User user) throws SQLException;
+	
 }

@@ -32,8 +32,8 @@ public class Rainbow extends MapObject {
 		
 		width = 32;
 		height = 32;
-		cwidth = 3;
-		cheight = 3;
+		cwidth = 10;
+		cheight = 20;
 		
 		// load sprites
 		try {

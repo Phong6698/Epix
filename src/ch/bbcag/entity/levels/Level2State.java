@@ -15,6 +15,7 @@ import ch.bbcag.entity.powerups.DamageUp;
 import ch.bbcag.entity.powerups.Heart;
 import ch.bbcag.entity.powerups.Jetpack;
 import ch.bbcag.epix.entity.Coin;
+import ch.bbcag.epix.entity.Flag;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.entity.Powerup;
 import ch.bbcag.epix.entity.User;
@@ -50,6 +51,8 @@ public class Level2State extends GameState{
 	
 	private ArrayList<Coin> coins;
 	
+	private ArrayList<Flag> flags;
+	
 	public Level2State(GameStateManager gsm, User user) {
 		this.gsm = gsm;	
 		setUser(user);
@@ -81,6 +84,7 @@ public class Level2State extends GameState{
 		spawnEnemies();
 		spawnPowerups();
 		spawnCoins();
+		spawnFlag();
 		
 		player.setPosition(50, 40);
 
@@ -221,6 +225,23 @@ public class Level2State extends GameState{
 			coins.add(coin);
 		}
 	}
+	
+	private void spawnFlag() {
+		flags = new ArrayList<Flag>();
+		/*
+		 * flag
+		 */
+		Flag flag;
+		Point[] flagPoints = new Point[] {
+				new Point(220, 240),
+				
+		};
+		for(int i = 0; i < flagPoints.length; i++) {
+			flag = new Flag(tilemap);
+			flag.setPosition(flagPoints[i].x, flagPoints[i].y);
+			flags.add(flag);
+		}
+	}
 
 	public void update() {
 
@@ -301,6 +322,12 @@ public class Level2State extends GameState{
 				i--;
 			}
 		}
+		
+		for(int i = 0; i < flags.size(); i++) {
+			Flag flag = flags.get(i);
+			flag.update();
+			
+		}
 	}
 
 	public void draw(Graphics2D g) {
@@ -330,6 +357,10 @@ public class Level2State extends GameState{
 		
 		for(int i = 0; i < coins.size(); i++) {
 			coins.get(i).draw(g);
+		}
+		
+		for(int i = 0; i < flags.size(); i++) {
+			flags.get(i).draw(g);
 		}
 		
 		// draw player

@@ -23,7 +23,7 @@ public class Jetpack extends Powerup {
 		super(tm);
 		plusHealth = 0;
 		plusDamage = 20;
-		expireTime = 10000;
+		expireTime = 100000;
 		
 		jetpack = true;
 		plusMoveSpeed = 0;

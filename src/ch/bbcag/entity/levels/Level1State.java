@@ -127,6 +127,7 @@ public class Level1State extends GameState{
 		 */
 		Jetpack jetpack;
 		Point[] jetpackPoints = new Point[] {
+			new Point(200, 240),
 			new Point(2000, 240),
 
 		};

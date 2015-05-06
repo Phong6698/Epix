@@ -50,7 +50,7 @@ public class Player extends MapObject {
 
 	// animations
 	private ArrayList<BufferedImage[]> sprites;
-	private final int[] numFrames = { 1, 6, 1, 3, 1, 1 };
+	private final int[] numFrames = { 1, 6, 1, 3, 1, 6, 1, 3 };
 	private ArrayList<PlantShot> plantshots;
 
 	// animation actions
@@ -58,11 +58,13 @@ public class Player extends MapObject {
 	private static final int WALKING = 1;
 	private static final int JUMPING = 2;
 	private static final int FALLING = 2;
-
 	private static final int RAINBOW = 3;
 
-	private static final int JETPACK = 4;
-	private static final int JETPACKFALLING = 5;
+	private static final int IDLE_JETPACK = 4;
+	private static final int WALKING_JETPACK = 5;
+	private static final int JUMPING_JETPACK = 6;
+	private static final int FALLING_JETPACK = 6;
+	private static final int RAINBOW_JETPACK = 7;
 
 	public Player(TileMap tm, User user) {
 
@@ -362,10 +364,19 @@ public class Player extends MapObject {
 			if (animation.hasPlayedOnce())
 				rainbowing = false;
 		}
+		if (currentAction == RAINBOW_JETPACK) {
+			if (animation.hasPlayedOnce())
+				rainbowing = false;
+		}
 		// fireball attack
 		if (rainbowing && currentAction != RAINBOW && rainbows.size() < 2) {
 			Rainbow fb = new Rainbow(tileMap, facingRight);
-			fb.setPosition(x, y);
+			fb.setPosition(x, y- (height/2 - cheight/2)/2);
+			rainbows.add(fb);
+		}
+		if (rainbowing && currentAction != RAINBOW_JETPACK && rainbows.size() < 2) {
+			Rainbow fb = new Rainbow(tileMap, facingRight);
+			fb.setPosition(x, y- (height/2 - cheight/2)/2);
 			rainbows.add(fb);
 		}
 		// update fireballs
@@ -387,54 +398,69 @@ public class Player extends MapObject {
 
 		// set animation
 		else if (rainbowing) {
-			if (currentAction != RAINBOW) {
+			if (currentAction != RAINBOW && !jetpack) {
 				currentAction = RAINBOW;
 				animation.setFrames(sprites.get(RAINBOW));
 				animation.setDelay(100);
 				width = 32;
+			} else if (currentAction != RAINBOW_JETPACK && jetpack){
+				currentAction = RAINBOW_JETPACK;
+				animation.setFrames(sprites.get(RAINBOW_JETPACK));
+				animation.setDelay(100);
+				width = 32;
 			}
 		} else if (dy > 0) {
-			if (currentAction != JUMPING) {
-				currentAction = JUMPING;
-				animation.setFrames(sprites.get(JUMPING));
+			if (currentAction != FALLING && !jetpack) {
+				
+				currentAction = FALLING;
+				animation.setFrames(sprites.get(FALLING));
+				animation.setDelay(-4);
+				width = 32;
+			} else if (currentAction != FALLING_JETPACK && jetpack) {
+				System.out.println("jetpack");
+				currentAction = FALLING_JETPACK;
+				animation.setFrames(sprites.get(FALLING_JETPACK));
 				animation.setDelay(-4);
 				width = 32;
 			}
-//			else if (jetpack && currentAction != JETPACKFALLING && falling) {
-//				currentAction = JETPACKFALLING;
-//				animation.setFrames(sprites.get(JETPACKFALLING));
-//				animation.setDelay(60);
-//				width = 32;
-//				
-//			} else if (jetpack && currentAction != JETPACK && !falling) {
-//				currentAction = JETPACK;
-//				animation.setFrames(sprites.get(JETPACK));
-//				animation.setDelay(60);
-//				width = 32;
-//			}
 		}
 
 		else if (dy < 0) {
-			if (currentAction != FALLING) {
-				currentAction = FALLING;
-
-				animation.setFrames(sprites.get(FALLING));
+			if (currentAction != JUMPING && !jetpack) {
+				System.out.println("jumping");
+				currentAction = JUMPING;
+				animation.setFrames(sprites.get(JUMPING));
+				animation.setDelay(100);
+				width = 32;
+			} else if (currentAction != JUMPING_JETPACK && jetpack) {
+				currentAction = JUMPING_JETPACK;
+				animation.setFrames(sprites.get(JUMPING_JETPACK));
 				animation.setDelay(100);
 				width = 32;
 			}
 		}
 
 		else if (left || right) {
-			if (currentAction != WALKING) {
+			if (currentAction != WALKING && !jetpack) {
 				currentAction = WALKING;
 				animation.setFrames(sprites.get(WALKING));
 				animation.setDelay(60);
 				width = 32;
+			} else if (currentAction != WALKING_JETPACK && jetpack) {
+				currentAction = WALKING_JETPACK;
+				animation.setFrames(sprites.get(WALKING_JETPACK));
+				animation.setDelay(60);
+				width = 32;
 			}
 		} else {
-			if (currentAction != IDLE) {
+			if (currentAction != IDLE && !jetpack) {
 				currentAction = IDLE;
 				animation.setFrames(sprites.get(IDLE));
+				animation.setDelay(400);
+				width = 32;
+			} else if (currentAction != IDLE_JETPACK && jetpack) {
+				currentAction = IDLE_JETPACK;
+				animation.setFrames(sprites.get(IDLE_JETPACK));
 				animation.setDelay(400);
 				width = 32;
 			}
@@ -444,6 +470,12 @@ public class Player extends MapObject {
 
 		// set direction
 		if (currentAction != RAINBOW) {
+			if (right)
+				facingRight = true;
+			if (left)
+				facingRight = false;
+		}
+		if (currentAction != RAINBOW_JETPACK) {
 			if (right)
 				facingRight = true;
 			if (left)

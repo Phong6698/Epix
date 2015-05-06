@@ -15,6 +15,7 @@ import ch.bbcag.entity.enemies.ShootingPlant;
 import ch.bbcag.entity.powerups.DamageUp;
 import ch.bbcag.entity.powerups.Heart;
 import ch.bbcag.entity.powerups.Jetpack;
+import ch.bbcag.entity.powerups.Shield;
 import ch.bbcag.epix.entity.Coin;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.entity.Powerup;
@@ -127,7 +128,6 @@ public class Level1State extends GameState{
 		 */
 		Jetpack jetpack;
 		Point[] jetpackPoints = new Point[] {
-			new Point(200, 240),
 			new Point(2000, 240),
 
 		};
@@ -135,6 +135,20 @@ public class Level1State extends GameState{
 			jetpack = new Jetpack(tilemap);
 			jetpack.setPosition(jetpackPoints[i].x, jetpackPoints[i].y);
 			powerups.add(jetpack);
+		}
+		
+		/*
+		 * Jetpack
+		 */
+		Shield shield;
+		Point[] shieldPoints = new Point[] {
+			new Point(200, 240),
+
+		};
+		for(int i = 0; i < shieldPoints.length; i++) {
+			shield = new Shield(tilemap);
+			shield.setPosition(shieldPoints[i].x, shieldPoints[i].y);
+			powerups.add(shield);
 		}
 		
 	}

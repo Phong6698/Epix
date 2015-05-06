@@ -24,6 +24,7 @@ public class Player extends MapObject {
 
 	// player stuff
 	private int health;
+	
 
 	private int coin;
 	private String username;
@@ -41,6 +42,7 @@ public class Player extends MapObject {
 	private ArrayList<Powerup> powerups = new ArrayList<Powerup>();
 
 	private boolean jetpack;
+	private boolean shield;
 
 	// rainbow
 	private boolean rainbowing;
@@ -99,7 +101,7 @@ public class Player extends MapObject {
 			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Player/Player.png"));
 
 			sprites = new ArrayList<BufferedImage[]>();
-			for (int i = 0; i < 6; i++) {
+			for (int i = 0; i < 8; i++) {
 
 				BufferedImage[] bi = new BufferedImage[numFrames[i]];
 
@@ -226,10 +228,11 @@ public class Player extends MapObject {
 		} else {
 			setHealth(getHealth() + powerup.plusHealth);
 		}
-
 		setRainbowdamage(getRainbowdamage() + powerup.plusDamage);
+		
+		//Jetpack
 		if (powerup.jetpack == true) {
-			jetpack = powerup.jetpack;
+			jetpack = true;
 		}
 		 moveSpeed = moveSpeed + powerup.moveSpeed;
 		 maxSpeed = maxSpeed + powerup.moveSpeed;
@@ -238,6 +241,11 @@ public class Player extends MapObject {
 		 maxFallSpeed = maxFallSpeed + powerup.moveSpeed;
 		 jumpStart = jumpStart + powerup.moveSpeed;
 		 stopJumpSpeed = stopJumpSpeed + powerup.moveSpeed;
+		 
+		//Shield 
+		if (powerup.shield == true) {
+				shield = true;
+		}
 
 		powerups.add(powerup);
 		powerup.setTaken(true);
@@ -248,6 +256,8 @@ public class Player extends MapObject {
 	public void removePowerupFromPlayer(Powerup powerup) {
 		setHealth(getHealth() - powerup.plusHealth);
 		setRainbowdamage(getRainbowdamage() - powerup.plusDamage);
+		
+		//Jetpack
 		if (powerup.jetpack == true) {
 			jetpack = false;
 		}
@@ -258,22 +268,37 @@ public class Player extends MapObject {
 		maxFallSpeed = maxFallSpeed - powerup.moveSpeed;
 		jumpStart = jumpStart - powerup.moveSpeed;
 		stopJumpSpeed = stopJumpSpeed - powerup.moveSpeed;
+		
+		//Shield 
+		if (powerup.shield == true) {
+				shield = false;
+		}
 
 		powerups.remove(powerup);
 		System.out.println("Powerup removed");
 
 	}
 
+	/**
+	 * player gets damage
+	 * 
+	 * @param damage
+	 */
 	public void hit(int damage) {
-		if (flinching)
-			return;
-		health -= damage;
-		if (health < 0)
-			health = 0;
-		if (health == 0)
-			dead = true;
-		flinching = true;
-		flinchTimer = System.nanoTime();
+		if(!shield){
+			if (flinching){
+				return;
+			}
+			health -= damage;
+			if (health < 0){
+				health = 0;
+			}
+			if (health == 0){
+				dead = true;
+			}
+			flinching = true;
+			flinchTimer = System.nanoTime();
+		}
 	}
 
 	private void getNextPosition(Player player) {
@@ -369,16 +394,12 @@ public class Player extends MapObject {
 				rainbowing = false;
 		}
 		// fireball attack
-		if (rainbowing && currentAction != RAINBOW && rainbows.size() < 2) {
+		if (rainbowing && currentAction != RAINBOW && currentAction != RAINBOW_JETPACK && rainbows.size() < 2) {			
 			Rainbow fb = new Rainbow(tileMap, facingRight);
 			fb.setPosition(x, y- (height/2 - cheight/2)/2);
 			rainbows.add(fb);
 		}
-		if (rainbowing && currentAction != RAINBOW_JETPACK && rainbows.size() < 2) {
-			Rainbow fb = new Rainbow(tileMap, facingRight);
-			fb.setPosition(x, y- (height/2 - cheight/2)/2);
-			rainbows.add(fb);
-		}
+
 		// update fireballs
 		for (int i = 0; i < rainbows.size(); i++) {
 			rainbows.get(i).update();
@@ -417,17 +438,13 @@ public class Player extends MapObject {
 				animation.setDelay(-4);
 				width = 32;
 			} else if (currentAction != FALLING_JETPACK && jetpack) {
-				System.out.println("jetpack");
 				currentAction = FALLING_JETPACK;
 				animation.setFrames(sprites.get(FALLING_JETPACK));
 				animation.setDelay(-4);
 				width = 32;
 			}
-		}
-
-		else if (dy < 0) {
+		} else if (dy < 0) {
 			if (currentAction != JUMPING && !jetpack) {
-				System.out.println("jumping");
 				currentAction = JUMPING;
 				animation.setFrames(sprites.get(JUMPING));
 				animation.setDelay(100);
@@ -438,9 +455,7 @@ public class Player extends MapObject {
 				animation.setDelay(100);
 				width = 32;
 			}
-		}
-
-		else if (left || right) {
+		} else if (left || right) {
 			if (currentAction != WALKING && !jetpack) {
 				currentAction = WALKING;
 				animation.setFrames(sprites.get(WALKING));

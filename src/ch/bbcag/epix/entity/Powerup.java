@@ -23,6 +23,8 @@ public class Powerup extends MapObject{
 	protected double plusJumpStart;
 	protected double plusStopJumpSpeed;
 	
+	protected boolean shield;
+	
 	protected double expireTime;
 	
 

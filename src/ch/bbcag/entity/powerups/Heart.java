@@ -12,7 +12,7 @@ import ch.bbcag.epix.tilemap.TileMap;
 /**
  * 
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			Heart.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
 
 public class Heart extends Powerup {
@@ -24,7 +24,6 @@ public class Heart extends Powerup {
 		super(tm);
 	
 		plusHealth = 40;
-		plusDamage = 0;
 		
 		expireTime = 0;
 		

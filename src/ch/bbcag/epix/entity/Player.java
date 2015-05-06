@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import ch.bbcag.entity.enemies.Magician;
-import ch.bbcag.entity.enemies.Plant;
-import ch.bbcag.entity.enemies.PlantShot;
-import ch.bbcag.entity.enemies.ShootingPlant;
+import ch.bbcag.epix.enemies.Magician;
+import ch.bbcag.epix.enemies.Plant;
+import ch.bbcag.epix.enemies.PlantShot;
+import ch.bbcag.epix.enemies.ShootingPlant;
 import ch.bbcag.epix.tilemap.TileMap;
 
 /**

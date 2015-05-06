@@ -1,18 +1,14 @@
-package ch.bbcag.entity.levels;
+package ch.bbcag.epix.levels;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import ch.bbcag.entity.enemies.Magician;
-import ch.bbcag.entity.enemies.Plant;
-import ch.bbcag.entity.enemies.ShootingPlant;
-import ch.bbcag.entity.powerups.DamageUp;
-import ch.bbcag.entity.powerups.Heart;
-import ch.bbcag.entity.powerups.Jetpack;
-import ch.bbcag.entity.powerups.Shield;
 import ch.bbcag.epix.controller.EpixController;
+import ch.bbcag.epix.enemies.Magician;
+import ch.bbcag.epix.enemies.Plant;
+import ch.bbcag.epix.enemies.ShootingPlant;
 import ch.bbcag.epix.entity.Coin;
 import ch.bbcag.epix.entity.HUD;
 import ch.bbcag.epix.entity.Player;
@@ -20,6 +16,10 @@ import ch.bbcag.epix.entity.Powerup;
 import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.gamestate.GameState;
 import ch.bbcag.epix.gamestate.GameStateManager;
+import ch.bbcag.epix.powerups.DamageUp;
+import ch.bbcag.epix.powerups.Heart;
+import ch.bbcag.epix.powerups.Jetpack;
+import ch.bbcag.epix.powerups.Shield;
 import ch.bbcag.epix.tilemap.Background;
 import ch.bbcag.epix.tilemap.TileMap;
 import ch.bbcag.epix.view.GameFrame;

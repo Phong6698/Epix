@@ -1,9 +1,9 @@
 package ch.bbcag.epix.gamestate;
 
-import ch.bbcag.entity.levels.BossState;
-import ch.bbcag.entity.levels.Level1State;
-import ch.bbcag.entity.levels.Level2State;
 import ch.bbcag.epix.entity.User;
+import ch.bbcag.epix.levels.BossState;
+import ch.bbcag.epix.levels.Level1State;
+import ch.bbcag.epix.levels.Level2State;
 
 /**
  * 

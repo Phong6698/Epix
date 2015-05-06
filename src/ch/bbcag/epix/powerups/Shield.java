@@ -1,4 +1,4 @@
-package ch.bbcag.entity.powerups;
+package ch.bbcag.epix.powerups;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -11,18 +11,19 @@ import ch.bbcag.epix.tilemap.TileMap;
 
 /**
  * 
- * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			DamageUp.java.java Copyright Berufsbildungscenter 2015
+ *
+ * @author Chiramet Phong Penglerd, Miguel Jorge || ICT Berufsbildungs AG
+ *			Copyright Berufsbildungscenter 2015
  */
-
-public class DamageUp extends Powerup {
+public class Shield extends Powerup {
 
 	private BufferedImage[] sprites;
-	
-	public DamageUp(TileMap tm) {
+
+	public Shield(TileMap tm) {
 		super(tm);
+	
+		shield = true;
 		
-		plusDamage = 20;
 		expireTime = 10000;
 		
 		width = 32;
@@ -32,7 +33,7 @@ public class DamageUp extends Powerup {
 		
 		try {
 
-			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Powerups/PowerUps_Weapon Up.png"));
+			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Powerups/PowerUps_Shield.png"));
 
 			sprites = new BufferedImage[4];
 			for (int i = 0; i < sprites.length; i++) {
@@ -50,10 +51,8 @@ public class DamageUp extends Powerup {
 		facingRight = true;
 	}
 	
-	
 	public void update() {
 
-		// update position
 
 		checkTileMapCollision();
 
@@ -63,6 +62,8 @@ public class DamageUp extends Powerup {
 	}
 	
 	public void draw(Graphics2D g) {
+
+		// if(notOnScreen()) return;
 
 		setMapPosition();
 

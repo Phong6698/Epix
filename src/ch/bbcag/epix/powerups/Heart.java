@@ -1,4 +1,4 @@
-package ch.bbcag.entity.powerups;
+package ch.bbcag.epix.powerups;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;

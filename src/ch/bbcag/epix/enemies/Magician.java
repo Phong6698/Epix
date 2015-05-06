@@ -1,4 +1,4 @@
-package ch.bbcag.entity.enemies;
+package ch.bbcag.epix.enemies;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -14,10 +14,10 @@ import ch.bbcag.epix.tilemap.TileMap;
 /**
  * 
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			Boss.java.java Copyright Berufsbildungscenter 2015
+ *			Magician.java.java Copyright Berufsbildungscenter 2015
  */
 
-public class Boss extends Enemy {
+public class Magician extends Enemy {
 
 	private boolean hit;
 	private boolean remove;
@@ -25,10 +25,8 @@ public class Boss extends Enemy {
 	private ArrayList<BufferedImage[]> sprites;
 	private final int[] numFrames = { 6, 3 };
 
-	private static final int WALK = 0;
-	private static final int IDLE = 1;
-	private static final int SHOT = 2;
-	private static final int BOSSATTACK = 3;
+	private static final int IDLE = 0;
+	private static final int SHOOT = 1;
 
 
 	private boolean onscreen;
@@ -43,7 +41,7 @@ public class Boss extends Enemy {
 
 	private ArrayList<MagicianShot> magicianshots;
 
-	public Boss(TileMap tm, Player player) {
+	public Magician(TileMap tm, Player player) {
 
 		super(tm);
 
@@ -66,7 +64,7 @@ public class Boss extends Enemy {
 		// load sprites
 
 		try {
-			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/Boss.png"));
+			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/Wizard.png"));
 			sprites = new ArrayList<BufferedImage[]>();
 			for (int i = 0; i < 2; i++) {
 
@@ -140,7 +138,7 @@ public class Boss extends Enemy {
 	}
 
 
-	public void update(Boss m, Player player) {
+	public void update(Magician m, Player player) {
 
 		// update position
 
@@ -148,13 +146,13 @@ public class Boss extends Enemy {
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
 
-//		for (int i = 0; i < magicianshots.size(); i++) {
-//			magicianshots.get(i).update(m, player);
-//			if (magicianshots.get(i).shouldRemove()) {
-//				magicianshots.remove(i);
-//				i--;
-//			}
-//		}
+		for (int i = 0; i < magicianshots.size(); i++) {
+			magicianshots.get(i).update(m, player);
+			if (magicianshots.get(i).shouldRemove()) {
+				magicianshots.remove(i);
+				i--;
+			}
+		}
 
 		// check flinching
 		if (flinching) {
@@ -163,22 +161,23 @@ public class Boss extends Enemy {
 				flinching = false;
 			}
 		} else if (OnScreen(m, 224)) {
-			if (currentAction != SHOT) {
-				currentAction = SHOT;
-				animation.setFrames(sprites.get(SHOT));
+			if (currentAction != SHOOT) {
+				currentAction = SHOOT;
+				animation.setFrames(sprites.get(SHOOT));
 				animation.setDelay(150);
 				width = 32;
 			}
 		} else {
-			if (currentAction != WALK) {
+			if (currentAction != IDLE) {
 				right = true;
-				currentAction = WALK;
-				animation.setFrames(sprites.get(WALK));
+				currentAction = IDLE;
+				animation.setFrames(sprites.get(IDLE));
 				animation.setDelay(100);
 				width = 32;
-			} 
+			}
 		}
-		if (currentAction == SHOT) {
+
+		if (currentAction == SHOOT) {
 			if (m.getx() > player.getx()) {
 				facingRight = true;
 			} else {
@@ -205,7 +204,7 @@ public class Boss extends Enemy {
 
 	}
 
-	public boolean OnScreen(Boss e, int range) {
+	public boolean OnScreen(Magician e, int range) {
 		double a = e.getXmap();
 		double spielerkoordinaten = (a - a - a) + range;
 		if (e.getx() + range > spielerkoordinaten && e.getx() - spielerkoordinaten < range) {
@@ -256,7 +255,7 @@ public class Boss extends Enemy {
 	}
 
 	public static int getShoot() {
-		return SHOT;
+		return SHOOT;
 	}
 
 	public boolean isOnscreen() {

@@ -1,4 +1,4 @@
-package ch.bbcag.entity.powerups;
+package ch.bbcag.epix.powerups;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -11,18 +11,25 @@ import ch.bbcag.epix.tilemap.TileMap;
 
 /**
  * 
- *
- * @author Chiramet Phong Penglerd, Miguel Jorge || ICT Berufsbildungs AG
- *			Copyright Berufsbildungscenter 2015
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *			Jetpack.java.java Copyright Berufsbildungscenter 2015
  */
-public class Shield extends Powerup {
+
+public class Jetpack extends Powerup {
 
 	private BufferedImage[] sprites;
-
-	public Shield(TileMap tm) {
-		super(tm);
 	
-		shield = true;
+	public Jetpack(TileMap tm) {
+		super(tm);		
+		
+		jetpack = true;
+		plusMoveSpeed = 0;
+		plusMaxSpeed = 0;
+		plusStopSpeed = 0;
+		plusFallSpeed = 0;
+		plusMaxFallSpeed = 0;
+		plusJumpStart = 0;
+		plusStopJumpSpeed = 0;
 		
 		expireTime = 10000;
 		
@@ -33,7 +40,7 @@ public class Shield extends Powerup {
 		
 		try {
 
-			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Powerups/PowerUps_Shield.png"));
+			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Powerups/PowerUps_Jet Pack.png"));
 
 			sprites = new BufferedImage[4];
 			for (int i = 0; i < sprites.length; i++) {
@@ -51,8 +58,10 @@ public class Shield extends Powerup {
 		facingRight = true;
 	}
 	
+	
 	public void update() {
 
+		// update position
 
 		checkTileMapCollision();
 
@@ -62,8 +71,6 @@ public class Shield extends Powerup {
 	}
 	
 	public void draw(Graphics2D g) {
-
-		// if(notOnScreen()) return;
 
 		setMapPosition();
 

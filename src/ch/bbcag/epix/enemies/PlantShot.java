@@ -1,4 +1,4 @@
-package ch.bbcag.entity.enemies;
+package ch.bbcag.epix.enemies;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;

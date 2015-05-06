@@ -1,4 +1,4 @@
-package ch.bbcag.entity.levels;
+package ch.bbcag.epix.levels;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;

@@ -13,8 +13,8 @@ import ch.bbcag.epix.tilemap.TileMap;
 
 /**
  * 
- * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			ShootingPlant.java.java Copyright Berufsbildungscenter 2015
+ * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *         ShootingPlant.java.java Copyright Berufsbildungscenter 2015
  */
 public class ShootingPlant extends Enemy {
 
@@ -26,14 +26,12 @@ public class ShootingPlant extends Enemy {
 	private boolean onscreen;
 	private boolean shotright;
 	private long timer;
-	private long time = 1000; //animation delay * anzahl sprites 
+	private long time = 1000; // animation delay * anzahl sprites
 	private int plantshotsdamage = 10;
-
 
 	private ArrayList<PlantShot> plantshots;
 	private int range = 112;
 
-	
 	/**
 	 * Konstruktor
 	 * 
@@ -59,7 +57,6 @@ public class ShootingPlant extends Enemy {
 
 		setPlantshots(new ArrayList<PlantShot>());
 
-		
 		/*
 		 * Bilder laden
 		 */
@@ -95,7 +92,6 @@ public class ShootingPlant extends Enemy {
 
 	}
 
-	
 	/**
 	 * nächste Position
 	 */
@@ -106,14 +102,13 @@ public class ShootingPlant extends Enemy {
 		}
 
 	}
-	
-	
+
 	/**
 	 * Ob die pflanze den gegner attackiert
 	 * 
 	 * @param player
 	 */
-	public void checkAttackPlayer(Player player){
+	public void checkAttackPlayer(Player player) {
 		for (int j = 0; j < getPlantshots().size(); j++) {
 			if (getPlantshots().get(j).intersects(player)) {
 				player.hit(getPlantshotsdamage());
@@ -123,7 +118,6 @@ public class ShootingPlant extends Enemy {
 		}
 	}
 
-	
 	/**
 	 * Die Pflanze updaten
 	 * 
@@ -150,12 +144,13 @@ public class ShootingPlant extends Enemy {
 			if (elapsed > 400) {
 				flinching = false;
 			}
-		} else if (OnScreen(e, getRange() )) {
+		} else if (OnScreen(e, getRange())) {
 			if (currentAction != getShoot()) {
 				currentAction = getShoot();
 				animation.setFrames(getSprites().get(getShoot()));
 				animation.setDelay(250);
 				width = 64;
+				cwidth = 40;
 			}
 		} else {
 			if (currentAction != getIdle()) {
@@ -163,6 +158,8 @@ public class ShootingPlant extends Enemy {
 				animation.setFrames(getSprites().get(getIdle()));
 				animation.setDelay(400);
 				width = 32;
+				cwidth = 32;
+
 			}
 		}
 
@@ -173,18 +170,18 @@ public class ShootingPlant extends Enemy {
 				setShotright(false);
 			}
 			if (animation.getFrame() == 3) {
-				PlantShot ps = new PlantShot(tileMap, isShotright() , player);
+				PlantShot ps = new PlantShot(tileMap, isShotright(), player);
 				ps.setPosition(e.getx(), e.gety());
 				if (getTimer() + getTime() <= System.currentTimeMillis()) {
 					getPlantshots().add(ps);
 					setTimer(System.currentTimeMillis());
-					
+
 				}
 			}
 		}
 
 		animation.update();
-	
+
 		if (true) {
 			if (e.getx() > player.getx()) {
 				facingRight = true;
@@ -194,7 +191,6 @@ public class ShootingPlant extends Enemy {
 		}
 	}
 
-	
 	/**
 	 * Schaut ob der Spieler die Pflanze auf dem Bildschirm sieht
 	 * 
@@ -211,7 +207,6 @@ public class ShootingPlant extends Enemy {
 			return false;
 		}
 	}
-
 
 	/**
 	 * Pflanze zeichnen
@@ -234,10 +229,21 @@ public class ShootingPlant extends Enemy {
 		}
 
 		// draw fireballs
-		super.draw(g);
+		draw_(g);
 	}
-	
-	
+
+	public void draw_(java.awt.Graphics2D g) {
+
+		if (facingRight) {
+			g.drawImage(animation.getImage(), (int) (x - (width - cwidth) + xmap - width / 2), (int) (y + ymap - height / 2), null);
+			g.drawRect((int) (x - (width - cwidth) + xmap - cwidth / 2), (int) (y + ymap - cheight / 2), getCWidth(), getCHeight());
+		} else {
+			g.drawImage(animation.getImage(), (int) (x + (width - cwidth) + xmap - width / 2 + width), (int) (y + ymap - height / 2), -width, height, null);
+			g.drawRect((int) (x + (width - cwidth) + xmap - cwidth / 2), (int) (y + ymap - cheight / 2), getCWidth(), getCHeight());
+
+		}
+	}
+
 	/*
 	 * Getter und Setter
 	 */
@@ -248,7 +254,7 @@ public class ShootingPlant extends Enemy {
 	public void setOnscreen(boolean onscreen) {
 		this.onscreen = onscreen;
 	}
-	
+
 	public static final int getIdle() {
 		return IDLE;
 	}
@@ -256,7 +262,7 @@ public class ShootingPlant extends Enemy {
 	public static final int getShoot() {
 		return SHOOT;
 	}
-	
+
 	public ArrayList<PlantShot> getPlantshots() {
 		return plantshots;
 	}
@@ -272,6 +278,7 @@ public class ShootingPlant extends Enemy {
 	public void setTimer(long timer) {
 		this.timer = timer;
 	}
+
 	public boolean isShotright() {
 		return shotright;
 	}

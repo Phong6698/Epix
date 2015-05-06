@@ -20,10 +20,7 @@ public class Jetpack extends Powerup {
 	private BufferedImage[] sprites;
 	
 	public Jetpack(TileMap tm) {
-		super(tm);
-		plusHealth = 0;
-		plusDamage = 20;
-		expireTime = 100000;
+		super(tm);		
 		
 		jetpack = true;
 		plusMoveSpeed = 0;
@@ -33,6 +30,8 @@ public class Jetpack extends Powerup {
 		plusMaxFallSpeed = 0;
 		plusJumpStart = 0;
 		plusStopJumpSpeed = 0;
+		
+		expireTime = 10000;
 		
 		width = 32;
 		height = 32;

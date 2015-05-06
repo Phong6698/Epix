@@ -13,8 +13,8 @@ import ch.bbcag.epix.tilemap.TileMap;
 
 /**
  * 
- * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			Plant.java.java Copyright Berufsbildungscenter 2015
+ * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *         Plant.java.java Copyright Berufsbildungscenter 2015
  */
 public class Plant extends Enemy {
 
@@ -23,10 +23,11 @@ public class Plant extends Enemy {
 	private static final int IDLE = 0;
 	private static final int ATTACK = 1;
 
-
 	/**
 	 * Konstruktor
-	 * @param tm {@link TileMap}
+	 * 
+	 * @param tm
+	 *            {@link TileMap}
 	 */
 	public Plant(TileMap tm) {
 		super(tm);
@@ -41,7 +42,6 @@ public class Plant extends Enemy {
 		health = maxHealth = 10;
 		damage = 1;
 
-		
 		/*
 		 * Bilder laden
 		 */
@@ -54,7 +54,7 @@ public class Plant extends Enemy {
 
 				for (int j = 0; j < getNumFrames()[i]; j++) {
 
-					if (i != getAttack()) {
+					if (i != ATTACK) {
 						bi[j] = spritesheet.getSubimage(j * width, i * height, width, height);
 					} else {
 						bi[j] = spritesheet.getSubimage(j * width * 2, i * height, width * 2, height);
@@ -76,19 +76,17 @@ public class Plant extends Enemy {
 		width = 32;
 	}
 
-	
 	/**
 	 * nächste Position
 	 */
 	private void getNextPosition() {
-		
+
 		// falling
 		if (falling) {
 			dy += getFallSpeed();
 		}
 	}
 
-	
 	/**
 	 * Die Pflanze updaten
 	 * 
@@ -114,6 +112,7 @@ public class Plant extends Enemy {
 				animation.setFrames(getSprites().get(getAttack()));
 				animation.setDelay(150);
 				width = 64;
+				cwidth = 32;
 			}
 		} else {
 			if (currentAction != getIdle()) {
@@ -121,13 +120,13 @@ public class Plant extends Enemy {
 				animation.setFrames(getSprites().get(getIdle()));
 				animation.setDelay(400);
 				width = 32;
+				cwidth = 32;
 			}
 		}
-		
 
-		//update animation
+		// update animation
 		animation.update();
-		
+
 		if (true) {
 			if (e.getx() > player.getx()) {
 				facingRight = true;
@@ -135,9 +134,7 @@ public class Plant extends Enemy {
 				facingRight = false;
 			}
 		}
-		
 	}
-	
 
 	/**
 	 * Schaut ob der Spieler die Pflanze auf dem Bildschirm sieht
@@ -147,26 +144,36 @@ public class Plant extends Enemy {
 	 * @return ob der Spieler die Plfanze auf dem Bildschirm sieht
 	 */
 	private boolean OnScreen(Plant e, Player player) {
-		
-		if (e.getx() - 48 < player.getx() && e.getx() + 32  - player.getx() > 0) {
+
+		if (e.getx() - 48 < player.getx() && e.getx() + 32 - player.getx() > 0) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	
 	/**
 	 * zeichnet die Pflanze
 	 */
 	public void draw(Graphics2D g) {
-		
+
 		// if(notOnScreen()) return;
 		setMapPosition();
-		super.draw(g);
+		draw_(g);
 	}
 
-	
+	public void draw_(java.awt.Graphics2D g) {
+
+		if (facingRight) {
+			g.drawImage(animation.getImage(), (int) (x + (width - cwidth)/4 + xmap - width / 2), (int) (y + ymap - height / 2), null);
+			g.drawRect((int) (x + (width - cwidth)/4 + xmap - cwidth / 2), (int) (y + ymap - cheight / 2), getCWidth(), getCHeight());
+		} else {
+			g.drawImage(animation.getImage(), (int) (x - (width - cwidth)/4 + xmap - width / 2 + width), (int) (y + ymap - height / 2), -width, height, null);
+			g.drawRect((int) (x - (width - cwidth)/4 + xmap - cwidth / 2), (int) (y + ymap - cheight / 2), getCWidth(), getCHeight());
+}
+
+	}
+
 	/*
 	 * Getter und Setter
 	 */
@@ -178,11 +185,11 @@ public class Plant extends Enemy {
 		return numFrames;
 	}
 
-	public static final int getIdle() {
+	public final int getIdle() {
 		return IDLE;
 	}
 
-	public static final int getAttack() {
+	public final int getAttack() {
 		return ATTACK;
 	}
 

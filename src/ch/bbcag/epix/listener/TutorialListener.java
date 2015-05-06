@@ -5,8 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import ch.bbcag.epix.view.Game;
-
 /**
  * 
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG

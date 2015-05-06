@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,11 +12,6 @@ import javax.swing.border.EmptyBorder;
 
 import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.listener.TutorialListener;
-
-import javax.swing.JButton;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 /**
  * 

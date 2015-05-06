@@ -3,7 +3,6 @@ package ch.bbcag.epix.entity;
 import java.awt.Rectangle;
 
 import ch.bbcag.epix.tilemap.Tile;
-import ch.bbcag.epix.entity.Animation;
 import ch.bbcag.epix.tilemap.TileMap;
 import ch.bbcag.epix.view.EpixView;
 

@@ -1,10 +1,6 @@
 package ch.bbcag.entity.levels;
 
 import java.awt.Graphics2D;
-
-import ch.bbcag.epix.controller.EpixController;
-import ch.bbcag.epix.entity.HUD;
-
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -16,7 +12,9 @@ import ch.bbcag.entity.powerups.DamageUp;
 import ch.bbcag.entity.powerups.Heart;
 import ch.bbcag.entity.powerups.Jetpack;
 import ch.bbcag.entity.powerups.Shield;
+import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.Coin;
+import ch.bbcag.epix.entity.HUD;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.entity.Powerup;
 import ch.bbcag.epix.entity.User;

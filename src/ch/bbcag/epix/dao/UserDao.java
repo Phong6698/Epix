@@ -2,9 +2,6 @@ package ch.bbcag.epix.dao;
 
 
 import java.sql.SQLException;
-
-
-
 import java.util.List;
 
 import ch.bbcag.epix.entity.User;

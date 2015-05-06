@@ -4,11 +4,9 @@ import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import ch.bbcag.epix.entity.User;
-import ch.bbcag.epix.view.Game;
 import ch.bbcag.epix.view.GameFrame;
 
 /**

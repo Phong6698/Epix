@@ -1,9 +1,8 @@
 package ch.bbcag.epix.tilemap;
 
 
-import java.awt.*;
-import java.awt.image.*;
-import java.io.*;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 

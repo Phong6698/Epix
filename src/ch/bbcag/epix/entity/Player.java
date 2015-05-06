@@ -10,7 +10,6 @@ import ch.bbcag.entity.enemies.Magician;
 import ch.bbcag.entity.enemies.Plant;
 import ch.bbcag.entity.enemies.PlantShot;
 import ch.bbcag.entity.enemies.ShootingPlant;
-import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.tilemap.TileMap;
 
 /**

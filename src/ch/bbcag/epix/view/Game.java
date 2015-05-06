@@ -6,7 +6,7 @@ import ch.bbcag.epix.entity.User;
 
 /**
  * 
- * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
  *			Game.java.java Copyright Berufsbildungscenter 2015
  */
 
@@ -19,7 +19,7 @@ public class Game {
 		user.setCoin(100);
 		user.setMaxHealth(100);
 
-		GameFrame game = new GameFrame(2, user);
+		GameFrame game = new GameFrame(1, user);
 		game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

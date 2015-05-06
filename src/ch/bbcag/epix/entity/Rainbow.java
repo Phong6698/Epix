@@ -26,14 +26,14 @@ public class Rainbow extends MapObject {
 		
 		facingRight = right;
 		
-		setMoveSpeed(4.8);
+		setMoveSpeed(0.8);
 		if(right) dx = getMoveSpeed();
 		else dx = -getMoveSpeed();
 		
 		width = 32;
 		height = 32;
 		cwidth = 10;
-		cheight = 20;
+		cheight = 10;
 		
 		// load sprites
 		try {
@@ -105,8 +105,21 @@ public class Rainbow extends MapObject {
 		
 		setMapPosition();
 		
-		super.draw(g);
+		draw_(g);
 		
+	}
+	
+	public void draw_(java.awt.Graphics2D g) {
+		
+		if(facingRight) {
+			System.out.println((height- cheight)/2);
+			g.drawImage(animation.getImage(), (int)(x + xmap - width / 2), (int)(y - (height/2 - cheight/2 )/2 + ymap - height / 2), null);
+		}
+		else {
+			g.drawImage(animation.getImage(), (int)(x + xmap -width / 2 + width), (int)(y + ymap - height / 2), -width, height, null);
+		}
+		g.drawRect((int) (x + xmap -cwidth / 2),  (int) (y + ymap - cheight / 2),getCWidth(), getCHeight());
+
 	}
 	
 }

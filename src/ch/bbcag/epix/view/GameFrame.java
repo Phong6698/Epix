@@ -129,6 +129,10 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 	
 	private void update() {
 		gsm.update();
+		
+		if(gsm.isFinished()) {
+			
+		}
 	}
 	private void draw() {
 		gsm.draw(g);

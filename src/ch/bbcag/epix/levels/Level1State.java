@@ -10,6 +10,7 @@ import ch.bbcag.epix.enemies.Magician;
 import ch.bbcag.epix.enemies.Plant;
 import ch.bbcag.epix.enemies.ShootingPlant;
 import ch.bbcag.epix.entity.Coin;
+import ch.bbcag.epix.entity.Flag;
 import ch.bbcag.epix.entity.HUD;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.entity.Powerup;
@@ -42,6 +43,8 @@ public class Level1State extends GameState{
 	
 	private HUD hud;
 	
+	
+	
 	private ArrayList<Plant> plant;
 	private ArrayList<ShootingPlant> shootingPlant;
 	private ArrayList<Magician> magicians;
@@ -49,6 +52,9 @@ public class Level1State extends GameState{
 	private ArrayList<Powerup> powerups;
 	
 	private ArrayList<Coin> coins;
+	
+	private ArrayList<Flag> flags;
+	
 	
 	public Level1State(GameStateManager gsm, User user) {
 		this.gsm = gsm;	
@@ -81,6 +87,7 @@ public class Level1State extends GameState{
 		spawnEnemies();
 		spawnPowerups();
 		spawnCoins();
+		spawnFlag();
 		
 		
 		
@@ -233,6 +240,23 @@ public class Level1State extends GameState{
 			coins.add(coin);
 		}
 	}
+	
+	private void spawnFlag() {
+		flags = new ArrayList<Flag>();
+		/*
+		 * flag
+		 */
+		Flag flag;
+		Point[] flagPoints = new Point[] {
+				new Point(3152, 240),
+				
+		};
+		for(int i = 0; i < flagPoints.length; i++) {
+			flag = new Flag(tilemap);
+			flag.setPosition(flagPoints[i].x, flagPoints[i].y);
+			flags.add(flag);
+		}
+	}
 
 	public void update() {
 
@@ -253,6 +277,10 @@ public class Level1State extends GameState{
 		
 		player.checkPowerup(powerups, player);
 		player.checkCoin(coins);
+		
+		finished = player.checkFlag(flags);
+		
+		
 		
 		
 		for(int i = 0; i < plant.size(); i++) {
@@ -316,6 +344,12 @@ public class Level1State extends GameState{
 
 			}
 		}
+		
+		for(int i = 0; i < flags.size(); i++) {
+			Flag flag = flags.get(i);
+			flag.update();
+			
+		}
 	}
 
 	public void draw(Graphics2D g) {
@@ -345,6 +379,10 @@ public class Level1State extends GameState{
 		
 		for(int i = 0; i < coins.size(); i++) {
 			coins.get(i).draw(g);
+		}
+		
+		for(int i = 0; i < flags.size(); i++) {
+			flags.get(i).draw(g);
 		}
 		
 		// draw player

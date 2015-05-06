@@ -16,6 +16,10 @@ public class GameStateManager {
 	private GameState[] gameStates;
 	private int currentLevel;
 	
+	private boolean finished;
+	
+	
+	
 	public static final int NUMLEVELS = 4;
 
 	public static final int LEVEL1 = 1;
@@ -38,7 +42,7 @@ public class GameStateManager {
 			gameStates[level] = new Level1State(this, user);
 		}
 		else if(level == LEVEL2) {
-			gameStates[level] = new Level2State(this,user);
+			gameStates[level] = new Level2State(this, user);
 		}
 		else if(level == BOSSLEVEL) {
 			gameStates[level] = new BossState(this);
@@ -59,7 +63,12 @@ public class GameStateManager {
 	public void update() {
 		try {
 			gameStates[currentLevel].update();
+			if(gameStates[currentLevel].finished) {
+				this.setFinished(true);
+			}
 		} catch(Exception e) {}
+		
+		
 	}
 	
 	public void draw(java.awt.Graphics2D g) {
@@ -82,6 +91,18 @@ public class GameStateManager {
 
 	public void setCurrentLevel(int currentLevel) {
 		this.currentLevel = currentLevel;
+	}
+
+
+
+	public boolean isFinished() {
+		return finished;
+	}
+
+
+
+	public void setFinished(boolean finished) {
+		this.finished = finished;
 	}
 	
 }

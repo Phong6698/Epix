@@ -209,7 +209,7 @@ public class Player extends MapObject {
 
 			Coin coin = coins.get(i);
 
-			// check enemy collision
+			// check coin collision
 			if (intersects(coin)) {
 				coin.update();
 				this.setCoin(this.getCoin() + coin.getCoinValue());
@@ -219,6 +219,20 @@ public class Player extends MapObject {
 
 		}
 
+	}
+	
+	public boolean checkFlag(ArrayList<Flag> flags) {
+		for (int i = 0; i < flags.size(); i++) {
+
+			Flag flag = flags.get(i);
+			
+			if (intersects(flag)) {
+				return true;
+			
+			}
+			
+		}
+		return false;
 	}
 
 	public void addPowerupToPlayer(Powerup powerup, Player player) {

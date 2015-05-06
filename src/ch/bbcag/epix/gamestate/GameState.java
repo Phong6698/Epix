@@ -9,6 +9,7 @@ package ch.bbcag.epix.gamestate;
 public abstract class GameState {
 	
 	protected GameStateManager gsm;
+	protected Boolean finished;
 	
 	public abstract void init();
 	public abstract void update();

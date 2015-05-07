@@ -28,7 +28,6 @@ public class Magician extends Enemy {
 	private static final int IDLE = 0;
 	private static final int SHOOT = 1;
 
-
 	private boolean onscreen;
 
 	private boolean shooting;

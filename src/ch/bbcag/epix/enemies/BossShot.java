@@ -37,7 +37,7 @@ public class BossShot extends MapObject {
 		cwidth = 1;
 		cheight = 1;
 		try {
-			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/BossShot.png"));
+			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/Boss_Shot.png"));
 
 			sprites = new BufferedImage[2];
 			for (int i = 0; i < sprites.length; i++) {
@@ -47,6 +47,7 @@ public class BossShot extends MapObject {
 			animation = new Animation();
 			animation.setFrames(sprites);
 			animation.setDelay(100);
+			width= 32;
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,7 +63,6 @@ public class BossShot extends MapObject {
 		animation.setDelay(100);
 		cwidth = 0;
 		cheight = 0;
-		
 		dx = 0;
 	}
 

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import ch.bbcag.epix.enemies.Boss;
 import ch.bbcag.epix.enemies.Magician;
 import ch.bbcag.epix.enemies.Plant;
 import ch.bbcag.epix.enemies.PlantShot;
@@ -14,16 +15,14 @@ import ch.bbcag.epix.tilemap.TileMap;
 
 /**
  * 
- * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			Player.java.java Copyright Berufsbildungscenter 2015
+ * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *         Player.java.java Copyright Berufsbildungscenter 2015
  */
-
 
 public class Player extends MapObject {
 
 	// player stuff
 	private int health;
-	
 
 	private int coin;
 	private String username;
@@ -35,7 +34,7 @@ public class Player extends MapObject {
 	private boolean flinching;
 
 	private long flinchTimer;
-	
+
 	private User user;
 
 	private ArrayList<Powerup> powerups = new ArrayList<Powerup>();
@@ -121,7 +120,7 @@ public class Player extends MapObject {
 		currentAction = IDLE;
 		animation.setFrames(sprites.get(IDLE));
 		animation.setDelay(100);
-		
+
 		this.user = user;
 
 	}
@@ -163,6 +162,26 @@ public class Player extends MapObject {
 			if (intersects(e)) {
 				e.update(e, this);
 				hit(e.getDamage());
+			}
+		}
+	}
+
+	public void checkAttackBoss(ArrayList<Boss> boss) {
+		// loop through enemies
+		for (int i = 0; i < boss.size(); i++) {
+			Boss b = boss.get(i);
+			// fireballs
+			for (int j = 0; j < rainbows.size(); j++) {
+				if (rainbows.get(j).intersects(b)) {
+					b.hit(rainbowdamage);
+					rainbows.get(j).setHit();
+					break;
+				}
+			}
+			// check enemy collision
+			if (intersects(b)) {
+				b.update(b, this);
+				hit(b.getDamage());
 			}
 		}
 	}
@@ -214,23 +233,23 @@ public class Player extends MapObject {
 				coin.update();
 				this.setCoin(this.getCoin() + coin.getCoinValue());
 				coin.setTaken(true);
-				
+
 			}
 
 		}
 
 	}
-	
+
 	public boolean checkFlag(ArrayList<Flag> flags) {
 		for (int i = 0; i < flags.size(); i++) {
 
 			Flag flag = flags.get(i);
-			
+
 			if (intersects(flag)) {
 				return true;
-			
+
 			}
-			
+
 		}
 		return false;
 	}
@@ -242,22 +261,22 @@ public class Player extends MapObject {
 			setHealth(getHealth() + powerup.plusHealth);
 		}
 		setRainbowdamage(getRainbowdamage() + powerup.plusDamage);
-		
-		//Jetpack
+
+		// Jetpack
 		if (powerup.jetpack == true) {
 			jetpack = true;
 		}
-		 moveSpeed = moveSpeed + powerup.moveSpeed;
-		 maxSpeed = maxSpeed + powerup.moveSpeed;
-		 stopSpeed = stopSpeed + powerup.moveSpeed;
-		 fallSpeed = fallSpeed + powerup.moveSpeed;
-		 maxFallSpeed = maxFallSpeed + powerup.moveSpeed;
-		 jumpStart = jumpStart + powerup.moveSpeed;
-		 stopJumpSpeed = stopJumpSpeed + powerup.moveSpeed;
-		 
-		//Shield 
+		moveSpeed = moveSpeed + powerup.moveSpeed;
+		maxSpeed = maxSpeed + powerup.moveSpeed;
+		stopSpeed = stopSpeed + powerup.moveSpeed;
+		fallSpeed = fallSpeed + powerup.moveSpeed;
+		maxFallSpeed = maxFallSpeed + powerup.moveSpeed;
+		jumpStart = jumpStart + powerup.moveSpeed;
+		stopJumpSpeed = stopJumpSpeed + powerup.moveSpeed;
+
+		// Shield
 		if (powerup.shield == true) {
-				shield = true;
+			shield = true;
 		}
 
 		powerups.add(powerup);
@@ -269,8 +288,8 @@ public class Player extends MapObject {
 	public void removePowerupFromPlayer(Powerup powerup) {
 		setHealth(getHealth() - powerup.plusHealth);
 		setRainbowdamage(getRainbowdamage() - powerup.plusDamage);
-		
-		//Jetpack
+
+		// Jetpack
 		if (powerup.jetpack == true) {
 			jetpack = false;
 		}
@@ -281,10 +300,10 @@ public class Player extends MapObject {
 		maxFallSpeed = maxFallSpeed - powerup.moveSpeed;
 		jumpStart = jumpStart - powerup.moveSpeed;
 		stopJumpSpeed = stopJumpSpeed - powerup.moveSpeed;
-		
-		//Shield 
+
+		// Shield
 		if (powerup.shield == true) {
-				shield = false;
+			shield = false;
 		}
 
 		powerups.remove(powerup);
@@ -298,15 +317,15 @@ public class Player extends MapObject {
 	 * @param damage
 	 */
 	public void hit(int damage) {
-		if(!shield){
-			if (flinching){
+		if (!shield) {
+			if (flinching) {
 				return;
 			}
 			health -= damage;
-			if (health < 0){
+			if (health < 0) {
 				health = 0;
 			}
-			if (health == 0){
+			if (health == 0) {
 				dead = true;
 			}
 			flinching = true;
@@ -407,9 +426,9 @@ public class Player extends MapObject {
 				rainbowing = false;
 		}
 		// fireball attack
-		if (rainbowing && currentAction != RAINBOW && currentAction != RAINBOW_JETPACK && rainbows.size() < 2) {			
+		if (rainbowing && currentAction != RAINBOW && currentAction != RAINBOW_JETPACK && rainbows.size() < 2) {
 			Rainbow fb = new Rainbow(tileMap, facingRight);
-			fb.setPosition(x, y- (height/2 - cheight/2)/2);
+			fb.setPosition(x, y - (height / 2 - cheight / 2) / 2);
 			rainbows.add(fb);
 		}
 
@@ -437,7 +456,7 @@ public class Player extends MapObject {
 				animation.setFrames(sprites.get(RAINBOW));
 				animation.setDelay(100);
 				width = 32;
-			} else if (currentAction != RAINBOW_JETPACK && jetpack){
+			} else if (currentAction != RAINBOW_JETPACK && jetpack) {
 				currentAction = RAINBOW_JETPACK;
 				animation.setFrames(sprites.get(RAINBOW_JETPACK));
 				animation.setDelay(100);
@@ -445,7 +464,7 @@ public class Player extends MapObject {
 			}
 		} else if (dy > 0) {
 			if (currentAction != FALLING && !jetpack) {
-				
+
 				currentAction = FALLING;
 				animation.setFrames(sprites.get(FALLING));
 				animation.setDelay(-4);

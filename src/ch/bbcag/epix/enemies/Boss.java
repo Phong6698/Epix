@@ -13,8 +13,8 @@ import ch.bbcag.epix.tilemap.TileMap;
 
 /**
  * 
- * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			Boss.java.java Copyright Berufsbildungscenter 2015
+ * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *         Boss.java.java Copyright Berufsbildungscenter 2015
  */
 
 public class Boss extends Enemy {
@@ -23,23 +23,26 @@ public class Boss extends Enemy {
 	private boolean remove;
 
 	private ArrayList<BufferedImage[]> sprites;
-	private final int[] numFrames = { 5, 1, 3, 6 };
+	private final int[] numFrames = { 6, 1, 5, 10 };
 
-	private static final int WALK = 2;
+	private static final int WALK = 0;
 	private static final int IDLE = 1;
-	private static final int SHOT = 2;
+	private static final int SHOOT = 2;
 	private static final int BOSSATTACK = 3;
-
 
 	private boolean onscreen;
 
 	private boolean shooting;
-	
+
 	private boolean shotright;
 
 	private long timer;
-	private long time = 450; //animation delay * anzahl sprites 
+	private long time = 450; // animation delay * anzahl sprites
 	private int range;
+	
+	private double fallSpeed = 0.1;
+	private double maxFallSpeed = 10.0;
+
 
 	private ArrayList<BossShot> bossshots;
 
@@ -49,12 +52,10 @@ public class Boss extends Enemy {
 
 		moveSpeed = 1;
 		maxSpeed = 1;
-		fallSpeed = 0.2;
-		maxFallSpeed = 10.0;
-
+		
 		width = 64;
 		height = 64;
-		cwidth = 64;
+		cwidth = 37;
 		cheight = 64;
 		range = 224;
 
@@ -68,7 +69,7 @@ public class Boss extends Enemy {
 		try {
 			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/Boss.png"));
 			sprites = new ArrayList<BufferedImage[]>();
-			for (int i = 0; i < 2; i++) {
+			for (int i = 0; i < 4; i++) {
 
 				BufferedImage[] bi = new BufferedImage[numFrames[i]];
 
@@ -88,47 +89,47 @@ public class Boss extends Enemy {
 		animation.setFrames(sprites.get(IDLE));
 		animation.setDelay(100);
 		width = 64;
-
 	}
-
+	
 	private void getNextPosition() {
 
-//		if (left && dx == 0) {
-//			right = true;
-//			left = false;
-//			facingRight = false;
-//			shotright = true;
-//		} else if (right && dx == 0) {
-//			right = false;
-//			left = true;
-//			facingRight = true;
-//			shotright = false;
-//
-//		}
-//
-//		if (currentAction == WALK) {
-//			if (left) {
-//				dx -= moveSpeed;
-//				if (dx < -maxSpeed) {
-//					dx = -maxSpeed;
-//				}
-//			} else if (right) {
-//				dx += moveSpeed;
-//				if (dx > maxSpeed) {
-//					dx = maxSpeed;
-//				}
-//			}
-//		} else {
-//			dx = 0;
-//		}
+		if (left && dx == 0) {
+			right = true;
+			left = false;
+			facingRight = false;
+			shotright = true;
+		} else if (right && dx == 0) {
+			right = false;
+			left = true;
+			facingRight = true;
+			shotright = false;
+
+		}
+
+		if (currentAction == WALK) {
+			if (left) {
+				dx -= moveSpeed;
+				if (dx < -maxSpeed) {
+					dx = -maxSpeed;
+				}
+			} else if (right) {
+				dx += moveSpeed;
+				if (dx > maxSpeed) {
+					dx = maxSpeed;
+				}
+			}
+		} else {
+			dx = 0;
+		}
+
 		// falling
 		if (falling) {
 			dy += fallSpeed;
 		}
 
 	}
-	
-	public void checkAttackPlayer(Player player){
+
+	public void checkAttackPlayer(Player player) {
 		for (int j = 0; j < bossshots.size(); j++) {
 			if (bossshots.get(j).intersects(player)) {
 				player.hit(damage);
@@ -137,7 +138,6 @@ public class Boss extends Enemy {
 			}
 		}
 	}
-
 
 	public void update(Boss m, Player player) {
 
@@ -161,24 +161,24 @@ public class Boss extends Enemy {
 			if (elapsed > 400) {
 				flinching = false;
 			}
-//		}
-//		else if (OnScreen(m, 224)) {
-//			if (currentAction != WALK) {
-//				currentAction = WALK;
-//				animation.setFrames(sprites.get(SHOT));
-//				animation.setDelay(150);
-//				width = 32;
-//			}
+		} else if (OnScreen(m, 100)) {
+			if (currentAction != SHOOT) {
+				currentAction = SHOOT;
+				animation.setFrames(sprites.get(SHOOT));
+				animation.setDelay(150);
+				width = 64;
+			}
 		} else {
 			if (currentAction != WALK) {
-			//	right = true;
 				currentAction = WALK;
+				right = true;
 				animation.setFrames(sprites.get(WALK));
 				animation.setDelay(100);
-				width = 32;
-			} 
+				width = 64;
+			}
 		}
-		//if (currentAction == SHOT) {
+
+		if (currentAction == SHOOT) {
 			if (m.getx() > player.getx()) {
 				facingRight = true;
 			} else {
@@ -190,20 +190,21 @@ public class Boss extends Enemy {
 				shotright = false;
 			}
 
-//			if (animation.getFrame() == 2) {
-//				BossShot ps = new BossShot(tileMap, shotright, player);
-//				ps.setPosition(m.getx(), m.gety());
-//				if (timer + time <= System.currentTimeMillis()) {
-//					bossshots.add(ps);
-//					timer = System.currentTimeMillis();
-//				}
-//			}
+			if (animation.getFrame() == 4) {
+				BossShot ps = new BossShot(tileMap, shotright, player);
+				ps.setPosition(m.getx(), m.gety());
+				if (timer + time <= System.currentTimeMillis()) {
+					bossshots.add(ps);
+					timer = System.currentTimeMillis();
+				}
+			}
 
-	//	}
+		}
 		
 		animation.update();
 
 	}
+
 
 	public boolean OnScreen(Boss e, int range) {
 		double a = e.getXmap();
@@ -235,6 +236,7 @@ public class Boss extends Enemy {
 		super.draw(g);
 
 	}
+
 	public boolean isHit() {
 		return hit;
 	}
@@ -256,7 +258,7 @@ public class Boss extends Enemy {
 	}
 
 	public static int getShoot() {
-		return SHOT;
+		return SHOOT;
 	}
 
 	public boolean isOnscreen() {
@@ -282,6 +284,7 @@ public class Boss extends Enemy {
 	public int getRange() {
 		return range;
 	}
+
 	public void setHit(boolean hit) {
 		this.hit = hit;
 	}

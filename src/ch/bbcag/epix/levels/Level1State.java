@@ -66,7 +66,6 @@ public class Level1State extends GameState{
 	 */
 	public void init() {
 	
-		
 		tilemap = new TileMap(32);
 		tilemap.loadTiles("/TileSets/GroundTileSet.png");
 		tilemap.loadMap("/Maps/level1.map");
@@ -291,6 +290,7 @@ public class Level1State extends GameState{
 		player.checkAttackPlants(plant);
 		player.checkAttackShootingPlants(shootingPlant);
 		player.checkAttackMagician(magicians);
+		player.checkAttackBoss(boss);
 		
 		player.checkPowerup(powerups, player);
 		player.checkCoin(coins);
@@ -350,6 +350,8 @@ public class Level1State extends GameState{
 			if (e.isDead()) {
 				boss.remove(i);
 				i--;
+			}else {
+				e.checkAttackPlayer(player);
 			}
 		}
 		

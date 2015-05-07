@@ -98,13 +98,17 @@ public class EpixView extends JFrame{
 	
 	
 	public EpixView(User user) {
+		
+		
 		this.setUser(user);
+		
+		JFrame epix = new JFrame();
 
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(false);
-		this.setBounds(100, 100, 801, 523);
-		this.setLocationRelativeTo(null);
-		this.getContentPane().removeAll();
+		epix.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		epix.setResizable(false);
+		epix.setBounds(100, 100, 801, 523);
+		epix.setLocationRelativeTo(null);
+		epix.getContentPane().removeAll();
 		
 		
 		/*
@@ -266,14 +270,14 @@ public class EpixView extends JFrame{
 		levelAuswählenButton.addActionListener(new UpgradeCardButtonListener(cards));
 		
 		//levelAuswahlCard
-		levelZurückBtton.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser()));
-		level1Button.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser()));
-		level2Button.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser()));
-		bossLevelButton.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser()));
+		levelZurückBtton.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser(), epix));
+		level1Button.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser(), epix));
+		level2Button.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser(), epix));
+		bossLevelButton.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser(), epix));
 		
 		
-		this.setContentPane(cards);
-		this.setVisible(true);
+		epix.setContentPane(cards);
+		epix.setVisible(true);
 	}
 
 	public User getUser() {

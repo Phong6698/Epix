@@ -63,6 +63,7 @@ public class Level2State extends GameState{
 	 */
 	public void init() {
 	
+		levelName = "Level 2";
 		
 		tilemap = new TileMap(32);
 		tilemap.loadTiles("/TileSets/GroundTileSet.png");

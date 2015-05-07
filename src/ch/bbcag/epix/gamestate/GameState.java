@@ -12,6 +12,8 @@ public abstract class GameState {
 	
 	protected Player player;
 	
+	protected String levelName;
+	
 	protected GameStateManager gsm;
 	protected Boolean finished;
 	

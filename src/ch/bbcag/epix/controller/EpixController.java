@@ -4,8 +4,12 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import ch.bbcag.epix.dao.LevelDao;
+import ch.bbcag.epix.dao.LevelJDBCdao;
 import ch.bbcag.epix.dao.PlayerDao;
 import ch.bbcag.epix.dao.PlayerJDBCdao;
+import ch.bbcag.epix.dao.SaveDao;
+import ch.bbcag.epix.dao.SaveJDBCdao;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.popup.EmailEmpty;
@@ -27,6 +31,8 @@ import ch.bbcag.epix.utils.CryptUtils;
 public class EpixController {
 	private static EpixController instance = new EpixController();
 	private final static PlayerDao USER_DAO = new PlayerJDBCdao();
+	private final static SaveDao SAVE_DAO = new SaveJDBCdao();
+	private final static LevelDao LEVEL_DAO = new LevelJDBCdao();
 
 	/**
 	 * Konstruktor der Klasse GMCController nur Privat
@@ -143,5 +149,25 @@ public class EpixController {
 			e.printStackTrace();
 		}
 	}
+	
+	public void save(User user, int level_ID) {
+		try {
+			SAVE_DAO.save(user, level_ID);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public int getID_Level(String levelName) {
+		int id_Level = 0;
+		try {
+			id_Level = LEVEL_DAO.getID_Level(levelName);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return id_Level;
+	}
+	
+	
 
 };

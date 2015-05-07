@@ -19,6 +19,8 @@ public class GameStateManager {
 	
 	private boolean finished;
 	
+	private User user;
+	
 	
 	
 	public static final int NUMLEVELS = 4;
@@ -28,6 +30,8 @@ public class GameStateManager {
 	public static final int BOSSLEVEL = 3;
 	
 	public GameStateManager(int level, User user) {
+		
+		this.user = user;
 		
 		gameStates = new GameState[NUMLEVELS];
 		
@@ -68,6 +72,9 @@ public class GameStateManager {
 			//if finished update coin in database
 			if(gameStates[currentLevel].finished) {
 				EpixController.getInstance().coinsUpdate(gameStates[currentLevel].player);
+				int level_ID = EpixController.getInstance().getID_Level(gameStates[currentLevel].levelName);
+				EpixController.getInstance().save(user, level_ID);
+				
 				this.setFinished(true);
 			}
 		} catch(Exception e) {}

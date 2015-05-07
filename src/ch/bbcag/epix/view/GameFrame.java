@@ -1,5 +1,6 @@
 package ch.bbcag.epix.view;
 
+import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -8,6 +9,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.gamestate.GameStateManager;
@@ -58,6 +60,26 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 	// game state manager
 	private GameStateManager gsm;
 	
+	//epix frame
+	private JFrame epix;
+	
+	public GameFrame(int level, User user, JFrame epix) {
+		setUser(user);
+		setEpix(epix);
+		
+		this.level = level;
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setResizable(true);
+		this.pack();
+		this.setLocationRelativeTo(null);
+		this.setPreferredSize(new Dimension((int)(WIDTH * SCALE), (int)(HEIGHT * SCALE)));
+		this.setBounds(100, 100, (int)(WIDTH * SCALE), (int)(HEIGHT * SCALE));
+		this.setLocationRelativeTo(null);
+		this.setFocusable(true);
+		this.requestFocus();
+		this.setVisible(true);
+	}
+	
 	public GameFrame(int level, User user) {
 		setUser(user);
 		
@@ -73,7 +95,7 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 		this.requestFocus();
 		this.setVisible(true);
 	}
-	
+
 	public void addNotify() {
 		super.addNotify();
 		if(thread == null) {
@@ -107,7 +129,7 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 			
 			start = System.nanoTime();
 			
-			update();
+			
 			draw();
 			drawToScreen();
 			
@@ -122,6 +144,7 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 			catch(Exception e) {
 				e.printStackTrace();
 			}
+			update();
 			
 		}
 		
@@ -134,6 +157,11 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 		if(gsm.isFinished()) {	
 			running = false;
 			this.dispose();
+			EpixView epix = new EpixView(getUser());
+			CardLayout cardLayout = (CardLayout) epix.cards.getLayout();
+			cardLayout.show(epix.cards, "levelAuswahlCard");			
+			
+			
 			
 		}
 	}
@@ -154,6 +182,14 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 	
 	public void keyReleased(KeyEvent key) {
 		gsm.keyReleased(key.getKeyCode());
+	}
+
+	public JFrame getEpix() {
+		return epix;
+	}
+
+	public void setEpix(JFrame epix) {
+		this.epix = epix;
 	}
 
 }

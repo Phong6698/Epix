@@ -32,6 +32,8 @@ public class BossState extends GameState{
 	}
 
 	public void init() {
+		
+		levelName = "Boss Level";
 	
 		tilemap = new TileMap(16);
 		tilemap.loadTiles("/TileSets/GroundTileSet.png");

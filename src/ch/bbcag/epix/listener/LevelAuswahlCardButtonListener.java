@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import ch.bbcag.epix.entity.User;
@@ -19,22 +20,27 @@ public class LevelAuswahlCardButtonListener implements ActionListener {
 
 	private JPanel card;
 	private User user;
+	private JFrame epix;
 	
-	public LevelAuswahlCardButtonListener(JPanel card, User user) {
+	public LevelAuswahlCardButtonListener(JPanel card, User user, JFrame epix) {
 		this.setCard(card);
 		this.setUser(user);
+		this.setEpix(epix);
 	}
 	
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("Level 1")) {
-			new GameFrame(1, getUser());
+			getEpix().dispose();
+			new GameFrame(1, getUser(), getEpix());
 			}
 		else if (e.getActionCommand().equals("Level 2")) {
-			new GameFrame(2, getUser());
+			getEpix().dispose();
+			new GameFrame(2, getUser(), getEpix());
 		}
 		else if (e.getActionCommand().equals("Boss Level")) {
-			new GameFrame(3, getUser());
+			getEpix().dispose();
+			new GameFrame(3, getUser(), getEpix());
 		}
 		else if (e.getActionCommand().equals("Zurück")) {
 			CardLayout cardLayout = (CardLayout) getCard().getLayout();
@@ -59,6 +65,16 @@ public class LevelAuswahlCardButtonListener implements ActionListener {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+
+	public JFrame getEpix() {
+		return epix;
+	}
+
+
+	public void setEpix(JFrame epix) {
+		this.epix = epix;
 	}
 
 }

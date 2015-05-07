@@ -76,6 +76,7 @@ public class PlayerJDBCdao extends Database implements PlayerDao {
 		
 		public void coinsUpdate(Player player) throws SQLException{
 			String sql = "UPDATE player SET coins = ? WHERE Username = ? ;";
+			con = getCon();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, player.getCoin());
 			ps.setString(2, player.getUsername());

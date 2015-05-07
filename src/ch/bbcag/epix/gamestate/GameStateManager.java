@@ -73,6 +73,7 @@ public class GameStateManager {
 			if(gameStates[currentLevel].finished) {
 				EpixController.getInstance().coinsUpdate(gameStates[currentLevel].player);
 				int level_ID = EpixController.getInstance().getID_Level(gameStates[currentLevel].levelName);
+				System.out.println(level_ID);
 				EpixController.getInstance().save(user, level_ID);
 				
 				this.setFinished(true);

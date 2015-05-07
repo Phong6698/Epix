@@ -39,10 +39,9 @@ public class Boss extends Enemy {
 	private long timer;
 	private long time = 450; // animation delay * anzahl sprites
 	private int range;
-	
+
 	private double fallSpeed = 0.1;
 	private double maxFallSpeed = 10.0;
-
 
 	private ArrayList<BossShot> bossshots;
 
@@ -52,7 +51,7 @@ public class Boss extends Enemy {
 
 		moveSpeed = 1;
 		maxSpeed = 1;
-		
+
 		width = 64;
 		height = 64;
 		cwidth = 37;
@@ -90,7 +89,7 @@ public class Boss extends Enemy {
 		animation.setDelay(100);
 		width = 64;
 	}
-	
+
 	private void getNextPosition() {
 
 		if (left && dx == 0) {
@@ -166,12 +165,17 @@ public class Boss extends Enemy {
 				currentAction = SHOOT;
 				animation.setFrames(sprites.get(SHOOT));
 				animation.setDelay(150);
-				width = 64;			}
-		} else if (b == true){
-			System.out.println("pls");
+				width = 64;
+			}
+			if (b == true) {
+				currentAction = BOSSATTACK;
+				animation.setFrames(sprites.get(BOSSATTACK));
+				animation.setDelay(150);
+				width = 64;
+				System.out.println("pls");
+			}
 		}
-		
-		
+
 		else {
 			if (currentAction != WALK) {
 				currentAction = WALK;
@@ -182,7 +186,7 @@ public class Boss extends Enemy {
 			}
 		}
 
-		if (currentAction == SHOOT) {
+		if (currentAction == SHOOT || currentAction == BOSSATTACK) {
 			if (m.getx() > player.getx()) {
 				facingRight = true;
 			} else {
@@ -194,21 +198,20 @@ public class Boss extends Enemy {
 				shotright = false;
 			}
 
-			if (animation.getFrame() == 4) {
-				BossShot ps = new BossShot(tileMap, shotright, player);
-				ps.setPosition(m.getx(), m.gety());
-				if (timer + time <= System.currentTimeMillis()) {
-					bossshots.add(ps);
-					timer = System.currentTimeMillis();
-				}
-			}
+//			if (animation.getFrame() == 4) {
+//				BossShot ps = new BossShot(tileMap, shotright, player);
+//				ps.setPosition(m.getx(), m.gety());
+//				if (timer + time <= System.currentTimeMillis()) {
+//					bossshots.add(ps);
+//					timer = System.currentTimeMillis();
+//				}
+//			}
 
 		}
-		
+
 		animation.update();
 
 	}
-
 
 	public boolean OnScreen(Boss e, int range) {
 		double a = e.getXmap();
@@ -338,4 +341,3 @@ public class Boss extends Enemy {
 	}
 
 }
-

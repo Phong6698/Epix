@@ -180,12 +180,12 @@ public class Player extends MapObject {
 				}
 			}
 			boolean p = false;
-			
+
 			// check enemy collision
 			if (intersects(b)) {
 				p = true;
 				b.update(b, this, p);
-				hit(b.getDamage());	
+				hit(b.getDamage());
 			}
 		}
 	}

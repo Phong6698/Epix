@@ -34,8 +34,8 @@ public class BossShot extends MapObject {
 
 		width = 32;
 		height = 32;
-		cwidth = 5;
-		cheight = 5;
+		cwidth = 1;
+		cheight = 1;
 		try {
 			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Enemies/Boss_Shot.png"));
 
@@ -79,9 +79,8 @@ public class BossShot extends MapObject {
 
 		checkTileMapCollision();
 		if (m.gety() < player.gety()) {
-			setPosition(xtemp, ytemp + player.gety()/ 140);
+			setPosition(xtemp, ytemp + player.gety() / 140);
 		} else if (m.gety() > player.gety()) {
-			System.out.println("pls");
 			setPosition(xtemp, ytemp - player.gety() / 140);
 		} else {
 			setPosition(xtemp, ytemp);

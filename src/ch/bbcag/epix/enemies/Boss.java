@@ -39,9 +39,10 @@ public class Boss extends Enemy {
 	private long timer;
 	private long time = 450; // animation delay * anzahl sprites
 	private int range;
-
+	
 	private double fallSpeed = 0.1;
 	private double maxFallSpeed = 10.0;
+
 
 	private ArrayList<BossShot> bossshots;
 
@@ -51,7 +52,7 @@ public class Boss extends Enemy {
 
 		moveSpeed = 1;
 		maxSpeed = 1;
-
+		
 		width = 64;
 		height = 64;
 		cwidth = 37;
@@ -89,7 +90,7 @@ public class Boss extends Enemy {
 		animation.setDelay(100);
 		width = 64;
 	}
-
+	
 	private void getNextPosition() {
 
 		if (left && dx == 0) {
@@ -138,7 +139,7 @@ public class Boss extends Enemy {
 		}
 	}
 
-	public void update(Boss m, Player player) {
+	public void update(Boss m, Player player, boolean b) {
 
 		// update position
 
@@ -160,24 +161,18 @@ public class Boss extends Enemy {
 			if (elapsed > 400) {
 				flinching = false;
 			}
-			// else if (currentAction == 3){
-			// animation.setFrames(sprites.get(SHOOT));
-			// animation.setDelay(150);
-			// width = 64;
-			// }
 		} else if (OnScreen(m, 240)) {
-			if (OnScreen(m, 110)) {
-				currentAction = BOSSATTACK;
-				animation.setFrames(sprites.get(BOSSATTACK));
-				animation.setDelay(150);
-				width = 64;
-			} else {
+			if (currentAction != SHOOT) {
 				currentAction = SHOOT;
 				animation.setFrames(sprites.get(SHOOT));
 				animation.setDelay(150);
-				width = 64;
-			}
-		} else {
+				width = 64;			}
+		} else if (b == true){
+			System.out.println("pls");
+		}
+		
+		
+		else {
 			if (currentAction != WALK) {
 				currentAction = WALK;
 				right = true;
@@ -187,7 +182,7 @@ public class Boss extends Enemy {
 			}
 		}
 
-		if (currentAction == SHOOT || currentAction == BOSSATTACK) {
+		if (currentAction == SHOOT) {
 			if (m.getx() > player.getx()) {
 				facingRight = true;
 			} else {
@@ -209,8 +204,11 @@ public class Boss extends Enemy {
 			}
 
 		}
+		
 		animation.update();
+
 	}
+
 
 	public boolean OnScreen(Boss e, int range) {
 		double a = e.getXmap();
@@ -340,3 +338,4 @@ public class Boss extends Enemy {
 	}
 
 }
+

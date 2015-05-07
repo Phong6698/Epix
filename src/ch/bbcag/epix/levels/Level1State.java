@@ -348,7 +348,7 @@ public class Level1State extends GameState{
 		
 		for (int i = 0; i < boss.size(); i++) {
 			Boss e = boss.get(i);
-			e.update(e, player);
+			e.update(e, player, false);
 			if (e.isDead()) {
 				boss.remove(i);
 				i--;

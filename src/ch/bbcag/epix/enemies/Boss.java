@@ -160,21 +160,25 @@ public class Boss extends Enemy {
 			if (elapsed > 400) {
 				flinching = false;
 			}
-		} else if (OnScreen(m, 240)) {
-			if (currentAction != SHOOT) {
+		}else if (OnScreen(m, 120)) {
+			
+			if (b == true && currentAction != BOSSATTACK) {
+			currentAction = BOSSATTACK;
+			animation.setFrames(sprites.get(BOSSATTACK));
+			animation.setDelay(150);
+			width = 64;
+			System.out.println("pls");
+			}
+		} 
+		else if (OnScreen(m, 240)) {
+			if (currentAction != SHOOT && b == false) {
 				currentAction = SHOOT;
 				animation.setFrames(sprites.get(SHOOT));
 				animation.setDelay(150);
 				width = 64;
-			}
-			if (b == true) {
-				currentAction = BOSSATTACK;
-				animation.setFrames(sprites.get(BOSSATTACK));
-				animation.setDelay(150);
-				width = 64;
-				System.out.println("pls");
-			}
-		}
+			} 
+		} 
+		
 
 		else {
 			if (currentAction != WALK) {
@@ -208,7 +212,7 @@ public class Boss extends Enemy {
 //			}
 
 		}
-
+		System.out.println(currentAction);
 		animation.update();
 
 	}

@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import ch.bbcag.epix.controller.EpixController;
+import ch.bbcag.epix.enemies.Boss;
 import ch.bbcag.epix.enemies.Magician;
 import ch.bbcag.epix.enemies.Plant;
 import ch.bbcag.epix.enemies.ShootingPlant;
@@ -51,6 +52,8 @@ public class Level1State extends GameState{
 	private ArrayList<Coin> coins;
 	
 	private ArrayList<Flag> flags;
+	
+	private ArrayList<Boss> boss;
 	
 	
 	public Level1State(GameStateManager gsm, User user) {
@@ -190,6 +193,26 @@ public class Level1State extends GameState{
 			magicians.add(m);
 		}
 		
+		/**
+		 * Boss
+		 */
+		
+		boss = new ArrayList<Boss>();
+
+		Boss b;
+		Point[] bossPoint = new Point[] 
+				{ 
+				
+				new Point(250, 70)
+				
+				};
+		for (int i = 0; i < bossPoint.length; i++) {
+			b = new Boss(tilemap, player);
+			b.setPosition(bossPoint[i].x, bossPoint[i].y);
+			boss.add(b);
+		}
+		
+		
 		
 		/*
 		 * shootingPlant
@@ -324,6 +347,15 @@ public class Level1State extends GameState{
 			}
 		}
 		
+		for (int i = 0; i < boss.size(); i++) {
+			Boss e = boss.get(i);
+			e.update(e, player);
+			if (e.isDead()) {
+				boss.remove(i);
+				i--;
+			}
+		}
+		
 		for(int i = 0; i < powerups.size(); i++) {
 			Powerup e = powerups.get(i);
 			e.update();
@@ -370,7 +402,9 @@ public class Level1State extends GameState{
 		for(int i = 0; i < magicians.size(); i++) {
 			magicians.get(i).draw(g);
 		}
-		
+		for (int i = 0; i < boss.size(); i++) {
+			boss.get(i).draw(g);
+		}
 		
 		for(int i = 0; i < powerups.size(); i++) {
 			powerups.get(i).draw(g);

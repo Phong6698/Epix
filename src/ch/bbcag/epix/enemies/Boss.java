@@ -23,7 +23,7 @@ public class Boss extends Enemy {
 	private boolean remove;
 
 	private ArrayList<BufferedImage[]> sprites;
-	private final int[] numFrames = { 6, 3 };
+	private final int[] numFrames = { 5, 1, 3, 6 };
 
 	private static final int WALK = 0;
 	private static final int IDLE = 1;
@@ -41,7 +41,7 @@ public class Boss extends Enemy {
 	private long time = 450; //animation delay * anzahl sprites 
 	private int range;
 
-	private ArrayList<MagicianShot> magicianshots;
+	private ArrayList<BossShot> bossshots;
 
 	public Boss(TileMap tm, Player player) {
 
@@ -52,16 +52,16 @@ public class Boss extends Enemy {
 		fallSpeed = 0.2;
 		maxFallSpeed = 10.0;
 
-		width = 32;
-		height = 32;
-		cwidth = 32;
-		cheight = 32;
+		width = 64;
+		height = 64;
+		cwidth = 64;
+		cheight = 64;
 		range = 224;
 
 		health = maxHealth = 40;
 		damage = 10;
 
-		magicianshots = new ArrayList<MagicianShot>();
+		bossshots = new ArrayList<BossShot>();
 
 		// load sprites
 
@@ -87,7 +87,7 @@ public class Boss extends Enemy {
 		currentAction = IDLE;
 		animation.setFrames(sprites.get(IDLE));
 		animation.setDelay(100);
-		width = 32;
+		width = 64;
 
 	}
 
@@ -106,7 +106,7 @@ public class Boss extends Enemy {
 
 		}
 
-		if (currentAction == IDLE) {
+		if (currentAction == WALK) {
 			if (left) {
 				dx -= moveSpeed;
 				if (dx < -maxSpeed) {
@@ -121,7 +121,6 @@ public class Boss extends Enemy {
 		} else {
 			dx = 0;
 		}
-
 		// falling
 		if (falling) {
 			dy += fallSpeed;
@@ -130,10 +129,10 @@ public class Boss extends Enemy {
 	}
 	
 	public void checkAttackPlayer(Player player){
-		for (int j = 0; j < magicianshots.size(); j++) {
-			if (magicianshots.get(j).intersects(player)) {
+		for (int j = 0; j < bossshots.size(); j++) {
+			if (bossshots.get(j).intersects(player)) {
 				player.hit(damage);
-				magicianshots.get(j).setHit();
+				bossshots.get(j).setHit();
 				break;
 			}
 		}
@@ -148,13 +147,13 @@ public class Boss extends Enemy {
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
 
-//		for (int i = 0; i < magicianshots.size(); i++) {
-//			magicianshots.get(i).update(m, player);
-//			if (magicianshots.get(i).shouldRemove()) {
-//				magicianshots.remove(i);
-//				i--;
-//			}
-//		}
+		for (int i = 0; i < bossshots.size(); i++) {
+			bossshots.get(i).update(m, player);
+			if (bossshots.get(i).shouldRemove()) {
+				bossshots.remove(i);
+				i--;
+			}
+		}
 
 		// check flinching
 		if (flinching) {
@@ -162,23 +161,24 @@ public class Boss extends Enemy {
 			if (elapsed > 400) {
 				flinching = false;
 			}
-		} else if (OnScreen(m, 224)) {
-			if (currentAction != SHOT) {
-				currentAction = SHOT;
-				animation.setFrames(sprites.get(SHOT));
-				animation.setDelay(150);
-				width = 32;
-			}
+//		}
+//		else if (OnScreen(m, 224)) {
+//			if (currentAction != WALK) {
+//				currentAction = WALK;
+//				animation.setFrames(sprites.get(SHOT));
+//				animation.setDelay(150);
+//				width = 32;
+//			}
 		} else {
 			if (currentAction != WALK) {
-				right = true;
+			//	right = true;
 				currentAction = WALK;
 				animation.setFrames(sprites.get(WALK));
 				animation.setDelay(100);
 				width = 32;
 			} 
 		}
-		if (currentAction == SHOT) {
+		//if (currentAction == SHOT) {
 			if (m.getx() > player.getx()) {
 				facingRight = true;
 			} else {
@@ -190,16 +190,16 @@ public class Boss extends Enemy {
 				shotright = false;
 			}
 
-			if (animation.getFrame() == 2) {
-				MagicianShot ps = new MagicianShot(tileMap, shotright, player);
-				ps.setPosition(m.getx(), m.gety());
-				if (timer + time <= System.currentTimeMillis()) {
-					magicianshots.add(ps);
-					timer = System.currentTimeMillis();
-				}
-			}
+//			if (animation.getFrame() == 2) {
+//				BossShot ps = new BossShot(tileMap, shotright, player);
+//				ps.setPosition(m.getx(), m.gety());
+//				if (timer + time <= System.currentTimeMillis()) {
+//					bossshots.add(ps);
+//					timer = System.currentTimeMillis();
+//				}
+//			}
 
-		}
+	//	}
 		
 		animation.update();
 
@@ -221,8 +221,8 @@ public class Boss extends Enemy {
 
 		setMapPosition();
 
-		for (int i = 0; i < magicianshots.size(); i++) {
-			magicianshots.get(i).draw(g);
+		for (int i = 0; i < bossshots.size(); i++) {
+			bossshots.get(i).draw(g);
 		}
 
 		if (flinching) {
@@ -282,11 +282,6 @@ public class Boss extends Enemy {
 	public int getRange() {
 		return range;
 	}
-
-	public ArrayList<MagicianShot> getMagicianshots() {
-		return magicianshots;
-	}
-
 	public void setHit(boolean hit) {
 		this.hit = hit;
 	}
@@ -323,8 +318,16 @@ public class Boss extends Enemy {
 		this.range = range;
 	}
 
-	public void setMagicianshots(ArrayList<MagicianShot> magicianshots) {
-		this.magicianshots = magicianshots;
+	public ArrayList<BossShot> getBossshots() {
+		return bossshots;
+	}
+
+	public void setBossshots(ArrayList<BossShot> bossshots) {
+		this.bossshots = bossshots;
+	}
+
+	public static int getBossattack() {
+		return BOSSATTACK;
 	}
 
 }

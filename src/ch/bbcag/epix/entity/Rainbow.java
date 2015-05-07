@@ -26,7 +26,7 @@ public class Rainbow extends MapObject {
 		
 		facingRight = right;
 		
-		setMoveSpeed(0.8);
+		setMoveSpeed(4.8);
 		if(right) dx = getMoveSpeed();
 		else dx = -getMoveSpeed();
 		

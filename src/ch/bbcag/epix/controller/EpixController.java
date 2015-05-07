@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import javax.swing.JButton;
+
 import ch.bbcag.epix.dao.LevelDao;
 import ch.bbcag.epix.dao.LevelJDBCdao;
 import ch.bbcag.epix.dao.PlayerDao;
@@ -166,6 +168,22 @@ public class EpixController {
 			e.printStackTrace();
 		}
 		return id_Level;
+	}
+
+	public void checkLevelSaved(User user, JButton levelButton) {		
+		int id_Level;
+		try {
+			id_Level = LEVEL_DAO.getID_Level(levelButton.getText());	
+			System.out.println("id : " + id_Level);
+			if(SAVE_DAO.checkLevelSaved(user, id_Level)) {
+				System.out.println("disable: "+ id_Level);
+				levelButton.setEnabled(false);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	
+		
 	}
 	
 	

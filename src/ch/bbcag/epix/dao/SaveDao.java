@@ -14,5 +14,7 @@ public interface SaveDao {
 	
 	public abstract void save(User user, int level_ID) throws SQLException;
 	
+	public abstract boolean checkLevelSaved(User user, int level_ID) throws SQLException;
+	
 
 }

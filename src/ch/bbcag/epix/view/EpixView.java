@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 
+import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.listener.LevelAuswahlCardButtonListener;
 import ch.bbcag.epix.listener.MenuCardButtonListener;
@@ -227,13 +228,18 @@ public class EpixView extends JFrame{
 		 */
 		levelAuswahlCard.setLayout(null);
 		
-		level1Button.setBounds(67, 159, 171, 170);		
+		level1Button.setBounds(67, 159, 171, 170);	
+		EpixController.getInstance().checkLevelSaved(user, level1Button);
 		levelAuswahlCard.add(level1Button);
 		
-		level2Button.setBounds(308, 159, 171, 170);		
+		
+		level2Button.setBounds(308, 159, 171, 170);	
+		EpixController.getInstance().checkLevelSaved(user, level2Button);
 		levelAuswahlCard.add(level2Button);
 		
-		bossLevelButton.setBounds(550, 159, 171, 170);		
+		
+		bossLevelButton.setBounds(550, 159, 171, 170);	
+		EpixController.getInstance().checkLevelSaved(user, bossLevelButton);
 		levelAuswahlCard.add(bossLevelButton);
 		
 		levelZurückBtton.setBounds(334, 378, 121, 28);		

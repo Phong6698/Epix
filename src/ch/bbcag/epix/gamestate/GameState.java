@@ -1,5 +1,7 @@
 package ch.bbcag.epix.gamestate;
 
+import ch.bbcag.epix.entity.Player;
+
 /**
  * 
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
@@ -7,6 +9,8 @@ package ch.bbcag.epix.gamestate;
  */
 
 public abstract class GameState {
+	
+	protected Player player;
 	
 	protected GameStateManager gsm;
 	protected Boolean finished;

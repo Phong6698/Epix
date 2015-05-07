@@ -4,6 +4,7 @@ package ch.bbcag.epix.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.entity.User;
 
 /**
@@ -12,7 +13,7 @@ import ch.bbcag.epix.entity.User;
  *			UserDao.java.java Copyright Berufsbildungscenter 2015
  */
 
-public interface UserDao {
+public interface PlayerDao {
 
 	public abstract List<User> findAllUsers() throws SQLException;
 	
@@ -20,6 +21,6 @@ public interface UserDao {
 
 	public abstract User playerLogin(String username) throws SQLException;
 	
-	public abstract void coinsUpdate(User user) throws SQLException;
+	public abstract void coinsUpdate(Player player) throws SQLException;
 	
 }

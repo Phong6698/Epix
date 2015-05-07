@@ -130,7 +130,10 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 	private void update() {
 		gsm.update();
 		
-		if(gsm.isFinished()) {
+		//if finished close frame
+		if(gsm.isFinished()) {	
+			running = false;
+			this.dispose();
 			
 		}
 	}

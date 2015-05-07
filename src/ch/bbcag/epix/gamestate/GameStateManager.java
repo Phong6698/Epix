@@ -1,5 +1,6 @@
 package ch.bbcag.epix.gamestate;
 
+import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.levels.BossState;
 import ch.bbcag.epix.levels.Level1State;
@@ -63,7 +64,10 @@ public class GameStateManager {
 	public void update() {
 		try {
 			gameStates[currentLevel].update();
+			
+			//if finished update coin in database
 			if(gameStates[currentLevel].finished) {
+				EpixController.getInstance().coinsUpdate(gameStates[currentLevel].player);
 				this.setFinished(true);
 			}
 		} catch(Exception e) {}

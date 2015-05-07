@@ -35,9 +35,6 @@ public class Level1State extends GameState{
 
 	private User user;
 	
-	private Player player;
-	private Player player2;
-	
 	private TileMap tilemap;
 	private Background bg;
 	
@@ -278,11 +275,14 @@ public class Level1State extends GameState{
 		player.checkPowerup(powerups, player);
 		player.checkCoin(coins);
 		
-		finished = player.checkFlag(flags);
 		
+		//check if no enimies in level
+		if (plant.size() == 0 && shootingPlant.size() == 0 && magicians.size() == 0) {
+			System.out.println("finished");
+			finished = player.checkFlag(flags);
+		}
 		
-		
-		
+				
 		for(int i = 0; i < plant.size(); i++) {
 			Plant e = plant.get(i);
 			e.update(e, player);
@@ -340,7 +340,6 @@ public class Level1State extends GameState{
 				coins.remove(i);
 				i--;
 				user.setCoin(user.getCoin() + 1);
-				EpixController.getInstance().coinsUpdate(user);
 
 			}
 		}

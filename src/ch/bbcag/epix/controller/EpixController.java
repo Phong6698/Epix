@@ -4,8 +4,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import ch.bbcag.epix.dao.UserDao;
-import ch.bbcag.epix.dao.UserJDBCdao;
+import ch.bbcag.epix.dao.PlayerDao;
+import ch.bbcag.epix.dao.PlayerJDBCdao;
+import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.popup.EmailEmpty;
 import ch.bbcag.epix.popup.FalsePassword;
@@ -25,7 +26,7 @@ import ch.bbcag.epix.utils.CryptUtils;
 
 public class EpixController {
 	private static EpixController instance = new EpixController();
-	private final static UserDao USER_DAO = new UserJDBCdao();
+	private final static PlayerDao USER_DAO = new PlayerJDBCdao();
 
 	/**
 	 * Konstruktor der Klasse GMCController nur Privat
@@ -135,9 +136,9 @@ public class EpixController {
 		return null;
 	}
 	
-	public void coinsUpdate(User user){
+	public void coinsUpdate(Player player){
 		try {
-			 USER_DAO.coinsUpdate(user);
+			 USER_DAO.coinsUpdate(player);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

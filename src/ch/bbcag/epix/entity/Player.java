@@ -180,9 +180,11 @@ public class Player extends MapObject {
 			}
 			// check enemy collision
 			if (intersects(b)) {
+				b.setCurrentAction(3);
+
 				b.update(b, this);
-				hit(b.getDamage());
 			}
+			hit(b.getDamage());
 		}
 	}
 
@@ -377,8 +379,6 @@ public class Player extends MapObject {
 			falling = false;
 		} else if (jumping && jetpack && player.gety() < 20) {
 			falling = true;
-			System.out.println(player.gety());
-
 		}
 
 		// falling
@@ -629,5 +629,9 @@ public class Player extends MapObject {
 
 	public void setHealth(int health) {
 		this.health = health;
+	}
+
+	public void setFacingright(boolean b) {
+		this.facingRight = b;
 	}
 }

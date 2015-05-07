@@ -25,7 +25,7 @@ public class Boss extends Enemy {
 	private ArrayList<BufferedImage[]> sprites;
 	private final int[] numFrames = { 5, 1, 3, 6 };
 
-	private static final int WALK = 0;
+	private static final int WALK = 2;
 	private static final int IDLE = 1;
 	private static final int SHOT = 2;
 	private static final int BOSSATTACK = 3;
@@ -93,34 +93,34 @@ public class Boss extends Enemy {
 
 	private void getNextPosition() {
 
-		if (left && dx == 0) {
-			right = true;
-			left = false;
-			facingRight = false;
-			shotright = true;
-		} else if (right && dx == 0) {
-			right = false;
-			left = true;
-			facingRight = true;
-			shotright = false;
-
-		}
-
-		if (currentAction == WALK) {
-			if (left) {
-				dx -= moveSpeed;
-				if (dx < -maxSpeed) {
-					dx = -maxSpeed;
-				}
-			} else if (right) {
-				dx += moveSpeed;
-				if (dx > maxSpeed) {
-					dx = maxSpeed;
-				}
-			}
-		} else {
-			dx = 0;
-		}
+//		if (left && dx == 0) {
+//			right = true;
+//			left = false;
+//			facingRight = false;
+//			shotright = true;
+//		} else if (right && dx == 0) {
+//			right = false;
+//			left = true;
+//			facingRight = true;
+//			shotright = false;
+//
+//		}
+//
+//		if (currentAction == WALK) {
+//			if (left) {
+//				dx -= moveSpeed;
+//				if (dx < -maxSpeed) {
+//					dx = -maxSpeed;
+//				}
+//			} else if (right) {
+//				dx += moveSpeed;
+//				if (dx > maxSpeed) {
+//					dx = maxSpeed;
+//				}
+//			}
+//		} else {
+//			dx = 0;
+//		}
 		// falling
 		if (falling) {
 			dy += fallSpeed;

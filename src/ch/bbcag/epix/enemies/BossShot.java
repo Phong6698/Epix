@@ -43,7 +43,10 @@ public class BossShot extends MapObject {
 			for (int i = 0; i < sprites.length; i++) {
 				sprites[i] = spritesheet.getSubimage(i * width, 0, width, height);
 			}
-
+			hitSprites = new BufferedImage[2];
+			for (int i = 0; i < hitSprites.length; i++) {
+				hitSprites[i] = spritesheet.getSubimage(i * width, height, width, height);
+			}
 			animation = new Animation();
 			animation.setFrames(sprites);
 			animation.setDelay(100);

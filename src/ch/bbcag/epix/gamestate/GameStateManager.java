@@ -1,5 +1,7 @@
 package ch.bbcag.epix.gamestate;
 
+import java.awt.event.KeyEvent;
+
 import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.levels.BossState;
@@ -18,6 +20,8 @@ public class GameStateManager {
 	private int currentLevel;
 	
 	private boolean finished;
+	private boolean dead;
+
 	
 	private User user;
 	
@@ -33,7 +37,7 @@ public class GameStateManager {
 		
 		this.user = user;
 		
-		gameStates = new GameState[NUMLEVELS];
+		setGameStates(new GameState[NUMLEVELS]);
 		
 		this.setCurrentLevel(level);
 		loadState(getCurrentLevel(), user);
@@ -44,18 +48,18 @@ public class GameStateManager {
 
 	private void loadState(int level, User user) {
 		if(level == LEVEL1){
-			gameStates[level] = new Level1State(this, user);
+			getGameStates()[level] = new Level1State(this, user);
 		}
 		else if(level == LEVEL2) {
-			gameStates[level] = new Level2State(this, user);
+			getGameStates()[level] = new Level2State(this, user);
 		}
 		else if(level == BOSSLEVEL) {
-			gameStates[level] = new BossState(this);
+			getGameStates()[level] = new BossState(this);
 		}
 	}
 	
 	private void unloadState(int level) {
-		gameStates[level] = null;
+		getGameStates()[level] = null;
 	}
 	
 	public void setState(int level, User user) {
@@ -67,23 +71,23 @@ public class GameStateManager {
 	
 	public void update() {
 		try {
-			gameStates[currentLevel].update();
+			getGameStates()[currentLevel].update();
 			
 			
 			//restart if player dead
-			if(gameStates[currentLevel].player.isDead()) {
-				System.out.println(user.getCoin());
+			if(getGameStates()[currentLevel].player.isDead()) {
+				setDead(true);
 				unloadState(currentLevel);
 				loadState(currentLevel, user);
 			}
 			
 			//if finished update coin in database
-			if(gameStates[currentLevel].finished) {
-				EpixController.getInstance().coinsUpdate(gameStates[currentLevel].player);
-				System.out.println(gameStates[currentLevel].player.getCoin());
-				int level_ID = EpixController.getInstance().getID_Level(gameStates[currentLevel].levelName);
+			if(getGameStates()[currentLevel].finished) {
+				EpixController.getInstance().coinsUpdate(getGameStates()[currentLevel].player);
+				System.out.println(getGameStates()[currentLevel].player.getCoin());
+				int level_ID = EpixController.getInstance().getID_Level(getGameStates()[currentLevel].levelName);
 				EpixController.getInstance().save(user, level_ID);
-				user.setCoin(gameStates[currentLevel].player.getCoin());
+				user.setCoin(getGameStates()[currentLevel].player.getCoin());
 				
 				this.setFinished(true);
 			}
@@ -95,16 +99,18 @@ public class GameStateManager {
 	
 	public void draw(java.awt.Graphics2D g) {
 		try {
-			gameStates[currentLevel].draw(g);
+			getGameStates()[currentLevel].draw(g);
 		} catch(Exception e) {}
 	}
 	
 	public void keyPressed(int k) {
-		gameStates[currentLevel].keyPressed(k);
+		getGameStates()[currentLevel].keyPressed(k);
+		
+		
 	}
 	
 	public void keyReleased(int k) {
-		gameStates[currentLevel].keyReleased(k);
+		getGameStates()[currentLevel].keyReleased(k);
 	}
 	
 	public int getCurrentLevel() {
@@ -126,6 +132,32 @@ public class GameStateManager {
 	public void setFinished(boolean finished) {
 		this.finished = finished;
 	}
+
+
+
+	public GameState[] getGameStates() {
+		return gameStates;
+	}
+
+
+
+	public void setGameStates(GameState[] gameStates) {
+		this.gameStates = gameStates;
+	}
+
+
+
+	public boolean isDead() {
+		return dead;
+	}
+
+
+
+	public void setDead(boolean dead) {
+		this.dead = dead;
+	}
+
+
 	
 }
 

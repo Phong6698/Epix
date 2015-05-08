@@ -1,16 +1,22 @@
 package ch.bbcag.epix.view;
 
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 
+import ch.bbcag.epix.display.Dead;
+import ch.bbcag.epix.display.Finished;
+import ch.bbcag.epix.display.Pause;
 import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.gamestate.GameStateManager;
 
@@ -20,7 +26,7 @@ import ch.bbcag.epix.gamestate.GameStateManager;
  *			GameFrame.java.java Copyright Berufsbildungscenter 2015
  */
 
-public class GameFrame extends JFrame implements Runnable, KeyListener{	
+public class GameFrame extends JFrame implements Runnable, KeyListener, MouseListener{	
 	/**
 	 * 
 	 */
@@ -47,6 +53,7 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 	// game thread
 	private Thread thread;
 	private boolean running;
+	private boolean paused;
 	private int FPS = 60;
 	private long targetTime = 1000 / FPS;
 	
@@ -63,9 +70,15 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 	//epix frame
 	private JFrame epix;
 	
+	//displays
+	private Pause pauseDisplay;
+	private Dead deadDisplay;
+	private Finished finishedDisplay;
+	
 	public GameFrame(int level, User user, JFrame epix) {
 		setUser(user);
 		setEpix(epix);
+	
 		
 		this.level = level;
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,6 +91,8 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 		this.setFocusable(true);
 		this.requestFocus();
 		this.setVisible(true);
+		
+		addMouseListener(this);
 	}
 	
 	public GameFrame(int level, User user) {
@@ -94,6 +109,8 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 		this.setFocusable(true);
 		this.requestFocus();
 		this.setVisible(true);
+		
+		addMouseListener(this);
 	}
 
 	public void addNotify() {
@@ -126,12 +143,11 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 		
 		// game loop
 		while(running) {
-			
 			start = System.nanoTime();
 			
-			
-			draw();
-			drawToScreen();
+			if(!paused){				
+				update();			
+			}
 			
 			elapsed = System.nanoTime() - start;
 			
@@ -144,7 +160,12 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 			catch(Exception e) {
 				e.printStackTrace();
 			}
-			update();
+			setPauseDisplay(new Pause(this));
+			setDeadDisplay(new Dead());
+			setFinishedDisplay(new Finished());
+			drawToScreen();
+			draw();
+			
 			
 		}
 		
@@ -153,20 +174,34 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 	private void update() {
 		gsm.update();
 		
-		//if finished close frame
-		if(gsm.isFinished()) {	
-			running = false;
-			this.dispose();
-			EpixView epix = new EpixView(getUser());
-			CardLayout cardLayout = (CardLayout) epix.cards.getLayout();
-			cardLayout.show(epix.cards, "levelAuswahlCard");			
-			
-			
-			
-		}
+		
+		
+		
 	}
 	private void draw() {
 		gsm.draw(g);
+		
+		if(paused) {
+			getPauseDisplay().draw(g);
+		}
+		if(gsm.isFinished()){
+			getFinishedDisplay().draw(g);
+			
+//			//if finished close frame
+//			if(gsm.isFinished()) {	
+//				running = false;
+//				this.dispose();
+//				EpixView epix = new EpixView(getUser());
+//				CardLayout cardLayout = (CardLayout) epix.cards.getLayout();
+//				cardLayout.show(epix.cards, "levelAuswahlCard");					
+//			}
+		}
+		if(gsm.isDead()) {
+			getDeadDisplay().draw(g);
+		}
+		
+		
+
 	}
 	private void drawToScreen() {
 		Graphics g2 = getGraphics();
@@ -174,10 +209,35 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 		g2.dispose();
 	}
 	
+	public void mouseClicked(MouseEvent e) {
+//		if (getPauseDisplay().getResumeRect().contains(e.getPoint())) {
+//		 	System.out.println("clicked");
+//		}
+//		System.out.println(getPauseDisplay().getResumeRect());
+//		System.out.println(e.getPoint());
+    }
+	
+	 public void mousePressed(MouseEvent e) {
+	 }
+	
 	public void keyTyped(KeyEvent key) {}
 	
 	public void keyPressed(KeyEvent key) {
 		gsm.keyPressed(key.getKeyCode());
+		
+		int k = key.getKeyCode();
+		
+		if(k == KeyEvent.VK_ESCAPE && paused ) {
+			System.out.println("Continue");
+			paused = false;
+			
+		} else if(k == KeyEvent.VK_ESCAPE ) {
+			System.out.println("Pause");
+			paused = true;
+		
+		
+			
+		}
 	}
 	
 	public void keyReleased(KeyEvent key) {
@@ -190,6 +250,48 @@ public class GameFrame extends JFrame implements Runnable, KeyListener{
 
 	public void setEpix(JFrame epix) {
 		this.epix = epix;
+	}
+
+	public Pause getPauseDisplay() {
+		return pauseDisplay;
+	}
+
+	public Dead getDeadDisplay() {
+		return deadDisplay;
+	}
+
+	public Finished getFinishedDisplay() {
+		return finishedDisplay;
+	}
+
+	public void setPauseDisplay(Pause pauseDisplay) {
+		this.pauseDisplay = pauseDisplay;
+	}
+
+	public void setDeadDisplay(Dead deadDisplay) {
+		this.deadDisplay = deadDisplay;
+	}
+
+	public void setFinishedDisplay(Finished finishedDisplay) {
+		this.finishedDisplay = finishedDisplay;
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

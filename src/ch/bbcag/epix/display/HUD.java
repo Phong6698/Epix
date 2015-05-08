@@ -1,4 +1,4 @@
-package ch.bbcag.epix.entity;
+package ch.bbcag.epix.display;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -7,6 +7,8 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
+
+import ch.bbcag.epix.entity.Player;
 
 /**
  * 

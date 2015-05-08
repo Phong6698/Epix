@@ -6,13 +6,13 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import ch.bbcag.epix.controller.EpixController;
+import ch.bbcag.epix.display.HUD;
 import ch.bbcag.epix.enemies.Boss;
 import ch.bbcag.epix.enemies.Magician;
 import ch.bbcag.epix.enemies.Plant;
 import ch.bbcag.epix.enemies.ShootingPlant;
 import ch.bbcag.epix.entity.Coin;
 import ch.bbcag.epix.entity.Flag;
-import ch.bbcag.epix.entity.HUD;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.entity.Powerup;
 import ch.bbcag.epix.entity.User;

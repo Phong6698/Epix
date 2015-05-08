@@ -51,9 +51,9 @@ public class Pause implements MouseListener{
 	}
 
 	public void mouseClicked(MouseEvent e) {
-//		if (getResumeRect().contains(e.getPoint())) {
-//		 	System.out.println("clicked");
-//		}
+		if (getResumeRect().contains(e.getPoint())) {
+		 	System.out.println("clicked");
+		}
 		System.out.println(getResumeRect());
 		System.out.println(e.getPoint());
     }

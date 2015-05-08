@@ -144,9 +144,9 @@ public class EpixController {
 		return null;
 	}
 	
-	public void coinsUpdate(Player player){
+	public void coinsUpdate(User user, int coins){
 		try {
-			 USER_DAO.coinsUpdate(player);
+			 USER_DAO.coinsUpdate(user, coins);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -183,7 +183,4 @@ public class EpixController {
 	
 		
 	}
-	
-	
-
 };

@@ -244,21 +244,9 @@ public class Boss extends Enemy {
 			}
 		}
 
-		draw_(g);
+		super.draw(g);
 
 	}
-	
-	public void draw_(java.awt.Graphics2D g) {
-
-		if (facingRight) {
-			g.drawImage(animation.getImage(), (int) (x + xmap - width ), (int) (y + ymap - height / 2), null);
-		} else {
-			g.drawImage(animation.getImage(), (int) (x + xmap - width / 4 + width), (int) (y + ymap - height / 2), -width, height, null);
-		}
-	//	g.drawRect((int) (x + xmap + (width-cwidth) - width / 2), (int) (y + ymap + (height-cheight)-height / 2), getCWidth(), getCHeight());
-
-	}
-	
 
 	public boolean isHit() {
 		return hit;

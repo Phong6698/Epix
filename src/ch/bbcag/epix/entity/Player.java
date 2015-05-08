@@ -24,6 +24,9 @@ public class Player extends MapObject {
 	// player stuff
 	private int health;
 
+	private int coinsCollected;
+	private double jumpStart;
+	
 	private int coin;
 	private String username;
 	private int maxHealth;
@@ -69,13 +72,13 @@ public class Player extends MapObject {
 	public Player(TileMap tm, User user) {
 		super(tm);
 		
-		this.user = user;
+		this.setUser(user);
 		
 		setUsername(user.getUsername());
 		setCoin(user.getCoin());
 		setMaxHealth(user.getMaxHealth());
 		setHealth(user.getMaxHealth());
-
+		setJumpStart(user.getMaxJump());
 
 
 		width = 32;
@@ -90,7 +93,7 @@ public class Player extends MapObject {
 		stopSpeed = 0.8;
 		fallSpeed = 0.30;
 		maxFallSpeed = 4.0;
-		jumpStart = -6.0;
+		
 		stopJumpSpeed = 0.9;
 
 		facingRight = true;
@@ -242,10 +245,10 @@ public class Player extends MapObject {
 
 			// check coin collision
 			if (intersects(coin)) {
+				this.coinsCollected =+ 1;
 				coin.update();
 				this.setCoin(this.getCoin() + coin.getCoinValue());
 				coin.setTaken(true);
-
 			}
 
 		}
@@ -650,5 +653,28 @@ public class Player extends MapObject {
 
 	public void setDead(boolean dead) {
 		this.dead = dead;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public int getCoinsCollected() {
+		return coinsCollected;
+	}
+
+	public void setCoinsCollected(int coinsCollected) {
+		this.coinsCollected = coinsCollected;
+	}
+	public double getJumpStart() {
+		return jumpStart;
+	}
+
+	public void setJumpStart(int jumpStart) {
+		this.jumpStart = jumpStart;
 	}
 }

@@ -15,7 +15,7 @@ public class User {
 	private int coin;
 	private int maxHealth = 50;	
 	private boolean dead = false;
-	private int maxJump;
+	private double maxJump = -6;
 	
 
 	//Getter
@@ -72,10 +72,10 @@ public class User {
 	public void getMaxJump(int maxJump) {
 		this.maxJump = maxJump;
 	}
-	public int getMaxJump() {
+	public double getMaxJump() {
 		return maxJump;
 	}
-	public void setMaxJump(int maxJump) {
-		this.maxJump = this.maxJump + maxJump;
+	public void setMaxJump(double d) {
+		this.maxJump = this.maxJump + d;
 	}
 }

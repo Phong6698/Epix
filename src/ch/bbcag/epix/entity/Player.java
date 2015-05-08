@@ -674,7 +674,7 @@ public class Player extends MapObject {
 		return jumpStart;
 	}
 
-	public void setJumpStart(int jumpStart) {
-		this.jumpStart = jumpStart;
+	public void setJumpStart(double d) {
+		this.jumpStart = d;
 	}
 }

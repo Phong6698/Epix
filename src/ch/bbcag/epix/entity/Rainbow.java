@@ -117,7 +117,7 @@ public class Rainbow extends MapObject {
 		else {
 			g.drawImage(animation.getImage(), (int)(x + xmap -width / 2 + width), (int)(y- (height/2 - cheight/2 )/2 + ymap - height / 2), -width, height, null);
 		}
-		g.drawRect((int) (x + xmap -cwidth / 2),  (int) (y + ymap - cheight / 2),getCWidth(), getCHeight());
+	//	g.drawRect((int) (x + xmap -cwidth / 2),  (int) (y + ymap - cheight / 2),getCWidth(), getCHeight());
 
 	}
 	

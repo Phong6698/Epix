@@ -393,8 +393,6 @@ public class Player extends MapObject {
 			falling = false;
 		} else if (jumping && jetpack && player.gety() < 20) {
 			falling = true;
-			System.out.println(player.gety());
-
 		}
 
 		// falling

@@ -166,10 +166,10 @@ public class Plant extends Enemy {
 
 		if (facingRight) {
 			g.drawImage(animation.getImage(), (int) (x + (width - cwidth)/4 + xmap - width / 2), (int) (y + ymap - height / 2), null);
-			g.drawRect((int) (x + (width - cwidth)/4 + xmap - cwidth / 2), (int) (y + ymap - cheight / 2), getCWidth(), getCHeight());
+		//	g.drawRect((int) (x + (width - cwidth)/4 + xmap - cwidth / 2), (int) (y + ymap - cheight / 2), getCWidth(), getCHeight());
 		} else {
 			g.drawImage(animation.getImage(), (int) (x - (width - cwidth)/4 + xmap - width / 2 + width), (int) (y + ymap - height / 2), -width, height, null);
-			g.drawRect((int) (x - (width - cwidth)/4 + xmap - cwidth / 2), (int) (y + ymap - cheight / 2), getCWidth(), getCHeight());
+		//	g.drawRect((int) (x - (width - cwidth)/4 + xmap - cwidth / 2), (int) (y + ymap - cheight / 2), getCWidth(), getCHeight());
 }
 
 	}

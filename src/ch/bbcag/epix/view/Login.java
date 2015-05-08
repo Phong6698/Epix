@@ -14,7 +14,7 @@ import ch.bbcag.epix.listener.RegistrierenListener;
 
 /**
  * 
- * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
  *			Login.java.java Copyright Berufsbildungscenter 2015
  */
 
@@ -41,11 +41,10 @@ public class Login extends JFrame{
 	/*
 	 * JLabel
 	 */
+	
 	protected JLabel usernameLabel = new JLabel("Username");
 	protected JLabel passwordLabel = new JLabel("Passwort");	
 	protected JLabel titelLabel = new JLabel("Epix Login");
-
-	
 
 	public Login() {
 		

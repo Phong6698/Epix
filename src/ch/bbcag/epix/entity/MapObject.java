@@ -253,7 +253,7 @@ public abstract class MapObject {
 		} else {
 			g.drawImage(animation.getImage(), (int) (x + xmap - width / 2 + width), (int) (y + ymap - height / 2), -width, height, null);
 		}
-		g.drawRect((int) (x + xmap + (width-cwidth) - width / 2), (int) (y + ymap + (height-cheight)-height / 2), getCWidth(), getCHeight());
+	//	g.drawRect((int) (x + xmap + (width-cwidth) - width / 2), (int) (y + ymap + (height-cheight)-height / 2), getCWidth(), getCHeight());
 
 	}
 

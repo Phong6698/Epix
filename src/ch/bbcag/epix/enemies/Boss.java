@@ -167,7 +167,6 @@ public class Boss extends Enemy {
 			animation.setFrames(sprites.get(BOSSATTACK));
 			animation.setDelay(150);
 			width = 64;
-			System.out.println("pls");
 			}
 		} 
 		else if (OnScreen(m, 240)) {
@@ -212,7 +211,6 @@ public class Boss extends Enemy {
 //			}
 
 		}
-		System.out.println(currentAction);
 		animation.update();
 
 	}

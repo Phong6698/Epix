@@ -69,15 +69,25 @@ public class GameStateManager {
 		try {
 			gameStates[currentLevel].update();
 			
+			
+			//restart if player dead
+			if(gameStates[currentLevel].player.isDead()) {
+				System.out.println(user.getCoin());
+				unloadState(currentLevel);
+				loadState(currentLevel, user);
+			}
+			
 			//if finished update coin in database
 			if(gameStates[currentLevel].finished) {
 				EpixController.getInstance().coinsUpdate(gameStates[currentLevel].player);
+				System.out.println(gameStates[currentLevel].player.getCoin());
 				int level_ID = EpixController.getInstance().getID_Level(gameStates[currentLevel].levelName);
-				System.out.println(level_ID);
 				EpixController.getInstance().save(user, level_ID);
+				user.setCoin(gameStates[currentLevel].player.getCoin());
 				
 				this.setFinished(true);
 			}
+			
 		} catch(Exception e) {}
 		
 		

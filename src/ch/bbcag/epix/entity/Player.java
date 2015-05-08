@@ -67,8 +67,16 @@ public class Player extends MapObject {
 	private static final int RAINBOW_JETPACK = 7;
 
 	public Player(TileMap tm, User user) {
-
 		super(tm);
+		
+		this.user = user;
+		
+		setUsername(user.getUsername());
+		setCoin(user.getCoin());
+		setMaxHealth(user.getMaxHealth());
+		setHealth(user.getMaxHealth());
+
+
 
 		width = 32;
 		height = 32;
@@ -87,7 +95,7 @@ public class Player extends MapObject {
 
 		facingRight = true;
 
-		health = maxHealth = 6900;
+
 		rainbow = maxRainbow = 2500;
 
 		rainbowdamage = 10;
@@ -121,7 +129,7 @@ public class Player extends MapObject {
 		animation.setFrames(sprites.get(IDLE));
 		animation.setDelay(100);
 
-		this.user = user;
+		
 
 	}
 
@@ -330,7 +338,8 @@ public class Player extends MapObject {
 				health = 0;
 			}
 			if (health == 0) {
-				dead = true;
+				System.out.println("dead");
+				setDead(true);
 			}
 			flinching = true;
 			flinchTimer = System.nanoTime();
@@ -633,5 +642,13 @@ public class Player extends MapObject {
 
 	public void setHealth(int health) {
 		this.health = health;
+	}
+
+	public boolean isDead() {
+		return dead;
+	}
+
+	public void setDead(boolean dead) {
+		this.dead = dead;
 	}
 }

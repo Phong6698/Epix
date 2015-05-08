@@ -78,10 +78,7 @@ public class Level1State extends GameState{
 	
 		
 		player = new Player(tilemap, user);
-		player.setUsername(user.getUsername());
-		player.setCoin(user.getCoin());
-		player.setMaxHealth(user.getMaxHealth());
-		player.setHealth(user.getMaxHealth());
+		
 		
 		spawnEnemies();
 		spawnPowerups();
@@ -372,7 +369,6 @@ public class Level1State extends GameState{
 			if(coin.isTaken()) {
 				coins.remove(i);
 				i--;
-				user.setCoin(user.getCoin() + 1);
 
 			}
 		}

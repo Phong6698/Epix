@@ -52,6 +52,11 @@ public class GameStateManager {
 	private void unloadState(int level) {
 		getGameStates()[level] = null;
 	}
+	
+	public void restartState() {
+		unloadState(currentLevel);
+		loadState(currentLevel, user);
+	}
 
 	public void setState(int level, User user) {
 		unloadState(currentLevel);
@@ -67,9 +72,6 @@ public class GameStateManager {
 			// restart if player dead
 			if (getGameStates()[currentLevel].player.isDead()) {
 				setDead(true);
-				System.out.println(user.getCoin());
-				unloadState(currentLevel);
-				loadState(currentLevel, user);
 			}
 
 			// if finished update coin in database
@@ -79,11 +81,11 @@ public class GameStateManager {
 				int level_ID = EpixController.getInstance().getID_Level(getGameStates()[currentLevel].levelName);
 				EpixController.getInstance().save(user, level_ID);
 				user.setCoin(getGameStates()[currentLevel].player.getCoin());
-
 				this.setFinished(true);
 			}
 
 		} catch (Exception e) {
+			
 		}
 
 	}

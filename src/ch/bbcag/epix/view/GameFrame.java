@@ -1,7 +1,6 @@
 package ch.bbcag.epix.view;
 
 import java.awt.CardLayout;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -9,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
@@ -92,6 +90,10 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 		this.requestFocus();
 		this.setVisible(true);
 		
+		setPauseDisplay(new Pause());
+		setDeadDisplay(new Dead());
+		setFinishedDisplay(new Finished());
+		
 		addMouseListener(this);
 	}
 	
@@ -109,6 +111,10 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 		this.setFocusable(true);
 		this.requestFocus();
 		this.setVisible(true);
+		
+		setPauseDisplay(new Pause());
+		setDeadDisplay(new Dead());
+		setFinishedDisplay(new Finished());
 		
 		addMouseListener(this);
 	}
@@ -159,12 +165,12 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 			}
 			catch(Exception e) {
 				e.printStackTrace();
-			}
-			setPauseDisplay(new Pause(this));
-			setDeadDisplay(new Dead());
-			setFinishedDisplay(new Finished());
+			}	
+			
+			
 			drawToScreen();
 			draw();
+			
 			
 			
 		}
@@ -185,18 +191,12 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 			getPauseDisplay().draw(g);
 		}
 		if(gsm.isFinished()){
+			paused = false;
 			getFinishedDisplay().draw(g);
 			
-//			//if finished close frame
-//			if(gsm.isFinished()) {	
-//				running = false;
-//				this.dispose();
-//				EpixView epix = new EpixView(getUser());
-//				CardLayout cardLayout = (CardLayout) epix.cards.getLayout();
-//				cardLayout.show(epix.cards, "levelAuswahlCard");					
-//			}
 		}
 		if(gsm.isDead()) {
+			paused = false;
 			getDeadDisplay().draw(g);
 		}
 		
@@ -210,11 +210,43 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 	}
 	
 	public void mouseClicked(MouseEvent e) {
-//		if (getPauseDisplay().getResumeRect().contains(e.getPoint())) {
-//		 	System.out.println("clicked");
-//		}
-//		System.out.println(getPauseDisplay().getResumeRect());
-//		System.out.println(e.getPoint());
+		
+		
+		//Pause
+		if (getPauseDisplay().getResumeRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
+			 System.out.println("Resume");
+			 paused = false;
+		}else if (getPauseDisplay().getRestartRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
+			System.out.println("Restart");	
+			gsm.restartState();
+			paused = false;
+		}else if(getPauseDisplay().getQuitRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
+			System.out.println("Quit");
+		}
+		
+		//Finished
+		if (getFinishedDisplay().getContinueRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
+			 System.out.println("Continue");
+			running = false;
+			this.dispose();
+			EpixView epix = new EpixView(getUser());
+			CardLayout cardLayout = (CardLayout) epix.cards.getLayout();
+			cardLayout.show(epix.cards, "levelAuswahlCard");
+		}else if (getFinishedDisplay().getRestartRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
+			System.out.println("Restart");
+			gsm.restartState();
+			paused = false;
+		}
+		
+		//Dead
+		if (getDeadDisplay().getRestartRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
+			System.out.println("Restart");	
+			gsm.restartState();
+			paused = false;
+		}else if(getDeadDisplay().getQuitRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
+			System.out.println("Quit");
+		}
+
     }
 	
 	 public void mousePressed(MouseEvent e) {
@@ -228,7 +260,7 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 		int k = key.getKeyCode();
 		
 		if(k == KeyEvent.VK_ESCAPE && paused ) {
-			System.out.println("Continue");
+			System.out.println("Resume");
 			paused = false;
 			
 		} else if(k == KeyEvent.VK_ESCAPE ) {

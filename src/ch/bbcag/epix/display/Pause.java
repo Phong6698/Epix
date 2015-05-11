@@ -12,19 +12,20 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import ch.bbcag.epix.view.GameFrame;
 
-public class Pause implements MouseListener{
+public class Pause {
 	
 	private BufferedImage pauseImage;	
-	private Rectangle2D resumeRect;
 	
-	public Pause(GameFrame GameFrame) {
+	private Rectangle2D resumeRect;
+	private Rectangle2D restartRect;
+	private Rectangle2D quitRect;
+	
+	public Pause() {
 		try {
 			pauseImage = ImageIO.read(getClass().getResourceAsStream("/Displays/Pause.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		GameFrame.addMouseListener(this);
 		
 
 	}
@@ -44,19 +45,19 @@ public class Pause implements MouseListener{
 		
 		g.drawString("Resume", 200, 156);
 		setResumeRect(g.getFontMetrics().getStringBounds("Resume", g));
-//		System.out.println(getResumeRect());
+		getResumeRect().setRect(200,156 - g.getFontMetrics().getAscent(), getResumeRect().getWidth(), getResumeRect().getHeight());
 
-		g.drawString("Restart", 200, 172);
+		g.drawString("Restart", 200, 172);		
+		setRestartRect(g.getFontMetrics().getStringBounds("Restart", g));
+		getRestartRect().setRect(200,172 - g.getFontMetrics().getAscent(), getRestartRect().getWidth(), getRestartRect().getHeight());
+
 		g.drawString("Quit", 200, 188);
+		setQuitRect(g.getFontMetrics().getStringBounds("Quit", g));
+		getQuitRect().setRect(200,188 - g.getFontMetrics().getAscent(), getQuitRect().getWidth(), getQuitRect().getHeight());
+
 	}
 
-	public void mouseClicked(MouseEvent e) {
-		if (getResumeRect().contains(e.getPoint())) {
-		 	System.out.println("clicked");
-		}
-		System.out.println(getResumeRect());
-		System.out.println(e.getPoint());
-    }
+	
 
 	public Rectangle2D getResumeRect() {
 		return resumeRect;
@@ -68,31 +69,23 @@ public class Pause implements MouseListener{
 	}
 
 
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public Rectangle2D getRestartRect() {
+		return restartRect;
 	}
 
 
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void setRestartRect(Rectangle2D restartRect) {
+		this.restartRect = restartRect;
 	}
 
 
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public Rectangle2D getQuitRect() {
+		return quitRect;
 	}
 
 
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void setQuitRect(Rectangle2D quitRect) {
+		this.quitRect = quitRect;
 	}
 
 

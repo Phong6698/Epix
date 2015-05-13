@@ -407,7 +407,6 @@ public class Player extends MapObject {
 				dy = maxFallSpeed;
 
 		}
-
 	}
 
 	public void update(Player player) {
@@ -416,6 +415,12 @@ public class Player extends MapObject {
 		getNextPosition(player);
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
+		
+		// wenn spieler unter der Map dann sterben
+		if ( this.gety() >= 270) {
+			setDead(true);
+			System.out.println("dead: " + dead);
+		}
 
 		if (powerups.size() != 0) {
 			for (int i = 0; i < powerups.size(); i++) {

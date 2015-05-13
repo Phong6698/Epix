@@ -115,7 +115,7 @@ public class Level1State extends GameState{
 		 */
 		Heart heart;
 		Point[] hearthPoints = new Point[] {
-			new Point(3100, 240),
+			new Point(2512, 144),
 
 		};
 		for(int i = 0; i < hearthPoints.length; i++) {
@@ -144,7 +144,6 @@ public class Level1State extends GameState{
 		 */
 		Shield shield;
 		Point[] shieldPoints = new Point[] {
-			new Point(200, 240),
 
 		};
 		for(int i = 0; i < shieldPoints.length; i++) {

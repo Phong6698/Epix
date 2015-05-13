@@ -33,6 +33,7 @@ import ch.bbcag.epix.view.GameFrame;
 
 public class BossState extends GameState{
 
+
 	private User user;
 	
 	private TileMap tilemap;
@@ -43,14 +44,13 @@ public class BossState extends GameState{
 	private ArrayList<Plant> plant;
 	private ArrayList<ShootingPlant> shootingPlant;
 	private ArrayList<Magician> magicians;
+	private ArrayList<Boss> boss;
 	
 	private ArrayList<Powerup> powerups;
 	
 	private ArrayList<Coin> coins;
 	
 	private ArrayList<Flag> flags;
-	
-	private ArrayList<Boss> boss;
 	
 	public BossState(GameStateManager gsm, User user) {
 		this.gsm = gsm;	
@@ -71,7 +71,7 @@ public class BossState extends GameState{
 		
 		bg = new Background("/Backgrounds/Background.png", 1);
 		
-		player = new Player(tilemap, user);
+player = new Player(tilemap, user);
 		
 		
 		spawnEnemies();
@@ -79,10 +79,12 @@ public class BossState extends GameState{
 		spawnCoins();
 		spawnFlag();
 		
-		player.setPosition(28, 28);
+		
+		
+		player.setPosition(48, 240);
 
 	}
-
+	
 	private void spawnPowerups() {
 		powerups = new ArrayList<Powerup>();
 
@@ -106,7 +108,7 @@ public class BossState extends GameState{
 		 */
 		Heart heart;
 		Point[] hearthPoints = new Point[] {
-			new Point(3100, 240),
+			new Point(2512, 144),
 
 		};
 		for(int i = 0; i < hearthPoints.length; i++) {
@@ -135,7 +137,6 @@ public class BossState extends GameState{
 		 */
 		Shield shield;
 		Point[] shieldPoints = new Point[] {
-			new Point(200, 240),
 
 		};
 		for(int i = 0; i < shieldPoints.length; i++) {

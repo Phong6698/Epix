@@ -20,6 +20,7 @@ import ch.bbcag.epix.gamestate.GameStateManager;
 import ch.bbcag.epix.powerups.DamageUp;
 import ch.bbcag.epix.powerups.Heart;
 import ch.bbcag.epix.powerups.Jetpack;
+import ch.bbcag.epix.powerups.Shield;
 import ch.bbcag.epix.tilemap.Background;
 import ch.bbcag.epix.tilemap.TileMap;
 import ch.bbcag.epix.view.GameFrame;
@@ -112,7 +113,7 @@ private User user;
 		 */
 		Heart heart;
 		Point[] hearthPoints = new Point[] {
-			
+			new Point(1776, 208),
 
 		};
 		for(int i = 0; i < hearthPoints.length; i++) {
@@ -127,7 +128,7 @@ private User user;
 		 */
 		Jetpack jetpack;
 		Point[] jetpackPoints = new Point[] {
-				new Point(1325, 144),
+				new Point(1018, 240),
 				new Point (1856, 208)
 
 		};
@@ -135,6 +136,20 @@ private User user;
 			jetpack = new Jetpack(tilemap);
 			jetpack.setPosition(jetpackPoints[i].x, jetpackPoints[i].y);
 			powerups.add(jetpack);
+		}
+		
+		/*
+		 * Shield
+		 */
+		Shield shield;
+		Point[] shieldPoints = new Point[] {
+				new Point(1136, 48),
+				new Point(2300, 48),
+		};
+		for(int i = 0; i < shieldPoints.length; i++) {
+			shield = new Shield(tilemap);
+			shield.setPosition(shieldPoints[i].x, shieldPoints[i].y);
+			powerups.add(shield);
 		}
 		
 	}
@@ -232,8 +247,7 @@ private User user;
 		 */
 		Flag flag;
 		Point[] flagPoints = new Point[] {
-				new Point(100, 240),
-//				new Point(2960, 240),
+				new Point(2960, 240),
 				
 		};
 		for(int i = 0; i < flagPoints.length; i++) {

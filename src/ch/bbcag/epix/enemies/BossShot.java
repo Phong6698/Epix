@@ -95,7 +95,9 @@ public class BossShot extends MapObject {
 		if (hit && animation.hasPlayedOnce()) {
 			remove = true;
 		}
-		if (this.gety() <= 0) {
+		
+		//löschen falls es die y koordinate <= 0
+		if (this.gety() <= 0 || this.gety() >= 270) {
 			remove = true;
 		}
 	}

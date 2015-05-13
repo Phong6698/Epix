@@ -125,7 +125,7 @@ public class PlantShot extends MapObject {
 		}
 		
 		//löschen falls es die y koordinate <= 0
-		if (this.gety() <= 0) {
+		if (this.gety() <= 0 || this.gety() >= 270) {
 			remove = true;
 		}
 	}

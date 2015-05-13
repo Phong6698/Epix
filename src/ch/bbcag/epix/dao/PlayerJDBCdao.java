@@ -44,12 +44,12 @@ public class PlayerJDBCdao extends Database implements PlayerDao {
 		 * Eintragen eines neuen Users in DB
 		 */
 		public void registrieren(User user) throws SQLException {
-			String sql = "INSERT INTO player (Username, Password, Email, Coins, PlayerWeapon_ID) VALUES (?, ?, ?,0, 1)";
+			String sql = "INSERT INTO player (Username, Password, Email, Coins, PlayerWeapon_ID, Health, Jump, Damage, Speed, MaxSpeed) VALUES (?, ?, ?,0, 1, 50, -6.5 ,5 ,0.2,3.2)";
 			con = getCon();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, user.getUsername());
 			ps.setString(2, user.getPassword());
-			ps.setString(3, user.getEmail());
+			ps.setString(3, user.getEmail());	
 			ps.executeUpdate();
 			closeCon();
 		}

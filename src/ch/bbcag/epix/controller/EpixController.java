@@ -12,7 +12,6 @@ import ch.bbcag.epix.dao.PlayerDao;
 import ch.bbcag.epix.dao.PlayerJDBCdao;
 import ch.bbcag.epix.dao.SaveDao;
 import ch.bbcag.epix.dao.SaveJDBCdao;
-import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.popup.EmailEmpty;
 import ch.bbcag.epix.popup.FalsePassword;
@@ -26,8 +25,8 @@ import ch.bbcag.epix.utils.CryptUtils;
 
 /**
  * 
- * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			EpixController.java.java Copyright Berufsbildungscenter 2015
+ * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *         EpixController.java.java Copyright Berufsbildungscenter 2015
  */
 
 public class EpixController {
@@ -133,7 +132,7 @@ public class EpixController {
 		System.out.println(login);
 		return login;
 	}
-	
+
 	public User playerLogin(String username) {
 		try {
 			User player = USER_DAO.playerLogin(username);
@@ -143,15 +142,15 @@ public class EpixController {
 		}
 		return null;
 	}
-	
-	public void coinsUpdate(User user, int coins){
+
+	public void coinsUpdate(User user, int coins) {
 		try {
-			 USER_DAO.coinsUpdate(user, coins);
+			USER_DAO.coinsUpdate(user, coins);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void save(User user, int level_ID) {
 		try {
 			SAVE_DAO.save(user, level_ID);
@@ -159,7 +158,15 @@ public class EpixController {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public void saveUpgrades(User user) {
+		try {
+			SAVE_DAO.saveUpgrades(user);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public int getID_Level(String levelName) {
 		int id_Level = 0;
 		try {
@@ -170,17 +177,16 @@ public class EpixController {
 		return id_Level;
 	}
 
-	public void checkLevelSaved(User user, JButton levelButton) {		
+	public void checkLevelSaved(User user, JButton levelButton) {
 		int id_Level;
 		try {
-			id_Level = LEVEL_DAO.getID_Level(levelButton.getText());				
-			if(SAVE_DAO.checkLevelSaved(user, id_Level)) {
+			id_Level = LEVEL_DAO.getID_Level(levelButton.getText());
+			if (SAVE_DAO.checkLevelSaved(user, id_Level)) {
 				levelButton.setEnabled(false);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	
-		
+
 	}
 };

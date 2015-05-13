@@ -13,7 +13,6 @@ import ch.bbcag.epix.entity.User;
 public class Game {
 	
 	public static void main(String[] args) {
-		
 		User user = new User();
 		user.setUsername("Epix");
 		user.setCoin(100);

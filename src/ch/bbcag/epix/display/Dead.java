@@ -43,11 +43,11 @@ private BufferedImage pauseImage;
 		
 		g.drawString("Restart", 200, 156);
 		setRestartRect(g.getFontMetrics().getStringBounds("Restart", g));
-		getRestartRect().setRect(200,172 - g.getFontMetrics().getAscent(), getRestartRect().getWidth(), getRestartRect().getHeight());
+		getRestartRect().setRect(200,156 - g.getFontMetrics().getAscent(), getRestartRect().getWidth(), getRestartRect().getHeight());
 
 		g.drawString("Quit", 200, 172);		
 		setQuitRect(g.getFontMetrics().getStringBounds("Quit", g));
-		getQuitRect().setRect(200,188 - g.getFontMetrics().getAscent(), getQuitRect().getWidth(), getQuitRect().getHeight());
+		getQuitRect().setRect(200,172 - g.getFontMetrics().getAscent(), getQuitRect().getWidth(), getQuitRect().getHeight());
 
 
 	}

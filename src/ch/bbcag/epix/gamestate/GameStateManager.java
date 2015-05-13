@@ -57,6 +57,7 @@ public class GameStateManager {
 		unloadState(currentLevel);
 		loadState(currentLevel, user);
 		setFinished(false);
+		setDead(false);
 	}
 
 	public void setState(int level, User user) {

@@ -184,18 +184,6 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 	private void update() {
 		gsm.update();
 		
-		if(paused) {
-			pauseScreen = true;
-			
-		}
-		if(gsm.isFinished()){
-			finishScreen = true;
-			
-		}
-		if(gsm.isDead()) {
-			deadScreen = true;
-		}
-		
 		
 		
 		
@@ -204,16 +192,19 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 		gsm.draw(g);
 		
 		if(pauseScreen) {	
+			paused = true;
 			System.out.println("pause");
 			getPauseDisplay().draw(g);
 		}
-		if(finishScreen){
+		if(gsm.isFinished()){
 			paused = true;
+			finishScreen = true;
 			getFinishedDisplay().draw(g);
 			
 		}
-		if(deadScreen) {
+		if(gsm.isDead()) {
 			paused = true;
+			deadScreen = true;
 			getDeadDisplay().draw(g);
 		}
 		
@@ -272,9 +263,9 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 		//Dead
 		if(deadScreen){
 			if (getDeadDisplay().getRestartRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
-				System.out.println("Restart");	
-				deadScreen = false;
+				System.out.println("Restart");					
 				gsm.restartState();
+				deadScreen = false;
 				paused = false;
 			}else if(getDeadDisplay().getQuitRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
 				System.out.println("Quit");
@@ -301,13 +292,12 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 		
 		if(k == KeyEvent.VK_ESCAPE && paused ) {
 			System.out.println("Resume");
+			pauseScreen = false;
 			paused = false;
 			
 		} else if(k == KeyEvent.VK_ESCAPE ) {
 			System.out.println("Pause");
-			paused = true;
-		
-		
+			pauseScreen = true;		
 			
 		}
 	}

@@ -18,7 +18,7 @@ public class Game {
 		user.setCoin(0);
 		user.setMaxHealth(50);
 
-		GameFrame game = new GameFrame(1, user);
+		GameFrame game = new GameFrame(3, user);
 		game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

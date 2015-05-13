@@ -44,6 +44,7 @@ public class Level1State extends GameState{
 	private ArrayList<Plant> plant;
 	private ArrayList<ShootingPlant> shootingPlant;
 	private ArrayList<Magician> magicians;
+	private ArrayList<Boss> boss;
 	
 	private ArrayList<Powerup> powerups;
 	
@@ -51,7 +52,7 @@ public class Level1State extends GameState{
 	
 	private ArrayList<Flag> flags;
 	
-	private ArrayList<Boss> boss;
+
 	
 	
 	public Level1State(GameStateManager gsm, User user) {
@@ -191,17 +192,13 @@ public class Level1State extends GameState{
 		
 		/**
 		 * Boss
-		 */
-		
+		 */		
 		boss = new ArrayList<Boss>();
 
 		Boss b;
-		Point[] bossPoint = new Point[] 
-				{ 
-				
-				new Point(250, 70)
-				
-				};
+		Point[] bossPoint = new Point[] { 
+					
+		};
 		for (int i = 0; i < bossPoint.length; i++) {
 			b = new Boss(tilemap, player);
 			b.setPosition(bossPoint[i].x, bossPoint[i].y);
@@ -227,9 +224,9 @@ public class Level1State extends GameState{
 			p = new ShootingPlant(tilemap, false);
 			p.setPosition(shootingPlantPoints[i].x, shootingPlantPoints[i].y);
 			shootingPlant.add(p);
-		}
-		
+		}		
 	}
+	
 	
 	private void spawnCoins() {
 		coins = new ArrayList<Coin>();

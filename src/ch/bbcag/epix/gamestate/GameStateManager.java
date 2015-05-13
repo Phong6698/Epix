@@ -45,7 +45,7 @@ public class GameStateManager {
 		} else if (level == LEVEL2) {
 			getGameStates()[level] = new Level2State(this, user);
 		} else if (level == BOSSLEVEL) {
-			getGameStates()[level] = new BossState(this);
+			getGameStates()[level] = new BossState(this, user);
 		}
 		EpixController.getInstance().saveUpgrades(user);
 		System.out.println(user.getMaxHealth());
@@ -88,6 +88,7 @@ public class GameStateManager {
 			// if finished update coin in database
 			if (getGameStates()[currentLevel].finished) {
 				this.setFinished(true);
+
 			}
 
 		} catch (Exception e) {

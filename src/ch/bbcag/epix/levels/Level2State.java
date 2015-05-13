@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import ch.bbcag.epix.display.HUD;
+import ch.bbcag.epix.enemies.Boss;
 import ch.bbcag.epix.enemies.Magician;
 import ch.bbcag.epix.enemies.Plant;
 import ch.bbcag.epix.enemies.ShootingPlant;
@@ -31,10 +32,7 @@ import ch.bbcag.epix.view.GameFrame;
 
 public class Level2State extends GameState{
 
-	private User user;
-	
-	private Player player;
-	private Player player2;
+private User user;
 	
 	private TileMap tilemap;
 	private Background bg;
@@ -44,12 +42,15 @@ public class Level2State extends GameState{
 	private ArrayList<Plant> plant;
 	private ArrayList<ShootingPlant> shootingPlant;
 	private ArrayList<Magician> magicians;
+	private ArrayList<Boss> boss;
 	
 	private ArrayList<Powerup> powerups;
 	
 	private ArrayList<Coin> coins;
 	
 	private ArrayList<Flag> flags;
+	
+	
 	
 	public Level2State(GameStateManager gsm, User user) {
 		this.gsm = gsm;	
@@ -75,15 +76,14 @@ public class Level2State extends GameState{
 	
 		
 		player = new Player(tilemap, user);
-		player.setUsername(user.getUsername());
-		player.setCoin(user.getCoin());
-		player.setMaxHealth(user.getMaxHealth());
-		player.setHealth(user.getMaxHealth());
+		
 		
 		spawnEnemies();
 		spawnPowerups();
 		spawnCoins();
 		spawnFlag();
+		
+		
 		
 		player.setPosition(50, 40);
 
@@ -232,7 +232,8 @@ public class Level2State extends GameState{
 		 */
 		Flag flag;
 		Point[] flagPoints = new Point[] {
-				new Point(220, 240),
+				new Point(100, 240),
+//				new Point(2960, 240),
 				
 		};
 		for(int i = 0; i < flagPoints.length; i++) {
@@ -261,6 +262,11 @@ public class Level2State extends GameState{
 		
 		player.checkPowerup(powerups, player);
 		player.checkCoin(coins);
+		
+		//check if no enimies in level
+		if (plant.size() == 0 && shootingPlant.size() == 0 && magicians.size() == 0) {
+			finished = player.checkFlag(flags);
+		}
 		
 		
 		for(int i = 0; i < plant.size(); i++) {
@@ -324,8 +330,7 @@ public class Level2State extends GameState{
 		
 		for(int i = 0; i < flags.size(); i++) {
 			Flag flag = flags.get(i);
-			flag.update();
-			
+			flag.update();			
 		}
 	}
 

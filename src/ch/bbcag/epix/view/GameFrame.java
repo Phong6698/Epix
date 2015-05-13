@@ -194,7 +194,6 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 		
 		if(pauseScreen) {	
 			paused = true;
-			System.out.println("pause");
 			getPauseDisplay().draw(g);
 		}
 		if(gsm.isFinished()){

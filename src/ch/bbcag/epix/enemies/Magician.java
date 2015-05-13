@@ -45,7 +45,7 @@ public class Magician extends Enemy {
 		super(tm);
 
 		moveSpeed = 1;
-		maxSpeed = 1;
+		maxMoveSpeed = 1;
 		fallSpeed = 0.2;
 		maxFallSpeed = 10.0;
 
@@ -106,13 +106,13 @@ public class Magician extends Enemy {
 		if (currentAction == IDLE) {
 			if (left) {
 				dx -= moveSpeed;
-				if (dx < -maxSpeed) {
-					dx = -maxSpeed;
+				if (dx < -maxMoveSpeed) {
+					dx = -maxMoveSpeed;
 				}
 			} else if (right) {
 				dx += moveSpeed;
-				if (dx > maxSpeed) {
-					dx = maxSpeed;
+				if (dx > maxMoveSpeed) {
+					dx = maxMoveSpeed;
 				}
 			}
 		} else {

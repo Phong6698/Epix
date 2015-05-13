@@ -15,7 +15,10 @@ import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.listener.LevelAuswahlCardButtonListener;
 import ch.bbcag.epix.listener.MenuCardButtonListener;
+import ch.bbcag.epix.listener.PlusDamageListener;
+import ch.bbcag.epix.listener.PlusHealthListener;
 import ch.bbcag.epix.listener.PlusJumpListener;
+import ch.bbcag.epix.listener.PlusSpeedListener;
 import ch.bbcag.epix.listener.UpgradeCardButtonListener;
 
 /**
@@ -165,6 +168,7 @@ public class EpixView extends JFrame {
 		maxHealthBar.setBounds(327, 127, 185, 36);
 		upgradeCard.add(maxHealthBar);
 		plusHealthButton.setBounds(522, 130, 41, 30);
+		plusHealthButton.addActionListener(new PlusHealthListener(getUser(), maxHealthBar, epix,upgradeCardCoinLabel, cards));
 		upgradeCard.add(plusHealthButton);
 
 		// maxJumpBar
@@ -188,6 +192,7 @@ public class EpixView extends JFrame {
 		maxSpeedBar.setBounds(327, 221, 185, 36);
 		upgradeCard.add(maxSpeedBar);
 		plusSpeedButton.setBounds(522, 224, 41, 30);
+		plusSpeedButton.addActionListener(new PlusSpeedListener(getUser(), maxSpeedBar, epix,upgradeCardCoinLabel, cards));
 		upgradeCard.add(plusSpeedButton);
 
 		// damageBar
@@ -199,6 +204,7 @@ public class EpixView extends JFrame {
 		damageBar.setBounds(327, 268, 185, 36);
 		upgradeCard.add(damageBar);
 		plusDamageButton.setBounds(522, 271, 41, 30);
+		plusDamageButton.addActionListener(new PlusDamageListener(getUser(), damageBar, epix,upgradeCardCoinLabel, cards));
 		upgradeCard.add(plusDamageButton);
 
 		levelAuswählenButton.setBounds(395, 361, 168, 30);

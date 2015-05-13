@@ -12,16 +12,16 @@ import javax.swing.JProgressBar;
 import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.User;
 
-public class PlusJumpListener implements ActionListener {
+public class PlusHealthListener implements ActionListener {
 	private User user;
-	private JProgressBar maxJumpBar;
+	private JProgressBar maxHealthBar;
 	private JFrame epix;
 	private JLabel menuCardCoinLabel;
 	private JPanel card;
 
-	public PlusJumpListener(User user, JProgressBar maxJumpBar, JFrame epix, JLabel menuCardCoinLabel, JPanel card) {
+	public PlusHealthListener(User user, JProgressBar maxHealthBar, JFrame epix, JLabel menuCardCoinLabel, JPanel card) {
 		this.setUser(user);
-		this.setMaxJumpBar(maxJumpBar);
+		this.setMaxHealthBar(maxHealthBar);
 		this.setEpix(epix);
 		this.setMenuCardCoinLabel(menuCardCoinLabel);
 		this.card = card;
@@ -29,10 +29,10 @@ public class PlusJumpListener implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		user.setCoin(user.getCoin() - 5);
-		user.setMaxJump(-0.2);
+		user.setMaxHealth(5);
 		EpixController.getInstance().coinsUpdate(user, -5);
 		menuCardCoinLabel.setText("" + user.getCoin());
-		maxJumpBar.setValue(maxJumpBar.getValue()+ 5);
+		maxHealthBar.setValue(maxHealthBar.getValue()+ 5);
 		CardLayout cardLayout = (CardLayout) getCard().getLayout();
 		cardLayout.show(getCard(), "upgradeCard");
 		
@@ -48,11 +48,11 @@ public class PlusJumpListener implements ActionListener {
 	}
 
 	public JProgressBar getMaxJumpBar() {
-		return maxJumpBar;
+		return maxHealthBar;
 	}
 
-	public void setMaxJumpBar(JProgressBar maxJumpBar) {
-		this.maxJumpBar = maxJumpBar;
+	public void setMaxHealthBar(JProgressBar maxHealthBar) {
+		this.maxHealthBar = maxHealthBar;
 	}
 
 	public JFrame getEpix() {
@@ -78,6 +78,4 @@ public class PlusJumpListener implements ActionListener {
 	public void setCard(JPanel card) {
 		this.card = card;
 	}
-
-
 }

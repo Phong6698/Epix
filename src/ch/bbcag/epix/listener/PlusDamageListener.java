@@ -12,16 +12,16 @@ import javax.swing.JProgressBar;
 import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.User;
 
-public class PlusJumpListener implements ActionListener {
+public class PlusDamageListener implements ActionListener {
 	private User user;
-	private JProgressBar maxJumpBar;
+	private JProgressBar maxDamageBar;
 	private JFrame epix;
 	private JLabel menuCardCoinLabel;
 	private JPanel card;
 
-	public PlusJumpListener(User user, JProgressBar maxJumpBar, JFrame epix, JLabel menuCardCoinLabel, JPanel card) {
+	public PlusDamageListener(User user, JProgressBar maxDamageBar, JFrame epix, JLabel menuCardCoinLabel, JPanel card) {
 		this.setUser(user);
-		this.setMaxJumpBar(maxJumpBar);
+		this.setmaxDamageBar(maxDamageBar);
 		this.setEpix(epix);
 		this.setMenuCardCoinLabel(menuCardCoinLabel);
 		this.card = card;
@@ -29,10 +29,10 @@ public class PlusJumpListener implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		user.setCoin(user.getCoin() - 5);
-		user.setMaxJump(-0.2);
+		user.setDamage(2);
 		EpixController.getInstance().coinsUpdate(user, -5);
 		menuCardCoinLabel.setText("" + user.getCoin());
-		maxJumpBar.setValue(maxJumpBar.getValue()+ 5);
+		maxDamageBar.setValue(maxDamageBar.getValue() + 5);
 		CardLayout cardLayout = (CardLayout) getCard().getLayout();
 		cardLayout.show(getCard(), "upgradeCard");
 		
@@ -47,12 +47,12 @@ public class PlusJumpListener implements ActionListener {
 		this.user = user;
 	}
 
-	public JProgressBar getMaxJumpBar() {
-		return maxJumpBar;
+	public JProgressBar getmaxDamageBar() {
+		return maxDamageBar;
 	}
 
-	public void setMaxJumpBar(JProgressBar maxJumpBar) {
-		this.maxJumpBar = maxJumpBar;
+	public void setmaxDamageBar(JProgressBar maxJumpBar) {
+		this.maxDamageBar = maxJumpBar;
 	}
 
 	public JFrame getEpix() {

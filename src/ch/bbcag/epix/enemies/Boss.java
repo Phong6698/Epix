@@ -50,7 +50,7 @@ public class Boss extends Enemy {
 		super(tm);
 
 		moveSpeed = 1;
-		maxSpeed = 1;
+		maxMoveSpeed = 1;
 
 		width = 64;
 		height = 64;
@@ -108,13 +108,13 @@ public class Boss extends Enemy {
 		if (currentAction == WALK) {
 			if (left) {
 				dx -= moveSpeed;
-				if (dx < -maxSpeed) {
-					dx = -maxSpeed;
+				if (dx < -maxMoveSpeed) {
+					dx = -maxMoveSpeed;
 				}
 			} else if (right) {
 				dx += moveSpeed;
-				if (dx > maxSpeed) {
-					dx = maxSpeed;
+				if (dx > maxMoveSpeed) {
+					dx = maxMoveSpeed;
 				}
 			}
 		} else {

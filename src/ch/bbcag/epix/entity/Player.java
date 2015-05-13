@@ -79,6 +79,9 @@ public class Player extends MapObject {
 		setMaxHealth(user.getMaxHealth());
 		setHealth(user.getMaxHealth());
 		setJumpStart(user.getMaxJump());
+		setMoveSpeed(user.getMoveSpeed());
+		setMaxMoveSpeed(user.getMaxMoveSpeed());
+		setRainbowdamage(user.getDamage());
 
 
 		width = 32;
@@ -88,8 +91,6 @@ public class Player extends MapObject {
 		cwidth = 32;
 		cheight = 32;
 
-		moveSpeed = 0.2;
-		maxSpeed = 3.2;
 		stopSpeed = 0.8;
 		fallSpeed = 0.30;
 		maxFallSpeed = 4.0;
@@ -100,8 +101,6 @@ public class Player extends MapObject {
 
 
 		rainbow = maxRainbow = 2500;
-
-		rainbowdamage = 10;
 		rainbows = new ArrayList<Rainbow>();
 
 		// load sprites
@@ -282,7 +281,7 @@ public class Player extends MapObject {
 			jetpack = true;
 		}
 		moveSpeed = moveSpeed + powerup.moveSpeed;
-		maxSpeed = maxSpeed + powerup.moveSpeed;
+		maxMoveSpeed = maxMoveSpeed + powerup.moveSpeed;
 		stopSpeed = stopSpeed + powerup.moveSpeed;
 		fallSpeed = fallSpeed + powerup.moveSpeed;
 		maxFallSpeed = maxFallSpeed + powerup.moveSpeed;
@@ -309,7 +308,7 @@ public class Player extends MapObject {
 			jetpack = false;
 		}
 		moveSpeed = moveSpeed - powerup.moveSpeed;
-		maxSpeed = maxSpeed - powerup.moveSpeed;
+		maxMoveSpeed = maxMoveSpeed - powerup.moveSpeed;
 		stopSpeed = stopSpeed - powerup.moveSpeed;
 		fallSpeed = fallSpeed - powerup.moveSpeed;
 		maxFallSpeed = maxFallSpeed - powerup.moveSpeed;
@@ -354,13 +353,13 @@ public class Player extends MapObject {
 		// movement
 		if (left) {
 			dx -= moveSpeed;
-			if (dx < -maxSpeed) {
-				dx = -maxSpeed;
+			if (dx < -maxMoveSpeed) {
+				dx = -maxMoveSpeed;
 			}
 		} else if (right) {
 			dx += moveSpeed;
-			if (dx > maxSpeed) {
-				dx = maxSpeed;
+			if (dx > maxMoveSpeed) {
+				dx = maxMoveSpeed;
 			}
 		} else {
 			if (dx > 0) {

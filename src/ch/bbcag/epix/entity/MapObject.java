@@ -70,7 +70,7 @@ public abstract class MapObject {
 
 	// movement attributes
 	protected double moveSpeed;
-	protected double maxSpeed;
+	protected double maxMoveSpeed;
 	protected double stopSpeed;
 	protected double fallSpeed;
 	protected double maxFallSpeed;
@@ -267,6 +267,10 @@ public abstract class MapObject {
 
 	public double getFallSpeed() {
 		return fallSpeed;
+	}
+	
+	public void setMaxMoveSpeed(double maxMoveSpeed){
+		this.maxMoveSpeed = this.maxMoveSpeed + maxMoveSpeed;
 	}
 
 	public void setFallSpeed(double fallSpeed) {

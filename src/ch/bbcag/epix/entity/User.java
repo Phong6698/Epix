@@ -2,36 +2,41 @@ package ch.bbcag.epix.entity;
 
 /**
  * 
- * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			User.java.java Copyright Berufsbildungscenter 2015
+ * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ *         User.java.java Copyright Berufsbildungscenter 2015
  */
 
 public class User {
-	//Instanzvariablen
+	// Instanzvariablen
 	private String username = null;
 	private String email = null;
 	private String password = null;
 	private String passwordConfirm = null;
 	private int coin;
-	private int maxHealth = 50;	
+	private int maxHealth = 50;
 	private boolean dead = false;
 	private double maxJump = -6;
-	
+	private int damage = 5;
+	private double moveSpeed = 0.2;
+	private double maxMoveSpeed = 3.2;
 
-	//Getter
+	// Getter
 	public String getUsername() {
 		return username;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public String getPasswordConfirm() {
 		return passwordConfirm;
 	}
-	
+
 	public int getCoin() {
 		return coin;
 	}
@@ -39,43 +44,69 @@ public class User {
 	public int getMaxHealth() {
 		return maxHealth;
 	}
+
 	public boolean isDead() {
 		return dead;
 	}
-	
-	
-	//Setter
+
+	// Setter
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public void setPasswordConfirm(String passwordConfirm) {
 		this.passwordConfirm = passwordConfirm;
 	}
-	
+
 	public void setCoin(int coin) {
 		this.coin = coin;
 	}
 
 	public void setMaxHealth(int maxHealth) {
-		this.maxHealth = maxHealth;
+		this.maxHealth =this.maxHealth + maxHealth;
 	}
+
 	public void setDead(boolean dead) {
 		this.dead = dead;
 	}
-	public void getMaxJump(int maxJump) {
-		this.maxJump = maxJump;
-	}
+
 	public double getMaxJump() {
 		return maxJump;
 	}
+
 	public void setMaxJump(double d) {
 		this.maxJump = this.maxJump + d;
+	}
+
+	public int getDamage() {
+		return damage;
+	}
+
+	public void setDamage(int damage) {
+		this.damage = this.damage + damage;
+	}
+
+	public double getMaxMoveSpeed() {
+		return maxMoveSpeed;
+	}
+
+	public void setMaxMoveSpeed(double maxMoveSpeed) {
+		this.maxMoveSpeed = this.maxMoveSpeed + maxMoveSpeed;
+	}
+
+	public double getMoveSpeed() {
+		return moveSpeed;
+	}
+
+	public void setMoveSpeed(double moveSpeed) {
+		this.moveSpeed = this.moveSpeed + moveSpeed;
 	}
 }

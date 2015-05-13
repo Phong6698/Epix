@@ -23,4 +23,5 @@ public interface PlayerDao {
 	
 	public abstract void coinsUpdate(User user, int coins) throws SQLException;
 	
+	public abstract void getPlayerStats(User user) throws SQLException;	
 }

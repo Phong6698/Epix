@@ -13,12 +13,12 @@ public class User {
 	private String password = null;
 	private String passwordConfirm = null;
 	private int coin;
-	private int maxHealth = 50;
+	private int maxHealth;
 	private boolean dead = false;
-	private double maxJump = -6;
-	private int damage = 5;
-	private double moveSpeed = 0.2;
-	private double maxMoveSpeed = 3.2;
+	private double maxJump;
+	private int damage;
+	private double moveSpeed;
+	private double maxMoveSpeed;
 
 	// Getter
 	public String getUsername() {
@@ -71,7 +71,7 @@ public class User {
 	}
 
 	public void setMaxHealth(int maxHealth) {
-		this.maxHealth =this.maxHealth + maxHealth;
+		this.maxHealth = maxHealth;
 	}
 
 	public void setDead(boolean dead) {
@@ -83,7 +83,7 @@ public class User {
 	}
 
 	public void setMaxJump(double d) {
-		this.maxJump = this.maxJump + d;
+		this.maxJump =  d;
 	}
 
 	public int getDamage() {
@@ -91,7 +91,7 @@ public class User {
 	}
 
 	public void setDamage(int damage) {
-		this.damage = this.damage + damage;
+		this.damage =  damage;
 	}
 
 	public double getMaxMoveSpeed() {
@@ -99,7 +99,7 @@ public class User {
 	}
 
 	public void setMaxMoveSpeed(double maxMoveSpeed) {
-		this.maxMoveSpeed = this.maxMoveSpeed + maxMoveSpeed;
+		this.maxMoveSpeed =  maxMoveSpeed;
 	}
 
 	public double getMoveSpeed() {
@@ -107,6 +107,6 @@ public class User {
 	}
 
 	public void setMoveSpeed(double moveSpeed) {
-		this.moveSpeed = this.moveSpeed + moveSpeed;
+		this.moveSpeed =  moveSpeed;
 	}
 }

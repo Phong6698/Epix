@@ -30,7 +30,7 @@ public class PlusJumpListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (user.getCoin() >= 5) {
 			user.setCoin(user.getCoin() - 5);
-			user.setMaxJump(-0.2);
+			user.setMaxJump(user.getMaxJump()-0.2);
 			EpixController.getInstance().coinsUpdate(user, -5);
 			menuCardCoinLabel.setText("" + user.getCoin());
 			maxJumpBar.setValue(maxJumpBar.getValue() + 5);

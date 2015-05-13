@@ -101,6 +101,7 @@ public class EpixView extends JFrame {
 	public EpixView(User user) {
 
 		this.setUser(user);
+		EpixController.getInstance().getPlayerStats(user);
 
 		JFrame epix = new JFrame();
 		epix.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -164,7 +165,8 @@ public class EpixView extends JFrame {
 		healthLabel.setBounds(191, 127, 110, 36);
 		upgradeCard.add(healthLabel);
 		JProgressBar maxHealthBar = new JProgressBar();
-		maxHealthBar.setValue(0);
+		maxHealthBar.setValue((user.getMaxHealth()-50)/2);
+
 		maxHealthBar.setBounds(327, 127, 185, 36);
 		upgradeCard.add(maxHealthBar);
 		plusHealthButton.setBounds(522, 130, 41, 30);
@@ -176,7 +178,7 @@ public class EpixView extends JFrame {
 		jumpLabel.setBounds(191, 174, 110, 36);
 		upgradeCard.add(jumpLabel);
 		JProgressBar maxJumpBar = new JProgressBar();
-		maxJumpBar.setValue(0);
+		maxJumpBar.setValue((int) ((-user.getMaxJump()- 6)*25));
 		maxJumpBar.setBounds(327, 174, 185, 36);
 		upgradeCard.add(maxJumpBar);
 		plusJumpButton.setBounds(522, 177, 41, 30);
@@ -188,7 +190,8 @@ public class EpixView extends JFrame {
 		speedLabel.setBounds(191, 221, 110, 36);
 		upgradeCard.add(speedLabel);
 		JProgressBar maxSpeedBar = new JProgressBar();
-		maxSpeedBar.setValue(0);
+		maxSpeedBar.setValue((int) ((user.getMoveSpeed()-0.2)*25));
+		
 		maxSpeedBar.setBounds(327, 221, 185, 36);
 		upgradeCard.add(maxSpeedBar);
 		plusSpeedButton.setBounds(522, 224, 41, 30);
@@ -200,7 +203,7 @@ public class EpixView extends JFrame {
 		damageLabel.setBounds(191, 268, 110, 36);
 		upgradeCard.add(damageLabel);
 		JProgressBar damageBar = new JProgressBar();
-		damageBar.setValue(0);
+		damageBar.setValue((user.getDamage()/2)-5);
 		damageBar.setBounds(327, 268, 185, 36);
 		upgradeCard.add(damageBar);
 		plusDamageButton.setBounds(522, 271, 41, 30);

@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.entity.User;
 
 /**
@@ -81,6 +80,24 @@ public class PlayerJDBCdao extends Database implements PlayerDao {
 			ps.setInt(1, player.getCoin() + coins);
 			ps.setString(2, player.getUsername());
 			ps.executeUpdate();
+			closeCon();
+		}
+
+		public void getPlayerStats(User user) throws SQLException {
+			String sql = "SELECT * FROM player Where Username = ?";
+			con = getCon();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, user.getUsername());
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				user.setMaxHealth(rs.getInt("Health"));
+				user.setMaxJump(rs.getDouble("Jump"));
+				user.setDamage(rs.getInt("Damage"));
+				user.setMoveSpeed(rs.getDouble("Speed"));
+				user.setMaxMoveSpeed(rs.getDouble("MaxSpeed"));
+				break;
+			}
 			closeCon();
 		}
 

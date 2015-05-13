@@ -48,7 +48,6 @@ public class GameStateManager {
 			getGameStates()[level] = new BossState(this, user);
 		}
 		EpixController.getInstance().saveUpgrades(user);
-		System.out.println(user.getMaxHealth());
 	}
 
 	private void unloadState(int level) {

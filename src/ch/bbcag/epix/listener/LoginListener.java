@@ -44,7 +44,6 @@ public class LoginListener implements ActionListener {
 			loginView.dispose();
 			User player = EpixController.getInstance().playerLogin(user);
 			new EpixView(player);
-			
 		}
 
 	}

@@ -30,7 +30,7 @@ public class PlusHealthListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (user.getCoin() >= 5) {
 		user.setCoin(user.getCoin() - 5);
-		user.setMaxHealth(5);
+		user.setMaxHealth(user.getMaxHealth() + 5);
 		EpixController.getInstance().coinsUpdate(user, -5);
 		menuCardCoinLabel.setText("" + user.getCoin());
 		maxHealthBar.setValue(maxHealthBar.getValue()+ 5);

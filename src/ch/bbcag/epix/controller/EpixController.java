@@ -189,4 +189,11 @@ public class EpixController {
 		}
 
 	}
+	public void getPlayerStats(User user){
+		try {
+			USER_DAO.getPlayerStats(user);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 };

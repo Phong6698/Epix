@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
+import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.display.Dead;
 import ch.bbcag.epix.display.Finished;
 import ch.bbcag.epix.display.Pause;
@@ -245,8 +246,9 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 		//Finished
 		if(finishScreen){
 			if (getFinishedDisplay().getContinueRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
-				 System.out.println("Continue");
-				 finishScreen = false;
+				System.out.println("Continue");
+				gsm.saveState();
+				finishScreen = false;
 				running = false;
 				this.dispose();
 				EpixView epix = new EpixView(getUser());

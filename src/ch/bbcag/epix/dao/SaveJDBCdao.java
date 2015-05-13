@@ -39,4 +39,8 @@ public class SaveJDBCdao extends Database implements SaveDao{
 		return false;
 	}
 
+	public void saveUpgrades(User user) throws SQLException {
+		
+	}
+
 }

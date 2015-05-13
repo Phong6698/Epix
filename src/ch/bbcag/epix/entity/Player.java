@@ -321,8 +321,6 @@ public class Player extends MapObject {
 		}
 
 		powerups.remove(powerup);
-		System.out.println("Powerup removed");
-
 	}
 
 	/**

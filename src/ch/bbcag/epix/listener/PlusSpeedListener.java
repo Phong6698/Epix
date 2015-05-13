@@ -28,17 +28,17 @@ public class PlusSpeedListener implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		user.setCoin(user.getCoin() - 5);
-		user.setMaxMoveSpeed(0.1);
-		user.setMoveSpeed(0.1);
-		EpixController.getInstance().coinsUpdate(user, -5);
-		menuCardCoinLabel.setText("" + user.getCoin());
-		maxSpeedBar.setValue(maxSpeedBar.getValue()+ 5);
-		CardLayout cardLayout = (CardLayout) getCard().getLayout();
-		cardLayout.show(getCard(), "upgradeCard");
-		
+		if (user.getCoin() >= 5) {
+			user.setCoin(user.getCoin() - 5);
+			user.setMaxMoveSpeed(0.1);
+			user.setMoveSpeed(0.1);
+			EpixController.getInstance().coinsUpdate(user, -5);
+			menuCardCoinLabel.setText("" + user.getCoin());
+			maxSpeedBar.setValue(maxSpeedBar.getValue() + 5);
+			CardLayout cardLayout = (CardLayout) getCard().getLayout();
+			cardLayout.show(getCard(), "upgradeCard");
+		}
 	}
-
 
 	public User getUser() {
 		return user;
@@ -63,7 +63,7 @@ public class PlusSpeedListener implements ActionListener {
 	public void setEpix(JFrame epix) {
 		this.epix = epix;
 	}
-	
+
 	public JLabel getMenuCardCoinLabel() {
 		return menuCardCoinLabel;
 	}
@@ -79,6 +79,5 @@ public class PlusSpeedListener implements ActionListener {
 	public void setCard(JPanel card) {
 		this.card = card;
 	}
-
 
 }

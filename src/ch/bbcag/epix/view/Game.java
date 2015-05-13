@@ -17,7 +17,12 @@ public class Game {
 		user.setUsername("Epix");
 		user.setCoin(0);
 		user.setMaxHealth(50);
-
+		user.setMoveSpeed(3);
+		user.setMaxJump(-6);
+		user.setDamage(20);
+		user.setMoveSpeed(3);
+		user.setMaxMoveSpeed(3.2);
+		
 		GameFrame game = new GameFrame(2, user);
 		game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

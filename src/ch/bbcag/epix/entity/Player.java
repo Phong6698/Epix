@@ -88,7 +88,7 @@ public class Player extends MapObject {
 		height = 32;
 
 		// hitbox
-		cwidth = 32;
+		cwidth = 30;
 		cheight = 32;
 
 		stopSpeed = 0.8;
@@ -419,7 +419,6 @@ public class Player extends MapObject {
 		// wenn spieler unter der Map dann sterben
 		if ( this.gety() >= 270) {
 			setDead(true);
-			System.out.println("dead: " + dead);
 		}
 
 		if (powerups.size() != 0) {

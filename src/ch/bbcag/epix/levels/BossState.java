@@ -81,7 +81,7 @@ player = new Player(tilemap, user);
 		
 		
 		
-		player.setPosition(48, 240);
+		player.setPosition(52, 0);
 
 	}
 	

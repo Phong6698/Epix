@@ -20,7 +20,7 @@ private BufferedImage pauseImage;
 	
 	public Dead() {
 		try {
-			pauseImage = ImageIO.read(getClass().getResourceAsStream("/Displays/Pause.png"));
+			pauseImage = ImageIO.read(getClass().getResourceAsStream("/Displays/Dead.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -73,6 +73,10 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 	private Dead deadDisplay;
 	private Finished finishedDisplay;
 	
+	private boolean pauseScreen;
+	private boolean deadScreen;
+	private boolean finishScreen;
+	
 	public GameFrame(int level, User user, JFrame epix) {
 		setUser(user);
 		setEpix(epix);
@@ -180,6 +184,18 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 	private void update() {
 		gsm.update();
 		
+		if(paused) {
+			pauseScreen = true;
+			
+		}
+		if(gsm.isFinished()){
+			finishScreen = true;
+			
+		}
+		if(gsm.isDead()) {
+			deadScreen = true;
+		}
+		
 		
 		
 		
@@ -187,16 +203,17 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 	private void draw() {
 		gsm.draw(g);
 		
-		if(paused) {
+		if(pauseScreen) {	
+			System.out.println("pause");
 			getPauseDisplay().draw(g);
 		}
-		if(gsm.isFinished()){
-			paused = false;
+		if(finishScreen){
+			paused = true;
 			getFinishedDisplay().draw(g);
 			
 		}
-		if(gsm.isDead()) {
-			paused = false;
+		if(deadScreen) {
+			paused = true;
 			getDeadDisplay().draw(g);
 		}
 		
@@ -213,38 +230,61 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 		
 		
 		//Pause
-		if (getPauseDisplay().getResumeRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
-			 System.out.println("Resume");
-			 paused = false;
-		}else if (getPauseDisplay().getRestartRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
-			System.out.println("Restart");	
-			gsm.restartState();
-			paused = false;
-		}else if(getPauseDisplay().getQuitRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
-			System.out.println("Quit");
+		if(pauseScreen){
+			if (getPauseDisplay().getResumeRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
+				 System.out.println("Resume");
+				 pauseScreen = false;
+				 paused = false;
+			}else if (getPauseDisplay().getRestartRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
+				System.out.println("Restart");	
+				gsm.restartState();
+				pauseScreen = false;
+				paused = false;
+			}else if(getPauseDisplay().getQuitRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
+				pauseScreen = false;
+				System.out.println("Quit");
+				running = false;
+				this.dispose();
+				EpixView epix = new EpixView(getUser());
+				CardLayout cardLayout = (CardLayout) epix.cards.getLayout();
+				cardLayout.show(epix.cards, "levelAuswahlCard");
+			}
 		}
 		
 		//Finished
-		if (getFinishedDisplay().getContinueRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
-			 System.out.println("Continue");
-			running = false;
-			this.dispose();
-			EpixView epix = new EpixView(getUser());
-			CardLayout cardLayout = (CardLayout) epix.cards.getLayout();
-			cardLayout.show(epix.cards, "levelAuswahlCard");
-		}else if (getFinishedDisplay().getRestartRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
-			System.out.println("Restart");
-			gsm.restartState();
-			paused = false;
+		if(finishScreen){
+			if (getFinishedDisplay().getContinueRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
+				 System.out.println("Continue");
+				 finishScreen = false;
+				running = false;
+				this.dispose();
+				EpixView epix = new EpixView(getUser());
+				CardLayout cardLayout = (CardLayout) epix.cards.getLayout();
+				cardLayout.show(epix.cards, "levelAuswahlCard");
+			}else if (getFinishedDisplay().getRestartRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
+				System.out.println("Restart");
+				finishScreen = false;
+				gsm.restartState();
+				paused = false;
+			}
 		}
 		
 		//Dead
-		if (getDeadDisplay().getRestartRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
-			System.out.println("Restart");	
-			gsm.restartState();
-			paused = false;
-		}else if(getDeadDisplay().getQuitRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
-			System.out.println("Quit");
+		if(deadScreen){
+			if (getDeadDisplay().getRestartRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
+				System.out.println("Restart");	
+				deadScreen = false;
+				gsm.restartState();
+				paused = false;
+			}else if(getDeadDisplay().getQuitRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
+				System.out.println("Quit");
+				deadScreen = false;
+				running = false;
+				this.dispose();
+				EpixView epix = new EpixView(getUser());
+				CardLayout cardLayout = (CardLayout) epix.cards.getLayout();
+				cardLayout.show(epix.cards, "levelAuswahlCard");
+			}
 		}
 
     }

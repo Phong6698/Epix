@@ -297,7 +297,6 @@ public class Level1State extends GameState{
 		
 		//check if no enimies in level
 		if (plant.size() == 0 && shootingPlant.size() == 0 && magicians.size() == 0) {
-			System.out.println("finished");
 			finished = player.checkFlag(flags);
 		}
 		

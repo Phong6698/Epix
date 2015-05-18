@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 /**
  * 
- * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
  *			Tile.java.java Copyright Berufsbildungscenter 2015
  */
 
@@ -16,6 +16,11 @@ public class Tile {
 	// tile types
 	public static final int NORMAL = 1;
 	public static final int BLOCKED = 0;
+	
+	
+	/*
+	 * Die Tile wird gesetzt 
+	 */
 	
 	public Tile(BufferedImage image, int type) {
 		this.image = image;

@@ -29,16 +29,10 @@ import ch.bbcag.epix.listener.UpgradeCardButtonListener;
 
 public class EpixView extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private User user;
 
-	/*
-	 * 
-	 */
 	protected String backgroundPath = "Resources/Backgrounds/EpixTitleScreen.png";
 	protected String coinSpinPath = "Resources/Backgrounds/Coin spin.gif";
 
@@ -98,6 +92,11 @@ public class EpixView extends JFrame {
 	protected JLabel levelAuswahlCardBackgroundImage = new JLabel("");
 	private static boolean refresh = true;
 
+	
+	/*
+	 * Das Hauptmenü des Spiels wird herstellt 
+	 */
+	
 	public EpixView(User user) {
 
 		this.setUser(user);
@@ -282,6 +281,11 @@ public class EpixView extends JFrame {
 
 	}
 
+	/*
+	 * Wenn der Spieler Upgrades kauft, werden mit diese Methode
+	 * die Coins des Spieler aktualisiert
+	 */
+	
 	public void coinsUpdate() {
 
 		menuCardCoinImage.setBounds(0, 10, 64, 64);

@@ -20,6 +20,12 @@ public class Heart extends Powerup {
 
 	private BufferedImage[] sprites;
 
+	/*
+	 * Herz Upgrade wird herstellt
+	 * - Verbesserungen werden festgelegt
+	 * - Animation wird festgelegt 
+	 */
+	
 	public Heart(TileMap tm) {
 		super(tm);
 	
@@ -52,28 +58,18 @@ public class Heart extends Powerup {
 		facingRight = true;
 	}
 	
-	private void getNextPosition() {
-		// falling
-		if(falling) {
-			dy += getFallSpeed();
-		}
-		
-	}
 	
+	/*
+	 * Animation wird aktualisiert
+	 */
 	public void update() {
 
-		// update position
-		getNextPosition();
 		checkTileMapCollision();
-
-		// update animation
 		animation.update();
 
 	}
 	
 	public void draw(Graphics2D g) {
-
-		// if(notOnScreen()) return;
 
 		setMapPosition();
 

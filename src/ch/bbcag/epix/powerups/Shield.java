@@ -12,13 +12,18 @@ import ch.bbcag.epix.tilemap.TileMap;
 /**
  * 
  *
- * @author Chiramet Phong Penglerd, Miguel Jorge || ICT Berufsbildungs AG
+ * @author  Chiramet Phong Penglerd, Miguel Jorge || ICT Berufsbildungs AG
  *			Copyright Berufsbildungscenter 2015
  */
 public class Shield extends Powerup {
 
 	private BufferedImage[] sprites;
 
+	/*
+	 * Schield wird herstellt
+	 * Animation wird gesetzt
+	 */
+	
 	public Shield(TileMap tm) {
 		super(tm);
 	
@@ -51,6 +56,10 @@ public class Shield extends Powerup {
 		facingRight = true;
 	}
 	
+	/*
+	 * Animation wird aktualisiert
+	 */
+	
 	public void update() {
 
 
@@ -62,8 +71,6 @@ public class Shield extends Powerup {
 	}
 	
 	public void draw(Graphics2D g) {
-
-		// if(notOnScreen()) return;
 
 		setMapPosition();
 

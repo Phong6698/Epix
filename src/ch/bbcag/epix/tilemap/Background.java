@@ -10,7 +10,7 @@ import ch.bbcag.epix.view.EpixView;
 
 /**
  * 
- * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
  *			Background.java.java Copyright Berufsbildungscenter 2015
  */
 
@@ -24,6 +24,11 @@ public class Background {
 	private double dy;
 	
 	private double moveScale;
+	
+	
+	/*
+	 * Mit dieser Methode kann man den Hintergrund aufrufen
+	 */
 	
 	public Background(String s, double ms) {
 		
@@ -39,15 +44,27 @@ public class Background {
 		
 	}
 	
+	/*
+	 * Die Positionen der Objekte werden festgelegt
+	 */
+	
 	public void setPosition(double x, double y) {
 		this.x = (x * moveScale) % EpixView.WIDTH;
 		this.y = (y * moveScale) % EpixView.HEIGHT;
 	}
 	
+	/*
+	 * Die Kamera wird festgelegt
+	 */
+	
 	public void setVector(double dx, double dy) {
 		this.dx = dx;
 		this.dy = dy;
 	}
+	
+	/*
+	 * Aktualisieren
+	 */
 	
 	public void update() {
 		x += dx;

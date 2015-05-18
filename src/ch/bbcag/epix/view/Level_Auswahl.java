@@ -54,7 +54,7 @@ public class Level_Auswahl extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Das Auswahl Menü wird herstellt
 	 */
 	public Level_Auswahl() {
 		

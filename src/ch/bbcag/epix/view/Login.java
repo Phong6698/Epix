@@ -46,10 +46,14 @@ public class Login extends JFrame{
 	protected JLabel passwordLabel = new JLabel("Passwort");	
 	protected JLabel titelLabel = new JLabel("Epix Login");
 
+	
+	/**
+	 * Das 'Login' Fenster wird herstellt
+	 */
+	
 	public Login() {
 		
 		JFrame login = new JFrame();
-		
 		
 		login.setTitle("Epix");
 		login.setBounds(500, 400, 419, 238);

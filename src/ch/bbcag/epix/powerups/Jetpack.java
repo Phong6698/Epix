@@ -19,6 +19,12 @@ public class Jetpack extends Powerup {
 
 	private BufferedImage[] sprites;
 	
+	/*
+	 * Jepack wird herstellt
+	 * - Verbesserungen werden festgelegt
+	 * - Animation wird geladen
+	 */
+	
 	public Jetpack(TileMap tm) {
 		super(tm);		
 		
@@ -58,14 +64,12 @@ public class Jetpack extends Powerup {
 		facingRight = true;
 	}
 	
-	
+	/*
+	 * Animation wird aktualisiert
+	 */
 	public void update() {
 
-		// update position
-
 		checkTileMapCollision();
-
-		// update animation
 		animation.update();
 
 	}

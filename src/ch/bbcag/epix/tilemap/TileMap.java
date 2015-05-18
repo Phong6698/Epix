@@ -12,7 +12,7 @@ import ch.bbcag.epix.view.GameFrame;
 
 /**
  * 
- * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
+ * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
  *			TileMap.java.java Copyright Berufsbildungscenter 2015
  */
 
@@ -49,6 +49,11 @@ public class TileMap {
 	private int numRowsToDraw;
 	private int numColsToDraw;
 
+	
+	/*
+	 * Groesse der TileMap wird festgelegt
+	 */
+	
 	public TileMap(int tileSize) {
 		this.tileSize = tileSize;
 		numRowsToDraw = GameFrame.HEIGHT / tileSize + 2;
@@ -56,6 +61,10 @@ public class TileMap {
 		tween = 0.07;
 	}
 
+	/*
+	 * Tiles werden eingelesen und Map wird herstellt
+	 */
+	
 	public void loadTiles(String s) {
 
 		try {
@@ -79,8 +88,11 @@ public class TileMap {
 
 	}
 
+	/*
+	 * Map wird geladen
+	 */
+	
 	public void loadMap(String s) {
-
 		try {
 
 			InputStream in = getClass().getResourceAsStream(s);

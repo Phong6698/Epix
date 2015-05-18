@@ -19,6 +19,12 @@ public class DamageUp extends Powerup {
 
 	private BufferedImage[] sprites;
 	
+	/*
+	 * DamageUp wird herstellt
+	 * - Verbesserungen werden festgelegt
+	 * - Animation wird festgelegt
+	 */
+	
 	public DamageUp(TileMap tm) {
 		super(tm);
 		

@@ -48,7 +48,10 @@ public class Registration extends JFrame {
 	protected JLabel passwordLabel = new JLabel("Passwort");
 	protected JLabel passwordConfirmLabel = new JLabel("Passwort best\u00E4tigen");
 
-
+	
+	/*
+	 * Das Fenster 'Registrieren' wird angezeigt 
+	 */
 	public Registration() {
 		JFrame registration = new JFrame();
 		

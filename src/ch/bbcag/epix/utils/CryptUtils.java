@@ -18,7 +18,7 @@ public class CryptUtils {
 	private static BASE64Decoder dec = new BASE64Decoder();
 
 	/**
-	 * Hier wird das Passwort des Users verschl�sselt
+	 * Hier wird das Passwort des Users verschluesselt
 	 *
 	 */
 	public static String base64encode(String password) {
@@ -31,7 +31,7 @@ public class CryptUtils {
 	}
 
 	/**
-	 * Hier wird das Passwort des User zurueck verschluesselt
+	 * Hier wird das Passwort des Users zurueck verschluesselt
 	 */
 	public static String base64decode(String password) {
 		try {

@@ -25,6 +25,7 @@ import ch.bbcag.epix.listener.PlusDamageListener;
 import ch.bbcag.epix.listener.PlusHealthListener;
 import ch.bbcag.epix.listener.PlusJumpListener;
 import ch.bbcag.epix.listener.PlusSpeedListener;
+import ch.bbcag.epix.listener.RanglisteCardButtonListener;
 import ch.bbcag.epix.listener.UpgradeCardButtonListener;
 
 /**
@@ -72,6 +73,9 @@ public class EpixView extends JFrame {
 	protected JButton level2Button = new JButton("Level 2");
 	protected JButton bossLevelButton = new JButton("Boss Level");
 	protected JButton levelZurückBtton = new JButton("Zur\u00FCck");
+	
+	// ranglisteCard
+	protected JButton ranglisteZurückbutton = new JButton("Zurück");
 
 	
 	/*
@@ -293,10 +297,12 @@ public class EpixView extends JFrame {
 		
 		ranglisteLabel.setBounds(363, 41, 78, 37);
 		ranglisteCard.add(ranglisteLabel);
-	
 		
+		ranglisteZurückbutton.setBounds(334, 450, 121, 28);
+		ranglisteCard.add(ranglisteZurückbutton);	
 		
 		ranglisteTable.setBounds(160, 140, 487, 300);
+		@SuppressWarnings({ "unchecked", "rawtypes" })
 		Vector<Vector> data = EpixController.getInstance().getRangliste();
 		Vector<String> columnNames = new Vector<String>();
 		columnNames.addElement("Username");
@@ -344,6 +350,9 @@ public class EpixView extends JFrame {
 		level1Button.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser(), epix));
 		level2Button.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser(), epix));
 		bossLevelButton.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser(), epix));
+		
+		// ranglisteCard
+		ranglisteZurückbutton.addActionListener(new RanglisteCardButtonListener(cards));
 
 		epix.setContentPane(cards);
 		epix.setVisible(true);

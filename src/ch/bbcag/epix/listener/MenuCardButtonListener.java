@@ -22,13 +22,12 @@ public class MenuCardButtonListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals("Spielen")) {
-		
+		if (e.getActionCommand().equals("Spielen")) {	
 			CardLayout cardLayout = (CardLayout) getCard().getLayout();
 			cardLayout.show(getCard(), "upgradeCard");
-		}
-		else if (e.getActionCommand().equals("Rangliste")) {
-			
+		} else if (e.getActionCommand().equals("Rangliste")) {
+			CardLayout cardLayout = (CardLayout) getCard().getLayout();
+			cardLayout.show(getCard(), "ranglisteCard");
 		}
 		
 	}

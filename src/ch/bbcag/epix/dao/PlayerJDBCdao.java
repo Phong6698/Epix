@@ -115,10 +115,20 @@ public class PlayerJDBCdao extends Database implements PlayerDao {
 
 		@Override
 		public Vector getRangliste() throws SQLException {
-			String sql = "SELECT * FROM player";
+			String sql = "SELECT * FROM player ORDER BY CollectedCoins DESC;";
 			con = getCon();
 			ps = con.prepareStatement(sql);
-			return null;
+			rs = ps.executeQuery();
+			Vector<Vector> data = new Vector<Vector>();
+			int i = 0;
+			while(rs.next() && i < 10) {
+				Vector<Object> row = new Vector<Object>();
+				row.addElement(rs.getString("Username"));
+				row.addElement(rs.getInt("CollectedCoins"));				
+				data.addElement(row);
+				i = i + 1;
+			};
+			return data;
 		}
 
 

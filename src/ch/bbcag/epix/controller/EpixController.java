@@ -2,6 +2,7 @@ package ch.bbcag.epix.controller;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Vector;
 import java.util.regex.Pattern;
 
 import javax.swing.JButton;
@@ -203,5 +204,14 @@ public class EpixController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public Vector getRangliste() {
+		try {
+			return USER_DAO.getRangliste();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 };

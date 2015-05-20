@@ -2,6 +2,7 @@ package ch.bbcag.epix.view;
 
 import java.awt.CardLayout;
 import java.awt.Font;
+import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -9,7 +10,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableModel;
 
 import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.User;
@@ -67,6 +72,7 @@ public class EpixView extends JFrame {
 	protected JButton bossLevelButton = new JButton("Boss Level");
 	protected JButton levelZurückBtton = new JButton("Zur\u00FCck");
 
+	
 	/*
 	 * JLabel
 	 */
@@ -91,6 +97,19 @@ public class EpixView extends JFrame {
 	protected JLabel levelAuswahlCardCoinLabel;
 	protected JLabel levelAuswahlCardPlayerLabel;
 	protected JLabel levelAuswahlCardBackgroundImage = new JLabel("");
+	
+	//ranglisteCard
+	protected JLabel ranglisteLabel = new JLabel("Rangliste");
+	protected JLabel ranglisteCardBackgroundImage = new JLabel("");
+	
+	
+	/*
+	 * JTable
+	 */
+	// ranglisteCard
+	protected JTable ranglisteTable = new JTable();
+	
+	
 	private static boolean refresh = true;
 
 	
@@ -165,8 +184,7 @@ public class EpixView extends JFrame {
 		healthLabel.setBounds(191, 127, 110, 36);
 		upgradeCard.add(healthLabel);
 		JProgressBar maxHealthBar = new JProgressBar();
-		maxHealthBar.setValue((user.getMaxHealth()-50)/2);
-
+		maxHealthBar.setValue(user.getMaxHealth()-50);
 		maxHealthBar.setBounds(327, 127, 185, 36);
 		upgradeCard.add(maxHealthBar);
 		plusHealthButton.setBounds(522, 130, 41, 30);
@@ -178,7 +196,11 @@ public class EpixView extends JFrame {
 		jumpLabel.setBounds(191, 174, 110, 36);
 		upgradeCard.add(jumpLabel);
 		JProgressBar maxJumpBar = new JProgressBar();
-		maxJumpBar.setValue((int) ((-user.getMaxJump()- 6)*25));
+		maxJumpBar.setValue((int) (((-user.getMaxJump()*10)-65)*2.5));
+		
+		System.out.println(maxJumpBar.getValue());
+		System.out.println(-user.getMaxJump());
+		
 		maxJumpBar.setBounds(327, 174, 185, 36);
 		upgradeCard.add(maxJumpBar);
 		plusJumpButton.setBounds(522, 177, 41, 30);
@@ -190,7 +212,8 @@ public class EpixView extends JFrame {
 		speedLabel.setBounds(191, 221, 110, 36);
 		upgradeCard.add(speedLabel);
 		JProgressBar maxSpeedBar = new JProgressBar();
-		maxSpeedBar.setValue((int) ((user.getMoveSpeed()-0.2)*25));
+		maxSpeedBar.setValue((int) (((user.getMoveSpeed()*10) - 32)*5));
+		
 		
 		maxSpeedBar.setBounds(327, 221, 185, 36);
 		upgradeCard.add(maxSpeedBar);
@@ -203,7 +226,7 @@ public class EpixView extends JFrame {
 		damageLabel.setBounds(191, 268, 110, 36);
 		upgradeCard.add(damageLabel);
 		JProgressBar damageBar = new JProgressBar();
-		damageBar.setValue((user.getDamage()/2)-5);
+		damageBar.setValue((int) ((user.getDamage()-5)*2.5));
 		damageBar.setBounds(327, 268, 185, 36);
 		upgradeCard.add(damageBar);
 		plusDamageButton.setBounds(522, 271, 41, 30);
@@ -260,12 +283,43 @@ public class EpixView extends JFrame {
 		levelAuswahlCard.add(levelAuswahlCardBackgroundImage);
 
 		cards.add(levelAuswahlCard, "levelAuswahlCard");
+		
+		
+		/*
+		 * ranglisteCard
+		 */
+		ranglisteCard.setLayout(null);
+		
+		ranglisteLabel.setBounds(363, 41, 78, 37);
+		ranglisteCard.add(ranglisteLabel);
+	
+		ranglisteTable.setBounds(171, 180, 487, 160);
+		Vector<Vector> data = EpixController.getInstance().getRangliste();
+		Vector<String> columnNames = new Vector<String>();
+		columnNames.addElement("Username");
+		columnNames.addElement("Collected Coins");	
+		TableModel model = new DefaultTableModel(data, columnNames);
+		ranglisteTable.setModel(model);	
+		JTableHeader header = ranglisteTable.getTableHeader();
+		header.setBounds(171, 140, 487, 37);
+		header.setEnabled(false);
+		ranglisteCard.add(header);
+		ranglisteCard.add(ranglisteTable);
+		ranglisteTable.setEnabled(false);
+		
+		ranglisteCardBackgroundImage.setIcon(new ImageIcon(backgroundPath));
+		ranglisteCardBackgroundImage.setBounds(0, 0, 801, 523);
+		ranglisteCard.add(ranglisteCardBackgroundImage);
+		
+		cards.add(ranglisteCard, "ranglisteCard");
+				
 
 		/*
 		 * Listener
 		 */
 		// menuCard
 		spielenButton.addActionListener(new MenuCardButtonListener(cards));
+		ranglisteButton.addActionListener(new MenuCardButtonListener(cards));
 
 		// upgradeCard
 		upgradeZurückButton.addActionListener(new UpgradeCardButtonListener(cards));

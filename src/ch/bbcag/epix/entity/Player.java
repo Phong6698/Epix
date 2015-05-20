@@ -24,10 +24,10 @@ public class Player extends MapObject {
 	// player stuff
 	private int health;
 
-	private int coinsCollected;
 	private double jumpStart;
 	
 	private int coin;
+	private int collectedCoin;
 	private String username;
 	private int maxHealth;
 
@@ -76,6 +76,7 @@ public class Player extends MapObject {
 		
 		setUsername(user.getUsername());
 		setCoin(user.getCoin());
+		setCollectedCoin(user.getCollectedCoin());
 		setMaxHealth(user.getMaxHealth());
 		setHealth(user.getMaxHealth());
 		setJumpStart(user.getMaxJump());
@@ -244,9 +245,9 @@ public class Player extends MapObject {
 
 			// check coin collision
 			if (intersects(coin)) {
-				this.coinsCollected =+ 1;
 				coin.update();
 				this.setCoin(this.getCoin() + coin.getCoinValue());
+				this.setCollectedCoin(this.getCollectedCoin() + coin.getCoinValue());
 				coin.setTaken(true);
 			}
 
@@ -662,18 +663,20 @@ public class Player extends MapObject {
 		this.user = user;
 	}
 
-	public int getCoinsCollected() {
-		return coinsCollected;
-	}
 
-	public void setCoinsCollected(int coinsCollected) {
-		this.coinsCollected = coinsCollected;
-	}
 	public double getJumpStart() {
 		return jumpStart;
 	}
 
 	public void setJumpStart(double d) {
 		this.jumpStart = d;
+	}
+
+	public int getCollectedCoin() {
+		return collectedCoin;
+	}
+
+	public void setCollectedCoin(int collectedCoin) {
+		this.collectedCoin = collectedCoin;
 	}
 }

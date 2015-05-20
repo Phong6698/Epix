@@ -44,6 +44,7 @@ public class EpixView extends JFrame {
 	protected JPanel menuCard = new JPanel();
 	protected JPanel upgradeCard = new JPanel();
 	protected JPanel levelAuswahlCard = new JPanel();
+	protected JPanel ranglisteCard = new JPanel();
 
 	/*
 	 * JButton

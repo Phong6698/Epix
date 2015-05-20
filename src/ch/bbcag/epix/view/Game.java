@@ -15,7 +15,7 @@ public class Game {
 	public static void main(String[] args) {
 		User user = new User();
 		user.setUsername("Epix");
-		user.setCoin(0);
+//		user.setCoin(0);
 		user.setMaxHealth(50);
 		user.setMoveSpeed(3);
 		user.setMaxJump(-6);
@@ -23,7 +23,7 @@ public class Game {
 		user.setMoveSpeed(3);
 		user.setMaxMoveSpeed(3.2);
 		
-		GameFrame game = new GameFrame(2, user);
+		GameFrame game = new GameFrame(1, user);
 		game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

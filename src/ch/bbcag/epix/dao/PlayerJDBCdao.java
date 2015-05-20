@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import ch.bbcag.epix.entity.User;
 
@@ -43,7 +44,7 @@ public class PlayerJDBCdao extends Database implements PlayerDao {
 		 * Eintragen eines neuen Users in DB
 		 */
 		public void registrieren(User user) throws SQLException {
-			String sql = "INSERT INTO player (Username, Password, Email, Coins, PlayerWeapon_ID, Health, Jump, Damage, Speed, MaxSpeed) VALUES (?, ?, ?,0, 1, 50, -6.5 ,5 ,0.2,3.2)";
+			String sql = "INSERT INTO player (Username, Password, Email, Coins, PlayerWeapon_ID, Health, Jump, Damage, Speed, MaxSpeed, CollectedCoins) VALUES (?, ?, ?,0, 1, 50, -6.5 ,5 ,0.2,3.2,0)";
 			con = getCon();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, user.getUsername());
@@ -77,10 +78,20 @@ public class PlayerJDBCdao extends Database implements PlayerDao {
 			String sql = "UPDATE player SET coins = ? WHERE Username = ? ;";
 			con = getCon();
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, player.getCoin() + coins);
+			ps.setInt(1, coins);
 			ps.setString(2, player.getUsername());
 			ps.executeUpdate();
 			closeCon();
+		}
+		
+		public void collectedCoinsUpdate(User player, int collectedCoins) throws SQLException {
+			String sql = "UPDATE player SET CollectedCoins = ? WHERE Username = ? ;";
+			con = getCon();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, collectedCoins);
+			ps.setString(2, player.getUsername());
+			ps.executeUpdate();
+			closeCon();			
 		}
 
 		public void getPlayerStats(User user) throws SQLException {
@@ -100,5 +111,15 @@ public class PlayerJDBCdao extends Database implements PlayerDao {
 			}
 			closeCon();
 		}
+
+		@Override
+		public Vector getRangliste() throws SQLException {
+			String sql = "SELECT * FROM player";
+			con = getCon();
+			ps = con.prepareStatement(sql);
+			return null;
+		}
+
+
 
 }

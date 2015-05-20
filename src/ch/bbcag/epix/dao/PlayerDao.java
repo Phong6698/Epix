@@ -3,6 +3,7 @@ package ch.bbcag.epix.dao;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Vector;
 
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.entity.User;
@@ -23,5 +24,9 @@ public interface PlayerDao {
 	
 	public abstract void coinsUpdate(User user, int coins) throws SQLException;
 	
+	public abstract void collectedCoinsUpdate(User user, int collectedCoins) throws SQLException;
+	
 	public abstract void getPlayerStats(User user) throws SQLException;	
+	
+	public abstract Vector getRangliste() throws SQLException;
 }

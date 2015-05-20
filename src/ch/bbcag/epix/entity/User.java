@@ -13,6 +13,7 @@ public class User {
 	private String password = null;
 	private String passwordConfirm = null;
 	private int coin;
+	private int collectedCoin;
 	private int maxHealth;
 	private boolean dead = false;
 	private double maxJump;
@@ -108,5 +109,13 @@ public class User {
 
 	public void setMoveSpeed(double moveSpeed) {
 		this.moveSpeed =  moveSpeed;
+	}
+
+	public int getCollectedCoin() {
+		return collectedCoin;
+	}
+
+	public void setCollectedCoin(int collectedCoin) {
+		this.collectedCoin = collectedCoin;
 	}
 }

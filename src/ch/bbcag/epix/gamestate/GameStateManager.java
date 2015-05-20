@@ -70,9 +70,12 @@ public class GameStateManager {
 	
 	public void saveState() {
 		EpixController.getInstance().coinsUpdate(getGameStates()[currentLevel].player.getUser(), getGameStates()[currentLevel].player.getCoin());
+		EpixController.getInstance().collectedCoinsUpdate(getGameStates()[currentLevel].player.getUser(), getGameStates()[currentLevel].player.getCoin());	
 		int level_ID = EpixController.getInstance().getID_Level(getGameStates()[currentLevel].levelName);
 		EpixController.getInstance().save(user, level_ID);
 		user.setCoin(getGameStates()[currentLevel].player.getCoin());
+		System.out.println(getGameStates()[currentLevel].player.getCollectedCoin());
+		user.setCollectedCoin(getGameStates()[currentLevel].player.getCollectedCoin());
 	}
 
 	public void update() {

@@ -150,6 +150,14 @@ public class EpixController {
 			e.printStackTrace();
 		}
 	}
+	
+	public void collectedCoinsUpdate(User user, int collectedCoins) {
+		try {
+			USER_DAO.coinsUpdate(user, collectedCoins);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void save(User user, int level_ID) {
 		try {

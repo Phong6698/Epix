@@ -153,7 +153,7 @@ public class EpixController {
 	
 	public void collectedCoinsUpdate(User user, int collectedCoins) {
 		try {
-			USER_DAO.coinsUpdate(user, collectedCoins);
+			USER_DAO.collectedCoinsUpdate(user, collectedCoins);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

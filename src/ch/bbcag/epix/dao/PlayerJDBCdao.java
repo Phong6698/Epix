@@ -67,6 +67,7 @@ public class PlayerJDBCdao extends Database implements PlayerDao {
 				player.setUsername(rs.getString("Username"));
 				player.setEmail(rs.getString("Email"));
 				player.setCoin(rs.getInt("Coins"));
+				player.setCollectedCoin(rs.getInt("CollectedCoins"));
 				break;
 			}
 			closeCon();

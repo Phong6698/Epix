@@ -73,6 +73,7 @@ public class EpixView extends JFrame {
 	protected JButton level2Button = new JButton("Level 2");
 	protected JButton bossLevelButton = new JButton("Boss Level");
 	protected JButton levelZurückBtton = new JButton("Zur\u00FCck");
+	protected JButton multiplayerButton = new JButton("Multiplayer");
 	
 	// ranglisteCard
 	protected JButton ranglisteZurückbutton = new JButton("Zurück");
@@ -269,6 +270,9 @@ public class EpixView extends JFrame {
 
 		levelZurückBtton.setBounds(334, 378, 121, 28);
 		levelAuswahlCard.add(levelZurückBtton);
+		
+		multiplayerButton.setBounds(15, 85, 121, 28);
+		levelAuswahlCard.add(multiplayerButton);
 
 		levelAuswahlCardCoinImage.setBounds(0, 10, 64, 64);
 		levelAuswahlCardCoinImage.setIcon(new ImageIcon(coinSpinPath));

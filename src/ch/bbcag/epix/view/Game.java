@@ -16,14 +16,14 @@ public class Game {
 		User user = new User();
 		user.setUsername("Epix");
 //		user.setCoin(0);
-		user.setMaxHealth(50);
+		user.setMaxHealth(100000);
 		user.setMoveSpeed(3);
-		user.setMaxJump(-6);
-		user.setDamage(20);
+		user.setMaxJump(-10);
+		user.setDamage(50);
 		user.setMoveSpeed(3);
 		user.setMaxMoveSpeed(3.2);
 		
-		GameFrame game = new GameFrame(1, user);
+		GameFrame game = new GameFrame(3, user);
 		game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

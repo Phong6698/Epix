@@ -89,7 +89,7 @@ public class Player extends MapObject {
 		height = 32;
 
 		// hitbox
-		cwidth = 30;
+		cwidth = 24;
 		cheight = 32;
 
 		stopSpeed = 0.8;

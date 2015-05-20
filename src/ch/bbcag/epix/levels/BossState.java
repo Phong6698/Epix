@@ -81,7 +81,7 @@ player = new Player(tilemap, user);
 		
 		
 		
-		player.setPosition(52, 0);
+		player.setPosition(75, 240);
 
 	}
 	
@@ -93,7 +93,7 @@ player = new Player(tilemap, user);
 		 */
 		DamageUp damageUp;
 		Point[] damagUpPoints = new Point[] {
-			new Point(560, 144),
+			
 			
 		};
 		for(int i = 0; i < damagUpPoints.length; i++) {
@@ -108,7 +108,7 @@ player = new Player(tilemap, user);
 		 */
 		Heart heart;
 		Point[] hearthPoints = new Point[] {
-			new Point(2512, 144),
+		
 
 		};
 		for(int i = 0; i < hearthPoints.length; i++) {
@@ -123,7 +123,7 @@ player = new Player(tilemap, user);
 		 */
 		Jetpack jetpack;
 		Point[] jetpackPoints = new Point[] {
-			new Point(2000, 240),
+			
 
 		};
 		for(int i = 0; i < jetpackPoints.length; i++) {
@@ -157,8 +157,13 @@ player = new Player(tilemap, user);
 			
 		Plant s;
 		Point[] plantPoints = new Point[] {
-				new Point(460, 70),
-				new Point(2315, 70)
+				new Point(177,112),
+				new Point(366,240),
+				new Point(528,240),
+				new Point(1046,240),
+				new Point(1199,240),
+				new Point(1390,240),
+				new Point(1514,176),
 		};
 		for(int i = 0; i < plantPoints.length; i++) {
 			s = new Plant(tilemap);
@@ -174,7 +179,9 @@ player = new Player(tilemap, user);
 		
 		Magician m;
 		Point[] magicanPoints = new Point[] {
-				new Point(3150, 240)
+				new Point(655,240),
+				new Point(928,240),
+				new Point(1522,240),
 		};
 		for(int i = 0; i < magicanPoints.length; i++) {
 			m = new Magician(tilemap , player);
@@ -206,10 +213,23 @@ player = new Player(tilemap, user);
 		
 		ShootingPlant p;
 		Point[] shootingPlantPoints = new Point[] {
-				new Point(700, 70),
-				new Point(1000, 70),
-				new Point(1520, 70),
-				new Point(2610, 70)
+				new Point(400,48),
+				new Point(432,80),
+				new Point(464,112),
+				new Point(496,144),
+				new Point(528,176),
+				
+				new Point(1172,48),
+				new Point(1140,80),
+				new Point(1108,112),
+				new Point(1076,144),
+				new Point(1042,176),
+				
+				new Point(1454,48),
+				new Point(1484,112),
+				
+				new Point(1876,144),
+				new Point(1934,144),
 			
 		};
 		for(int i = 0; i < shootingPlantPoints.length; i++) {
@@ -228,15 +248,7 @@ player = new Player(tilemap, user);
 		 */
 		Coin coin;
 		Point[] coinPoints = new Point[] {
-			new Point(337, 208),
-			new Point(436, 176),
-			new Point(496, 176),
-			new Point(886, 208),
-			new Point(942, 176),
-			new Point(1234, 176),
-			new Point(1270, 176),
-			new Point(2578, 80),
-			new Point(2635, 80)
+
 		};
 		for(int i = 0; i < coinPoints.length; i++) {
 			coin = new Coin(tilemap);

@@ -31,9 +31,9 @@ public class PlusJumpListener implements ActionListener {
 		if (user.getCoin() >= 5) {
 			user.setCoin(user.getCoin() - 5);
 			user.setMaxJump(user.getMaxJump()-0.2);
-			EpixController.getInstance().coinsUpdate(user, -5);
+			EpixController.getInstance().coinsUpdate(user, user.getCoin() -5);
 			menuCardCoinLabel.setText("" + user.getCoin());
-			maxJumpBar.setValue(maxJumpBar.getValue() + 5);
+			maxJumpBar.setValue((int) (((-user.getMaxJump()*10)-65)*2.5));
 			CardLayout cardLayout = (CardLayout) getCard().getLayout();
 			cardLayout.show(getCard(), "upgradeCard");
 		}

@@ -230,8 +230,28 @@ private User user;
 		 */
 		Coin coin;
 		Point[] coinPoints = new Point[] {
+			new Point(331, 80),
 			
+			new Point(914, 112),
+			new Point(946, 112),
+			new Point(978, 112),
+			new Point(1010, 112),
+			new Point(1042, 112),
+			new Point(1074, 112),
+			new Point(1106, 112),
+			new Point(1138, 112),
 			
+			new Point(1940, 176),
+			new Point(1940, 208),
+			new Point(1940, 240),
+			
+			new Point(2236, 48),
+			new Point(2268, 48),
+			new Point(2332, 48),
+			new Point(2364, 48),
+			
+			new Point(2896, 112),
+			new Point(2928, 112),						
 		};
 		for(int i = 0; i < coinPoints.length; i++) {
 			coin = new Coin(tilemap);

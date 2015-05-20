@@ -41,7 +41,6 @@ public class Login extends JFrame{
 	/*
 	 * JLabel
 	 */
-	
 	protected JLabel usernameLabel = new JLabel("Username");
 	protected JLabel passwordLabel = new JLabel("Passwort");	
 	protected JLabel titelLabel = new JLabel("Epix Login");

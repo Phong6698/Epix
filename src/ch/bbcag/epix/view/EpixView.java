@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
@@ -293,20 +294,33 @@ public class EpixView extends JFrame {
 		ranglisteLabel.setBounds(363, 41, 78, 37);
 		ranglisteCard.add(ranglisteLabel);
 	
-		ranglisteTable.setBounds(171, 180, 487, 160);
+		
+		
+		ranglisteTable.setBounds(160, 140, 487, 300);
 		Vector<Vector> data = EpixController.getInstance().getRangliste();
 		Vector<String> columnNames = new Vector<String>();
 		columnNames.addElement("Username");
 		columnNames.addElement("Collected Coins");	
-		TableModel model = new DefaultTableModel(data, columnNames);
-		ranglisteTable.setModel(model);	
-		JTableHeader header = ranglisteTable.getTableHeader();
-		header.setBounds(171, 140, 487, 37);
-		header.setEnabled(false);
-		ranglisteCard.add(header);
+		TableModel model = new DefaultTableModel(data, columnNames);		
+		ranglisteTable.setModel(model);
+		ranglisteTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);		
+		for(int i = 0; i < 10; i++){
+			ranglisteTable.setRowHeight(i, 30);
+		}
+		DefaultTableCellRenderer centerRender = new DefaultTableCellRenderer();
+		centerRender.setHorizontalAlignment(SwingConstants.CENTER);
+		ranglisteTable.getColumnModel().getColumn(0).setCellRenderer(centerRender);
+		ranglisteTable.getColumnModel().getColumn(1).setCellRenderer(centerRender);
+		ranglisteTable.setFont(new Font("Arial", Font.PLAIN, 20));
 		ranglisteCard.add(ranglisteTable);
 		ranglisteTable.setEnabled(false);
-		
+					
+		JTableHeader header = ranglisteTable.getTableHeader();
+		header.setBounds(160, 100, 487, 37);
+		header.setFont(new Font("Arial", Font.BOLD, 20));
+		header.setEnabled(false);
+		ranglisteCard.add(header);
+			
 		ranglisteCardBackgroundImage.setIcon(new ImageIcon(backgroundPath));
 		ranglisteCardBackgroundImage.setBounds(0, 0, 801, 523);
 		ranglisteCard.add(ranglisteCardBackgroundImage);

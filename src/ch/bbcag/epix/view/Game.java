@@ -16,10 +16,10 @@ public class Game {
 		User user = new User();
 		user.setUsername("Epix");
 //		user.setCoin(0);
-		user.setMaxHealth(100000);
+		user.setMaxHealth(60);
 		user.setMoveSpeed(3);
-		user.setMaxJump(-10);
-		user.setDamage(50);
+		user.setMaxJump(-8);
+		user.setDamage(20);
 		user.setMoveSpeed(3);
 		user.setMaxMoveSpeed(3.2);
 		

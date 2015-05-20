@@ -31,9 +31,9 @@ public class PlusDamageListener implements ActionListener {
 		if (user.getCoin() >= 5) {
 			user.setCoin(user.getCoin() - 5);
 			user.setDamage(user.getDamage() + 2);
-			EpixController.getInstance().coinsUpdate(user, -5);
+			EpixController.getInstance().coinsUpdate(user, -5);			
 			menuCardCoinLabel.setText("" + user.getCoin());
-			maxDamageBar.setValue(maxDamageBar.getValue() + 5);
+			maxDamageBar.setValue((int) ((user.getDamage()-5)*2.5));
 			CardLayout cardLayout = (CardLayout) getCard().getLayout();
 			cardLayout.show(getCard(), "upgradeCard");
 		}

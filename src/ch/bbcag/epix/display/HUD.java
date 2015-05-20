@@ -37,7 +37,8 @@ public class HUD {
 	}
 
 	public void draw(Graphics2D g) {
-
+		
+		
 		// Player Information
 		g.drawImage(coin, 100, 25, null);
 		g.setFont(font);

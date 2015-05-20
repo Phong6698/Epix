@@ -342,10 +342,10 @@ player = new Player(tilemap, user);
 		// set background
 		bg.setPosition(tilemap.getx(), tilemap.gety());
 		
-		player.checkAttackPlants(plant);
-		player.checkAttackShootingPlants(shootingPlant);
-		player.checkAttackMagician(magicians);
-		player.checkAttackBoss(boss);
+		player.checkAttackPlants(plant, player);
+		player.checkAttackShootingPlants(shootingPlant, player);
+		player.checkAttackMagician(magicians, player);
+		player.checkAttackBoss(boss, player);
 		
 		player.checkPowerup(powerups, player);
 		player.checkCoin(coins);

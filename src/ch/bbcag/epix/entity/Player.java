@@ -136,7 +136,7 @@ public class Player extends MapObject {
 
 	}
 
-	public void checkAttackPlants(ArrayList<Plant> plants) {
+	public void checkAttackPlants(ArrayList<Plant> plants, Player player) {
 		// loop through enemies
 		for (int i = 0; i < plants.size(); i++) {
 
@@ -157,7 +157,7 @@ public class Player extends MapObject {
 		}
 	}
 
-	public void checkAttackShootingPlants(ArrayList<ShootingPlant> shootingplants) {
+	public void checkAttackShootingPlants(ArrayList<ShootingPlant> shootingplants, Player player) {
 		// loop through enemies
 		for (int i = 0; i < shootingplants.size(); i++) {
 			ShootingPlant e = shootingplants.get(i);
@@ -171,14 +171,13 @@ public class Player extends MapObject {
 			}
 			// check enemy collision
 			if (intersects(e)) {
-				e.update(e, this);
+				e.update(e, player);
 				hit(e.getDamage());
-
 			}
 		}
 	}
 
-	public void checkAttackBoss(ArrayList<Boss> boss) {
+	public void checkAttackBoss(ArrayList<Boss> boss, Player player) {
 		// loop through enemies
 		for (int i = 0; i < boss.size(); i++) {
 			Boss b = boss.get(i);
@@ -195,13 +194,13 @@ public class Player extends MapObject {
 			// check enemy collision
 			if (intersects(b)) {
 				p = true;
-				b.update(b, this, p);
+				b.update(b, player, p);
 				hit(b.getDamage());
 			}
 		}
 	}
 
-	public void checkAttackMagician(ArrayList<Magician> magicians) {
+	public void checkAttackMagician(ArrayList<Magician> magicians, Player player) {
 		// loop through enemies
 		for (int i = 0; i < magicians.size(); i++) {
 			Magician magician = magicians.get(i);
@@ -215,7 +214,7 @@ public class Player extends MapObject {
 			}
 			// check enemy collision
 			if (intersects(magician)) {
-				magician.update(magician, this);
+				magician.update(magician, player);
 				hit(magician.getDamage());
 			}
 		}
@@ -339,7 +338,6 @@ public class Player extends MapObject {
 				health = 0;
 			}
 			if (health == 0) {
-				System.out.println("dead");
 				setDead(true);
 			}
 			flinching = true;
@@ -530,6 +528,7 @@ public class Player extends MapObject {
 		}
 
 		animation.update();
+		System.out.println(this.getHealth());
 
 		// set direction
 		if (currentAction != RAINBOW) {

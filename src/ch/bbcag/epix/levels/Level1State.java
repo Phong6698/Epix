@@ -24,6 +24,7 @@ import ch.bbcag.epix.powerups.Jetpack;
 import ch.bbcag.epix.powerups.Shield;
 import ch.bbcag.epix.tilemap.Background;
 import ch.bbcag.epix.tilemap.TileMap;
+import ch.bbcag.epix.view.EpixView;
 import ch.bbcag.epix.view.GameFrame;
 
 /**
@@ -35,6 +36,8 @@ import ch.bbcag.epix.view.GameFrame;
 public class Level1State extends GameState{
 
 	private User user;
+	
+	private Player player_2;
 	
 	private TileMap tilemap;
 	private Background bg;
@@ -80,6 +83,10 @@ public class Level1State extends GameState{
 		
 		player = new Player(tilemap, user);
 		
+		if(EpixView.isMultiplayer() == true){
+			player_2 = new Player(tilemap, user);
+			player_2.setPosition(60, 40);
+		}
 		
 		spawnEnemies();
 		spawnPowerups();
@@ -273,7 +280,22 @@ public class Level1State extends GameState{
 
 		// update player
 		player.update(player);
-		tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());
+		
+		if(EpixView.isMultiplayer() == true){
+			player_2.update(player_2);
+			player_2.checkAttackPlants(plant, player);
+			player_2.checkAttackShootingPlants(shootingPlant, player);
+			player_2.checkAttackMagician(magicians, player);
+			player_2.checkAttackBoss(boss, player);
+			
+			player_2.checkPowerup(powerups, player);
+			player_2.checkCoin(coins);
+			
+			hud = new HUD(player_2);
+
+		}
+		
+		tilemap.setPosition(GameFrame.WIDTH / 3 - player_2.getx(), GameFrame.HEIGHT / 3 - player_2.gety());
 		
 		//update hud
 		
@@ -282,10 +304,10 @@ public class Level1State extends GameState{
 		// set background
 		bg.setPosition(tilemap.getx(), tilemap.gety());
 		
-		player.checkAttackPlants(plant);
-		player.checkAttackShootingPlants(shootingPlant);
-		player.checkAttackMagician(magicians);
-		player.checkAttackBoss(boss);
+		player.checkAttackPlants(plant, player);
+		player.checkAttackShootingPlants(shootingPlant, player);
+		player.checkAttackMagician(magicians, player);
+		player.checkAttackBoss(boss, player);
 		
 		player.checkPowerup(powerups, player);
 		player.checkCoin(coins);
@@ -412,6 +434,9 @@ public class Level1State extends GameState{
 		
 		// draw player
 		player.draw(g);	
+		if(EpixView.isMultiplayer() == true){
+			player_2.draw(g);
+		}
 		hud.draw(g);
 		
 	}
@@ -423,6 +448,12 @@ public class Level1State extends GameState{
 		if(k == KeyEvent.VK_DOWN) player.setDown(true);
 		if(k == KeyEvent.VK_UP) player.setJumping(true);
 		if(k == KeyEvent.VK_R) player.setRainbowing();
+		
+		if(k == KeyEvent.VK_A) player_2.setLeft(true);
+		if(k == KeyEvent.VK_D) player_2.setRight(true);
+		if(k == KeyEvent.VK_S) player_2.setDown(true);
+		if(k == KeyEvent.VK_W) player_2.setJumping(true);
+		if(k == KeyEvent.VK_R) player_2.setRainbowing();
 	}
 	
 	public void keyReleased(int k) {
@@ -431,6 +462,10 @@ public class Level1State extends GameState{
 		if(k == KeyEvent.VK_DOWN) player.setDown(false);
 		if(k == KeyEvent.VK_UP) player.setJumping(false);
 		
+		if(k == KeyEvent.VK_A) player_2.setLeft(false);
+		if(k == KeyEvent.VK_D) player_2.setRight(false);
+		if(k == KeyEvent.VK_S) player_2.setDown(false);
+		if(k == KeyEvent.VK_W) player_2.setJumping(false);		
 	}
 
 	public User getUser() {

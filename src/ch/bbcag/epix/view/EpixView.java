@@ -21,6 +21,7 @@ import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.listener.LevelAuswahlCardButtonListener;
 import ch.bbcag.epix.listener.MenuCardButtonListener;
+import ch.bbcag.epix.listener.MultiplayerListener;
 import ch.bbcag.epix.listener.PlusDamageListener;
 import ch.bbcag.epix.listener.PlusHealthListener;
 import ch.bbcag.epix.listener.PlusJumpListener;
@@ -37,6 +38,10 @@ import ch.bbcag.epix.listener.UpgradeCardButtonListener;
 public class EpixView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+
+	
+	public static boolean multiplayer = false;
+	
 
 	private User user;
 
@@ -353,6 +358,7 @@ public class EpixView extends JFrame {
 		level1Button.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser(), epix));
 		level2Button.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser(), epix));
 		bossLevelButton.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser(), epix));
+		multiplayerButton.addActionListener(new MultiplayerListener());
 		
 		// ranglisteCard
 		ranglisteZurückbutton.addActionListener(new RanglisteCardButtonListener(cards));
@@ -392,5 +398,13 @@ public class EpixView extends JFrame {
 
 	public static void setRefresh(boolean refresh) {
 		EpixView.refresh = refresh;
+	}
+	
+	public static boolean isMultiplayer() {
+		return multiplayer;
+	}
+
+	public static void setMultiplayer(boolean multiplayer) {
+		EpixView.multiplayer = multiplayer;
 	}
 }

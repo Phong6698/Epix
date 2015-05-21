@@ -23,7 +23,7 @@ public class Game {
 		user.setMoveSpeed(3);
 		user.setMaxMoveSpeed(3.2);
 		
-		GameFrame game = new GameFrame(2, user);
+		GameFrame game = new GameFrame(1, user);
 		game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

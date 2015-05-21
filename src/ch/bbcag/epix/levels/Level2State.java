@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import ch.bbcag.epix.audio.AudioPlayer;
 import ch.bbcag.epix.display.HUD;
 import ch.bbcag.epix.enemies.Boss;
 import ch.bbcag.epix.enemies.Magician;
@@ -51,7 +52,7 @@ private User user;
 	
 	private ArrayList<Flag> flags;
 	
-	
+	private AudioPlayer backgroundMusic;
 	
 	public Level2State(GameStateManager gsm, User user) {
 		this.gsm = gsm;	
@@ -74,7 +75,8 @@ private User user;
 		
 	
 		bg = new Background("/Backgrounds/Background.png", 1);
-	
+		
+		backgroundMusic = new AudioPlayer("/Musics/Level 2.mp3");
 		
 		player = new Player(tilemap, user);
 		
@@ -84,7 +86,7 @@ private User user;
 		spawnCoins();
 		spawnFlag();
 		
-		
+		backgroundMusic.play();
 		
 		player.setPosition(50, 40);
 

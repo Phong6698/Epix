@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import ch.bbcag.epix.audio.AudioPlayer;
 import ch.bbcag.epix.display.HUD;
 import ch.bbcag.epix.enemies.Boss;
 import ch.bbcag.epix.enemies.Magician;
@@ -52,6 +53,8 @@ public class BossState extends GameState{
 	
 	private ArrayList<Flag> flags;
 	
+	private AudioPlayer backgroundMusic;
+	
 	public BossState(GameStateManager gsm, User user) {
 		this.gsm = gsm;	
 		setUser(user);
@@ -71,7 +74,9 @@ public class BossState extends GameState{
 		
 		bg = new Background("/Backgrounds/Background.png", 1);
 		
-player = new Player(tilemap, user);
+		backgroundMusic = new AudioPlayer("/Musics/Boss Level.mp3");
+		
+		player = new Player(tilemap, user);
 		
 		
 		spawnEnemies();
@@ -79,7 +84,7 @@ player = new Player(tilemap, user);
 		spawnCoins();
 		spawnFlag();
 		
-		
+		backgroundMusic.play();
 		
 		player.setPosition(75, 240);
 

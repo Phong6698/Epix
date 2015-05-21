@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import ch.bbcag.epix.audio.AudioPlayer;
 import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.display.HUD;
 import ch.bbcag.epix.enemies.Boss;
@@ -77,6 +78,8 @@ public class Level1State extends GameState{
 		
 	
 		bg = new Background("/Backgrounds/Background.png", 1);
+		
+		backgroundMusic = new AudioPlayer("/Musics/Level 1.mp3");
 	
 		
 		player = new Player(tilemap, user);
@@ -85,6 +88,8 @@ public class Level1State extends GameState{
 			player_2 = new Player(tilemap, user);
 			player_2.setPosition(60, 40);
 		}
+		
+		backgroundMusic.playLoop();
 		
 		spawnEnemies();
 		spawnPowerups();

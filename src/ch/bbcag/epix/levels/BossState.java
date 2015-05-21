@@ -30,12 +30,13 @@ import ch.bbcag.epix.view.GameFrame;
 /**
  * 
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			Level1State.java.java Copyright Berufsbildungscenter 2015
+ *			BossState.java.java Copyright Berufsbildungscenter 2015
  */
 
-public class Level2State extends GameState{
+public class BossState extends GameState{
 
-private User user;
+
+	private User user;
 	
 	private TileMap tilemap;
 	private Background bg;
@@ -55,35 +56,32 @@ private User user;
 
 	private Player player_2;
 	
-	public Level2State(GameStateManager gsm, User user) {
+	public BossState(GameStateManager gsm, User user) {
 		this.gsm = gsm;	
 		setUser(user);
 		
 		init();
 	}
-    
-	/**
-	 * 
-	 */
+
 	public void init() {
-	
-		levelName = "Level 2";
 		
+		levelName = "Boss Level";
+	
 		tilemap = new TileMap(32);
 		tilemap.loadTiles("/TileSets/GroundTileSet.png");
-		tilemap.loadMap("/Maps/level2.map");
+		tilemap.loadMap("/Maps/Boss.map");
 		tilemap.setPosition(30, 30);
 		
-	
+		
 		bg = new Background("/Backgrounds/Background.png", 1);
-	
-		backgroundMusic = new AudioPlayer("/Musics/Level 2.mp3");
+		
+		backgroundMusic = new AudioPlayer("/Musics/Boss Level.mp3");
 		
 		player = new Player(tilemap, user);
 		
 		if(EpixView.isMultiplayer() == true){
 			player_2 = new Player(tilemap, user);
-			player_2.setPosition(80, 40);
+			player_2.setPosition(80, 240);
 		}
 		
 		backgroundMusic.playLoop();
@@ -95,7 +93,7 @@ private User user;
 		
 		
 		
-		player.setPosition(50, 40);
+		player.setPosition(75, 240);
 
 	}
 	
@@ -107,7 +105,8 @@ private User user;
 		 */
 		DamageUp damageUp;
 		Point[] damagUpPoints = new Point[] {
-			
+				new Point(529, 240),
+				new Point(3150, 48),
 			
 		};
 		for(int i = 0; i < damagUpPoints.length; i++) {
@@ -122,7 +121,8 @@ private User user;
 		 */
 		Heart heart;
 		Point[] hearthPoints = new Point[] {
-			new Point(1776, 208),
+				new Point(1232, 112),
+				new Point(2544, 112),
 
 		};
 		for(int i = 0; i < hearthPoints.length; i++) {
@@ -137,8 +137,8 @@ private User user;
 		 */
 		Jetpack jetpack;
 		Point[] jetpackPoints = new Point[] {
-				new Point(1018, 240),
-				new Point (1856, 208)
+			new Point(1663, 240),
+			new Point(3116, 208),
 
 		};
 		for(int i = 0; i < jetpackPoints.length; i++) {
@@ -152,14 +152,15 @@ private User user;
 		 */
 		Shield shield;
 		Point[] shieldPoints = new Point[] {
-				new Point(1136, 48),
-				new Point(2300, 48),
+				new Point(46, 32),
+				new Point(2606, 48),
 		};
 		for(int i = 0; i < shieldPoints.length; i++) {
 			shield = new Shield(tilemap);
 			shield.setPosition(shieldPoints[i].x, shieldPoints[i].y);
 			powerups.add(shield);
 		}
+		
 		
 	}
 	
@@ -172,37 +173,22 @@ private User user;
 			
 		Plant s;
 		Point[] plantPoints = new Point[] {
-				new Point(370, 176),
-				new Point(462, 144),
-				new Point(1200, 240),
-				new Point(1270, 176),
-				new Point(1741, 80),
-				new Point(1974, 80),
-				new Point(2666, 48),
-				new Point(2673, 176),
-				new Point(2673, 112),
+				new Point(177,112),
+				new Point(366,240),
+				new Point(528,240),
+				new Point(1046,240),
+				new Point(1199,240),
+				new Point(1390,240),
+				new Point(1514,176),
+				new Point(1844,144),
+				new Point(1966,144),
+				new Point(2260,176),
+				new Point(2388,240),
 		};
 		for(int i = 0; i < plantPoints.length; i++) {
 			s = new Plant(tilemap);
 			s.setPosition(plantPoints[i].x, plantPoints[i].y);
 			plant.add(s);
-		}
-			
-		/*
-		 * Magicians
-		 */
-		
-		magicians = new ArrayList<Magician>();
-		
-		Magician m;
-		Point[] magicanPoints = new Point[] {
-				new Point(1023, 48),
-				new Point(2855, 240),
-		};
-		for(int i = 0; i < magicanPoints.length; i++) {
-			m = new Magician(tilemap , player);
-			m.setPosition(magicanPoints[i].x, magicanPoints[i].y);
-			magicians.add(m);
 		}
 		
 		
@@ -213,14 +199,26 @@ private User user;
 		
 		ShootingPlant p;
 		Point[] shootingPlantPoints = new Point[] {
-				new Point(303, 112),
-				new Point(686, 144),
-				new Point(1232, 208),
-				new Point(1295, 144),
-				new Point(3150, 80),
-				new Point(3150, 144),
-				new Point(3150, 208),
+				new Point(400,48),
+				new Point(432,80),
+				new Point(464,112),
+				new Point(496,144),
+				new Point(528,176),
 				
+				new Point(1172,48),
+				new Point(1140,80),
+				new Point(1108,112),
+				new Point(1076,144),
+				new Point(1042,176),
+				
+				new Point(1454,48),
+				new Point(1484,112),
+				
+				new Point(1876,144),
+				new Point(1934,144),
+				
+				new Point(2290,112),
+				new Point(2322,48),
 			
 		};
 		for(int i = 0; i < shootingPlantPoints.length; i++) {
@@ -229,7 +227,44 @@ private User user;
 			shootingPlant.add(p);
 		}
 		
+			
+		/*
+		 * Magicians
+		 */	
+		magicians = new ArrayList<Magician>();
+		
+		Magician m;
+		Point[] magicanPoints = new Point[] {
+				new Point(655,240),
+				new Point(928,240),
+				new Point(1522,240),
+				new Point(1897,240),
+				new Point(2253,240),
+		};
+		for(int i = 0; i < magicanPoints.length; i++) {
+			m = new Magician(tilemap , player);
+			m.setPosition(magicanPoints[i].x, magicanPoints[i].y);
+			magicians.add(m);
+		}
+	
+		
+		/**
+		 * Boss
+		 */		
+		boss = new ArrayList<Boss>();
+
+		Boss b;
+		Point[] bossPoint = new Point[] { 
+				new Point(2899, 218),
+
+		};
+		for (int i = 0; i < bossPoint.length; i++) {
+			b = new Boss(tilemap, player);
+			b.setPosition(bossPoint[i].x, bossPoint[i].y);
+			boss.add(b);
+		}	
 	}
+	
 	
 	private void spawnCoins() {
 		coins = new ArrayList<Coin>();
@@ -239,28 +274,48 @@ private User user;
 		 */
 		Coin coin;
 		Point[] coinPoints = new Point[] {
-			new Point(331, 80),
-			
-			new Point(914, 112),
-			new Point(946, 112),
-			new Point(978, 112),
-			new Point(1010, 112),
-			new Point(1042, 112),
-			new Point(1074, 112),
-			new Point(1106, 112),
-			new Point(1138, 112),
-			
-			new Point(1940, 176),
-			new Point(1940, 208),
-			new Point(1940, 240),
-			
-			new Point(2236, 48),
-			new Point(2268, 48),
-			new Point(2332, 48),
-			new Point(2364, 48),
-			
-			new Point(2896, 112),
-			new Point(2928, 112),						
+				new Point(338, 32),
+				new Point(338, 64),
+				new Point(338, 96),
+				new Point(338, 128),
+				
+				new Point(400,48),
+				new Point(1172,48),
+				
+				new Point(1360,112),
+				new Point(1360,80),
+				new Point(1424,112),
+				new Point(1424,144),
+				
+				new Point(1454,48),
+				new Point(1874,48),
+				new Point(1934,48),
+				new Point(2316,48),
+				
+				new Point(2354,112),
+				new Point(2354,144),
+				new Point(2414,112),
+				new Point(2414,80),
+				
+				new Point(2638, 48),
+				new Point(2670, 48),
+				new Point(2702, 48),
+				new Point(2734, 48),
+				new Point(2766, 48),
+				new Point(2798, 48),
+				new Point(2830, 48),
+				new Point(2862, 48),
+				new Point(2894, 48),
+				new Point(2926, 48),
+				new Point(2958, 48),
+				new Point(2990, 48),
+				new Point(3022, 48),
+				new Point(3054, 48),				
+				new Point(3086, 48),
+				new Point(3118, 48),
+
+				
+				
 		};
 		for(int i = 0; i < coinPoints.length; i++) {
 			coin = new Coin(tilemap);
@@ -276,7 +331,7 @@ private User user;
 		 */
 		Flag flag;
 		Point[] flagPoints = new Point[] {
-				new Point(2960, 240),
+				new Point(3152, 240),
 				
 		};
 		for(int i = 0; i < flagPoints.length; i++) {
@@ -289,20 +344,21 @@ private User user;
 	public void update() {
 
 		// update player
-		player.update(player);	
-
+		player.update(player);
+		tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());
+		
 		if(EpixView.isMultiplayer() == true){
 			player_2.update(player_2);
 			player_2.checkAttackPlants(plant, player);
 			player_2.checkAttackShootingPlants(shootingPlant, player);
 			player_2.checkAttackMagician(magicians, player);
+			player_2.checkAttackBoss(boss, player);
 			
-			player_2.checkPowerup(powerups, player_2);
+			player_2.checkPowerup(powerups, player);
 			player_2.checkCoin(coins);
 		}
 		
-		tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());
-
+		
 		//update hud
 		hud = new HUD(player);
 
@@ -312,16 +368,18 @@ private User user;
 		player.checkAttackPlants(plant, player);
 		player.checkAttackShootingPlants(shootingPlant, player);
 		player.checkAttackMagician(magicians, player);
+		player.checkAttackBoss(boss, player);
 		
 		player.checkPowerup(powerups, player);
 		player.checkCoin(coins);
+		
 		
 		//check if no enimies in level
 		if (plant.size() == 0 && shootingPlant.size() == 0 && magicians.size() == 0) {
 			finished = player.checkFlag(flags);
 		}
 		
-		
+				
 		for(int i = 0; i < plant.size(); i++) {
 			Plant e = plant.get(i);
 			e.update(e, player, player_2);
@@ -342,12 +400,32 @@ private User user;
 			}
 		}
 		
+		for(int i = 0; i < plant.size(); i++) {
+			Plant e = plant.get(i);
+			e.update(e, player, player_2);
+			if(e.isDead()) {
+				plant.remove(i);
+				i--;
+			}
+		}
+		
 		
 		for(int i = 0; i < shootingPlant.size(); i++) {
 			ShootingPlant e = shootingPlant.get(i);	
 			e.update(e, player);
 			if(e.isDead()) {
 				shootingPlant.remove(i);
+				i--;
+			}else {
+				e.checkAttackPlayer(player);
+			}
+		}
+		
+		for (int i = 0; i < boss.size(); i++) {
+			Boss e = boss.get(i);
+			e.update(e, player, false);
+			if (e.isDead()) {
+				boss.remove(i);
 				i--;
 			}else {
 				e.checkAttackPlayer(player);
@@ -369,12 +447,14 @@ private User user;
 			if(coin.isTaken()) {
 				coins.remove(i);
 				i--;
+
 			}
 		}
 		
 		for(int i = 0; i < flags.size(); i++) {
 			Flag flag = flags.get(i);
-			flag.update();			
+			flag.update();
+			
 		}
 	}
 
@@ -397,7 +477,9 @@ private User user;
 		for(int i = 0; i < magicians.size(); i++) {
 			magicians.get(i).draw(g);
 		}
-		
+		for (int i = 0; i < boss.size(); i++) {
+			boss.get(i).draw(g);
+		}
 		
 		for(int i = 0; i < powerups.size(); i++) {
 			powerups.get(i).draw(g);
@@ -412,7 +494,7 @@ private User user;
 		}
 		
 		// draw player
-		player.draw(g);	
+		player.draw(g);
 		
 		if(EpixView.isMultiplayer() == true){
 			player_2.draw(g);
@@ -448,6 +530,7 @@ private User user;
 		if(k == KeyEvent.VK_S) player_2.setDown(false);
 		if(k == KeyEvent.VK_W) player_2.setJumping(false);		
 	}
+
 
 	public User getUser() {
 		return user;

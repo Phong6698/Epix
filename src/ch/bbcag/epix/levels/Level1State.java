@@ -75,8 +75,7 @@ public class Level1State extends GameState{
 		tilemap.loadTiles("/TileSets/GroundTileSet.png");
 		tilemap.loadMap("/Maps/level1.map");
 		tilemap.setPosition(30, 30);
-		
-	
+
 		bg = new Background("/Backgrounds/Background.png", 1);
 		
 		backgroundMusic = new AudioPlayer("/Musics/Level 1.mp3");
@@ -95,10 +94,7 @@ public class Level1State extends GameState{
 		spawnPowerups();
 		spawnCoins();
 		spawnFlag();	
-		
 
-		
-		
 		player.setPosition(50, 40);
 
 	}
@@ -122,20 +118,18 @@ public class Level1State extends GameState{
 		
 		
 		/*
-		 * heart
+		 * Heart
 		 */
 		Heart heart;
 		Point[] hearthPoints = new Point[] {
 			new Point(2512, 144),
-
 		};
 		for(int i = 0; i < hearthPoints.length; i++) {
 			heart = new Heart(tilemap);
 			heart.setPosition(hearthPoints[i].x, hearthPoints[i].y);
 			powerups.add(heart);
 		}
-		
-		
+				
 		/*
 		 * Jetpack
 		 */
@@ -336,7 +330,10 @@ public class Level1State extends GameState{
 				magicians.remove(i);
 				i--;
 			}else {
-				e.checkAttackPlayer(player);
+				if (EpixView.multiplayer == true) {
+					e.checkAttackPlayer(player_2, player);
+				}
+				e.checkAttackPlayer(player, player);
 			}
 		}
 		
@@ -347,7 +344,10 @@ public class Level1State extends GameState{
 				shootingPlant.remove(i);
 				i--;
 			}else {
-				e.checkAttackPlayer(player);
+				if (EpixView.multiplayer == true) {
+					e.checkAttackPlayer(player_2, player);
+				}
+				e.checkAttackPlayer(player, player);
 			}
 		}
 		
@@ -358,7 +358,10 @@ public class Level1State extends GameState{
 				boss.remove(i);
 				i--;
 			}else {
-				e.checkAttackPlayer(player);
+				if (EpixView.multiplayer == true) {
+					e.checkAttackPlayer(player_2, player);
+				}
+				e.checkAttackPlayer(player, player);
 			}
 		}
 		

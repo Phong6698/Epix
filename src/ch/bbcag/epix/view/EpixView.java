@@ -41,7 +41,7 @@ public class EpixView extends JFrame {
 
 	
 	public static boolean multiplayer = false;
-	
+	    
 
 	private User user;
 
@@ -208,9 +208,6 @@ public class EpixView extends JFrame {
 		upgradeCard.add(jumpLabel);
 		JProgressBar maxJumpBar = new JProgressBar();
 		maxJumpBar.setValue((int) (((-user.getMaxJump()*10)-65)*2.5));
-		
-		System.out.println(maxJumpBar.getValue());
-		System.out.println(-user.getMaxJump());
 		
 		maxJumpBar.setBounds(327, 174, 185, 36);
 		upgradeCard.add(maxJumpBar);

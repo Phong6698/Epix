@@ -16,8 +16,8 @@ public class Flag extends MapObject{
 
 		width = 32;
 		height = 32;
-		cwidth = 30;
-		cheight = 30;
+		cwidth = 10;
+		cheight = 32;
 		
 		try {
 

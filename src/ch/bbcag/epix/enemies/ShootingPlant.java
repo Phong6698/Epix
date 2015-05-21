@@ -108,11 +108,11 @@ public class ShootingPlant extends Enemy {
 	 * Ob die pflanze den gegner attackiert
 	 * 
 	 * @param player
-	 */
-	public void checkAttackPlayer(Player player) {
+	 */	
+	public void checkAttackPlayer(Player playerHit, Player playerHealth){
 		for (int j = 0; j < getPlantshots().size(); j++) {
-			if (getPlantshots().get(j).intersects(player)) {
-				player.hit(getPlantshotsdamage(), player);
+			if (getPlantshots().get(j).intersects(playerHit)) {
+				playerHit.hit(damage, playerHealth);
 				getPlantshots().get(j).setHit();
 				break;
 			}

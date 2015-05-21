@@ -68,7 +68,6 @@ private User user;
 	public void init() {
 	
 		levelName = "Level 2";
-		
 		tilemap = new TileMap(32);
 		tilemap.loadTiles("/TileSets/GroundTileSet.png");
 		tilemap.loadMap("/Maps/level2.map");
@@ -338,7 +337,10 @@ private User user;
 				magicians.remove(i);
 				i--;
 			}else {
-				e.checkAttackPlayer(player);
+				if (EpixView.multiplayer == true) {
+					e.checkAttackPlayer(player_2, player);
+				}
+				e.checkAttackPlayer(player, player);
 			}
 		}
 		
@@ -350,7 +352,10 @@ private User user;
 				shootingPlant.remove(i);
 				i--;
 			}else {
-				e.checkAttackPlayer(player);
+				if (EpixView.multiplayer == true) {
+					e.checkAttackPlayer(player_2, player);
+				}
+				e.checkAttackPlayer(player, player);
 			}
 		}
 		

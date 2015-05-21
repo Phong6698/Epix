@@ -127,17 +127,15 @@ public class Boss extends Enemy {
 		}
 
 	}
-
-	public void checkAttackPlayer(Player player) {
+	public void checkAttackPlayer(Player playerHit, Player playerHealth){
 		for (int j = 0; j < bossshots.size(); j++) {
-			if (bossshots.get(j).intersects(player)) {
-				player.hit(damage, player);
+			if (bossshots.get(j).intersects(playerHit)) {
+				playerHit.hit(damage, playerHealth);
 				bossshots.get(j).setHit();
 				break;
 			}
 		}
 	}
-
 	public void update(Boss m, Player player, boolean b) {
 
 		// update position

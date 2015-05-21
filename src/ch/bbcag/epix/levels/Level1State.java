@@ -5,7 +5,6 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import ch.bbcag.epix.audio.AudioPlayer;
 import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.display.HUD;
 import ch.bbcag.epix.enemies.Boss;
@@ -56,7 +55,7 @@ public class Level1State extends GameState{
 	
 	private ArrayList<Flag> flags;
 	
-	private AudioPlayer backgroundMusic;
+
 	
 	
 	public Level1State(GameStateManager gsm, User user) {
@@ -80,8 +79,6 @@ public class Level1State extends GameState{
 		
 	
 		bg = new Background("/Backgrounds/Background.png", 1);
-		
-		backgroundMusic = new AudioPlayer("/Musics/Level 1.mp3");
 	
 		
 		player = new Player(tilemap, user);
@@ -97,7 +94,6 @@ public class Level1State extends GameState{
 		spawnFlag();
 		
 		
-		backgroundMusic.play();
 		
 		player.setPosition(50, 40);
 
@@ -294,9 +290,6 @@ public class Level1State extends GameState{
 			
 			player_2.checkPowerup(powerups, player);
 			player_2.checkCoin(coins);
-			
-			hud = new HUD(player_2);
-
 		}
 		
 		tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());
@@ -325,7 +318,7 @@ public class Level1State extends GameState{
 				
 		for(int i = 0; i < plant.size(); i++) {
 			Plant e = plant.get(i);
-			e.update(e, player);
+			e.update(e, player , player_2);
 			if(e.isDead()) {
 				plant.remove(i);
 				i--;
@@ -342,16 +335,6 @@ public class Level1State extends GameState{
 				e.checkAttackPlayer(player);
 			}
 		}
-		
-		for(int i = 0; i < plant.size(); i++) {
-			Plant e = plant.get(i);
-			e.update(e, player);
-			if(e.isDead()) {
-				plant.remove(i);
-				i--;
-			}
-		}
-		
 		
 		for(int i = 0; i < shootingPlant.size(); i++) {
 			ShootingPlant e = shootingPlant.get(i);	
@@ -438,6 +421,7 @@ public class Level1State extends GameState{
 		
 		// draw player
 		player.draw(g);	
+		
 		if(EpixView.isMultiplayer() == true){
 			player_2.draw(g);
 		}

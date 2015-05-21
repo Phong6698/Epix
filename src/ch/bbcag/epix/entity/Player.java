@@ -3,11 +3,9 @@ package ch.bbcag.epix.entity;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
-import ch.bbcag.epix.audio.AudioPlayer;
 import ch.bbcag.epix.enemies.Boss;
 import ch.bbcag.epix.enemies.Magician;
 import ch.bbcag.epix.enemies.Plant;
@@ -57,9 +55,6 @@ public class Player extends MapObject {
 	private ArrayList<BufferedImage[]> sprites;
 	private final int[] numFrames = { 1, 6, 1, 3, 1, 6, 1, 3 };
 	private ArrayList<PlantShot> plantshots;
-	
-	//SFX
-	private HashMap<String, AudioPlayer> sfx;
 
 	// animation actions
 	private static final int IDLE = 0;
@@ -108,12 +103,6 @@ public class Player extends MapObject {
 
 		rainbow = maxRainbow = 2500;
 		rainbows = new ArrayList<Rainbow>();
-		
-		sfx = new HashMap<String, AudioPlayer>();
-		sfx.put("Jump", new AudioPlayer("/SFX/Jump.mp3"));
-		sfx.put("Pickup Coin", new AudioPlayer("/SFX/Pickup Coin.mp3"));
-		sfx.put("Rainbow Shot", new AudioPlayer("/SFX/Rainbow Shot.mp3"));
-		sfx.put("Powerup", new AudioPlayer("/SFX/Powerup.mp3"));
 
 		// load sprites
 		try {
@@ -142,9 +131,6 @@ public class Player extends MapObject {
 		currentAction = IDLE;
 		animation.setFrames(sprites.get(IDLE));
 		animation.setDelay(100);
-
-		
-
 	}
 
 	public void checkAttackPlants(ArrayList<Plant> plants, Player player) {
@@ -163,7 +149,7 @@ public class Player extends MapObject {
 			}
 			// check enemy collision
 			if (intersects(e)) {
-				hit(e.getDamage());
+				hit(e.getDamage(), player);
 			}
 		}
 	}
@@ -183,7 +169,7 @@ public class Player extends MapObject {
 			// check enemy collision
 			if (intersects(e)) {
 				e.update(e, player);
-				hit(e.getDamage());
+				hit(e.getDamage(), player);
 			}
 		}
 	}
@@ -206,7 +192,7 @@ public class Player extends MapObject {
 			if (intersects(b)) {
 				p = true;
 				b.update(b, player, p);
-				hit(b.getDamage());
+				hit(b.getDamage(), player);
 			}
 		}
 	}
@@ -226,7 +212,7 @@ public class Player extends MapObject {
 			// check enemy collision
 			if (intersects(magician)) {
 				magician.update(magician, player);
-				hit(magician.getDamage());
+				hit(magician.getDamage(), player);
 			}
 		}
 	}
@@ -240,7 +226,6 @@ public class Player extends MapObject {
 
 			// check enemy collision
 			if (intersects(powerup)) {
-				sfx.get("Powerup").play();
 				powerup.update();
 				addPowerupToPlayer(powerup, player);
 			}
@@ -256,7 +241,6 @@ public class Player extends MapObject {
 
 			// check coin collision
 			if (intersects(coin)) {
-				sfx.get("Pickup Coin").play();
 				coin.update();
 				this.setCoin(this.getCoin() + coin.getCoinValue());
 				this.setCollectedCoin(this.getCollectedCoin() + coin.getCoinValue());
@@ -341,17 +325,17 @@ public class Player extends MapObject {
 	 * 
 	 * @param damage
 	 */
-	public void hit(int damage) {
+	public void hit(int damage, Player player) {
 		if (!shield) {
 			if (flinching) {
 				return;
 			}
-			health -= damage;
-			if (health < 0) {
-				health = 0;
+			player.setHealth(player.getHealth() - damage);
+			if (player.getHealth() < 0) {
+				player.setHealth(0);
 			}
-			if (health == 0) {
-				setDead(true);
+			if (player.getHealth() == 0) {
+				player.setDead(true);
 			}
 			flinching = true;
 			flinchTimer = System.nanoTime();
@@ -392,7 +376,6 @@ public class Player extends MapObject {
 
 		// jumping
 		if (jumping && !falling && !jetpack) {
-			sfx.get("Jump").play();
 			dy = jumpStart;
 			falling = true;
 		}
@@ -453,15 +436,14 @@ public class Player extends MapObject {
 			if (animation.hasPlayedOnce())
 				rainbowing = false;
 		}
-		// rainbow attack
+		// fireball attack
 		if (rainbowing && currentAction != RAINBOW && currentAction != RAINBOW_JETPACK && rainbows.size() < 2) {
-			sfx.get("Rainbow Shot").play();
 			Rainbow fb = new Rainbow(tileMap, facingRight);
 			fb.setPosition(x, y - (height / 2 - cheight / 2) / 2);
 			rainbows.add(fb);
 		}
 
-		// update rainbow
+		// update fireballs
 		for (int i = 0; i < rainbows.size(); i++) {
 			rainbows.get(i).update();
 			if (rainbows.get(i).shouldRemove()) {

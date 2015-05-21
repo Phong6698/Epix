@@ -10,6 +10,7 @@ import ch.bbcag.epix.entity.Animation;
 import ch.bbcag.epix.entity.Enemy;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.TileMap;
+import ch.bbcag.epix.view.EpixView;
 
 /**
  * 
@@ -93,7 +94,7 @@ public class Plant extends Enemy {
 	 * @param e
 	 * @param player
 	 */
-	public void update(Plant e, Player player) {
+	public void update(Plant e, Player player, Player player_2) {
 
 		// update position
 		getNextPosition();
@@ -103,8 +104,26 @@ public class Plant extends Enemy {
 		// check flinching
 		if (flinching) {
 			long elapsed = (System.nanoTime() - flinchTimer) / 1000000;
-			if (elapsed > 400) {
+			if (elapsed > 500) {
 				flinching = false;
+			}
+		} else if(EpixView.multiplayer == true){
+			if (OnScreen(e,player_2) || OnScreen(e, player)){
+				if (currentAction != getAttack()) {
+					currentAction = getAttack();
+					animation.setFrames(getSprites().get(getAttack()));
+					animation.setDelay(150);
+					width = 64;
+					cwidth = 32;
+				}
+			}else {
+				if (currentAction != getIdle()) {
+					currentAction = getIdle();
+					animation.setFrames(getSprites().get(getIdle()));
+					animation.setDelay(400);
+					width = 32;
+					cwidth = 32;
+				}
 			}
 		} else if (OnScreen(e, player)) {
 			if (currentAction != getAttack()) {

@@ -54,8 +54,6 @@ private User user;
 
 	private Player player_2;
 	
-	
-	
 	public Level2State(GameStateManager gsm, User user) {
 		this.gsm = gsm;	
 		setUser(user);

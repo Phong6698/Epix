@@ -235,6 +235,7 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 				pauseScreen = false;
 				System.out.println("Quit");
 				running = false;
+				gsm.stopMusic();
 				this.dispose();
 				EpixView epix = new EpixView(getUser());
 				CardLayout cardLayout = (CardLayout) epix.cards.getLayout();
@@ -249,6 +250,7 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 				gsm.saveState();
 				finishScreen = false;
 				running = false;
+				gsm.stopMusic();
 				this.dispose();
 				EpixView epix = new EpixView(getUser());
 				CardLayout cardLayout = (CardLayout) epix.cards.getLayout();
@@ -272,6 +274,7 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 				System.out.println("Quit");
 				deadScreen = false;
 				running = false;
+				gsm.stopMusic();
 				this.dispose();
 				EpixView epix = new EpixView(getUser());
 				CardLayout cardLayout = (CardLayout) epix.cards.getLayout();

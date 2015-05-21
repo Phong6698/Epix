@@ -152,7 +152,7 @@ public class Player extends MapObject {
 			}
 			// check enemy collision
 			if (intersects(e)) {
-				hit(e.getDamage());
+				e.hitPlayer(e.getDamage(), player);
 			}
 		}
 	}
@@ -172,7 +172,7 @@ public class Player extends MapObject {
 			// check enemy collision
 			if (intersects(e)) {
 				e.update(e, player);
-				hit(e.getDamage());
+				e.hitPlayer(e.getDamage(), player);
 			}
 		}
 	}
@@ -195,7 +195,7 @@ public class Player extends MapObject {
 			if (intersects(b)) {
 				p = true;
 				b.update(b, player, p);
-				hit(b.getDamage());
+				b.hitPlayer(b.getDamage(), player);
 			}
 		}
 	}
@@ -215,7 +215,7 @@ public class Player extends MapObject {
 			// check enemy collision
 			if (intersects(magician)) {
 				magician.update(magician, player);
-				hit(magician.getDamage());
+				magician.hitPlayer(magician.getDamage(),player);
 			}
 		}
 	}
@@ -290,7 +290,7 @@ public class Player extends MapObject {
 
 		// Shield
 		if (powerup.shield == true) {
-			shield = true;
+			setShield(true);
 		}
 
 		powerups.add(powerup);
@@ -317,7 +317,7 @@ public class Player extends MapObject {
 
 		// Shield
 		if (powerup.shield == true) {
-			shield = false;
+			setShield(false);
 		}
 
 		powerups.remove(powerup);
@@ -328,22 +328,6 @@ public class Player extends MapObject {
 	 * 
 	 * @param damage
 	 */
-	public void hit(int damage) {
-		if (!shield) {
-			if (flinching) {
-				return;
-			}
-			health -= damage;
-			if (health < 0) {
-				health = 0;
-			}
-			if (health == 0) {
-				setDead(true);
-			}
-			flinching = true;
-			flinchTimer = System.nanoTime();
-		}
-	}
 
 	private void getNextPosition(Player player) {
 
@@ -406,6 +390,22 @@ public class Player extends MapObject {
 				dy = maxFallSpeed;
 
 		}
+	}
+	
+	public void hit(int damage) {
+		if (dead || flinching)
+			return;
+		health -= damage;
+		if (health < 0){
+			health = 0;
+		}
+		
+		if (health == 0) {
+			dead = true;
+		}
+			
+		flinching = true;
+		flinchTimer = System.nanoTime();
 	}
 
 	public void update(Player player) {
@@ -528,7 +528,6 @@ public class Player extends MapObject {
 		}
 
 		animation.update();
-		System.out.println(this.getHealth());
 
 		// set direction
 		if (currentAction != RAINBOW) {
@@ -677,5 +676,17 @@ public class Player extends MapObject {
 
 	public void setCollectedCoin(int collectedCoin) {
 		this.collectedCoin = collectedCoin;
+	}
+
+	public boolean isShield() {
+		return shield;
+	}
+
+	public void setShield(boolean shield) {
+		this.shield = shield;
+	}
+	
+	public void setFlinchTimer(long flinchtimer){
+		this.flinchTimer = flinchtimer;
 	}
 }

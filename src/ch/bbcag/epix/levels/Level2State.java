@@ -52,7 +52,7 @@ private User user;
 	
 	private ArrayList<Flag> flags;
 	
-	private AudioPlayer backgroundMusic;
+
 	
 	public Level2State(GameStateManager gsm, User user) {
 		this.gsm = gsm;	

@@ -1,5 +1,6 @@
 package ch.bbcag.epix.gamestate;
 
+import ch.bbcag.epix.audio.AudioPlayer;
 import ch.bbcag.epix.entity.Player;
 
 /**
@@ -16,6 +17,8 @@ public abstract class GameState {
 	
 	protected GameStateManager gsm;
 	protected Boolean finished;
+
+	protected AudioPlayer backgroundMusic;	
 	
 	public abstract void init();
 	public abstract void update();

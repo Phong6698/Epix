@@ -56,7 +56,7 @@ public class Level1State extends GameState{
 	
 	private ArrayList<Flag> flags;
 	
-	private AudioPlayer backgroundMusic;
+	
 	
 	
 	public Level1State(GameStateManager gsm, User user) {

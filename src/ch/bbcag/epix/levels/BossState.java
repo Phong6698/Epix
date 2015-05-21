@@ -53,7 +53,7 @@ public class BossState extends GameState{
 	
 	private ArrayList<Flag> flags;
 	
-	private AudioPlayer backgroundMusic;
+
 	
 	public BossState(GameStateManager gsm, User user) {
 		this.gsm = gsm;	

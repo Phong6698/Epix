@@ -68,6 +68,11 @@ public class GameStateManager {
 		// gameStates[currentState].init();
 	}
 	
+	public void stopMusic(){
+		getGameStates()[currentLevel].backgroundMusic.stop();
+		getGameStates()[currentLevel].backgroundMusic.close();
+	}
+	
 	public void saveState() {
 		EpixController.getInstance().coinsUpdate(getGameStates()[currentLevel].player.getUser(), getGameStates()[currentLevel].player.getCoin());
 		EpixController.getInstance().collectedCoinsUpdate(getGameStates()[currentLevel].player.getUser(), getGameStates()[currentLevel].player.getCollectedCoin());	

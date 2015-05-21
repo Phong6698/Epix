@@ -10,6 +10,7 @@ import ch.bbcag.epix.entity.Animation;
 import ch.bbcag.epix.entity.Enemy;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.TileMap;
+import ch.bbcag.epix.view.EpixView;
 
 /**
  * 
@@ -111,7 +112,7 @@ public class ShootingPlant extends Enemy {
 	public void checkAttackPlayer(Player player) {
 		for (int j = 0; j < getPlantshots().size(); j++) {
 			if (getPlantshots().get(j).intersects(player)) {
-				player.hit(getPlantshotsdamage());
+				player.hit(getPlantshotsdamage(), player);
 				getPlantshots().get(j).setHit();
 				break;
 			}
@@ -236,10 +237,12 @@ public class ShootingPlant extends Enemy {
 
 		if (facingRight) {
 			g.drawImage(animation.getImage(), (int) (x - (width - cwidth) + xmap - width / 2), (int) (y + ymap - height / 2), null);
-	//		g.drawRect((int) (x - (width - cwidth) + xmap - cwidth / 2), (int) (y + ymap - cheight / 2), getCWidth(), getCHeight());
+			// g.drawRect((int) (x - (width - cwidth) + xmap - cwidth / 2),
+			// (int) (y + ymap - cheight / 2), getCWidth(), getCHeight());
 		} else {
 			g.drawImage(animation.getImage(), (int) (x + (width - cwidth) + xmap - width / 2 + width), (int) (y + ymap - height / 2), -width, height, null);
-	//		g.drawRect((int) (x + (width - cwidth) + xmap - cwidth / 2), (int) (y + ymap - cheight / 2), getCWidth(), getCHeight());
+			// g.drawRect((int) (x + (width - cwidth) + xmap - cwidth / 2),
+			// (int) (y + ymap - cheight / 2), getCWidth(), getCHeight());
 
 		}
 	}

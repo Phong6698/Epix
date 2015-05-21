@@ -50,8 +50,15 @@ public class AudioPlayer {
 	public void play() {
 		if(clip == null) return;
 		stop();
-		clip.setFramePosition(0);
+		clip.setFramePosition(2);
 		clip.start();
+	}
+	
+	public void playLoop() {
+		if(clip == null) return;
+		stop();
+		clip.setFramePosition(0);
+		clip.loop(1000);
 	}
 	
 	

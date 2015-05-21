@@ -21,6 +21,8 @@ public class HUD {
 	private Player player;
 
 	private BufferedImage coin;
+	private BufferedImage hud;
+	
 	private Font font;
 
 	public HUD(Player p) {
@@ -29,6 +31,8 @@ public class HUD {
 
 		try {
 			coin = ImageIO.read(getClass().getResourceAsStream("/HUD/Coin spin 16x16.gif"));
+			hud = ImageIO.read(getClass().getResourceAsStream("/HUD/HUD.png"));
+
 			font = new Font("Arial", Font.PLAIN, 10);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -39,25 +43,27 @@ public class HUD {
 	public void draw(Graphics2D g) {
 		
 		
+		g.drawImage(hud, 11, 15, null);
+		
 		// Player Information
-		g.drawImage(coin, 100, 25, null);
+		g.drawImage(coin, 100, 36, null);
 		g.setFont(font);
 		g.setColor(Color.BLACK);
-		g.drawString(getPlayer().getHealth() + "/" + getPlayer().getMaxHealth(), 51, 20);
-		g.drawString(getPlayer().getUsername(), 20, 36);
-		g.drawString("" + getPlayer().getCoin(), 117, 36);
+		g.drawString(getPlayer().getHealth() + "/" + getPlayer().getMaxHealth(), 51, 31);
+		g.drawString(getPlayer().getUsername(), 20, 47);
+		g.drawString("" + getPlayer().getCoin(), 117, 47);
 
 		// Player Coordinates
-		g.drawString("x: " + getPlayer().getx(), 400, 36);
-		g.drawString("y: " + getPlayer().gety(), 400, 50);
+		g.drawString("x: " + getPlayer().getx(), 400, 43);
+		g.drawString("y: " + getPlayer().gety(), 400, 57);
 
 		// Player health bar
 		g.setColor(new Color(1f, 0f, 0f, .3f));
-		Rectangle backgroundBar = new Rectangle(20, 20, 120, 5);
+		Rectangle backgroundBar = new Rectangle(20, 31, 120, 5);
 		g.fill(backgroundBar);
 
 		g.setColor(Color.RED);
-		Rectangle healthBar = new Rectangle(20, 20, (int) (((float) getPlayer().getHealth() / (float) getPlayer().getMaxHealth()) * 120), 5);
+		Rectangle healthBar = new Rectangle(20, 31, (int) (((float) getPlayer().getHealth() / (float) getPlayer().getMaxHealth()) * 120), 5);
 		g.fill(healthBar);
 
 	}

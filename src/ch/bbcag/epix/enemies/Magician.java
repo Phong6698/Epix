@@ -129,7 +129,7 @@ public class Magician extends Enemy {
 	public void checkAttackPlayer(Player player){
 		for (int j = 0; j < magicianshots.size(); j++) {
 			if (magicianshots.get(j).intersects(player)) {
-				player.hit(damage);
+				player.hit(damage, player);
 				magicianshots.get(j).setHit();
 				break;
 			}

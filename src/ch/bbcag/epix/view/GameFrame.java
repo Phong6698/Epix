@@ -227,7 +227,8 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 				 pauseScreen = false;
 				 paused = false;
 			}else if (getPauseDisplay().getRestartRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
-				System.out.println("Restart");	
+				System.out.println("Restart");
+				gsm.stopMusic();
 				gsm.restartState();
 				pauseScreen = false;
 				paused = false;
@@ -258,6 +259,7 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 			}else if (getFinishedDisplay().getRestartRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
 				System.out.println("Restart");
 				finishScreen = false;
+				gsm.stopMusic();
 				gsm.restartState();
 				paused = false;
 			}
@@ -266,7 +268,8 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 		//Dead
 		if(deadScreen){
 			if (getDeadDisplay().getRestartRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
-				System.out.println("Restart");					
+				System.out.println("Restart");	
+				gsm.stopMusic();
 				gsm.restartState();
 				deadScreen = false;
 				paused = false;

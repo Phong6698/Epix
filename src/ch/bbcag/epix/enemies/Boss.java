@@ -131,7 +131,7 @@ public class Boss extends Enemy {
 	public void checkAttackPlayer(Player player) {
 		for (int j = 0; j < bossshots.size(); j++) {
 			if (bossshots.get(j).intersects(player)) {
-				player.hit(damage);
+				player.hit(damage, player);
 				bossshots.get(j).setHit();
 				break;
 			}

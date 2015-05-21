@@ -3,11 +3,9 @@ package ch.bbcag.epix.entity;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
-import ch.bbcag.epix.audio.AudioPlayer;
 import ch.bbcag.epix.enemies.Boss;
 import ch.bbcag.epix.enemies.Magician;
 import ch.bbcag.epix.enemies.Plant;
@@ -57,9 +55,6 @@ public class Player extends MapObject {
 	private ArrayList<BufferedImage[]> sprites;
 	private final int[] numFrames = { 1, 6, 1, 3, 1, 6, 1, 3 };
 	private ArrayList<PlantShot> plantshots;
-	
-	//Sound
-	private HashMap<String, AudioPlayer> sounds;
 
 	// animation actions
 	private static final int IDLE = 0;
@@ -108,12 +103,6 @@ public class Player extends MapObject {
 
 		rainbow = maxRainbow = 2500;
 		rainbows = new ArrayList<Rainbow>();
-		
-		sounds = new HashMap<String, AudioPlayer>();
-		sounds.put("Jump", new AudioPlayer("/Sounds/Jump.mp3"));
-		sounds.put("Pickup Coin", new AudioPlayer("/Sounds/Pickup Coin.mp3"));
-		sounds.put("Rainbow Shot", new AudioPlayer("/Sounds/Rainbow Shot.mp3"));
-		sounds.put("Powerup", new AudioPlayer("/Sounds/Powerup.mp3"));
 
 		// load sprites
 		try {
@@ -163,7 +152,7 @@ public class Player extends MapObject {
 			}
 			// check enemy collision
 			if (intersects(e)) {
-				e.hitPlayer(e.getDamage(), player);
+				hit(e.getDamage());
 			}
 		}
 	}
@@ -183,7 +172,7 @@ public class Player extends MapObject {
 			// check enemy collision
 			if (intersects(e)) {
 				e.update(e, player);
-				e.hitPlayer(e.getDamage(), player);
+				hit(e.getDamage());
 			}
 		}
 	}
@@ -206,7 +195,7 @@ public class Player extends MapObject {
 			if (intersects(b)) {
 				p = true;
 				b.update(b, player, p);
-				b.hitPlayer(b.getDamage(), player);
+				hit(b.getDamage());
 			}
 		}
 	}
@@ -226,7 +215,7 @@ public class Player extends MapObject {
 			// check enemy collision
 			if (intersects(magician)) {
 				magician.update(magician, player);
-				magician.hitPlayer(magician.getDamage(),player);
+				hit(magician.getDamage());
 			}
 		}
 	}
@@ -240,7 +229,6 @@ public class Player extends MapObject {
 
 			// check enemy collision
 			if (intersects(powerup)) {
-				sounds.get("Powerup").play();
 				powerup.update();
 				addPowerupToPlayer(powerup, player);
 			}
@@ -256,7 +244,6 @@ public class Player extends MapObject {
 
 			// check coin collision
 			if (intersects(coin)) {
-				sounds.get("Pickup Coin").play();
 				coin.update();
 				this.setCoin(this.getCoin() + coin.getCoinValue());
 				this.setCollectedCoin(this.getCollectedCoin() + coin.getCoinValue());
@@ -303,7 +290,7 @@ public class Player extends MapObject {
 
 		// Shield
 		if (powerup.shield == true) {
-			setShield(true);
+			shield = true;
 		}
 
 		powerups.add(powerup);
@@ -330,7 +317,7 @@ public class Player extends MapObject {
 
 		// Shield
 		if (powerup.shield == true) {
-			setShield(false);
+			shield = false;
 		}
 
 		powerups.remove(powerup);
@@ -341,6 +328,22 @@ public class Player extends MapObject {
 	 * 
 	 * @param damage
 	 */
+	public void hit(int damage) {
+		if (!shield) {
+			if (flinching) {
+				return;
+			}
+			health -= damage;
+			if (health < 0) {
+				health = 0;
+			}
+			if (health == 0) {
+				setDead(true);
+			}
+			flinching = true;
+			flinchTimer = System.nanoTime();
+		}
+	}
 
 	private void getNextPosition(Player player) {
 
@@ -376,7 +379,6 @@ public class Player extends MapObject {
 
 		// jumping
 		if (jumping && !falling && !jetpack) {
-			sounds.get("Jump").play();
 			dy = jumpStart;
 			falling = true;
 		}
@@ -404,22 +406,6 @@ public class Player extends MapObject {
 				dy = maxFallSpeed;
 
 		}
-	}
-	
-	public void hit(int damage) {
-		if (dead || flinching)
-			return;
-		health -= damage;
-		if (health < 0){
-			health = 0;
-		}
-		
-		if (health == 0) {
-			dead = true;
-		}
-			
-		flinching = true;
-		flinchTimer = System.nanoTime();
 	}
 
 	public void update(Player player) {
@@ -453,15 +439,14 @@ public class Player extends MapObject {
 			if (animation.hasPlayedOnce())
 				rainbowing = false;
 		}
-		// rainbow attack
+		// fireball attack
 		if (rainbowing && currentAction != RAINBOW && currentAction != RAINBOW_JETPACK && rainbows.size() < 2) {
-			sounds.get("Rainbow Shot").play();
 			Rainbow fb = new Rainbow(tileMap, facingRight);
 			fb.setPosition(x, y - (height / 2 - cheight / 2) / 2);
 			rainbows.add(fb);
 		}
 
-		// update rainbow
+		// update fireballs
 		for (int i = 0; i < rainbows.size(); i++) {
 			rainbows.get(i).update();
 			if (rainbows.get(i).shouldRemove()) {
@@ -543,6 +528,7 @@ public class Player extends MapObject {
 		}
 
 		animation.update();
+		System.out.println(this.getHealth());
 
 		// set direction
 		if (currentAction != RAINBOW) {
@@ -691,17 +677,5 @@ public class Player extends MapObject {
 
 	public void setCollectedCoin(int collectedCoin) {
 		this.collectedCoin = collectedCoin;
-	}
-
-	public boolean isShield() {
-		return shield;
-	}
-
-	public void setShield(boolean shield) {
-		this.shield = shield;
-	}
-	
-	public void setFlinchTimer(long flinchtimer){
-		this.flinchTimer = flinchtimer;
 	}
 }

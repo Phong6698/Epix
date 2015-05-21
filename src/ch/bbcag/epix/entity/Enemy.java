@@ -18,6 +18,7 @@ public class Enemy extends MapObject {
 	protected boolean flinching;
 	protected long flinchTimer;
 
+
 	public Enemy(TileMap tm) {
 		super(tm);
 	}
@@ -29,6 +30,7 @@ public class Enemy extends MapObject {
 	public int getDamage() {
 		return damage;
 	}
+
 	public void hit(int damage) {
 		if (dead || flinching)
 			return;
@@ -43,22 +45,5 @@ public class Enemy extends MapObject {
 			
 		flinching = true;
 		flinchTimer = System.nanoTime();
-	}
-	
-	public void hitPlayer(int damage,Player player) {
-		if (!player.isShield()) {
-			if (flinching) {
-				return;
-			}
-			player.setHealth(player.getHealth() - damage);
-			if (player.getHealth() < 0) {
-				player.setHealth(0);
-			}
-			if (player.getHealth() == 0) {
-				player.setDead(true);
-			}
-			player.setFlinching(true);
-			player.setFlinchTimer(System.nanoTime());
-		}
 	}
 }

@@ -46,8 +46,7 @@ public class HUD {
 		float[] scales = { 1f, 1f, 1f, 0.6f };
 		float[] offsets = new float[4];
 		RescaleOp rop = new RescaleOp(scales, offsets, null);
-
-		g.drawImage(hud, rop, 140, 15); //311 - 171
+		g.drawImage(hud, rop, 140, 15); 
 		
 		// Player Information
 		g.drawImage(coin, 229, 36, null);

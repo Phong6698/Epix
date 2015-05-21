@@ -6,6 +6,7 @@ import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,7 +22,7 @@ import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.listener.LevelAuswahlCardButtonListener;
 import ch.bbcag.epix.listener.MenuCardButtonListener;
-import ch.bbcag.epix.listener.MultiplayerListener;
+import ch.bbcag.epix.listener.ModeListener;
 import ch.bbcag.epix.listener.PlusDamageListener;
 import ch.bbcag.epix.listener.PlusHealthListener;
 import ch.bbcag.epix.listener.PlusJumpListener;
@@ -40,7 +41,7 @@ public class EpixView extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	
-	public static boolean multiplayer = false;
+	public static boolean multiplayer;
 	    
 
 	private User user;
@@ -78,7 +79,6 @@ public class EpixView extends JFrame {
 	protected JButton level2Button = new JButton("Level 2");
 	protected JButton bossLevelButton = new JButton("Boss Level");
 	protected JButton levelZurückBtton = new JButton("Zur\u00FCck");
-	protected JButton multiplayerButton = new JButton("Multiplayer");
 	
 	// ranglisteCard
 	protected JButton ranglisteZurückbutton = new JButton("Zurück");
@@ -121,6 +121,13 @@ public class EpixView extends JFrame {
 	protected JTable ranglisteTable = new JTable();
 	
 	
+	/*
+	 * JcomboBox
+	 */
+	//levelAuswahlCard
+	String comboBoxListe[] = {"Singleplayer", "Multiplayer"};
+	protected JComboBox modeComboBox = new JComboBox(comboBoxListe);
+	
 	private static boolean refresh = true;
 
 	
@@ -139,6 +146,8 @@ public class EpixView extends JFrame {
 		epix.setBounds(100, 100, 801, 523);
 		epix.setLocationRelativeTo(null);
 		epix.getContentPane().removeAll();
+		
+		multiplayer = false;
 
 		/*
 		 * menuCard
@@ -272,9 +281,9 @@ public class EpixView extends JFrame {
 
 		levelZurückBtton.setBounds(334, 378, 121, 28);
 		levelAuswahlCard.add(levelZurückBtton);
-		
-		multiplayerButton.setBounds(15, 85, 121, 28);
-		levelAuswahlCard.add(multiplayerButton);
+				
+		modeComboBox.setBounds(336, 85, 121, 28);
+		levelAuswahlCard.add(modeComboBox);
 
 		levelAuswahlCardCoinImage.setBounds(0, 10, 64, 64);
 		levelAuswahlCardCoinImage.setIcon(new ImageIcon(coinSpinPath));
@@ -355,7 +364,9 @@ public class EpixView extends JFrame {
 		level1Button.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser(), epix));
 		level2Button.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser(), epix));
 		bossLevelButton.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser(), epix));
-		multiplayerButton.addActionListener(new MultiplayerListener());
+		modeComboBox.addActionListener(new ModeListener());
+		
+	
 		
 		// ranglisteCard
 		ranglisteZurückbutton.addActionListener(new RanglisteCardButtonListener(cards));

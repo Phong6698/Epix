@@ -168,10 +168,10 @@ public class EpixView extends JFrame {
 		menuCardPlayerLabel.setBounds(598, 18, 239, 36);
 		menuCard.add(menuCardPlayerLabel);
 
-		spielenButton.setBounds(485, 319, 89, 23);
+		spielenButton.setBounds(300, 315, 168, 30);
 		menuCard.add(spielenButton);
 
-		ranglisteButton.setBounds(485, 353, 89, 23);
+		ranglisteButton.setBounds(300, 355, 168, 30);
 		menuCard.add(ranglisteButton);
 
 		menuCardBackgroundImage.setIcon(new ImageIcon(backgroundPath));

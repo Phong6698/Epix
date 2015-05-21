@@ -5,7 +5,6 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import ch.bbcag.epix.audio.AudioPlayer;
 import ch.bbcag.epix.display.HUD;
 import ch.bbcag.epix.enemies.Boss;
 import ch.bbcag.epix.enemies.Magician;
@@ -24,6 +23,7 @@ import ch.bbcag.epix.powerups.Jetpack;
 import ch.bbcag.epix.powerups.Shield;
 import ch.bbcag.epix.tilemap.Background;
 import ch.bbcag.epix.tilemap.TileMap;
+import ch.bbcag.epix.view.EpixView;
 import ch.bbcag.epix.view.GameFrame;
 
 /**
@@ -53,7 +53,9 @@ public class BossState extends GameState{
 	
 	private ArrayList<Flag> flags;
 	
+	backgroundMusic.playLoop();
 
+	private Player player_2;
 	
 	public BossState(GameStateManager gsm, User user) {
 		this.gsm = gsm;	
@@ -74,17 +76,19 @@ public class BossState extends GameState{
 		
 		bg = new Background("/Backgrounds/Background.png", 1);
 		
-		backgroundMusic = new AudioPlayer("/Musics/Boss Level.mp3");
-		
 		player = new Player(tilemap, user);
 		
+		if(EpixView.isMultiplayer() == true){
+			player_2 = new Player(tilemap, user);
+			player_2.setPosition(80, 240);
+		}
 		
 		spawnEnemies();
 		spawnPowerups();
 		spawnCoins();
 		spawnFlag();
 		
-		backgroundMusic.play();
+		
 		
 		player.setPosition(75, 240);
 
@@ -340,8 +344,19 @@ public class BossState extends GameState{
 		player.update(player);
 		tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());
 		
-		//update hud
+		if(EpixView.isMultiplayer() == true){
+			player_2.update(player_2);
+			player_2.checkAttackPlants(plant, player);
+			player_2.checkAttackShootingPlants(shootingPlant, player);
+			player_2.checkAttackMagician(magicians, player);
+			player_2.checkAttackBoss(boss, player);
+			
+			player_2.checkPowerup(powerups, player);
+			player_2.checkCoin(coins);
+		}
 		
+		
+		//update hud
 		hud = new HUD(player);
 
 		// set background
@@ -364,7 +379,7 @@ public class BossState extends GameState{
 				
 		for(int i = 0; i < plant.size(); i++) {
 			Plant e = plant.get(i);
-			e.update(e, player);
+			e.update(e, player, player_2);
 			if(e.isDead()) {
 				plant.remove(i);
 				i--;
@@ -384,7 +399,7 @@ public class BossState extends GameState{
 		
 		for(int i = 0; i < plant.size(); i++) {
 			Plant e = plant.get(i);
-			e.update(e, player);
+			e.update(e, player, player_2);
 			if(e.isDead()) {
 				plant.remove(i);
 				i--;
@@ -476,7 +491,12 @@ public class BossState extends GameState{
 		}
 		
 		// draw player
-		player.draw(g);	
+		player.draw(g);
+		
+		if(EpixView.isMultiplayer() == true){
+			player_2.draw(g);
+		}
+		
 		hud.draw(g);
 		
 	}
@@ -488,6 +508,12 @@ public class BossState extends GameState{
 		if(k == KeyEvent.VK_DOWN) player.setDown(true);
 		if(k == KeyEvent.VK_UP) player.setJumping(true);
 		if(k == KeyEvent.VK_R) player.setRainbowing();
+		
+		if(k == KeyEvent.VK_A) player_2.setLeft(true);
+		if(k == KeyEvent.VK_D) player_2.setRight(true);
+		if(k == KeyEvent.VK_S) player_2.setDown(true);
+		if(k == KeyEvent.VK_W) player_2.setJumping(true);
+		if(k == KeyEvent.VK_R) player_2.setRainbowing();
 	}
 	
 	public void keyReleased(int k) {
@@ -496,7 +522,12 @@ public class BossState extends GameState{
 		if(k == KeyEvent.VK_DOWN) player.setDown(false);
 		if(k == KeyEvent.VK_UP) player.setJumping(false);
 		
+		if(k == KeyEvent.VK_A) player_2.setLeft(false);
+		if(k == KeyEvent.VK_D) player_2.setRight(false);
+		if(k == KeyEvent.VK_S) player_2.setDown(false);
+		if(k == KeyEvent.VK_W) player_2.setJumping(false);		
 	}
+
 
 	public User getUser() {
 		return user;

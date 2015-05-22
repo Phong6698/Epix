@@ -26,7 +26,7 @@ public class UpgradeCardButtonListener implements ActionListener {
 			CardLayout cardLayout = (CardLayout) getCard().getLayout();
 			cardLayout.show(getCard(), "levelAuswahlCard");
 		}
-		else if (e.getActionCommand().equals("Zurück")) {
+		else if (e.getActionCommand().equals("Zur\u00FCck")) {
 			CardLayout cardLayout = (CardLayout) getCard().getLayout();
 			cardLayout.show(getCard(), "menuCard");
 		}

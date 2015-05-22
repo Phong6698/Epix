@@ -186,11 +186,15 @@ public class EpixController {
 		return id_Level;
 	}
 
-	public void checkLevelSaved(User user, JButton levelButton) {
+	public void checkLevelSaved(User user, JButton levelButton, JButton preLevelButton) {
 		int id_Level;
+		int preID_Level;
 		try {
 			id_Level = LEVEL_DAO.getID_Level(levelButton.getText());
-			if (SAVE_DAO.checkLevelSaved(user, id_Level)) {
+			preID_Level = LEVEL_DAO.getID_Level(preLevelButton.getText());
+			if (!SAVE_DAO.checkLevelSaved(user, id_Level) && SAVE_DAO.checkLevelSaved(user, preID_Level)) {
+				levelButton.setEnabled(true);
+			} else if (!SAVE_DAO.checkLevelSaved(user, id_Level) && !SAVE_DAO.checkLevelSaved(user, preID_Level)){
 				levelButton.setEnabled(false);
 			}
 		} catch (SQLException e) {

@@ -85,7 +85,7 @@ private User user;
 			player_2.setPosition(80, 40);
 		}
 		
-		backgroundMusic.playLoop();
+		backgroundMusic.playLoop(-6);
 		
 		spawnEnemies();
 		spawnPowerups();

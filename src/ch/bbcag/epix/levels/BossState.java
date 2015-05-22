@@ -82,7 +82,7 @@ public class BossState extends GameState {
 			player_2.setPosition(80, 240);
 		}
 
-		backgroundMusic.playLoop();
+		backgroundMusic.playLoop(-6);
 
 		spawnEnemies();
 		spawnPowerups();
@@ -156,7 +156,7 @@ public class BossState extends GameState {
 		plant = new ArrayList<Plant>();
 
 		Plant s;
-		Point[] plantPoints = new Point[] { new Point(177, 112), new Point(366, 240), new Point(528, 240), new Point(1046, 240), new Point(1199, 240), new Point(1390, 240), new Point(1514, 176),
+		Point[] plantPoints = new Point[] {  new Point(366, 240), new Point(528, 240), new Point(1046, 240), new Point(1199, 240), new Point(1390, 240), new Point(1514, 176),
 				new Point(1844, 144), new Point(1966, 144), new Point(2260, 176), new Point(2388, 240), };
 		for (int i = 0; i < plantPoints.length; i++) {
 			s = new Plant(tilemap);
@@ -260,11 +260,18 @@ public class BossState extends GameState {
 		}
 	}
 
-	public void update() {
+	private boolean OnScreen(Player player, Player player_2) {
 
+		if (player.getx() < player_2.getx() + 180 && player.getx() + 400 - player_2.getx() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void update() {
 		// update player
 		player.update(player);
-		tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());
 
 		if (EpixView.isMultiplayer() == true) {
 			player_2.update(player_2);
@@ -275,7 +282,18 @@ public class BossState extends GameState {
 
 			player_2.checkPowerup(powerups, player);
 			player_2.checkCoin(coins);
+		}				
+		if (EpixView.isMultiplayer() == true) {
+			if (OnScreen(player, player_2)) {
+				tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());
+				player.setMoveSpeed(user.getMoveSpeed());
+			} else {
+				player.setMoveSpeed(0);
+			}
+		} else {
+			tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());
 		}
+
 
 		// update hud
 		hud = new HUD(player);
@@ -326,7 +344,7 @@ public class BossState extends GameState {
 				shootingPlant.remove(i);
 				i--;
 			} else {
-				if (EpixView.multiplayer == true){
+				if (EpixView.multiplayer == true) {
 					e.checkAttackPlayer(player_2, player);
 				}
 				e.checkAttackPlayer(player, player);
@@ -340,7 +358,7 @@ public class BossState extends GameState {
 				boss.remove(i);
 				i--;
 			} else {
-				if (EpixView.multiplayer == true){
+				if (EpixView.multiplayer == true) {
 					e.checkAttackPlayer(player_2, player);
 				}
 				e.checkAttackPlayer(player, player);

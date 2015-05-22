@@ -46,15 +46,25 @@ public class AudioPlayer {
 	
 	/**
 	 * Play Audio
+	 * @param volumeAmount  Lautstärke 
 	 */
-	public void play() {
+	public void play(float volumeAmount) {
+		FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+		volume.setValue(volumeAmount);
 		if(clip == null) return;
 		stop();
 		clip.setFramePosition(2);
 		clip.start();
 	}
 	
-	public void playLoop() {
+	
+	/**
+	 * Play Audio in Loop
+	 * @param volumeAmount  Lautstärke 
+	 */
+	public void playLoop(float volumeAmount) {
+		FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+		volume.setValue(volumeAmount);
 		if(clip == null) return;
 		stop();
 		clip.setFramePosition(0);

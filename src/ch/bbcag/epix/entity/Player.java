@@ -237,7 +237,7 @@ public class Player extends MapObject {
 
 			// check enemy collision
 			if (intersects(powerup)) {
-				sfx.get("Powerup").play();
+				sfx.get("Powerup").play(0);
 				powerup.update();
 				addPowerupToPlayer(powerup, player);
 			}
@@ -253,7 +253,7 @@ public class Player extends MapObject {
 
 			// check coin collision
 			if (intersects(coin)) {
-				sfx.get("Pickup Coin").play();
+				sfx.get("Pickup Coin").play(-2);
 				coin.update();
 				this.setCoin(this.getCoin() + coin.getCoinValue());
 				this.setCollectedCoin(this.getCollectedCoin() + coin.getCoinValue());
@@ -389,7 +389,7 @@ public class Player extends MapObject {
 
 		// jumping
 		if (jumping && !falling && !jetpack) {
-			sfx.get("Jump").play();
+			sfx.get("Jump").play(-2);
 			dy = jumpStart;
 			falling = true;
 		}
@@ -452,7 +452,7 @@ public class Player extends MapObject {
 		}
 		// rainbow attack
 		if (rainbowing && currentAction != RAINBOW && currentAction != RAINBOW_JETPACK && rainbows.size() < 2) {
-			sfx.get("Rainbow Shot").play();
+			sfx.get("Rainbow Shot").play(0);
 			Rainbow fb = new Rainbow(tileMap, facingRight);
 			fb.setPosition(x, y - (height / 2 - cheight / 2) / 2);
 			rainbows.add(fb);
@@ -540,8 +540,6 @@ public class Player extends MapObject {
 		}
 
 		animation.update();
-		System.out.println(this.getHealth());
-
 		// set direction
 		if (currentAction != RAINBOW) {
 			if (right)

@@ -55,6 +55,9 @@ public class BossState extends GameState {
 
 	private Player player_2;
 
+	private boolean moveright = true;
+	private boolean moveleft = true;
+
 	public BossState(GameStateManager gsm, User user) {
 		this.gsm = gsm;
 		setUser(user);
@@ -156,7 +159,7 @@ public class BossState extends GameState {
 		plant = new ArrayList<Plant>();
 
 		Plant s;
-		Point[] plantPoints = new Point[] { new Point(177, 112), new Point(366, 240), new Point(528, 240), new Point(1046, 240), new Point(1199, 240), new Point(1390, 240), new Point(1514, 176),
+		Point[] plantPoints = new Point[] {  new Point(366, 240), new Point(528, 240), new Point(1046, 240), new Point(1199, 240), new Point(1390, 240), new Point(1514, 176),
 				new Point(1844, 144), new Point(1966, 144), new Point(2260, 176), new Point(2388, 240), };
 		for (int i = 0; i < plantPoints.length; i++) {
 			s = new Plant(tilemap);
@@ -262,9 +265,16 @@ public class BossState extends GameState {
 
 	private boolean OnScreen(Player player, Player player_2) {
 
-		if (player.getx() < player_2.getx() + 180 && player.getx() + 400 - player_2.getx() > 0) {
+		if (player.getx() < player_2.getx() + 200 && player.getx() + 360 - player_2.getx() > 0) {
+			moveright = true;
+			moveleft = true;
 			return true;
 		} else {
+			if (player.getx() + 360 - player_2.getx() > 0) {
+				moveright = false;
+			} else if (player.getx() < player_2.getx() + 200) {
+				moveleft = false;
+			}
 			return false;
 		}
 	}
@@ -282,18 +292,18 @@ public class BossState extends GameState {
 
 			player_2.checkPowerup(powerups, player);
 			player_2.checkCoin(coins);
-		}				
+		}
 		if (EpixView.isMultiplayer() == true) {
 			if (OnScreen(player, player_2)) {
 				tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());
-				player.setMoveSpeed(user.getMoveSpeed());
 			} else {
-				player.setMoveSpeed(0);
+				
 			}
 		} else {
 			tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());
 		}
 
+		System.out.println("Moveleft = " + moveleft);
 
 		// update hud
 		hud = new HUD(player);
@@ -438,10 +448,17 @@ public class BossState extends GameState {
 	}
 
 	public void keyPressed(int k) {
-		if (k == KeyEvent.VK_LEFT)
+		if (k == KeyEvent.VK_LEFT && moveleft == true){
 			player.setLeft(true);
-		if (k == KeyEvent.VK_RIGHT)
+		} else{
+			player.setLeft(false);
+		}
+		if (k == KeyEvent.VK_RIGHT && moveright == true){
 			player.setRight(true);
+		} else {
+			player.setRight(false);
+		}
+			
 		if (k == KeyEvent.VK_DOWN)
 			player.setDown(true);
 		if (k == KeyEvent.VK_UP)

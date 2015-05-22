@@ -540,8 +540,6 @@ public class Player extends MapObject {
 		}
 
 		animation.update();
-		System.out.println(this.getHealth());
-
 		// set direction
 		if (currentAction != RAINBOW) {
 			if (right)

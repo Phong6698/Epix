@@ -297,12 +297,12 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 		
 		int k = key.getKeyCode();
 		
-		if(k == KeyEvent.VK_ESCAPE && paused ) {
+		if(k == KeyEvent.VK_P && paused || k == KeyEvent.VK_ESCAPE && paused ) {
 			System.out.println("Resume");
 			pauseScreen = false;
 			paused = false;
 			
-		} else if(k == KeyEvent.VK_ESCAPE ) {
+		} else if(k == KeyEvent.VK_P && !paused || k == KeyEvent.VK_ESCAPE && !paused ) {
 			System.out.println("Pause");
 			pauseScreen = true;		
 			

@@ -2,8 +2,10 @@ package ch.bbcag.epix.view;
 
 import java.awt.CardLayout;
 import java.awt.Font;
+import java.awt.Image;
 import java.util.Vector;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -128,7 +130,7 @@ public class EpixView extends JFrame {
 	 */
 	//levelAuswahlCard
 	String comboBoxListe[] = {"Singleplayer", "Multiplayer"};
-	protected JComboBox modeComboBox = new JComboBox(comboBoxListe);
+	protected JComboBox<?> modeComboBox = new JComboBox<>(comboBoxListe);
 	
 	private static boolean refresh = true;
 
@@ -269,15 +271,19 @@ public class EpixView extends JFrame {
 		 */
 		levelAuswahlCard.setLayout(null);
 
-		level1Button.setBounds(67, 159, 171, 170);
+		level1Button.setBounds(15, 159, 240, 170); //67	
+		level1Button.setIcon(new ImageIcon("Resources/Others/Level 1.png"));		
 		levelAuswahlCard.add(level1Button);
+		
 
-		level2Button.setBounds(308, 159, 171, 170);
+		level2Button.setBounds(275, 159, 240, 170);
 		EpixController.getInstance().checkLevelSaved(user, level2Button, level1Button);
+		level2Button.setIcon(new ImageIcon("Resources/Others/Level 2.png"));		
 		levelAuswahlCard.add(level2Button);
 
-		bossLevelButton.setBounds(550, 159, 171, 170);
+		bossLevelButton.setBounds(535, 159, 240, 170);
 		EpixController.getInstance().checkLevelSaved(user, bossLevelButton, level2Button);
+		bossLevelButton.setIcon(new ImageIcon("Resources/Others/Boss Level.png"));		
 		levelAuswahlCard.add(bossLevelButton);
 
 		levelZurueckBtton.setBounds(334, 378, 121, 28);
@@ -333,6 +339,7 @@ public class EpixView extends JFrame {
 		ranglisteCard.add(ranglisteZurueckButton);	
 		
 		ranglisteTable.setBounds(160, 140, 487, 300);
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		Vector<Vector> data = EpixController.getInstance().getRangliste();
 		Vector<String> columnNames = new Vector<String>();
 		columnNames.addElement("Username");

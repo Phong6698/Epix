@@ -3,7 +3,7 @@ package ch.bbcag.epix.audio;
 import javax.sound.sampled.*;
 
 /**
- * 
+ * AudioPlayer Klasse zum Sounds Abspielen 
  *
  * @author Chiramet Phong Penglerd, Miguel Jorge || ICT Berufsbildungs AG
  *			Copyright Berufsbildungscenter 2015

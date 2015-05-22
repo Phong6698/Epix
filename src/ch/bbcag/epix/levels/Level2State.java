@@ -53,6 +53,12 @@ private User user;
 	
 	private ArrayList<Flag> flags;
 
+	private boolean moveright_p1 = true;
+	private boolean moveleft_p1 = true;
+	
+	private boolean moveright_p2 = true;
+	private boolean moveleft_p2 = true;
+	
 	private Player player_2;
 	
 	public Level2State(GameStateManager gsm, User user) {
@@ -284,7 +290,27 @@ private User user;
 			flags.add(flag);
 		}
 	}
+	private boolean OnScreen(Player player, Player player_2) {
 
+		if (player.getx() < player_2.getx() + 200 && player.getx() + 360 - player_2.getx() > 0) {
+			moveright_p1 = true;
+			moveleft_p1 = true;
+			
+			moveright_p2 = true;
+			moveleft_p2 = true;
+			return true;
+		} else {
+			if (player.getx() + 360 - player_2.getx() > 0) {
+				moveright_p1 = false;
+				moveleft_p2 = false;
+			} else if (player.getx() < player_2.getx() + 200) {
+				moveleft_p1 = false;
+				moveleft_p2 = false;
+			}
+			return false;
+		}
+	}
+	
 	public void update() {
 
 		// update player
@@ -300,7 +326,16 @@ private User user;
 			player_2.checkCoin(coins);
 		}
 		
-		tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());
+		
+		if (EpixView.isMultiplayer() == true) {
+			if (OnScreen(player, player_2)) {
+				tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());
+			} 
+		} else {
+			tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());
+		}
+		
+		
 
 		//update hud
 		hud = new HUD(player);
@@ -429,31 +464,61 @@ private User user;
 	
 
 	public void keyPressed(int k) {
-		if(k == KeyEvent.VK_LEFT) player.setLeft(true);
-		if(k == KeyEvent.VK_RIGHT) player.setRight(true);
-		if(k == KeyEvent.VK_DOWN) player.setDown(true);
-		if(k == KeyEvent.VK_UP) player.setJumping(true);
-		if(k == KeyEvent.VK_R) player.setRainbowing();
-		
-		if(k == KeyEvent.VK_A) player_2.setLeft(true);
-		if(k == KeyEvent.VK_D) player_2.setRight(true);
-		if(k == KeyEvent.VK_S) player_2.setDown(true);
-		if(k == KeyEvent.VK_W) player_2.setJumping(true);
-		if(k == KeyEvent.VK_R) player_2.setRainbowing();
-	}
-	
-	public void keyReleased(int k) {
-		if(k == KeyEvent.VK_LEFT) player.setLeft(false);
-		if(k == KeyEvent.VK_RIGHT) player.setRight(false);
-		if(k == KeyEvent.VK_DOWN) player.setDown(false);
-		if(k == KeyEvent.VK_UP) player.setJumping(false);
-		
-		if(k == KeyEvent.VK_A) player_2.setLeft(false);
-		if(k == KeyEvent.VK_D) player_2.setRight(false);
-		if(k == KeyEvent.VK_S) player_2.setDown(false);
-		if(k == KeyEvent.VK_W) player_2.setJumping(false);		
+		if (k == KeyEvent.VK_LEFT && moveleft_p1 == true){
+			player.setLeft(true);
+		} else{
+			player.setLeft(false);
+		}
+		if (k == KeyEvent.VK_RIGHT && moveright_p1 == true){
+			player.setRight(true);
+		} else {
+			player.setRight(false);
+		}
+			
+		if (k == KeyEvent.VK_DOWN)
+			player.setDown(true);
+		if (k == KeyEvent.VK_UP)
+			player.setJumping(true);
+		if (k == KeyEvent.VK_R)
+			player.setRainbowing();
+
+		if (k == KeyEvent.VK_A && moveleft_p2 == true){
+			player_2.setLeft(true);
+		} else{
+			player_2.setLeft(false);
+		}
+		if (k == KeyEvent.VK_D && moveright_p2 == true){
+			player_2.setRight(true);
+		} else {
+			player_2.setRight(false);
+		}
+		if (k == KeyEvent.VK_S)
+			player_2.setDown(true);
+		if (k == KeyEvent.VK_W)
+			player_2.setJumping(true);
+		if (k == KeyEvent.VK_R)
+			player_2.setRainbowing();
 	}
 
+	public void keyReleased(int k) {
+		if (k == KeyEvent.VK_LEFT)
+			player.setLeft(false);
+		if (k == KeyEvent.VK_RIGHT)
+			player.setRight(false);
+		if (k == KeyEvent.VK_DOWN)
+			player.setDown(false);
+		if (k == KeyEvent.VK_UP)
+			player.setJumping(false);
+
+		if (k == KeyEvent.VK_A)
+			player_2.setLeft(false);
+		if (k == KeyEvent.VK_D)
+			player_2.setRight(false);
+		if (k == KeyEvent.VK_S)
+			player_2.setDown(false);
+		if (k == KeyEvent.VK_W)
+			player_2.setJumping(false);
+	}
 	public User getUser() {
 		return user;
 	}

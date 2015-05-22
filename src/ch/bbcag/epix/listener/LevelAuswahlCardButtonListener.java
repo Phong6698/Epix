@@ -42,7 +42,7 @@ public class LevelAuswahlCardButtonListener implements ActionListener {
 			getEpix().dispose();
 			new GameFrame(3, getUser(), getEpix());
 		}
-		else if (e.getActionCommand().equals("Zurück")) {
+		else if (e.getActionCommand().equals("Zur\u00FCck")) {
 			CardLayout cardLayout = (CardLayout) getCard().getLayout();
 			cardLayout.show(getCard(), "upgradeCard");
 		}

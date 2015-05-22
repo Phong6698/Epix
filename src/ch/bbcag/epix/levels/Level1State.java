@@ -86,7 +86,7 @@ public class Level1State extends GameState {
 			player_2.setPosition(60, 40);
 		}
 
-		backgroundMusic.playLoop();
+		backgroundMusic.playLoop(-10);
 
 		spawnEnemies();
 		spawnPowerups();

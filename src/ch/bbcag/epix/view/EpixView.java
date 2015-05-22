@@ -71,18 +71,17 @@ public class EpixView extends JFrame {
 	protected JButton plusJumpButton = new JButton("+");
 	protected JButton plusSpeedButton = new JButton("+");
 	protected JButton plusDamageButton = new JButton("+");
-	protected JButton levelAuswählenButton = new JButton("Level ausw\u00E4hlen");
-	protected JButton upgradeZurückButton = new JButton("Zurück");
+	protected JButton levelAuswaehlenButton = new JButton("Level ausw\u00E4hlen");
+	protected JButton upgradeZurueckButton = new JButton("Zur\u00FCck");
 
 	// levelAuswahlCard
 	protected JButton level1Button = new JButton("Level 1");
 	protected JButton level2Button = new JButton("Level 2");
 	protected JButton bossLevelButton = new JButton("Boss Level");
-	protected JButton levelZurückBtton = new JButton("Zur\u00FCck");
+	protected JButton levelZurueckBtton = new JButton("Zur\u00FCck");
 	
 	// ranglisteCard
-	protected JButton ranglisteZurückbutton = new JButton("Zurück");
-
+	protected JButton ranglisteZurueckButton = new JButton("Zur\u00FCck");
 	
 	/*
 	 * JLabel
@@ -110,6 +109,9 @@ public class EpixView extends JFrame {
 	protected JLabel levelAuswahlCardBackgroundImage = new JLabel("");
 	
 	//ranglisteCard
+	protected JLabel ranglisteCardCoinImage = new JLabel("");
+	protected JLabel ranglisteCardCoinLabel;
+	protected JLabel ranglisteCardPlayerLabel;
 	protected JLabel ranglisteLabel = new JLabel("Rangliste");
 	protected JLabel ranglisteCardBackgroundImage = new JLabel("");
 	
@@ -132,7 +134,7 @@ public class EpixView extends JFrame {
 
 	
 	/*
-	 * Das Hauptmenü des Spiels wird herstellt 
+	 * Das Hauptmenï¿½ des Spiels wird herstellt 
 	 */
 	
 	public EpixView(User user) {
@@ -164,7 +166,7 @@ public class EpixView extends JFrame {
 		menuCard.add(menuCardCoinLabel);
 
 		// player
-		menuCardPlayerLabel = new JLabel("Willkommen zurück, " + getUser().getUsername());
+		menuCardPlayerLabel = new JLabel("Willkommen zur\u00FCck, " + getUser().getUsername());
 		menuCardPlayerLabel.setBounds(598, 18, 239, 36);
 		menuCard.add(menuCardPlayerLabel);
 
@@ -195,7 +197,7 @@ public class EpixView extends JFrame {
 		upgradeCard.add(upgradeCardCoinLabel);
 
 		// player
-		upgradeCardPlayerLabel = new JLabel("Willkommen zurück, " + getUser().getUsername());
+		upgradeCardPlayerLabel = new JLabel("Willkommen zur\u00FCck, " + getUser().getUsername());
 		upgradeCardPlayerLabel.setBounds(598, 18, 239, 36);
 		upgradeCard.add(upgradeCardPlayerLabel);
 
@@ -250,11 +252,11 @@ public class EpixView extends JFrame {
 		plusDamageButton.addActionListener(new PlusDamageListener(getUser(), damageBar, epix,upgradeCardCoinLabel, cards));
 		upgradeCard.add(plusDamageButton);
 
-		levelAuswählenButton.setBounds(395, 361, 168, 30);
-		upgradeCard.add(levelAuswählenButton);
+		levelAuswaehlenButton.setBounds(395, 361, 168, 30);
+		upgradeCard.add(levelAuswaehlenButton);
 
-		upgradeZurückButton.setBounds(254, 361, 131, 30);
-		upgradeCard.add(upgradeZurückButton);
+		upgradeZurueckButton.setBounds(254, 361, 131, 30);
+		upgradeCard.add(upgradeZurueckButton);
 
 		upgradeCardBackgroundImage.setBounds(0, 0, 801, 523);
 		upgradeCardBackgroundImage.setIcon(new ImageIcon(backgroundPath));
@@ -268,19 +270,18 @@ public class EpixView extends JFrame {
 		levelAuswahlCard.setLayout(null);
 
 		level1Button.setBounds(67, 159, 171, 170);
-		EpixController.getInstance().checkLevelSaved(user, level1Button);
 		levelAuswahlCard.add(level1Button);
 
 		level2Button.setBounds(308, 159, 171, 170);
-		EpixController.getInstance().checkLevelSaved(user, level2Button);
+		EpixController.getInstance().checkLevelSaved(user, level2Button, level1Button);
 		levelAuswahlCard.add(level2Button);
 
 		bossLevelButton.setBounds(550, 159, 171, 170);
-		EpixController.getInstance().checkLevelSaved(user, bossLevelButton);
+		EpixController.getInstance().checkLevelSaved(user, bossLevelButton, level2Button);
 		levelAuswahlCard.add(bossLevelButton);
 
-		levelZurückBtton.setBounds(334, 378, 121, 28);
-		levelAuswahlCard.add(levelZurückBtton);
+		levelZurueckBtton.setBounds(334, 378, 121, 28);
+		levelAuswahlCard.add(levelZurueckBtton);
 				
 		modeComboBox.setBounds(336, 85, 121, 28);
 		levelAuswahlCard.add(modeComboBox);
@@ -294,7 +295,7 @@ public class EpixView extends JFrame {
 		levelAuswahlCardCoinLabel.setFont(new Font("Modern No. 20", Font.PLAIN, 26));
 		levelAuswahlCard.add(levelAuswahlCardCoinLabel);
 
-		levelAuswahlCardPlayerLabel = new JLabel("Willkommen zurück, " + getUser().getUsername());
+		levelAuswahlCardPlayerLabel = new JLabel("Willkommen zur\u00FCck, " + getUser().getUsername());
 		levelAuswahlCardPlayerLabel.setBounds(598, 18, 239, 36);
 		levelAuswahlCard.add(levelAuswahlCardPlayerLabel);
 
@@ -310,11 +311,26 @@ public class EpixView extends JFrame {
 		 */
 		ranglisteCard.setLayout(null);
 		
+		// coin
+		ranglisteCardCoinImage.setBounds(0, 10, 64, 64);
+		ranglisteCard.add(ranglisteCardCoinImage);
+		ranglisteCardCoinImage.setIcon(new ImageIcon(coinSpinPath));
+		ranglisteCardCoinLabel = new JLabel("" + getUser().getCoin());
+		ranglisteCardCoinLabel.setFont(new Font("Modern No. 20", Font.PLAIN, 26));
+		ranglisteCardCoinLabel.setBounds(67, 10, 56, 64);
+		ranglisteCard.add(ranglisteCardCoinLabel);
+
+		// player
+		ranglisteCardPlayerLabel = new JLabel("Willkommen zur\u00FCck, " + getUser().getUsername());
+		ranglisteCardPlayerLabel.setBounds(598, 18, 239, 36);
+		ranglisteCard.add(ranglisteCardPlayerLabel);
+		
+		
 		ranglisteLabel.setBounds(363, 41, 78, 37);
 		ranglisteCard.add(ranglisteLabel);
 		
-		ranglisteZurückbutton.setBounds(334, 450, 121, 28);
-		ranglisteCard.add(ranglisteZurückbutton);	
+		ranglisteZurueckButton.setBounds(334, 450, 121, 28);
+		ranglisteCard.add(ranglisteZurueckButton);	
 		
 		ranglisteTable.setBounds(160, 140, 487, 300);
 		Vector<Vector> data = EpixController.getInstance().getRangliste();
@@ -356,11 +372,11 @@ public class EpixView extends JFrame {
 		ranglisteButton.addActionListener(new MenuCardButtonListener(cards));
 
 		// upgradeCard
-		upgradeZurückButton.addActionListener(new UpgradeCardButtonListener(cards));
-		levelAuswählenButton.addActionListener(new UpgradeCardButtonListener(cards));
+		upgradeZurueckButton.addActionListener(new UpgradeCardButtonListener(cards));
+		levelAuswaehlenButton.addActionListener(new UpgradeCardButtonListener(cards));
 
 		// levelAuswahlCard
-		levelZurückBtton.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser(), epix));
+		levelZurueckBtton.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser(), epix));
 		level1Button.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser(), epix));
 		level2Button.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser(), epix));
 		bossLevelButton.addActionListener(new LevelAuswahlCardButtonListener(cards, getUser(), epix));
@@ -369,7 +385,7 @@ public class EpixView extends JFrame {
 	
 		
 		// ranglisteCard
-		ranglisteZurückbutton.addActionListener(new RanglisteCardButtonListener(cards));
+		ranglisteZurueckButton.addActionListener(new RanglisteCardButtonListener(cards));
 
 		epix.setContentPane(cards);
 		epix.setVisible(true);

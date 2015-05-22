@@ -85,7 +85,7 @@ public class BossState extends GameState {
 			player_2.setPosition(80, 240);
 		}
 
-		backgroundMusic.playLoop();
+		backgroundMusic.playLoop(-6);
 
 		spawnEnemies();
 		spawnPowerups();

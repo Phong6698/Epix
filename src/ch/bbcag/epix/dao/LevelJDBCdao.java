@@ -15,7 +15,7 @@ public class LevelJDBCdao extends Database implements LevelDao{
 	@Override
 	public int getID_Level(String levelName) throws SQLException {
 		
-		String sql = "SELECT * FROM level WHERE LevelName = ?";
+		String sql = "SELECT * FROM LEVEL WHERE LevelName = ?";
 		
 		con = getCon();
 		ps = con.prepareStatement(sql);

@@ -23,7 +23,7 @@ public class PlayerJDBCdao extends Database implements PlayerDao {
 		 * Auslesen aller User aus der DB
 		 */
 		public List<User> findAllUsers() throws SQLException {
-			String sql = "SELECT * FROM player";
+			String sql = "SELECT * FROM PLAYER";
 			List<User> p = new ArrayList<User>();
 			
 			con = getCon();
@@ -44,7 +44,7 @@ public class PlayerJDBCdao extends Database implements PlayerDao {
 		 * Eintragen eines neuen Users in DB
 		 */
 		public void registrieren(User user) throws SQLException {
-			String sql = "INSERT INTO player (Username, Password, Email, Coins, PlayerWeapon_ID, Health, Jump, Damage, Speed, MaxSpeed, CollectedCoins) VALUES (?, ?, ?,0, 1, 50, -6.5 ,5 ,0.2,3.2,0)";
+			String sql = "INSERT INTO PLAYER (Username, Password, Email, Coins, PlayerWeapon_ID, Health, Jump, Damage, Speed, MaxSpeed, CollectedCoins) VALUES (?, ?, ?,0, 1, 50, -6.5 ,5 ,0.2,3.2,0)";
 			con = getCon();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, user.getUsername());
@@ -56,7 +56,7 @@ public class PlayerJDBCdao extends Database implements PlayerDao {
 
 		@Override
 		public User playerLogin(String username) throws SQLException {
-			String sql = "SELECT * FROM player WHERE Username = ?;";
+			String sql = "SELECT * FROM PLAYER WHERE Username = ?;";
 			User player = new User();
 			con = getCon();
 			ps = con.prepareStatement(sql);
@@ -76,7 +76,7 @@ public class PlayerJDBCdao extends Database implements PlayerDao {
 		}
 		
 		public void coinsUpdate(User player, int coins) throws SQLException{
-			String sql = "UPDATE player SET coins = ? WHERE Username = ? ;";
+			String sql = "UPDATE PLAYER SET coins = ? WHERE Username = ? ;";
 			con = getCon();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, coins);
@@ -86,7 +86,7 @@ public class PlayerJDBCdao extends Database implements PlayerDao {
 		}
 		
 		public void collectedCoinsUpdate(User player, int collectedCoins) throws SQLException {
-			String sql = "UPDATE player SET CollectedCoins = ? WHERE Username = ? ;";
+			String sql = "UPDATE PLAYER SET CollectedCoins = ? WHERE Username = ? ;";
 			con = getCon();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, collectedCoins);
@@ -96,7 +96,7 @@ public class PlayerJDBCdao extends Database implements PlayerDao {
 		}
 
 		public void getPlayerStats(User user) throws SQLException {
-			String sql = "SELECT * FROM player Where Username = ?";
+			String sql = "SELECT * FROM PLAYER Where Username = ?";
 			con = getCon();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, user.getUsername());
@@ -115,7 +115,7 @@ public class PlayerJDBCdao extends Database implements PlayerDao {
 
 		@Override
 		public Vector getRangliste() throws SQLException {
-			String sql = "SELECT * FROM player ORDER BY CollectedCoins DESC;";
+			String sql = "SELECT * FROM PLAYER ORDER BY CollectedCoins DESC;";
 			con = getCon();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();

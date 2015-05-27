@@ -10,7 +10,7 @@ import ch.bbcag.epix.entity.Powerup;
 import ch.bbcag.epix.tilemap.TileMap;
 
 /**
- * 
+ * Powerup Shield, fuer eine gewisse Zeit bekkomt der Spieler keinen Schaden
  *
  * @author  Chiramet Phong Penglerd, Miguel Jorge || ICT Berufsbildungs AG
  *			Copyright Berufsbildungscenter 2015
@@ -24,6 +24,11 @@ public class Shield extends Powerup {
 	 * Animation wird gesetzt
 	 */
 	
+	
+	/**
+	 * Konstruktor
+	 * @param tm {@link TileMap}
+	 */
 	public Shield(TileMap tm) {
 		super(tm);
 	
@@ -56,18 +61,13 @@ public class Shield extends Powerup {
 		facingRight = true;
 	}
 	
-	/*
-	 * Animation wird aktualisiert
-	 */
 	
 	public void update() {
-
 
 		checkTileMapCollision();
 
 		// update animation
 		animation.update();
-
 	}
 	
 	public void draw(Graphics2D g) {
@@ -75,7 +75,5 @@ public class Shield extends Powerup {
 		setMapPosition();
 
 		super.draw(g);
-
 	}
-
 }

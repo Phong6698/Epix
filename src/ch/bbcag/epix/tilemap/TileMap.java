@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 import ch.bbcag.epix.view.GameFrame;
 
 /**
- * 
+ * TileMap
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
  *			TileMap.java.java Copyright Berufsbildungscenter 2015
  */
@@ -54,6 +54,11 @@ public class TileMap {
 	 * Groesse der TileMap wird festgelegt
 	 */
 	
+	
+	/**
+	 * Konstruktor
+	 * @param tileSize
+	 */
 	public TileMap(int tileSize) {
 		this.tileSize = tileSize;
 		numRowsToDraw = GameFrame.HEIGHT / tileSize + 2;
@@ -65,6 +70,11 @@ public class TileMap {
 	 * Tiles werden eingelesen und Map wird herstellt
 	 */
 	
+	
+	/**
+	 * Tiles laden
+	 * @param s {@link String} Pfad wo TileMap gespeichert ist
+	 */
 	public void loadTiles(String s) {
 
 		try {
@@ -85,13 +95,13 @@ public class TileMap {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
-
-	/*
-	 * Map wird geladen
-	 */
 	
+	
+	/**
+	 *  Map wird geladen
+	 * @param s  Pfad wo Map gespeichert ist
+	 */
 	public void loadMap(String s) {
 		try {
 
@@ -121,29 +131,15 @@ public class TileMap {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
-	public int getTileSize() {
-		return tileSize;
-	}
 
-	public double getx() {
-		return x;
-	}
-
-	public double gety() {
-		return y;
-	}
-
-	public int getWidth() {
-		return width;
-	}
-
-	public int getHeight() {
-		return height;
-	}
-
+	/**
+	 * Tile Typ aufrufen
+	 * @param row
+	 * @param col
+	 * @return Tile Typ
+	 */
 	public int getType(int row, int col) {
 		int rc = map[row][col];
 		int r = rc / numTilesAcross;
@@ -151,10 +147,12 @@ public class TileMap {
 		return tiles[r][c].getType();
 	}
 
-	public void setTween(double d) {
-		tween = d;
-	}
 
+	/**
+	 * Position setzen
+	 * @param x coordinate
+	 * @param y coordinate
+	 */
 	public void setPosition(double x, double y) {
 
 		this.x += (x - this.x) * tween;
@@ -164,9 +162,12 @@ public class TileMap {
 
 		colOffset = (int) -this.x / tileSize;
 		rowOffset = (int) -this.y / tileSize;
-
 	}
 
+	
+	/**
+	 * fix Bounds
+	 */
 	private void fixBounds() {
 		if (x < xmin)
 			x = xmin;
@@ -178,6 +179,11 @@ public class TileMap {
 			y = ymax;
 	}
 
+	
+	/**
+	 * Draw
+	 * @param g {@link Graphics2D}
+	 */
 	public void draw(Graphics2D g) {
 
 		for (int row = rowOffset; row < rowOffset + numRowsToDraw; row++) {
@@ -198,8 +204,36 @@ public class TileMap {
 				int c = rc % numTilesAcross;
 
 				g.drawImage(tiles[r][c].getImage(), (int) x + col * tileSize, (int) y + row * tileSize, null);
-				
+			
 			}
 		}
+	}
+	
+	
+	/*
+	 * Getter und Setter
+	 */
+	public int getTileSize() {
+		return tileSize;
+	}
+
+	public double getx() {
+		return x;
+	}
+
+	public double gety() {
+		return y;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+	
+	public void setTween(double d) {
+		tween = d;
 	}
 }

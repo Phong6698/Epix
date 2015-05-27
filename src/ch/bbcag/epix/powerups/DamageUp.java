@@ -10,11 +10,10 @@ import ch.bbcag.epix.entity.Powerup;
 import ch.bbcag.epix.tilemap.TileMap;
 
 /**
- * 
+ * Powerup DamageUp, fuer eine gewisse Zeit hat der Spieler mehr schaden
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			DamageUp.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
-
 public class DamageUp extends Powerup {
 
 	private BufferedImage[] sprites;
@@ -25,6 +24,11 @@ public class DamageUp extends Powerup {
 	 * - Animation wird festgelegt
 	 */
 	
+	
+	/**
+	 * Konstruktor
+	 * @param tm {@link TileMap}
+	 */
 	public DamageUp(TileMap tm) {
 		super(tm);
 		
@@ -59,21 +63,17 @@ public class DamageUp extends Powerup {
 	
 	public void update() {
 
-		// update position
-
 		checkTileMapCollision();
 
 		// update animation
 		animation.update();
-
 	}
+	
 	
 	public void draw(Graphics2D g) {
 
 		setMapPosition();
 
 		super.draw(g);
-
 	}
-
 }

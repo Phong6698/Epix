@@ -4,16 +4,13 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- * 
+ * Popup wenn das Login Fehlgeschlagen ist
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			LoginFailed.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
 
 public class LoginFailed extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public LoginFailed() {

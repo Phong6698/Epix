@@ -7,9 +7,8 @@ import ch.bbcag.epix.entity.User;
 /**
  * 
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			Game.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
-
 public class Game {
 	
 	public static void main(String[] args) {

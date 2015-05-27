@@ -10,7 +10,7 @@ import ch.bbcag.epix.entity.Powerup;
 import ch.bbcag.epix.tilemap.TileMap;
 
 /**
- * 
+ * Powerup Heart, der Spieler bekommt Lebenspunkte zurueck 
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
  *			Copyright Berufsbildungscenter 2015
  */
@@ -26,6 +26,11 @@ public class Heart extends Powerup {
 	 * - Animation wird festgelegt 
 	 */
 	
+	
+	/**
+	 * Konstruktor
+	 * @param tm {@link TileMap}
+	 */
 	public Heart(TileMap tm) {
 		super(tm);
 	
@@ -59,9 +64,6 @@ public class Heart extends Powerup {
 	}
 	
 	
-	/*
-	 * Animation wird aktualisiert
-	 */
 	public void update() {
 
 		checkTileMapCollision();
@@ -69,13 +71,11 @@ public class Heart extends Powerup {
 
 	}
 	
+	
 	public void draw(Graphics2D g) {
 
 		setMapPosition();
 
 		super.draw(g);
-
 	}
-	
-
 }

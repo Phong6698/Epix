@@ -12,7 +12,6 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
-import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.display.Dead;
 import ch.bbcag.epix.display.Finished;
 import ch.bbcag.epix.display.Pause;
@@ -20,26 +19,15 @@ import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.gamestate.GameStateManager;
 
 /**
- * 
+ * Spiel Fenster
  * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			GameFrame.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
-
 public class GameFrame extends JFrame implements Runnable, KeyListener, MouseListener{	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	
 	private User user;
-	
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 	// dimensions
 	public static final int WIDTH = 448;
@@ -78,10 +66,16 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 	private boolean deadScreen;
 	private boolean finishScreen;
 	
+	
+	/**
+	 * Konstruktor
+	 * @param level 
+	 * @param user {@link User}
+	 * @param epix {@link JFrame}
+	 */
 	public GameFrame(int level, User user, JFrame epix) {
 		setUser(user);
 		setEpix(epix);
-	
 		
 		this.level = level;
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -102,6 +96,12 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 		addMouseListener(this);
 	}
 	
+	
+	/**
+	 * Test Konstruktor
+	 * @param level 
+	 * @param user {@link User}
+	 */
 	public GameFrame(int level, User user) {
 		setUser(user);
 		
@@ -124,6 +124,10 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 		addMouseListener(this);
 	}
 
+	
+	/**
+	 * Notify
+	 */
 	public void addNotify() {
 		super.addNotify();
 		if(thread == null) {
@@ -133,6 +137,10 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 		}
 	}
 	
+	
+	/**
+	 * initialisieren
+	 */
 	private void init() {
 		
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -144,6 +152,10 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 		
 	}
 	
+	
+	/**
+	 * run
+	 */
 	public void run() {
 		
 		init();
@@ -171,24 +183,24 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 			catch(Exception e) {
 				e.printStackTrace();
 			}	
-			
-			
+					
 			drawToScreen();
-			draw();
-			
-			
-			
-		}
-		
+			draw();		
+		}		
 	}
 	
+	
+	/**
+	 * Update
+	 */
 	private void update() {
 		gsm.update();
-		
-		
-		
-		
 	}
+	
+	
+	/**
+	 * Draw
+	 */
 	private void draw() {
 		gsm.draw(g);
 		
@@ -207,19 +219,19 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 			deadScreen = true;
 			getDeadDisplay().draw(g);
 		}
-		
-		
-
 	}
+	
+	/**
+	 * Draw To Screen
+	 */
 	private void drawToScreen() {
 		Graphics g2 = getGraphics();
 		g2.drawImage(image, 0, 0, (int)(WIDTH * SCALE), (int)(HEIGHT * SCALE), null);
 		g2.dispose();
 	}
 	
-	public void mouseClicked(MouseEvent e) {
-		
-		
+	
+	public void mouseClicked(MouseEvent e) {	
 		//Pause
 		if(pauseScreen){
 			if (getPauseDisplay().getResumeRect().contains(e.getPoint().getX() / GameFrame.SCALE, e.getPoint().getY() / GameFrame.SCALE)) {
@@ -284,7 +296,6 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 				cardLayout.show(epix.cards, "levelAuswahlCard");
 			}
 		}
-
     }
 	
 	 public void mousePressed(MouseEvent e) {
@@ -343,6 +354,14 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 
 	public void setFinishedDisplay(Finished finishedDisplay) {
 		this.finishedDisplay = finishedDisplay;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

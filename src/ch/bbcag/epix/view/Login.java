@@ -13,11 +13,10 @@ import ch.bbcag.epix.listener.LoginListener;
 import ch.bbcag.epix.listener.RegistrierenListener;
 
 /**
- * 
+ * Login
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
  *			Login.java.java Copyright Berufsbildungscenter 2015
  */
-
 public class Login extends JFrame{
 
 	private static final long serialVersionUID = 1L;
@@ -47,9 +46,8 @@ public class Login extends JFrame{
 
 	
 	/**
-	 * Das 'Login' Fenster wird herstellt
+	 * Konstruktor
 	 */
-	
 	public Login() {
 		
 		JFrame login = new JFrame();

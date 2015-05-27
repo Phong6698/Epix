@@ -3,11 +3,10 @@ package ch.bbcag.epix.tilemap;
 import java.awt.image.BufferedImage;
 
 /**
- * 
+ * Tile
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			Tile.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
-
 public class Tile {
 	
 	private BufferedImage image;
@@ -22,12 +21,27 @@ public class Tile {
 	 * Die Tile wird gesetzt 
 	 */
 	
+	
+	/**
+	 * Konstruktor
+	 * @param image {@link BufferedImage} Tile Bild
+	 * @param type
+	 */
 	public Tile(BufferedImage image, int type) {
 		this.image = image;
 		this.type = type;
 	}
 	
-	public BufferedImage getImage() { return image; }
-	public int getType() { return type; }
+	
+	/*
+	 * Getter und Setter
+	 */
+	public BufferedImage getImage() { 
+		return image; 
+	}
+	
+	public int getType() { 
+		return type; 
+	}
 	
 }

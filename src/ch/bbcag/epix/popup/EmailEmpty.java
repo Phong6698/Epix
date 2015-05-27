@@ -4,20 +4,17 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- * 
+ * Popup wenn das E-mail Feld leer ist
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			EmailEmpty.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
 
 public class EmailEmpty extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public EmailEmpty() {
-		JOptionPane.showMessageDialog(null,"Bitte Email ausfüllen!", null, JOptionPane.WARNING_MESSAGE, null);
+		JOptionPane.showMessageDialog(null,"Bitte Email ausfï¿½llen!", null, JOptionPane.WARNING_MESSAGE, null);
 	};
 
 }

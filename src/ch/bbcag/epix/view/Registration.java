@@ -12,7 +12,7 @@ import ch.bbcag.epix.listener.SignUpListener;
 import ch.bbcag.epix.listener.ZurueckListener;
 
 /**
- * 
+ * Registration
  * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
  *			Registration.java.java Copyright Berufsbildungscenter 2015
  */
@@ -37,7 +37,7 @@ public class Registration extends JFrame {
 	 * JButton
 	 */
 	protected JButton registrierenButton = new JButton("Registrieren");
-	protected JButton zurueckButton = new JButton("Zurück");
+	protected JButton zurueckButton = new JButton("Zurï¿½ck");
 	
 	/*
 	 * JLabel
@@ -50,7 +50,7 @@ public class Registration extends JFrame {
 
 	
 	/*
-	 * Das Fenster 'Registrieren' wird angezeigt 
+	 * Konstruktor
 	 */
 	public Registration() {
 		JFrame registration = new JFrame();

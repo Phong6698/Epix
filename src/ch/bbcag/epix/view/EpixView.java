@@ -2,10 +2,8 @@ package ch.bbcag.epix.view;
 
 import java.awt.CardLayout;
 import java.awt.Font;
-import java.awt.Image;
 import java.util.Vector;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -33,11 +31,10 @@ import ch.bbcag.epix.listener.RanglisteCardButtonListener;
 import ch.bbcag.epix.listener.UpgradeCardButtonListener;
 
 /**
- * 
+ * Das Fenster fuer Epix Menu, Rangliste, Upgrade und Level Auswahl
  * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *         EpixView.java.java Copyright Berufsbildungscenter 2015
+ *         Copyright Berufsbildungscenter 2015
  */
-
 public class EpixView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -132,13 +129,15 @@ public class EpixView extends JFrame {
 	String comboBoxListe[] = {"Singleplayer", "Multiplayer"};
 	protected JComboBox<?> modeComboBox = new JComboBox<>(comboBoxListe);
 	
+	
+	
 	private static boolean refresh = true;
 
 	
-	/*
-	 * Das Hauptmen� des Spiels wird herstellt 
+	/**
+	 * Konstruktor	
+	 * @param user {@link User}
 	 */
-	
 	public EpixView(User user) {
 
 		this.setUser(user);
@@ -398,11 +397,10 @@ public class EpixView extends JFrame {
 
 	}
 
-	/*
+	/**
 	 * Wenn der Spieler Upgrades kauft, werden mit diese Methode
 	 * die Coins des Spieler aktualisiert
-	 */
-	
+	 */	
 	public void coinsUpdate() {
 
 		menuCardCoinImage.setBounds(0, 10, 64, 64);
@@ -414,6 +412,10 @@ public class EpixView extends JFrame {
 		menuCard.add(menuCardCoinLabel);
 	}
 
+	
+	/*
+	 * Getter und Setter
+	 */
 	public User getUser() {
 		return user;
 	}

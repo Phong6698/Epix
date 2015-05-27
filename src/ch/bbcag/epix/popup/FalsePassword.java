@@ -4,20 +4,17 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- * 
+ * Popup wenn das Passwort falsch ist
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			FalsePassword.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
 
 public class FalsePassword extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public FalsePassword() {
-		JOptionPane.showMessageDialog(null,"Passwörter stimmen nicht überein", null, JOptionPane.INFORMATION_MESSAGE, null);
+		JOptionPane.showMessageDialog(null,"Passwï¿½rter stimmen nicht ï¿½berein", null, JOptionPane.INFORMATION_MESSAGE, null);
 	};
 
 }

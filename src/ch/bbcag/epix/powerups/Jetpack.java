@@ -10,11 +10,10 @@ import ch.bbcag.epix.entity.Powerup;
 import ch.bbcag.epix.tilemap.TileMap;
 
 /**
- * 
+ * Powerup Jetpack, fuer eine gewisse Zeit kann der Spieler fliegen
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			Jetpack.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
-
 public class Jetpack extends Powerup {
 
 	private BufferedImage[] sprites;
@@ -25,6 +24,11 @@ public class Jetpack extends Powerup {
 	 * - Animation wird geladen
 	 */
 	
+	
+	/**
+	 * Konstruktor
+	 * @param tm {@link TileMap}
+	 */
 	public Jetpack(TileMap tm) {
 		super(tm);		
 		
@@ -64,22 +68,18 @@ public class Jetpack extends Powerup {
 		facingRight = true;
 	}
 	
-	/*
-	 * Animation wird aktualisiert
-	 */
+	
 	public void update() {
 
 		checkTileMapCollision();
 		animation.update();
-
 	}
+	
 	
 	public void draw(Graphics2D g) {
 
 		setMapPosition();
 
 		super.draw(g);
-
 	}
-
 }

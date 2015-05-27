@@ -10,6 +10,13 @@ import ch.bbcag.epix.entity.MapObject;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.TileMap;
 
+
+/**
+ * Schuss vom Boss {@link Boss}
+ *
+ * @author Chiramet Phong Penglerd, Miguel Jorge || ICT Berufsbildungs AG
+ *			Copyright Berufsbildungscenter 2015
+ */
 public class BossShot extends MapObject {
 
 	private boolean hit;
@@ -17,11 +24,15 @@ public class BossShot extends MapObject {
 	private BufferedImage[] sprites;
 	private BufferedImage[] hitSprites;
 	
-	
-
 	protected boolean flinching;
 	protected long flinchTimer;
 
+	/**
+	 * Konstruktor
+	 * @param tm {@link TileMap}
+	 * @param shotright
+	 * @param player {@link Player}
+	 */
 	public BossShot(TileMap tm, boolean shotright, Player player) {
 		super(tm);
 
@@ -58,6 +69,10 @@ public class BossShot extends MapObject {
 
 	}
 
+	
+	/**
+	 * Hit setten
+	 */
 	public void setHit() {
 		if (hit)
 			return;
@@ -69,10 +84,12 @@ public class BossShot extends MapObject {
 		dx = 0;
 	}
 
-	public boolean shouldRemove() {
-		return remove;
-	}
 
+	/**
+	 * Update
+	 * @param m {@link Boss}
+	 * @param player {@link Player}
+	 */
 	public void update(Boss m, Player player) {
 
 		// update position
@@ -96,17 +113,25 @@ public class BossShot extends MapObject {
 			remove = true;
 		}
 		
-		//löschen falls es die y koordinate <= 0
+		//lï¿½schen falls es die y koordinate <= 0
 		if (this.gety() <= 0 || this.gety() >= 270) {
 			remove = true;
 		}
 	}
-
+	
 	public void draw(Graphics2D g) {
 		
 		setMapPosition();
 
 		super.draw(g);
-
+	}
+	
+	
+	/**
+	 * Ob es geloescht werden sollte
+	 * @return ob es geloescht werden sollte
+	 */
+	public boolean shouldRemove() {
+		return remove;
 	}
 }

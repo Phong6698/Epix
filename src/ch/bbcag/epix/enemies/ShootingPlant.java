@@ -13,9 +13,9 @@ import ch.bbcag.epix.tilemap.TileMap;
 import ch.bbcag.epix.view.EpixView;
 
 /**
- * 
+ * Schiessende Pflanze
  * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *         ShootingPlant.java.java Copyright Berufsbildungscenter 2015
+ *          Copyright Berufsbildungscenter 2015
  */
 public class ShootingPlant extends Enemy {
 
@@ -36,7 +36,7 @@ public class ShootingPlant extends Enemy {
 	/**
 	 * Konstruktor
 	 * 
-	 * @param tm
+	 * @param tm {@link TileMap}
 	 * @param b
 	 */
 	public ShootingPlant(TileMap tm, boolean b) {
@@ -94,7 +94,7 @@ public class ShootingPlant extends Enemy {
 	}
 
 	/**
-	 * nächste Position
+	 * Bewegung
 	 */
 	private void getNextPosition() {
 		// falling
@@ -105,9 +105,9 @@ public class ShootingPlant extends Enemy {
 	}
 
 	/**
-	 * Ob die pflanze den gegner attackiert
+	 * Ob die Pflanze den gegner attackiert
 	 * 
-	 * @param player
+	 * @param player {@link Player}
 	 */	
 	public void checkAttackPlayer(Player playerHit, Player playerHealth){
 		for (int j = 0; j < getPlantshots().size(); j++) {
@@ -120,10 +120,9 @@ public class ShootingPlant extends Enemy {
 	}
 
 	/**
-	 * Die Pflanze updaten
-	 * 
-	 * @param e
-	 * @param player
+	 * Update
+	 * @param e {@link ShootingPlant}
+	 * @param player {@link Player}
 	 */
 	public void update(ShootingPlant e, Player player) {
 
@@ -195,8 +194,8 @@ public class ShootingPlant extends Enemy {
 	/**
 	 * Schaut ob der Spieler die Pflanze auf dem Bildschirm sieht
 	 * 
-	 * @param e
-	 * @param player
+	 * @param e {@link ShootingPlant}
+	 * @param player {@link Player}
 	 * @return ob der Spieler die Plfanze auf dem Bildschirm sieht
 	 */
 	public boolean OnScreen(ShootingPlant e, int range) {
@@ -209,9 +208,7 @@ public class ShootingPlant extends Enemy {
 		}
 	}
 
-	/**
-	 * Pflanze zeichnen
-	 */
+	
 	public void draw(Graphics2D g) {
 
 		// if(notOnScreen()) return;
@@ -230,11 +227,6 @@ public class ShootingPlant extends Enemy {
 		}
 
 		// draw fireballs
-		draw_(g);
-	}
-
-	public void draw_(java.awt.Graphics2D g) {
-
 		if (facingRight) {
 			g.drawImage(animation.getImage(), (int) (x - (width - cwidth) + xmap - width / 2), (int) (y + ymap - height / 2), null);
 			// g.drawRect((int) (x - (width - cwidth) + xmap - cwidth / 2),
@@ -246,6 +238,7 @@ public class ShootingPlant extends Enemy {
 
 		}
 	}
+	
 
 	/*
 	 * Getter und Setter

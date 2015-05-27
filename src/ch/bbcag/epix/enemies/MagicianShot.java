@@ -11,9 +11,9 @@ import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.TileMap;
 
 /**
- * 
+ * Schuss vom Zauberer {@link Magician}
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			MagicianShot.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
 
 public class MagicianShot extends MapObject {
@@ -21,13 +21,18 @@ public class MagicianShot extends MapObject {
 	private boolean hit;
 	private boolean remove;
 	private BufferedImage[] sprites;
-	private BufferedImage[] hitSprites;
-	
-	
+	private BufferedImage[] hitSprites;	
 
 	protected boolean flinching;
 	protected long flinchTimer;
 
+	
+	/**
+	 * Konstruktor
+	 * @param tm {@link TileMap}
+	 * @param shotright
+	 * @param player {@link Player}
+	 */
 	public MagicianShot(TileMap tm, boolean shotright, Player player) {
 		super(tm);
 
@@ -65,6 +70,10 @@ public class MagicianShot extends MapObject {
 
 	}
 
+	
+	/**
+	 * Hit setten
+	 */
 	public void setHit() {
 		if (hit)
 			return;
@@ -76,11 +85,12 @@ public class MagicianShot extends MapObject {
 		
 		dx = 0;
 	}
-
-	public boolean shouldRemove() {
-		return remove;
-	}
-
+	
+	/**
+	 * Update
+	 * @param m {@link Magician}
+	 * @param player {@link Player}
+	 */
 	public void update(Magician m, Player player) {
 
 		// update position
@@ -104,7 +114,7 @@ public class MagicianShot extends MapObject {
 			remove = true;
 		}
 		
-		//löschen falls es die y koordinate <= 0
+		//lï¿½schen falls es die y koordinate <= 0
 		if (this.gety() <= 0 || this.gety() >= 270) {
 			remove = true;
 		}
@@ -117,4 +127,14 @@ public class MagicianShot extends MapObject {
 		super.draw(g);
 
 	}
+	
+	
+	/**
+	 * Ob es geloescht werden sollte
+	 * @return ob es geloescht werden sollte
+	 */
+	public boolean shouldRemove() {
+		return remove;
+	}
+
 }

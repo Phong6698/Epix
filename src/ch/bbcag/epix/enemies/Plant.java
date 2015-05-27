@@ -13,9 +13,9 @@ import ch.bbcag.epix.tilemap.TileMap;
 import ch.bbcag.epix.view.EpixView;
 
 /**
- * 
+ * Pflanze
  * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *         Plant.java.java Copyright Berufsbildungscenter 2015
+ *         Copyright Berufsbildungscenter 2015
  */
 public class Plant extends Enemy {
 
@@ -77,7 +77,7 @@ public class Plant extends Enemy {
 	}
 
 	/**
-	 * n�chste Position
+	 * Bewegung
 	 */
 	private void getNextPosition() {
 
@@ -87,11 +87,12 @@ public class Plant extends Enemy {
 		}
 	}
 
+	
 	/**
-	 * Die Pflanze updaten
-	 * 
-	 * @param e
-	 * @param player
+	 * Update
+	 * @param e {@link Plant}
+	 * @param player {@link Player}
+	 * @param player_2 {@link Player}
 	 */
 	public void update(Plant e, Player player, Player player_2) {
 
@@ -157,8 +158,8 @@ public class Plant extends Enemy {
 	/**
 	 * Schaut ob der Spieler die Pflanze auf dem Bildschirm sieht
 	 * 
-	 * @param e
-	 * @param player
+	 * @param e {@link Plant}
+	 * @param player {@link Player}
 	 * @return ob der Spieler die Plfanze auf dem Bildschirm sieht
 	 */
 	private boolean OnScreen(Plant e, Player player) {
@@ -170,27 +171,20 @@ public class Plant extends Enemy {
 		}
 	}
 
-	/**
-	 * zeichnet die Pflanze
-	 */
+	
 	public void draw(Graphics2D g) {
 
 		// if(notOnScreen()) return;
 		setMapPosition();
-		draw_(g);
-	}
-
-	public void draw_(java.awt.Graphics2D g) {
-
 		if (facingRight) {
 			g.drawImage(animation.getImage(), (int) (x + (width - cwidth)/4 + xmap - width / 2), (int) (y + ymap - height / 2), null);
 		//	g.drawRect((int) (x + (width - cwidth)/4 + xmap - cwidth / 2), (int) (y + ymap - cheight / 2), getCWidth(), getCHeight());
 		} else {
 			g.drawImage(animation.getImage(), (int) (x - (width - cwidth)/4 + xmap - width / 2 + width), (int) (y + ymap - height / 2), -width, height, null);
 		//	g.drawRect((int) (x - (width - cwidth)/4 + xmap - cwidth / 2), (int) (y + ymap - cheight / 2), getCWidth(), getCHeight());
-}
-
+		}
 	}
+
 
 	/*
 	 * Getter und Setter

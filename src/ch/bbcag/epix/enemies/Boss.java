@@ -12,11 +12,10 @@ import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.TileMap;
 
 /**
- * 
+ * Boss
  * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *         Boss.java.java Copyright Berufsbildungscenter 2015
+ *         Copyright Berufsbildungscenter 2015
  */
-
 public class Boss extends Enemy {
 
 	private boolean hit;
@@ -45,6 +44,12 @@ public class Boss extends Enemy {
 
 	private ArrayList<BossShot> bossshots;
 
+	
+	/**
+	 * Konstruktor
+	 * @param tm {@link TileMap}
+	 * @param player {@link Player}
+	 */
 	public Boss(TileMap tm, Player player) {
 
 		super(tm);
@@ -90,6 +95,10 @@ public class Boss extends Enemy {
 		width = 64;
 	}
 
+	
+	/**
+	 * Bewegung
+	 */
 	private void getNextPosition() {
 
 		if (left && dx == 0) {
@@ -125,8 +134,14 @@ public class Boss extends Enemy {
 		if (falling) {
 			dy += fallSpeed;
 		}
-
 	}
+	
+	
+	/**
+	 * Wenn Boss Spieler angreift
+	 * @param playerHit {@link Player}
+	 * @param playerHealth {@link Player}
+	 */
 	public void checkAttackPlayer(Player playerHit, Player playerHealth){
 		for (int j = 0; j < bossshots.size(); j++) {
 			if (bossshots.get(j).intersects(playerHit)) {
@@ -136,6 +151,14 @@ public class Boss extends Enemy {
 			}
 		}
 	}
+	
+	
+	/**
+	 * Update 
+	 * @param m {@link Boss}
+	 * @param player {@link Player}
+	 * @param b
+	 */
 	public void update(Boss m, Player player, boolean b) {
 
 		// update position
@@ -176,7 +199,6 @@ public class Boss extends Enemy {
 			} 
 		} 
 		
-
 		else {
 			if (currentAction != WALK) {
 				currentAction = WALK;
@@ -199,20 +221,26 @@ public class Boss extends Enemy {
 				shotright = false;
 			}
 
-//			if (animation.getFrame() == 4) {
-//				BossShot ps = new BossShot(tileMap, shotright, player);
-//				ps.setPosition(m.getx(), m.gety());
-//				if (timer + time <= System.currentTimeMillis()) {
-//					bossshots.add(ps);
-//					timer = System.currentTimeMillis();
-//				}
-//			}
+			if (animation.getFrame() == 4) {
+				BossShot ps = new BossShot(tileMap, shotright, player);
+				ps.setPosition(m.getx(), m.gety());
+				if (timer + time <= System.currentTimeMillis()) {
+					bossshots.add(ps);
+					timer = System.currentTimeMillis();
+				}
+			}
 
 		}
 		animation.update();
-
 	}
 
+	
+	/**
+	 * Ob Boss den Spieler sieht
+	 * @param e {@link Boss}
+	 * @param range
+	 * @return Ob Boss den Spieler sieht
+	 */
 	public boolean OnScreen(Boss e, int range) {
 		double a = e.getXmap();
 		double spielerkoordinaten = (a - a - a) + range;
@@ -223,6 +251,7 @@ public class Boss extends Enemy {
 		}
 	}
 
+	
 	public void draw(Graphics2D g) {
 
 		// if(notOnScreen()) return;
@@ -244,6 +273,10 @@ public class Boss extends Enemy {
 
 	}
 
+	
+	/*
+	 * Getter und Setter
+	 */
 	public boolean isHit() {
 		return hit;
 	}

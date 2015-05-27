@@ -1,5 +1,6 @@
 package ch.bbcag.epix.entity;
 
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 import ch.bbcag.epix.tilemap.Tile;
@@ -7,19 +8,13 @@ import ch.bbcag.epix.tilemap.TileMap;
 import ch.bbcag.epix.view.EpixView;
 
 /**
- * 
+ * Objects
  * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *         MapObject.java.java Copyright Berufsbildungscenter 2015
+ *         Copyright Berufsbildungscenter 2015
  */
 
 public abstract class MapObject {
-	public double getXmap() {
-		return xmap;
-	}
 
-	public void setXmap(double xmap) {
-		this.xmap = xmap;
-	}
 
 	// tile stuff
 	protected TileMap tileMap;
@@ -77,11 +72,22 @@ public abstract class MapObject {
 	protected double jumpStart;
 	protected double stopJumpSpeed;
 	
+	
+	/**
+	 * Konstruktor
+	 * @param tm {@link TileMap}
+	 */
 	public MapObject(TileMap tm) {
 		tileMap = tm;
 		tileSize = tm.getTileSize();
 	}
 
+	
+	/**
+	 * Beruerung
+	 * @param o {@link MapObject}
+	 * @return ob die Beruerung statt findet
+	 */
 	public boolean intersects (MapObject o) {
 		Rectangle r1 = getRectangle();
 		Rectangle r2 = o.getRectangle();
@@ -89,6 +95,11 @@ public abstract class MapObject {
 		return r1.intersects(r2);
 	}
 
+	
+	/**
+	 * Rectangle
+	 * @return den Rectangle
+	 */
 	public Rectangle getRectangle() {
 		
 		return new Rectangle(
@@ -99,6 +110,12 @@ public abstract class MapObject {
 		);
 	}
 
+	
+	/**
+	 * Kanten Berechnung
+	 * @param x
+	 * @param y
+	 */
 	public void calculateCorners(double x, double y) {
 
 		int leftTile = (int) (x - cwidth / 2) / tileSize;
@@ -118,6 +135,10 @@ public abstract class MapObject {
 
 	}
 
+	
+	/**
+	 * TileMpa Collision
+	 */
 	public void checkTileMapCollision() {
 
 		currCol = (int) x / tileSize;
@@ -174,7 +195,35 @@ public abstract class MapObject {
 		}
 
 	}
+	
+	
+	/**
+	 * Kontrolliert ob es auf dem Bilsdschirm ist
+	 * @return ob es auf dem Bildschirm ist
+	 */
+	public boolean notOnScreen() {
+		return x + xmap + width < 0 || x + xmap - width > EpixView.WIDTH || y + ymap + height < 0 || y + ymap - height > EpixView.HEIGHT;
+	}
 
+	
+	/**
+	 * Draw
+	 * @param g {@link Graphics2D}
+	 */
+	public void draw(Graphics2D g) {
+
+		if (facingRight) {
+			g.drawImage(animation.getImage(), (int) (x + xmap - width / 2), (int) (y + ymap - height / 2), null);
+		} else {
+			g.drawImage(animation.getImage(), (int) (x + xmap - width / 2 + width), (int) (y + ymap - height / 2), -width, height, null);
+		}
+	//	g.drawRect((int) (x + xmap + (width-cwidth) - width / 2), (int) (y + ymap + (height-cheight)-height / 2), getCWidth(), getCHeight());
+	}
+
+	
+	/*
+	 * Getter und Setter
+	 */
 	public int getCurrentAction() {
 		return currentAction;
 	}
@@ -240,22 +289,7 @@ public abstract class MapObject {
 
 	public void setJumping(boolean b) {
 		jumping = b;
-	}
-
-	public boolean notOnScreen() {
-		return x + xmap + width < 0 || x + xmap - width > EpixView.WIDTH || y + ymap + height < 0 || y + ymap - height > EpixView.HEIGHT;
-	}
-
-	public void draw(java.awt.Graphics2D g) {
-
-		if (facingRight) {
-			g.drawImage(animation.getImage(), (int) (x + xmap - width / 2), (int) (y + ymap - height / 2), null);
-		} else {
-			g.drawImage(animation.getImage(), (int) (x + xmap - width / 2 + width), (int) (y + ymap - height / 2), -width, height, null);
-		}
-	//	g.drawRect((int) (x + xmap + (width-cwidth) - width / 2), (int) (y + ymap + (height-cheight)-height / 2), getCWidth(), getCHeight());
-
-	}
+	}	
 
 	public double getMoveSpeed() {
 		return moveSpeed;
@@ -275,5 +309,13 @@ public abstract class MapObject {
 
 	public void setFallSpeed(double fallSpeed) {
 		this.fallSpeed = fallSpeed;
+	}
+	
+	public double getXmap() {
+		return xmap;
+	}
+
+	public void setXmap(double xmap) {
+		this.xmap = xmap;
 	}
 }

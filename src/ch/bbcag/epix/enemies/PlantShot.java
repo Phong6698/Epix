@@ -11,9 +11,9 @@ import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.TileMap;
 
 /**
- * 
+ * Schuss von schiessende Pflanze {@link ShootingPlant}
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			PlantShot.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
 public class PlantShot extends MapObject {
 
@@ -75,7 +75,7 @@ public class PlantShot extends MapObject {
 
 	
 	/**
-	 * Animation wechseln wenn der Schuss abprallt
+	 * Hit setten
 	 */
 	public void setHit() {
 		if (isHit())
@@ -90,10 +90,9 @@ public class PlantShot extends MapObject {
 
 	
 	/**
-	 * Schuss updaten
-	 * 
-	 * @param player
-	 * @param e
+	 * Update
+	 * @param player {@link Player}
+	 * @param e {@link ShootingPlant}
 	 */
 	public void update(Player player, ShootingPlant e) {
 
@@ -124,16 +123,13 @@ public class PlantShot extends MapObject {
 			remove = true;
 		}
 		
-		//löschen falls es die y koordinate <= 0
+		//lï¿½schen falls es die y koordinate <= 0
 		if (this.gety() <= 0 || this.gety() >= 270) {
 			remove = true;
 		}
 	}
 
 	
-	/**
-	 * Schuss zeichnen
-	 */
 	public void draw(Graphics2D g) {
 
 		setMapPosition();

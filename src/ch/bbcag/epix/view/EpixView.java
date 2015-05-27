@@ -2,8 +2,10 @@ package ch.bbcag.epix.view;
 
 import java.awt.CardLayout;
 import java.awt.Font;
+import java.io.IOException;
 import java.util.Vector;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -45,8 +47,8 @@ public class EpixView extends JFrame {
 
 	private User user;
 
-	protected String backgroundPath = "Resources/Backgrounds/EpixTitleScreen.png";
-	protected String coinSpinPath = "Resources/Backgrounds/Coin spin.gif";
+	protected String backgroundPath = "/Backgrounds/EpixTitleScreen.png";
+	protected String coinSpinPath = "/Backgrounds/Coin spin.gif";
 
 	/*
 	 * Cards
@@ -160,7 +162,12 @@ public class EpixView extends JFrame {
 		// coin
 		menuCardCoinImage.setBounds(0, 10, 64, 64);
 		menuCard.add(menuCardCoinImage);
-		menuCardCoinImage.setIcon(new ImageIcon(coinSpinPath));
+		try {
+			menuCardCoinImage.setIcon(new ImageIcon(ImageIO.read(getClass().getResourceAsStream(coinSpinPath))));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		menuCardCoinLabel = new JLabel("" + getUser().getCoin());
 		menuCardCoinLabel.setFont(new Font("Modern No. 20", Font.PLAIN, 26));
 		menuCardCoinLabel.setBounds(67, 10, 56, 64);
@@ -177,7 +184,12 @@ public class EpixView extends JFrame {
 		ranglisteButton.setBounds(300, 355, 168, 30);
 		menuCard.add(ranglisteButton);
 
-		menuCardBackgroundImage.setIcon(new ImageIcon(backgroundPath));
+		try {
+			menuCardBackgroundImage.setIcon(new ImageIcon(ImageIO.read(getClass().getResource(backgroundPath))));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		menuCardBackgroundImage.setBounds(0, 0, 801, 523);
 		menuCard.add(menuCardBackgroundImage);
 
@@ -190,7 +202,12 @@ public class EpixView extends JFrame {
 
 		// coin
 		upgradeCardCoinImage.setBounds(0, 10, 64, 64);
-		upgradeCardCoinImage.setIcon(new ImageIcon(coinSpinPath));
+		try {
+			upgradeCardCoinImage.setIcon(new ImageIcon(ImageIO.read(getClass().getResource(coinSpinPath))));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		upgradeCard.add(upgradeCardCoinImage);
 		upgradeCardCoinLabel = new JLabel("" + getUser().getCoin());
 		upgradeCardCoinLabel.setBounds(67, 10, 56, 64);
@@ -260,7 +277,12 @@ public class EpixView extends JFrame {
 		upgradeCard.add(upgradeZurueckButton);
 
 		upgradeCardBackgroundImage.setBounds(0, 0, 801, 523);
-		upgradeCardBackgroundImage.setIcon(new ImageIcon(backgroundPath));
+		try {
+			upgradeCardBackgroundImage.setIcon(new ImageIcon(ImageIO.read(getClass().getResource(backgroundPath))));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		upgradeCard.add(upgradeCardBackgroundImage);
 
 		cards.add(upgradeCard, "upgradeCard");
@@ -271,18 +293,33 @@ public class EpixView extends JFrame {
 		levelAuswahlCard.setLayout(null);
 
 		level1Button.setBounds(15, 159, 240, 170); //67	
-		level1Button.setIcon(new ImageIcon("Resources/Others/Level 1.png"));		
+		try {
+			level1Button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/Others/Level 1.png"))));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 		levelAuswahlCard.add(level1Button);
 		
 
 		level2Button.setBounds(275, 159, 240, 170);
 		EpixController.getInstance().checkLevelSaved(user, level2Button, level1Button);
-		level2Button.setIcon(new ImageIcon("Resources/Others/Level 2.png"));		
+		try {
+			level2Button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/Others/Level 2.png"))));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 		levelAuswahlCard.add(level2Button);
 
 		bossLevelButton.setBounds(535, 159, 240, 170);
 		EpixController.getInstance().checkLevelSaved(user, bossLevelButton, level2Button);
-		bossLevelButton.setIcon(new ImageIcon("Resources/Others/Boss Level.png"));		
+		try {
+			bossLevelButton.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/Others/Boss Level.png"))));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 		levelAuswahlCard.add(bossLevelButton);
 
 		levelZurueckBtton.setBounds(334, 378, 121, 28);
@@ -292,7 +329,12 @@ public class EpixView extends JFrame {
 		levelAuswahlCard.add(modeComboBox);
 
 		levelAuswahlCardCoinImage.setBounds(0, 10, 64, 64);
-		levelAuswahlCardCoinImage.setIcon(new ImageIcon(coinSpinPath));
+		try {
+			levelAuswahlCardCoinImage.setIcon(new ImageIcon(ImageIO.read(getClass().getResource(coinSpinPath))));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		levelAuswahlCard.add(levelAuswahlCardCoinImage);
 
 		levelAuswahlCardCoinLabel = new JLabel("" + getUser().getCoin());
@@ -304,7 +346,12 @@ public class EpixView extends JFrame {
 		levelAuswahlCardPlayerLabel.setBounds(598, 18, 239, 36);
 		levelAuswahlCard.add(levelAuswahlCardPlayerLabel);
 
-		levelAuswahlCardBackgroundImage.setIcon(new ImageIcon(backgroundPath));
+		try {
+			levelAuswahlCardBackgroundImage.setIcon(new ImageIcon(ImageIO.read(getClass().getResource(backgroundPath))));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		levelAuswahlCardBackgroundImage.setBounds(0, 0, 801, 523);
 		levelAuswahlCard.add(levelAuswahlCardBackgroundImage);
 
@@ -319,7 +366,12 @@ public class EpixView extends JFrame {
 		// coin
 		ranglisteCardCoinImage.setBounds(0, 10, 64, 64);
 		ranglisteCard.add(ranglisteCardCoinImage);
-		ranglisteCardCoinImage.setIcon(new ImageIcon(coinSpinPath));
+		try {
+			ranglisteCardCoinImage.setIcon(new ImageIcon(ImageIO.read(getClass().getResource(coinSpinPath))));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ranglisteCardCoinLabel = new JLabel("" + getUser().getCoin());
 		ranglisteCardCoinLabel.setFont(new Font("Modern No. 20", Font.PLAIN, 26));
 		ranglisteCardCoinLabel.setBounds(67, 10, 56, 64);
@@ -362,7 +414,12 @@ public class EpixView extends JFrame {
 		header.setEnabled(false);
 		ranglisteCard.add(header);
 			
-		ranglisteCardBackgroundImage.setIcon(new ImageIcon(backgroundPath));
+		try {
+			ranglisteCardBackgroundImage.setIcon(new ImageIcon(ImageIO.read(getClass().getResource(backgroundPath))));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ranglisteCardBackgroundImage.setBounds(0, 0, 801, 523);
 		ranglisteCard.add(ranglisteCardBackgroundImage);
 		
@@ -405,7 +462,12 @@ public class EpixView extends JFrame {
 
 		menuCardCoinImage.setBounds(0, 10, 64, 64);
 		menuCard.add(menuCardCoinImage);
-		menuCardCoinImage.setIcon(new ImageIcon(coinSpinPath));
+		try {
+			menuCardCoinImage.setIcon(new ImageIcon(ImageIO.read(getClass().getResource(coinSpinPath))));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		menuCardCoinLabel = new JLabel("" + getUser().getCoin());
 		menuCardCoinLabel.setFont(new Font("Modern No. 20", Font.PLAIN, 26));
 		menuCardCoinLabel.setBounds(67, 10, 56, 64);

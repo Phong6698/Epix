@@ -43,11 +43,7 @@ public class Rainbow extends MapObject {
 		// load sprites
 		try {
 			
-			BufferedImage spritesheet = ImageIO.read(
-				getClass().getResourceAsStream(
-					"/Player/Player_shot.png"
-				)
-			);
+			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Player/Player_Shot.png"));
 			
 			sprites = new BufferedImage[2];
 			for(int i = 0; i < sprites.length; i++) {

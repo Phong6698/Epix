@@ -438,17 +438,17 @@ public class Level1State extends GameState {
 			player.setRainbowing();
 
 		
-		if (k == KeyEvent.VK_A){
+		if (k == KeyEvent.VK_A && EpixView.isMultiplayer()){
 			player_2.setLeft(true);
 		}
-		if (k == KeyEvent.VK_D){
+		if (k == KeyEvent.VK_D && EpixView.isMultiplayer()){
 			player_2.setRight(true);
 		}
-		if (k == KeyEvent.VK_S)
+		if (k == KeyEvent.VK_S && EpixView.isMultiplayer())
 			player_2.setDown(true);
-		if (k == KeyEvent.VK_W)
+		if (k == KeyEvent.VK_W && EpixView.isMultiplayer())
 			player_2.setJumping(true);
-		if (k == KeyEvent.VK_R)
+		if (k == KeyEvent.VK_R && EpixView.isMultiplayer())
 			player_2.setRainbowing();
 	}
 
@@ -462,13 +462,13 @@ public class Level1State extends GameState {
 		if (k == KeyEvent.VK_UP)
 			player.setJumping(false);
 
-		if (k == KeyEvent.VK_A)
+		if (k == KeyEvent.VK_A && EpixView.isMultiplayer())
 			player_2.setLeft(false);
-		if (k == KeyEvent.VK_D)
+		if (k == KeyEvent.VK_D && EpixView.isMultiplayer())
 			player_2.setRight(false);
-		if (k == KeyEvent.VK_S)
+		if (k == KeyEvent.VK_S && EpixView.isMultiplayer())
 			player_2.setDown(false);
-		if (k == KeyEvent.VK_W)
+		if (k == KeyEvent.VK_W && EpixView.isMultiplayer())
 			player_2.setJumping(false);
 	}
 	public User getUser() {

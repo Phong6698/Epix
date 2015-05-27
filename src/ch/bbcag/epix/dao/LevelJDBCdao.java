@@ -7,12 +7,16 @@ import java.util.List;
 
 import ch.bbcag.epix.entity.User;
 
+/**
+ * LevelJDBCdao
+ * @author Chiramet Phong Penglerd, Miguel Jorge || ICT Berufsbildungs AG
+ *			Copyright Berufsbildungscenter 2015
+ */
 public class LevelJDBCdao extends Database implements LevelDao{
 	
 	//Variable fuer Verbindung
 	private Connection con = null;
 
-	@Override
 	public int getID_Level(String levelName) throws SQLException {
 		
 		String sql = "SELECT * FROM LEVEL WHERE LevelName = ?";

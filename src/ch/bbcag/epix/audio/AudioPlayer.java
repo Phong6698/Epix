@@ -3,8 +3,7 @@ package ch.bbcag.epix.audio;
 import javax.sound.sampled.*;
 
 /**
- * AudioPlayer Klasse zum Sounds Abspielen 
- *
+ * AudioPlayer Klasse zum Sounds Abspielen und Beenden
  * @author Chiramet Phong Penglerd, Miguel Jorge || ICT Berufsbildungs AG
  *			Copyright Berufsbildungscenter 2015
  */
@@ -12,16 +11,15 @@ public class AudioPlayer {
 	
 	private Clip clip;
 	
+	
+	/**
+	 * Konstruktor
+	 * @param s {@link String} Pfad wo die Datei gespeichert ist
+	 */
 	public AudioPlayer(String s) {
 		
-		try {
-			
-			AudioInputStream ais =
-				AudioSystem.getAudioInputStream(
-					getClass().getResourceAsStream(
-						s
-					)
-				);
+		try {		
+			AudioInputStream ais = AudioSystem.getAudioInputStream(getClass().getResourceAsStream(s));
 			AudioFormat baseFormat = ais.getFormat();
 			AudioFormat decodeFormat = new AudioFormat(
 				AudioFormat.Encoding.PCM_SIGNED,
@@ -32,21 +30,18 @@ public class AudioPlayer {
 				baseFormat.getSampleRate(),
 				false
 			);
-			AudioInputStream dais =
-				AudioSystem.getAudioInputStream(
-					decodeFormat, ais);
+			AudioInputStream dais = AudioSystem.getAudioInputStream(decodeFormat, ais);
 			clip = AudioSystem.getClip();
 			clip.open(dais);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-		}
-		
+		}	
 	}
 	
 	/**
 	 * Play Audio
-	 * @param volumeAmount  Lautstärke 
+	 * @param volumeAmount Lautstärke 
 	 */
 	public void play(float volumeAmount) {
 		FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
@@ -60,7 +55,7 @@ public class AudioPlayer {
 	
 	/**
 	 * Play Audio in Loop
-	 * @param volumeAmount  Lautstärke 
+	 * @param volumeAmount Lautstärke 
 	 */
 	public void playLoop(float volumeAmount) {
 		FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);

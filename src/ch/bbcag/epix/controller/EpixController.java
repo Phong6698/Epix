@@ -25,9 +25,9 @@ import ch.bbcag.epix.popup.UsernameVergeben;
 import ch.bbcag.epix.utils.CryptUtils;
 
 /**
- * 
+ * Epix Controller
  * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *         EpixController.java.java Copyright Berufsbildungscenter 2015
+ *         Copyright Berufsbildungscenter 2015
  */
 
 public class EpixController {
@@ -49,7 +49,7 @@ public class EpixController {
 	/**
 	 * Hier wird ueberprueft ob die eingaben des Users gueltig sind und wenn
 	 * dies zutrifft wird er in die DB eingetragen
-	 * 
+	 * @param newUser {@link User}
 	 */
 	public void registrieren(User newUser) {
 		List<User> dbUsers = null;
@@ -101,6 +101,12 @@ public class EpixController {
 		}
 	}
 
+	
+	/**
+	 * Ueberprüft das Login
+	 * @param user {@link User}
+	 * @return ob login erfolgreich ist
+	 */
 	public boolean login(User user) {
 		List<User> dbUsers = null;
 		boolean login = false;
@@ -134,6 +140,12 @@ public class EpixController {
 		return login;
 	}
 
+	
+	/**
+	 * Holt die Daten des Spielers aus der Datenbank
+	 * @param username {@link String}
+	 * @return Das Objekt User
+	 */
 	public User playerLogin(String username) {
 		try {
 			User player = USER_DAO.playerLogin(username);
@@ -144,6 +156,12 @@ public class EpixController {
 		return null;
 	}
 
+	
+	/**
+	 * Updatet die Coins des Spielers in der Datenbank mit der neuen Coin Anzahl
+	 * @param user {@link User} 
+	 * @param coins neue Coin Anzahl
+	 */
 	public void coinsUpdate(User user, int coins) {
 		try {
 			USER_DAO.coinsUpdate(user, coins);
@@ -152,6 +170,12 @@ public class EpixController {
 		}
 	}
 	
+	
+	/**
+	 * Updatet die collecten Coins des Spielers in der Datenbank mit der neuen collecten Coins Anzahl
+	 * @param user {@link User} 
+	 * @param collectedCoins coins neue collectedCoins Anzahl
+	 */
 	public void collectedCoinsUpdate(User user, int collectedCoins) {
 		try {
 			USER_DAO.collectedCoinsUpdate(user, collectedCoins);
@@ -160,6 +184,12 @@ public class EpixController {
 		}
 	}
 
+	
+	/**
+	 * Speichert das beendete Level
+	 * @param user {@link User} 
+	 * @param level_ID die ID des beendeten Levels
+	 */
 	public void save(User user, int level_ID) {
 		try {
 			SAVE_DAO.save(user, level_ID);
@@ -168,6 +198,11 @@ public class EpixController {
 		}
 	}
 
+	
+	/**
+	 * Speichert die Upgrade des Spielers
+	 * @param user {@link User} 
+	 */
 	public void saveUpgrades(User user) {
 		try {
 			SAVE_DAO.saveUpgrades(user);
@@ -176,6 +211,12 @@ public class EpixController {
 		}
 	}
 
+	
+	/**
+	 * holt die ID_Level nach levelName
+	 * @param levelName {@link String} 
+	 * @return ID_Level vom Level
+	 */
 	public int getID_Level(String levelName) {
 		int id_Level = 0;
 		try {
@@ -186,6 +227,13 @@ public class EpixController {
 		return id_Level;
 	}
 
+	
+	/**
+	 * Ueberprueft ob das Level vom Spieler gemacht wurde und verwaltet die Freischaltung des Levels
+	 * @param user {@link User} 
+	 * @param levelButton {@link JButton} 
+	 * @param preLevelButton {@link JButton} 
+	 */
 	public void checkLevelSaved(User user, JButton levelButton, JButton preLevelButton) {
 		int id_Level;
 		int preID_Level;
@@ -200,8 +248,13 @@ public class EpixController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
+	
+	
+	/**
+	 * Spieler Informationen werden von der Datenbank abgerufen
+	 * @param user {@link User}
+	 */
 	public void getPlayerStats(User user){
 		try {
 			USER_DAO.getPlayerStats(user);
@@ -210,6 +263,11 @@ public class EpixController {
 		}
 	}
 	
+	
+	/**
+	 * Eine Liste mit den 10 Spieler die am meisten Münzen haben
+	 * @return Eine Liste mit den 10 Spieler die am meisten Münzen haben
+	 */
 	public Vector getRangliste() {
 		try {
 			return USER_DAO.getRangliste();

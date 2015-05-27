@@ -5,6 +5,11 @@ import java.sql.SQLException;
 
 import ch.bbcag.epix.entity.User;
 
+/**
+ * SaveJDBCdao
+ * @author Chiramet Phong Penglerd, Miguel Jorge || ICT Berufsbildungs AG
+ *			Copyright Berufsbildungscenter 2015
+ */
 public class SaveJDBCdao extends Database implements SaveDao{
 	
 	//Variable fuer Verbindung

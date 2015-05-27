@@ -27,8 +27,7 @@ public class Plant extends Enemy {
 	/**
 	 * Konstruktor
 	 * 
-	 * @param tm
-	 *            {@link TileMap}
+	 * @param tm {@link TileMap}
 	 */
 	public Plant(TileMap tm) {
 		super(tm);
@@ -78,7 +77,7 @@ public class Plant extends Enemy {
 	}
 
 	/**
-	 * nächste Position
+	 * nï¿½chste Position
 	 */
 	private void getNextPosition() {
 

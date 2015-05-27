@@ -10,9 +10,9 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
- * 
+ * Datenbank Verbindung
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			Database.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
 
 public class Database {
@@ -22,7 +22,7 @@ public class Database {
 	
 	/**
 	 * Verbindungsinforamtionen fuer die DB
-	 * @return
+	 * @return Connection
 	 * @throws SQLException
 	 */
 	protected Connection getCon() throws SQLException {
@@ -56,7 +56,7 @@ public class Database {
 	
 	/**
 	 * Setter fuer Connection
-	 * @param con
+	 * @param con {@link Connection}
 	 */
 	private void setCon(Connection con) {
 		this.con = con;

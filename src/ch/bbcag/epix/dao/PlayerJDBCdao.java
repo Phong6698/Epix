@@ -9,9 +9,9 @@ import java.util.Vector;
 import ch.bbcag.epix.entity.User;
 
 /**
- * 
+ * PlayerJDBCdao
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			UserJDBCdao.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
 
 public class PlayerJDBCdao extends Database implements PlayerDao {

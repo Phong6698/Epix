@@ -339,8 +339,7 @@ public class EpixView extends JFrame {
 		ranglisteCard.add(ranglisteZurueckButton);	
 		
 		ranglisteTable.setBounds(160, 140, 487, 300);
-		@SuppressWarnings({ "rawtypes", "unchecked" })
-		Vector<Vector> data = EpixController.getInstance().getRangliste();
+		Vector<?> data = EpixController.getInstance().getRangliste();
 		Vector<String> columnNames = new Vector<String>();
 		columnNames.addElement("Username");
 		columnNames.addElement("Collected Coins");	

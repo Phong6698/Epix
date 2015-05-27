@@ -10,7 +10,6 @@ import ch.bbcag.epix.entity.Animation;
 import ch.bbcag.epix.entity.Enemy;
 import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.tilemap.TileMap;
-import ch.bbcag.epix.view.EpixView;
 
 /**
  * Schiessende Pflanze

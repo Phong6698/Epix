@@ -12,6 +12,13 @@ import javax.swing.JProgressBar;
 import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.User;
 
+
+/**
+ * Plus Speed Listener
+ *
+ * @author Chiramet Phong Penglerd, Miguel Jorge || ICT Berufsbildungs AG
+ *			Copyright Berufsbildungscenter 2015
+ */
 public class PlusSpeedListener implements ActionListener {
 	private User user;
 	private JProgressBar maxSpeedBar;
@@ -19,6 +26,15 @@ public class PlusSpeedListener implements ActionListener {
 	private JLabel menuCardCoinLabel;
 	private JPanel card;
 
+	
+	/**
+	 * Konstruktor
+	 * @param user {@link User}
+	 * @param maxSpeedBar {@link JProgressBar}
+	 * @param epix {@link JFrame}
+	 * @param menuCardCoinLabel {@link JPanel}
+	 * @param card {@link JPanel}
+	 */
 	public PlusSpeedListener(User user, JProgressBar maxSpeedBar, JFrame epix, JLabel menuCardCoinLabel, JPanel card) {
 		this.setUser(user);
 		this.setmaxSpeedBar(maxSpeedBar);
@@ -42,6 +58,10 @@ public class PlusSpeedListener implements ActionListener {
 		}
 	}
 
+	
+	/*
+	 * Getter und Setter
+	 */
 	public User getUser() {
 		return user;
 	}

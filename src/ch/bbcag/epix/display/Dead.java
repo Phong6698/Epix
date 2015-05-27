@@ -9,8 +9,6 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
-import ch.bbcag.epix.view.GameFrame;
-
 
 /**
  * Display fuer Todesanzeige

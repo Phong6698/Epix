@@ -12,6 +12,12 @@ import javax.swing.JProgressBar;
 import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.User;
 
+/**
+ * Plus Health Listener
+ *
+ * @author Chiramet Phong Penglerd, Miguel Jorge || ICT Berufsbildungs AG
+ *			Copyright Berufsbildungscenter 2015
+ */
 public class PlusHealthListener implements ActionListener {
 	private User user;
 	private JProgressBar maxHealthBar;
@@ -19,6 +25,15 @@ public class PlusHealthListener implements ActionListener {
 	private JLabel menuCardCoinLabel;
 	private JPanel card;
 
+	
+	/**
+	 * 
+	 * @param user {@link User}
+	 * @param maxHealthBar {@link JProgressBar}
+	 * @param epix {@link JFrame}
+	 * @param menuCardCoinLabel {@link JLabel}
+	 * @param card {@link JPanel}
+	 */
 	public PlusHealthListener(User user, JProgressBar maxHealthBar, JFrame epix, JLabel menuCardCoinLabel, JPanel card) {
 		this.setUser(user);
 		this.setMaxHealthBar(maxHealthBar);
@@ -43,6 +58,9 @@ public class PlusHealthListener implements ActionListener {
 	}
 
 
+	/*
+	 * Getter und Setter
+	 */
 	public User getUser() {
 		return user;
 	}

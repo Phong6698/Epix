@@ -268,7 +268,7 @@ public class EpixController {
 	 * Eine Liste mit den 10 Spieler die am meisten Münzen haben
 	 * @return Eine Liste mit den 10 Spieler die am meisten Münzen haben
 	 */
-	public Vector getRangliste() {
+	public Vector<?> getRangliste() {
 		try {
 			return USER_DAO.getRangliste();
 		} catch (SQLException e) {

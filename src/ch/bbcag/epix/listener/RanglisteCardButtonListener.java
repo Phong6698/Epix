@@ -7,23 +7,36 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 
+/**
+ * Button Listener fuer Rangliste Card
+ *
+ * @author Chiramet Phong Penglerd, Miguel Jorge || ICT Berufsbildungs AG
+ *			Copyright Berufsbildungscenter 2015
+ */
 public class RanglisteCardButtonListener implements ActionListener{
 
 	private JPanel card;
 	
+	
+	/**
+	 * Konstruktor
+	 * @param card {@link JPanel}
+	 */
 	public RanglisteCardButtonListener(JPanel card) {
 		this.setCard(card);
 	}
 	
-	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals("Zurück")) {	
+		if (e.getActionCommand().equals("Zurï¿½ck")) {	
 			CardLayout cardLayout = (CardLayout) getCard().getLayout();
 			cardLayout.show(getCard(), "menuCard");
-		} 
-		
+		} 	
 	}
 
+	
+	/*
+	 * Getter und Setter
+	 */
 	public JPanel getCard() {
 		return card;
 	}

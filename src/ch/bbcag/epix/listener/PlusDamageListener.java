@@ -12,6 +12,13 @@ import javax.swing.JProgressBar;
 import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.User;
 
+
+/**
+ * Plus Damage Listener
+ *
+ * @author Chiramet Phong Penglerd, Miguel Jorge || ICT Berufsbildungs AG
+ *			Copyright Berufsbildungscenter 2015
+ */
 public class PlusDamageListener implements ActionListener {
 	private User user;
 	private JProgressBar maxDamageBar;
@@ -19,6 +26,15 @@ public class PlusDamageListener implements ActionListener {
 	private JLabel menuCardCoinLabel;
 	private JPanel card;
 
+	
+	/**
+	 * Konstruktor
+	 * @param user {@link User}
+	 * @param maxDamageBar {@link JProgressBar}
+	 * @param epix {@link JFrame}
+	 * @param menuCardCoinLabel {@link JLabel}
+	 * @param card {@link JPanel}
+	 */
 	public PlusDamageListener(User user, JProgressBar maxDamageBar, JFrame epix, JLabel menuCardCoinLabel, JPanel card) {
 		this.setUser(user);
 		this.setmaxDamageBar(maxDamageBar);
@@ -39,6 +55,10 @@ public class PlusDamageListener implements ActionListener {
 		}
 	}
 
+	
+	/*
+	 * Getter und Setter
+	 */
 	public User getUser() {
 		return user;
 	}

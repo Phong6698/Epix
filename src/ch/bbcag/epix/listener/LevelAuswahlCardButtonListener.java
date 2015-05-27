@@ -11,9 +11,9 @@ import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.view.GameFrame;
 
 /**
- * 
+ * Button Listener fuer Level Auswahl Card
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			LevelAuswahlCardButtonListener.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
 
 public class LevelAuswahlCardButtonListener implements ActionListener {
@@ -22,6 +22,13 @@ public class LevelAuswahlCardButtonListener implements ActionListener {
 	private User user;
 	private JFrame epix;
 	
+	
+	/**
+	 * Konstruktor
+	 * @param card {@link JPanel}
+	 * @param user {@link User}
+	 * @param epix {@link JFrame}
+	 */
 	public LevelAuswahlCardButtonListener(JPanel card, User user, JFrame epix) {
 		this.setCard(card);
 		this.setUser(user);
@@ -45,10 +52,13 @@ public class LevelAuswahlCardButtonListener implements ActionListener {
 		else if (e.getActionCommand().equals("Zur\u00FCck")) {
 			CardLayout cardLayout = (CardLayout) getCard().getLayout();
 			cardLayout.show(getCard(), "upgradeCard");
-		}
-		
+		}	
 	}
 	
+	
+	/*
+	 * Getter und Setter
+	 */
 	public JPanel getCard() {
 		return card;
 	}
@@ -57,21 +67,17 @@ public class LevelAuswahlCardButtonListener implements ActionListener {
 		this.card = card;
 	}
 
-
 	public User getUser() {
 		return user;
 	}
-
 
 	public void setUser(User user) {
 		this.user = user;
 	}
 
-
 	public JFrame getEpix() {
 		return epix;
 	}
-
 
 	public void setEpix(JFrame epix) {
 		this.epix = epix;

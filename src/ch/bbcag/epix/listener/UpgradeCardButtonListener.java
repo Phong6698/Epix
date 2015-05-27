@@ -7,20 +7,25 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 /**
- * 
+ * Button Listener fuer Upgrade Card
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			UpgradeCardButtonListener.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
 
 public class UpgradeCardButtonListener implements ActionListener {
 
 	private JPanel card;
 	
+	
+	/**
+	 * Konstruktor
+	 * @param card {@link JPanel}
+	 */
 	public UpgradeCardButtonListener(JPanel card) {
 		this.setCard(card);
 	}
 	
-	@Override
+	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("Level ausw\u00E4hlen")) {
 			CardLayout cardLayout = (CardLayout) getCard().getLayout();
@@ -33,6 +38,10 @@ public class UpgradeCardButtonListener implements ActionListener {
 		
 	}
 
+	
+	/*
+	 * Getter und Setter
+	 */
 	public JPanel getCard() {
 		return card;
 	}

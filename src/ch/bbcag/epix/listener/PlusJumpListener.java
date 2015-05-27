@@ -12,6 +12,13 @@ import javax.swing.JProgressBar;
 import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.User;
 
+
+/**
+ * Plus Jump Listener
+ *
+ * @author Chiramet Phong Penglerd, Miguel Jorge || ICT Berufsbildungs AG
+ *			Copyright Berufsbildungscenter 2015
+ */
 public class PlusJumpListener implements ActionListener {
 	private User user;
 	private JProgressBar maxJumpBar;
@@ -19,6 +26,15 @@ public class PlusJumpListener implements ActionListener {
 	private JLabel menuCardCoinLabel;
 	private JPanel card;
 
+	
+	/**
+	 * Konstruktor
+	 * @param user {@link User}
+	 * @param maxJumpBar {@link JProgressBar}
+	 * @param epix {@link JFrame}
+	 * @param menuCardCoinLabel {@link JPanel}
+	 * @param card {@link JPanel}
+	 */
 	public PlusJumpListener(User user, JProgressBar maxJumpBar, JFrame epix, JLabel menuCardCoinLabel, JPanel card) {
 		this.setUser(user);
 		this.setMaxJumpBar(maxJumpBar);
@@ -39,6 +55,10 @@ public class PlusJumpListener implements ActionListener {
 		}
 	}
 
+	
+	/*
+	 * Getter und Setter
+	 */
 	public User getUser() {
 		return user;
 	}

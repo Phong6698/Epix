@@ -12,7 +12,7 @@ import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.view.EpixView;
 
 /**
- * 
+ * Listener fuers Login
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
  *			LoginListener.java.java Copyright Berufsbildungscenter 2015
  */
@@ -23,6 +23,13 @@ public class LoginListener implements ActionListener {
 	private JTextField username;
 	private JPasswordField password;
 
+	
+	/**
+	 * 
+	 * @param username {@link JTextField}
+	 * @param password {@link JPasswordField}
+	 * @param loginView {@link JFrame}
+	 */
 	public LoginListener(JTextField username, JPasswordField password, JFrame loginView) {
 		this.setLoginView(loginView);
 		this.setUsername(username);
@@ -45,9 +52,12 @@ public class LoginListener implements ActionListener {
 			User player = EpixController.getInstance().playerLogin(user);
 			new EpixView(player);
 		}
-
 	}
 
+	
+	/*
+	 * Getter und Setter
+	 */
 	public JFrame getLoginView() {
 		return loginView;
 	}

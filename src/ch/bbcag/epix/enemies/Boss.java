@@ -373,4 +373,14 @@ public class Boss extends Enemy {
 		return BOSSATTACK;
 	}
 
+
+	public double getMaxFallSpeed() {
+		return maxFallSpeed;
+	}
+
+
+	public void setMaxFallSpeed(double maxFallSpeed) {
+		this.maxFallSpeed = maxFallSpeed;
+	}
+
 }

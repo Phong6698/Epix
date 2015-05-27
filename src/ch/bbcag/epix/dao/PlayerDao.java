@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
 
-import ch.bbcag.epix.entity.Player;
 import ch.bbcag.epix.entity.User;
 
 /**
@@ -73,5 +72,5 @@ public interface PlayerDao {
 	 * @return Eine Liste mit den 10 Spieler die am meisten Münzen haben
 	 * @throws SQLException
 	 */
-	public abstract Vector getRangliste() throws SQLException;
+	public abstract Vector<?> getRangliste() throws SQLException;
 }

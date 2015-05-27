@@ -8,15 +8,20 @@ import javax.swing.JFrame;
 import ch.bbcag.epix.view.Login;
 
 /**
- * 
+ * Zurueck Button Listener fuer Registrieren
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			ZurueckListener.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
 
 public class ZurueckListener implements ActionListener {
 	
 	private JFrame loginView;
 	
+	
+	/**
+	 * Konstruktor
+	 * @param loginView {@link JFrame}
+	 */
 	public ZurueckListener(JFrame loginView) {
 		this.setLoginView(loginView);
 	}
@@ -26,6 +31,10 @@ public class ZurueckListener implements ActionListener {
 			new Login();
 	}
 	
+	
+	/*
+	 * Getter und Setter
+	 */
 	public void setLoginView(JFrame loginView) {
 		this.loginView = loginView;
 	}

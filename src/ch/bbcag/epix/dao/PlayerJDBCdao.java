@@ -113,8 +113,9 @@ public class PlayerJDBCdao extends Database implements PlayerDao {
 			closeCon();
 		}
 
+		@SuppressWarnings("rawtypes")
 		@Override
-		public Vector getRangliste() throws SQLException {
+		public Vector<?> getRangliste() throws SQLException {
 			String sql = "SELECT * FROM PLAYER ORDER BY CollectedCoins DESC;";
 			con = getCon();
 			ps = con.prepareStatement(sql);

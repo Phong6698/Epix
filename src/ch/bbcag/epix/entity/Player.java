@@ -11,7 +11,6 @@ import ch.bbcag.epix.audio.AudioPlayer;
 import ch.bbcag.epix.enemies.Boss;
 import ch.bbcag.epix.enemies.Magician;
 import ch.bbcag.epix.enemies.Plant;
-import ch.bbcag.epix.enemies.PlantShot;
 import ch.bbcag.epix.enemies.ShootingPlant;
 import ch.bbcag.epix.tilemap.TileMap;
 
@@ -55,7 +54,6 @@ public class Player extends MapObject {
 	// animations
 	private ArrayList<BufferedImage[]> sprites;
 	private final int[] numFrames = { 1, 6, 1, 3, 1, 6, 1, 3 };
-	private ArrayList<PlantShot> plantshots;
 	
 	//SFX
 	private HashMap<String, AudioPlayer> sfx;

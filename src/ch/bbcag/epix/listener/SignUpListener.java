@@ -11,23 +11,28 @@ import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.User;
 
 /**
- * 
+ * ActionListner fuer den Button registrieren, traegt einen neuen User in die DB ein
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			SignUpListener.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
 
 public class SignUpListener implements ActionListener {
 	
-	
-
 	//Instanzvariablen
 	private JTextField user = null;
 	private JPasswordField password = null;
 	private JPasswordField passwordConfirm = null;
 	private JTextField email = null;
 	private JFrame login;
+
+	
 	/**
-	 * Konstruktor fuer LoginListner setzt alle Parameter in Instanzvariablen
+	 * Konstruktor
+	 * @param username {@link JTextField}
+	 * @param email {@link JTextField}
+	 * @param password {@link JPasswordField}
+	 * @param passwordConfirm {@link JPasswordField}
+	 * @param login {@link JFrame}
 	 */
 	public SignUpListener(JTextField username, JTextField email, JPasswordField password,JPasswordField passwordConfirm, JFrame login){
 		this.setUser(username);
@@ -37,17 +42,17 @@ public class SignUpListener implements ActionListener {
 		this.setLogin(login);
 	}
 	
-	/**
+	/*
 	 * ActionListner fuer den Button registrieren, traegt einen neuen User in die DB ein
 	 */
 	public void actionPerformed(ActionEvent e) {
-//		getLogin().dispose();
-//		new Login();
 		
 		User newUser = new User();
 		
 		String user = this.getUser().getText();
+		@SuppressWarnings("deprecation")
 		String password = this.getPassword().getText();
+		@SuppressWarnings("deprecation")
 		String passwordConfirm = this.getPasswordConfirm().getText();
 		String email = this.getEmail().getText();
 		
@@ -58,6 +63,7 @@ public class SignUpListener implements ActionListener {
 
 		EpixController.getInstance().registrieren(newUser);
 	}
+	
 
 	//Getter
 	public JTextField getUser() {

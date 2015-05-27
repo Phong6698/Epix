@@ -55,12 +55,6 @@ public class BossState extends GameState {
 
 	private Player player_2;
 
-	private boolean moveright_p1 = true;
-	private boolean moveleft_p1 = true;
-	
-	private boolean moveright_p2 = true;
-	private boolean moveleft_p2 = true;
-
 	public BossState(GameStateManager gsm, User user) {
 		this.gsm = gsm;
 		setUser(user);
@@ -162,8 +156,8 @@ public class BossState extends GameState {
 		plant = new ArrayList<Plant>();
 
 		Plant s;
-		Point[] plantPoints = new Point[] {  new Point(366, 240), new Point(528, 240), new Point(1046, 240), new Point(1199, 240), new Point(1390, 240), new Point(1514, 176),
-				new Point(1844, 144), new Point(1966, 144), new Point(2260, 176), new Point(2388, 240), };
+		Point[] plantPoints = new Point[] { new Point(366, 240), new Point(528, 240), new Point(1046, 240), new Point(1199, 240), new Point(1390, 240), new Point(1514, 176), new Point(1844, 144),
+				new Point(1966, 144), new Point(2260, 176), new Point(2388, 240), };
 		for (int i = 0; i < plantPoints.length; i++) {
 			s = new Plant(tilemap);
 			s.setPosition(plantPoints[i].x, plantPoints[i].y);
@@ -265,27 +259,6 @@ public class BossState extends GameState {
 			flags.add(flag);
 		}
 	}
-	
-	private boolean OnScreen(Player player, Player player_2) {
-
-		if (player.getx() < player_2.getx() + 200 && player.getx() + 360 - player_2.getx() > 0) {
-			moveright_p1 = true;
-			moveleft_p1 = true;
-			
-			moveright_p2 = true;
-			moveleft_p2 = true;
-			return true;
-		} else {
-			if (player.getx() + 360 - player_2.getx() > 0) {
-				moveright_p1 = false;
-				moveleft_p2 = false;
-			} else if (player.getx() < player_2.getx() + 200) {
-				moveleft_p1 = false;
-				moveleft_p2 = false;
-			}
-			return false;
-		}
-	}
 
 	public void update() {
 		// update player
@@ -301,15 +274,8 @@ public class BossState extends GameState {
 			player_2.checkPowerup(powerups, player);
 			player_2.checkCoin(coins);
 		}
-		if (EpixView.isMultiplayer() == true) {
-			if (OnScreen(player, player_2)) {
-				tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());
-			} 
-		} else {
-			tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());
-		}
 
-		System.out.println("Moveleft = " + moveleft_p1);
+		tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());
 
 		// update hud
 		hud = new HUD(player);
@@ -454,35 +420,23 @@ public class BossState extends GameState {
 	}
 
 	public void keyPressed(int k) {
-		if (k == KeyEvent.VK_LEFT){
+		if (k == KeyEvent.VK_LEFT)
 			player.setLeft(true);
-		} else{
-			player.setLeft(false);
-		}
-		if (k == KeyEvent.VK_RIGHT){
+		if (k == KeyEvent.VK_RIGHT)
 			player.setRight(true);
-		} else {
-			player.setRight(false);
-		}
-		
+
 		if (k == KeyEvent.VK_DOWN)
 			player.setDown(true);
 		if (k == KeyEvent.VK_UP)
 			player.setJumping(true);
 		if (k == KeyEvent.VK_R)
 			player.setRainbowing();
-		
-		
-		if (k == KeyEvent.VK_A){
+
+		if (k == KeyEvent.VK_A)
 			player_2.setLeft(true);
-		} else{
-			player_2.setLeft(false);
-		}
-		if (k == KeyEvent.VK_D ){
+
+		if (k == KeyEvent.VK_D)
 			player_2.setRight(true);
-		} else {
-			player_2.setRight(false);
-		}
 		if (k == KeyEvent.VK_S)
 			player_2.setDown(true);
 		if (k == KeyEvent.VK_W)

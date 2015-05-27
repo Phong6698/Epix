@@ -55,12 +55,6 @@ public class Level1State extends GameState {
 	private ArrayList<Coin> coins;
 
 	private ArrayList<Flag> flags;
-	
-	private boolean moveright_p1 = true;
-	private boolean moveleft_p1 = true;
-	
-	private boolean moveright_p2 = true;
-	private boolean moveleft_p2 = true;
 
 	public Level1State(GameStateManager gsm, User user) {
 		this.gsm = gsm;
@@ -250,27 +244,6 @@ public class Level1State extends GameState {
 		}
 	}
 
-	private boolean OnScreen(Player player, Player player_2) {
-
-		if (player.getx() < player_2.getx() + 200 && player.getx() + 360 - player_2.getx() > 0) {
-			moveright_p1 = true;
-			moveleft_p1 = true;
-			
-			moveright_p2 = true;
-			moveleft_p2 = true;
-			return true;
-		} else {
-			if (player.getx() + 360 - player_2.getx() > 0) {
-				moveright_p1 = false;
-				moveleft_p2 = false;
-			} else if (player.getx() < player_2.getx() + 200) {
-				moveleft_p1 = false;
-				moveleft_p2 = false;
-			}
-			return false;
-		}
-	}
-
 	public void update() {
 
 		// update player
@@ -286,15 +259,9 @@ public class Level1State extends GameState {
 			player_2.checkPowerup(powerups, player);
 			player_2.checkCoin(coins);
 		}
-
-		if (EpixView.isMultiplayer() == true) {
-			if (OnScreen(player, player_2)) {
-				tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());
-			} 
-		} else {
-			tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());
-		}
-
+		
+		tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());
+		
 		// update hud
 
 		hud = new HUD(player);
@@ -440,15 +407,10 @@ public class Level1State extends GameState {
 	public void keyPressed(int k) {
 		if (k == KeyEvent.VK_LEFT){
 			player.setLeft(true);
-		} else{
-			player.setLeft(false);
 		}
 		if (k == KeyEvent.VK_RIGHT){
 			player.setRight(true);
-		} else {
-			player.setRight(false);
-		}
-			
+		}			
 		if (k == KeyEvent.VK_DOWN)
 			player.setDown(true);
 		if (k == KeyEvent.VK_UP)
@@ -459,13 +421,9 @@ public class Level1State extends GameState {
 		
 		if (k == KeyEvent.VK_A){
 			player_2.setLeft(true);
-		} else{
-			player_2.setLeft(false);
 		}
 		if (k == KeyEvent.VK_D){
 			player_2.setRight(true);
-		} else {
-			player_2.setRight(false);
 		}
 		if (k == KeyEvent.VK_S)
 			player_2.setDown(true);

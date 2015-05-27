@@ -114,7 +114,7 @@ public class BossShot extends MapObject {
 		}
 		
 		//loeschen falls es die y koordinate <= 0
-		if (this.gety() <= 0 || this.gety() >= 270 || this.getx() >= 5 || this.getx() <= 3188) {
+		if (this.gety() <= 0 || this.gety() >= 270 || this.getx() <= 5  || this.getx() >= 3188) {
 			remove = true;
 		}
 	}

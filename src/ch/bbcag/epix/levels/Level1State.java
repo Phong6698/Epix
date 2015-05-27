@@ -83,6 +83,8 @@ public class Level1State extends GameState {
 		backgroundMusic = new AudioPlayer("/Musics/Level 1.mp3");
 
 		player = new Player(tilemap, user);
+		
+		finished = false;
 
 		if (EpixView.isMultiplayer() == true) {
 			player_2 = new Player(tilemap, user);

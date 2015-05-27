@@ -140,7 +140,7 @@ public class GameStateManager {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 		}
 	}
 

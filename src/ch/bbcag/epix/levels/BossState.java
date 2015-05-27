@@ -82,6 +82,8 @@ public class BossState extends GameState {
 		backgroundMusic = new AudioPlayer("/Musics/Boss Level.mp3");
 
 		player = new Player(tilemap, user);
+		
+		finished = false;
 
 		if (EpixView.isMultiplayer() == true) {
 			player_2 = new Player(tilemap, user);

@@ -28,9 +28,9 @@ import ch.bbcag.epix.view.EpixView;
 import ch.bbcag.epix.view.GameFrame;
 
 /**
- * 
+ * Level 2
  * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *         Level1State.java.java Copyright Berufsbildungscenter 2015
+ *         Copyright Berufsbildungscenter 2015
  */
 
 public class Level2State extends GameState {
@@ -55,6 +55,12 @@ public class Level2State extends GameState {
 
 	private Player player_2;
 
+	
+	/**
+	 * Konstruktor
+	 * @param gsm {@link GameStateManager}
+	 * @param user {@link User}
+	 */
 	public Level2State(GameStateManager gsm, User user) {
 		this.gsm = gsm;
 		setUser(user);
@@ -95,6 +101,10 @@ public class Level2State extends GameState {
 
 	}
 
+	
+	/**
+	 * Powerups spawnen
+	 */
 	private void spawnPowerups() {
 		powerups = new ArrayList<Powerup>();
 
@@ -171,6 +181,10 @@ public class Level2State extends GameState {
 
 	}
 
+	
+	/**
+	 * Gegner spawnen
+	 */
 	private void spawnEnemies() {
 
 		/*
@@ -251,6 +265,10 @@ public class Level2State extends GameState {
 		}
 	}
 
+	
+	/**
+	 * Coins spawnen
+	 */
 	private void spawnCoins() {
 		coins = new ArrayList<Coin>();
 
@@ -289,6 +307,10 @@ public class Level2State extends GameState {
 		}
 	}
 
+	
+	/**
+	 * Flaggen spawnen
+	 */
 	private void spawnFlag() {
 		flags = new ArrayList<Flag>();
 		/*
@@ -511,6 +533,10 @@ public class Level2State extends GameState {
 			player_2.setJumping(false);
 	}
 
+	
+	/*
+	 * Getter und Setter
+	 */
 	public User getUser() {
 		return user;
 	}

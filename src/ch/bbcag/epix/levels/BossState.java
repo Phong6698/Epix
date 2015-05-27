@@ -28,9 +28,9 @@ import ch.bbcag.epix.view.EpixView;
 import ch.bbcag.epix.view.GameFrame;
 
 /**
- * 
+ * Boss Level
  * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *         BossState.java.java Copyright Berufsbildungscenter 2015
+ *        Copyright Berufsbildungscenter 2015
  */
 
 public class BossState extends GameState {
@@ -55,6 +55,12 @@ public class BossState extends GameState {
 
 	private Player player_2;
 
+	
+	/**
+	 * Konstruktor
+	 * @param gsm  {@link GameStateManager}
+	 * @param user {@link User}
+	 */
 	public BossState(GameStateManager gsm, User user) {
 		this.gsm = gsm;
 		setUser(user);
@@ -90,9 +96,12 @@ public class BossState extends GameState {
 		spawnFlag();
 
 		player.setPosition(75, 240);
-
 	}
 
+	
+	/**
+	 * Powerups spawnen
+	 */
 	private void spawnPowerups() {
 		powerups = new ArrayList<Powerup>();
 
@@ -170,9 +179,12 @@ public class BossState extends GameState {
 			shield.setPosition(shieldPoints[i].x, shieldPoints[i].y);
 			powerups.add(shield);
 		}
-
 	}
 
+	
+	/**
+	 * Gegnern spawnen
+	 */
 	private void spawnEnemies() {
 
 		/*
@@ -268,6 +280,10 @@ public class BossState extends GameState {
 		}
 	}
 
+	
+	/**
+	 * Coins spawnen
+	 */
 	private void spawnCoins() {
 		coins = new ArrayList<Coin>();
 
@@ -324,6 +340,10 @@ public class BossState extends GameState {
 		}
 	}
 
+	
+	/**
+	 * Flaggen spawnen
+	 */
 	private void spawnFlag() {
 		flags = new ArrayList<Flag>();
 		/*
@@ -340,6 +360,7 @@ public class BossState extends GameState {
 		}
 	}
 
+	
 	public void update() {
 		// update player
 		player.update(player);
@@ -496,7 +517,6 @@ public class BossState extends GameState {
 		}
 
 		hud.draw(g);
-
 	}
 
 	public void keyPressed(int k) {
@@ -545,6 +565,10 @@ public class BossState extends GameState {
 			player_2.setJumping(false);
 	}
 
+	
+	/*
+	 * Getter und Setter
+	 */
 	public User getUser() {
 		return user;
 	}

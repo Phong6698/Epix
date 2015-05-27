@@ -8,17 +8,21 @@ import javax.imageio.ImageIO;
 import ch.bbcag.epix.tilemap.TileMap;
 
 /**
- * 
+ * Coin
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			Coin.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
-
 public class Coin extends MapObject {
 	
 	private BufferedImage[] sprites;
 	private int coinValue;
 	private boolean taken;
 
+	
+	/**
+	 * Konstruktor
+	 * @param tm {@link TileMap}
+	 */
 	public Coin(TileMap tm) {
 		super(tm);
 		
@@ -50,24 +54,16 @@ public class Coin extends MapObject {
 		facingRight = true;
 	}
 	
-	private void getNextPosition() {
-		// falling
-		if(falling) {
-			dy += getFallSpeed();
-		}
-		
-	}
-	
+	/**
+	 * Update
+	 */
 	public void update() {
-
-		// update position
-		getNextPosition();
 		checkTileMapCollision();
 
 		// update animation
 		animation.update();
-
 	}
+	
 	
 	public void draw(Graphics2D g) {
 
@@ -76,9 +72,12 @@ public class Coin extends MapObject {
 		setMapPosition();
 
 		super.draw(g);
-
 	}
 
+	
+	/*
+	 * Getter und Setter
+	 */
 	public boolean isTaken() {
 		return taken;
 	}

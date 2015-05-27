@@ -3,11 +3,10 @@ package ch.bbcag.epix.entity;
 import ch.bbcag.epix.tilemap.TileMap;
 
 /**
- * 
+ * Gegner
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			Enemy.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
-
 public class Enemy extends MapObject {
 
 	protected int health;
@@ -19,18 +18,19 @@ public class Enemy extends MapObject {
 	protected long flinchTimer;
 
 
+	/**
+	 * Konstruktor
+	 * @param tm {@link TileMap}
+	 */
 	public Enemy(TileMap tm) {
 		super(tm);
 	}
 
-	public boolean isDead() {
-		return dead;
-	}
 
-	public int getDamage() {
-		return damage;
-	}
-
+	/**
+	 * Schaden bekommen
+	 * @param damage
+	 */
 	public void hit(int damage) {
 		if (dead || flinching)
 			return;
@@ -45,5 +45,17 @@ public class Enemy extends MapObject {
 			
 		flinching = true;
 		flinchTimer = System.nanoTime();
+	}
+	
+	
+	/*
+	 * Getter und Setter
+	 */
+	public boolean isDead() {
+		return dead;
+	}
+
+	public int getDamage() {
+		return damage;
 	}
 }

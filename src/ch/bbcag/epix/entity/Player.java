@@ -16,11 +16,10 @@ import ch.bbcag.epix.enemies.ShootingPlant;
 import ch.bbcag.epix.tilemap.TileMap;
 
 /**
- * 
+ * Spieler im Spiel
  * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *         Player.java.java Copyright Berufsbildungscenter 2015
+ *         Copyright Berufsbildungscenter 2015
  */
-
 public class Player extends MapObject {
 
 	// player stuff
@@ -74,6 +73,12 @@ public class Player extends MapObject {
 	private static final int FALLING_JETPACK = 6;
 	private static final int RAINBOW_JETPACK = 7;
 
+	
+	/**
+	 * Konstruktor
+	 * @param tm {@link TileMap}
+	 * @param user {@link User}
+	 */
 	public Player(TileMap tm, User user) {
 		super(tm);
 		
@@ -95,7 +100,6 @@ public class Player extends MapObject {
 		setMaxMoveSpeed(user.getMaxMoveSpeed());
 		setRainbowdamage(user.getDamage());
 
-
 		width = 32;
 		height = 32;
 
@@ -110,7 +114,6 @@ public class Player extends MapObject {
 		stopJumpSpeed = 0.9;
 
 		facingRight = true;
-
 
 		rainbow = maxRainbow = 2500;
 		rainbows = new ArrayList<Rainbow>();
@@ -144,13 +147,19 @@ public class Player extends MapObject {
 		animation.setDelay(100);
 	}
 
+	
+	/**
+	 * Kontrolle ob schuss Pflanze trifft
+	 * @param plants {@link ArrayList} Liste von Pflanzen
+	 * @param player {@link Player}
+	 */
 	public void checkAttackPlants(ArrayList<Plant> plants, Player player) {
 		// loop through enemies
 		for (int i = 0; i < plants.size(); i++) {
 
 			Plant e = plants.get(i);
 
-			// fireballs
+			// rainbow
 			for (int j = 0; j < rainbows.size(); j++) {
 				if (rainbows.get(j).intersects(e)) {
 					e.hit(rainbowdamage);
@@ -165,6 +174,12 @@ public class Player extends MapObject {
 		}
 	}
 
+	
+	/**
+	 *  Kontrolle ob schuss schiessende Pflanze trifft
+	 * @param shootingplants {@link ArrayList} Liste von schiessende Pflanzen
+	 * @param player {@link Player}
+	 */
 	public void checkAttackShootingPlants(ArrayList<ShootingPlant> shootingplants, Player player) {
 		// loop through enemies
 		for (int i = 0; i < shootingplants.size(); i++) {
@@ -185,6 +200,12 @@ public class Player extends MapObject {
 		}
 	}
 
+	
+	/**
+	 *  Kontrolle ob schuss Boss trifft
+	 * @param boss {@link ArrayList} Liste von Bossen
+	 * @param player {@link Player}
+	 */
 	public void checkAttackBoss(ArrayList<Boss> boss, Player player) {
 		// loop through enemies
 		for (int i = 0; i < boss.size(); i++) {
@@ -208,6 +229,12 @@ public class Player extends MapObject {
 		}
 	}
 
+	
+	/**
+	 * Kontrolle ob schuss Zeuberer trifft
+	 * @param magicians {@link ArrayList} Liste von Zauberern
+	 * @param player {@link Player}
+	 */
 	public void checkAttackMagician(ArrayList<Magician> magicians, Player player) {
 		// loop through enemies
 		for (int i = 0; i < magicians.size(); i++) {
@@ -228,6 +255,12 @@ public class Player extends MapObject {
 		}
 	}
 
+	
+	/**
+	 * Kontrolle ob der Spieler ein Powerup beruehrt
+	 * @param powerups {@link ArrayList} Liste von Powerups
+	 * @param player {@link Player} 
+	 */
 	public void checkPowerup(ArrayList<Powerup> powerups, Player player) {
 
 		// loop through powerups
@@ -247,10 +280,14 @@ public class Player extends MapObject {
 			} else if (powerup.jetpack && intersects(powerup) && jetpack) {
 				
 			}
-
 		}
 	}
 
+	
+	/**
+	 * Kontrolle ob der Spieler ein Coin beruehrt
+	 * @param coins {@link ArrayList} Liste von Coins
+	 */
 	public void checkCoin(ArrayList<Coin> coins) {
 		// loop through powerups
 		for (int i = 0; i < coins.size(); i++) {
@@ -265,11 +302,15 @@ public class Player extends MapObject {
 				this.setCollectedCoin(this.getCollectedCoin() + coin.getCoinValue());
 				coin.setTaken(true);
 			}
-
 		}
-
 	}
 
+	
+	/**
+	 * Kontrolle ob der Spieler die Flagge beruehrt
+	 * @param flags {@link ArrayList} Liste von Flaggen
+	 * @return ob der Spieler die Flagge beruehrt
+	 */
 	public boolean checkFlag(ArrayList<Flag> flags) {
 		for (int i = 0; i < flags.size(); i++) {
 
@@ -277,13 +318,17 @@ public class Player extends MapObject {
 
 			if (intersects(flag)) {
 				return true;
-
 			}
-
 		}
 		return false;
 	}
 
+	
+	/**
+	 * Dem Spieler Powerup hinzufuegen
+	 * @param powerup {@link Powerup} 
+	 * @param player {@link Player} 
+	 */
 	public void addPowerupToPlayer(Powerup powerup, Player player) {
 		if (player.getHealth() + powerup.plusHealth >= player.getMaxHealth()) {
 			player.setHealth(player.getMaxHealth());
@@ -315,6 +360,11 @@ public class Player extends MapObject {
 		powerup.setTakenTime(System.currentTimeMillis());
 	}
 
+	
+	/**
+	 * Dem Spieler das Powerup loeschen
+	 * @param powerup {@link Powerup} 
+	 */
 	public void removePowerupFromPlayer(Powerup powerup) {
 		setHealth(getHealth() - powerup.plusHealth);
 		setRainbowdamage(getRainbowdamage() - powerup.plusDamage);
@@ -340,9 +390,9 @@ public class Player extends MapObject {
 	}
 
 	/**
-	 * player gets damage
-	 * 
+	 * Dem Spieler schaden zufuegen
 	 * @param damage
+	 * @param player {@link Player} 
 	 */
 	public void hit(int damage, Player player) {
 		if (!shield) {
@@ -361,6 +411,11 @@ public class Player extends MapObject {
 		}
 	}
 
+	
+	/**
+	 * Bewegung
+	 * @param player {@link Player} 
+	 */
 	private void getNextPosition(Player player) {
 
 		// movement
@@ -425,6 +480,11 @@ public class Player extends MapObject {
 		}
 	}
 
+	
+	/**
+	 * Update
+	 * @param player {@link Player} 
+	 */
 	public void update(Player player) {
 
 		// update position
@@ -577,11 +637,13 @@ public class Player extends MapObject {
 				return;
 			}
 		}
-
 		super.draw(g);
-
 	}
 
+	
+	/*
+	 * Getter und Setter
+	 */
 	public ArrayList<Powerup> getPowerups() {
 		return powerups;
 	}

@@ -7,10 +7,22 @@ import javax.imageio.ImageIO;
 
 import ch.bbcag.epix.tilemap.TileMap;
 
+
+/**
+ * End Flagge
+ *
+ * @author Chiramet Phong Penglerd, Miguel Jorge || ICT Berufsbildungs AG
+ *			Copyright Berufsbildungscenter 2015
+ */
 public class Flag extends MapObject{
 	
 	private BufferedImage[] sprites;
 
+	
+	/**
+	 * Konstruktor
+	 * @param tm {@link TileMap}
+	 */
 	public Flag(TileMap tm) {
 		super(tm);
 
@@ -39,25 +51,21 @@ public class Flag extends MapObject{
 		facingRight = true;
 	}
 	
+	
+	/**
+	 * Update
+	 */
 	public void update() {
-
-		// update position
-
 		checkTileMapCollision();
 
 		// update animation
 		animation.update();
-
 	}
 	
 	public void draw(Graphics2D g) {
-
-		// if(notOnScreen()) return;
-
 		setMapPosition();
 
 		super.draw(g);
-
 	}
 	
 	

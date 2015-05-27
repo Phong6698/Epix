@@ -3,16 +3,14 @@ package ch.bbcag.epix.entity;
 import ch.bbcag.epix.tilemap.TileMap;
 
 /**
- * 
+ * Powerup
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			Powerup.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
-
 public class Powerup extends MapObject{
 
 	protected int plusHealth;
 	protected int plusDamage;
-
 	
 	protected boolean jetpack;
 	protected double plusMoveSpeed;
@@ -27,12 +25,32 @@ public class Powerup extends MapObject{
 	
 	protected double expireTime;
 	
-
-
 	protected boolean taken;
 	protected long takenTime;
 	protected boolean available;
 	
+
+	/**
+	 * Konstruktor
+	 * @param tm {@link TileMap}
+	 */
+	public Powerup(TileMap tm) {
+		super(tm);
+		
+	}
+
+	
+	/**
+	 * Update
+	 */
+	public void update() {
+		
+	}
+
+	
+	/*
+	 * Getter und Setter
+	 */
 	public boolean isTaken() {
 		return taken;
 	}
@@ -40,16 +58,7 @@ public class Powerup extends MapObject{
 	public void setTaken(boolean taken) {
 		this.taken = taken;
 	}
-
-	public Powerup(TileMap tm) {
-		super(tm);
-		
-	}
-
-	public void update() {
-		
-	}
-
+	
 	public long getTakenTime() {
 		return takenTime;
 	}

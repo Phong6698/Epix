@@ -1,5 +1,7 @@
 package ch.bbcag.epix.gamestate;
 
+import java.awt.Graphics2D;
+
 import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.levels.BossState;
@@ -7,9 +9,9 @@ import ch.bbcag.epix.levels.Level1State;
 import ch.bbcag.epix.levels.Level2State;
 
 /**
- * 
+ * GamestateManager
  * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *         GameStateManager.java.java Copyright Berufsbildungscenter 2015
+ *         Copyright Berufsbildungscenter 2015
  */
 
 public class GameStateManager {
@@ -28,9 +30,15 @@ public class GameStateManager {
 	public static final int LEVEL2 = 2;
 	public static final int BOSSLEVEL = 3;
 
+	
+	/**
+	 * Konstruktor
+	 * @param level 
+	 * @param user {@link User}
+	 */
 	public GameStateManager(int level, User user) {
 
-		this.user = user;
+		this.user = user;	
 
 		setGameStates(new GameState[NUMLEVELS]);
 
@@ -39,6 +47,12 @@ public class GameStateManager {
 
 	}
 
+	
+	/**
+	 * Level laden
+	 * @param level
+	 * @param user {@link User}
+	 */
 	private void loadState(int level, User user) {
 		if (level == LEVEL1) {
 			getGameStates()[level] = new Level1State(this, user);
@@ -50,10 +64,19 @@ public class GameStateManager {
 		EpixController.getInstance().saveUpgrades(user);
 	}
 
+	
+	/**
+	 * Level entladen
+	 * @param level
+	 */
 	private void unloadState(int level) {
 		getGameStates()[level] = null;
 	}
 	
+	
+	/**
+	 * Level neustarten
+	 */
 	public void restartState() {
 		unloadState(currentLevel);
 		loadState(currentLevel, user);
@@ -61,6 +84,12 @@ public class GameStateManager {
 		setDead(false);
 	}
 
+	
+	/**
+	 * Level setten
+	 * @param level
+	 * @param user {@link User}
+	 */
 	public void setState(int level, User user) {
 		unloadState(currentLevel);
 		currentLevel = level;
@@ -68,11 +97,19 @@ public class GameStateManager {
 		// gameStates[currentState].init();
 	}
 	
+	
+	/**
+	 * Musik stoppen
+	 */
 	public void stopMusic(){
 		getGameStates()[currentLevel].backgroundMusic.stop();
 		getGameStates()[currentLevel].backgroundMusic.close();
 	}
 	
+	
+	/**
+	 * Speichern
+	 */
 	public void saveState() {
 		EpixController.getInstance().coinsUpdate(getGameStates()[currentLevel].player.getUser(), getGameStates()[currentLevel].player.getCoin());
 		EpixController.getInstance().collectedCoinsUpdate(getGameStates()[currentLevel].player.getUser(), getGameStates()[currentLevel].player.getCollectedCoin());	
@@ -83,6 +120,10 @@ public class GameStateManager {
 		user.setCollectedCoin(getGameStates()[currentLevel].player.getCollectedCoin());
 	}
 
+	
+	/**
+	 * Update
+	 */
 	public void update() {
 		try {
 			getGameStates()[currentLevel].update();
@@ -99,18 +140,24 @@ public class GameStateManager {
 			}
 
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		}
-
 	}
 
-	public void draw(java.awt.Graphics2D g) {
+	
+	/**
+	 * Draw
+	 * @param g {@link Graphics2D}
+	 */
+	public void draw(Graphics2D g) {
 		try {
 			getGameStates()[currentLevel].draw(g);
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
+	
 	public void keyPressed(int k) {
 		getGameStates()[currentLevel].keyPressed(k);
 	}
@@ -119,6 +166,10 @@ public class GameStateManager {
 		getGameStates()[currentLevel].keyReleased(k);
 	}
 
+	
+	/*
+	 * Getter und Setter
+	 */
 	public int getCurrentLevel() {
 		return currentLevel;
 	}

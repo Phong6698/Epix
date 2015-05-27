@@ -1,9 +1,9 @@
 package ch.bbcag.epix.entity;
 
 /**
- * 
+ * User
  * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *         User.java.java Copyright Berufsbildungscenter 2015
+ *         Copyright Berufsbildungscenter 2015
  */
 
 public class User {
@@ -20,6 +20,7 @@ public class User {
 	private int damage;
 	private double moveSpeed;
 	private double maxMoveSpeed;
+	
 
 	// Getter
 	public String getUsername() {

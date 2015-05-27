@@ -8,11 +8,10 @@ import javax.imageio.ImageIO;
 import ch.bbcag.epix.tilemap.TileMap;
 
 /**
- * 
+ * Rainbow (Schuss {@link Player}) 
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			Rainbow.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
-
 public class Rainbow extends MapObject {
 	
 	private boolean hit;
@@ -20,6 +19,12 @@ public class Rainbow extends MapObject {
 	private BufferedImage[] sprites;
 	private BufferedImage[] hitSprites;
 	
+	
+	/**
+	 * Konstruktor
+	 * @param tm {@link TileMap}
+	 * @param right
+	 */
 	public Rainbow(TileMap tm, boolean right) {
 		
 		super(tm);
@@ -71,10 +76,13 @@ public class Rainbow extends MapObject {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-		}
-		
+		}		
 	}
 	
+	
+	/**
+	 * Hit setten
+	 */
 	public void setHit() {
 		if(hit) return;
 		hit = true;
@@ -82,9 +90,11 @@ public class Rainbow extends MapObject {
 		animation.setDelay(70);
 		dx = 0;
 	}
+		
 	
-	public boolean shouldRemove() { return remove; }
-	
+	/**
+	 * Update
+	 */
 	public void update() {
 		
 		checkTileMapCollision();
@@ -103,13 +113,7 @@ public class Rainbow extends MapObject {
 	
 	public void draw(Graphics2D g) {
 		
-		setMapPosition();
-		
-		draw_(g);
-		
-	}
-	
-	public void draw_(java.awt.Graphics2D g) {
+		setMapPosition();	
 		
 		if(facingRight) {
 			g.drawImage(animation.getImage(), (int)(x + xmap - width / 2), (int)(y - (height/2 - cheight/2 )/2 + ymap - height / 2), null);
@@ -118,7 +122,16 @@ public class Rainbow extends MapObject {
 			g.drawImage(animation.getImage(), (int)(x + xmap -width / 2 + width), (int)(y- (height/2 - cheight/2 )/2 + ymap - height / 2), -width, height, null);
 		}
 	//	g.drawRect((int) (x + xmap -cwidth / 2),  (int) (y + ymap - cheight / 2),getCWidth(), getCHeight());
-
+		
+	}
+	
+	
+	/**
+	 * Ob es geloescht werden sollte
+	 * @return Ob es geloescht werden sollte
+	 */
+	public boolean shouldRemove() { 
+		return remove; 
 	}
 	
 }

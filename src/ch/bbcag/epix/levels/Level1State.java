@@ -29,9 +29,9 @@ import ch.bbcag.epix.view.EpixView;
 import ch.bbcag.epix.view.GameFrame;
 
 /**
- * 
+ * Level 1
  * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *         Level1State.java.java Copyright Berufsbildungscenter 2015
+ *        Copyright Berufsbildungscenter 2015
  */
 
 public class Level1State extends GameState {
@@ -56,6 +56,12 @@ public class Level1State extends GameState {
 
 	private ArrayList<Flag> flags;
 
+	
+	/**
+	 * Konstruktor
+	 * @param gsm {@link GameStateManager}
+	 * @param user {@link User}
+	 */
 	public Level1State(GameStateManager gsm, User user) {
 		this.gsm = gsm;
 		setUser(user);
@@ -63,9 +69,6 @@ public class Level1State extends GameState {
 		init();
 	}
 
-	/**
-	 * 
-	 */
 	public void init() {
 
 		levelName = "Level 1";
@@ -94,9 +97,12 @@ public class Level1State extends GameState {
 		spawnFlag();
 
 		player.setPosition(50, 40);
-
 	}
-
+ 
+	
+	/**
+	 * Powerups spawnen
+	 */
 	private void spawnPowerups() {
 		powerups = new ArrayList<Powerup>();
 
@@ -168,9 +174,12 @@ public class Level1State extends GameState {
 			shield.setPosition(shieldPoints[i].x, shieldPoints[i].y);
 			powerups.add(shield);
 		}
-
 	}
 
+	
+	/**
+	 * Gegner spawnen
+	 */
 	private void spawnEnemies() {
 
 		/*
@@ -231,6 +240,10 @@ public class Level1State extends GameState {
 		}
 	}
 
+	
+	/**
+	 * Coins spawnen
+	 */
 	private void spawnCoins() {
 		coins = new ArrayList<Coin>();
 
@@ -247,6 +260,10 @@ public class Level1State extends GameState {
 		}
 	}
 
+	
+	/**
+	 * Flaggen spawnen
+	 */
 	private void spawnFlag() {
 		flags = new ArrayList<Flag>();
 		/*
@@ -471,6 +488,11 @@ public class Level1State extends GameState {
 		if (k == KeyEvent.VK_W && EpixView.isMultiplayer())
 			player_2.setJumping(false);
 	}
+	
+	
+	/*
+	 * Getter und Setter
+	 */
 	public User getUser() {
 		return user;
 	}

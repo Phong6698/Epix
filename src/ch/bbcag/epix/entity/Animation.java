@@ -3,9 +3,9 @@ package ch.bbcag.epix.entity;
 import java.awt.image.BufferedImage;
 
 /**
- * 
+ * Animation
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			Animation.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
 
 public class Animation {
@@ -18,10 +18,19 @@ public class Animation {
 	
 	private boolean playedOnce;
 	
+	
+	/**
+	 * Konstruktor
+	 */
 	public Animation() {
 		playedOnce = false;
 	}
 	
+	
+	/**
+	 * Frame setten
+	 * @param frames {@link BufferedImage}
+	 */
 	public void setFrames(BufferedImage[] frames) {
 		this.frames = frames;
 		currentFrame = 0;
@@ -29,9 +38,11 @@ public class Animation {
 		playedOnce = false;
 	}
 	
-	public void setDelay(long d) { delay = d; }
-	public void setFrame(int i) { currentFrame = i; }
 	
+
+	/**
+	 * Update
+	 */
 	public void update() {
 		
 		if(delay == -1) return;
@@ -44,12 +55,31 @@ public class Animation {
 		if(currentFrame == frames.length) {
 			currentFrame = 0;
 			playedOnce = true;
-		}
-		
+		}		
 	}
 	
-	public int getFrame() { return currentFrame; }
-	public BufferedImage getImage() { return frames[currentFrame]; }
-	public boolean hasPlayedOnce() { return playedOnce; }
+	
+	/*
+	 * Getter und Setter
+	 */
+	public int getFrame() { 
+		return currentFrame; 
+	}
+	
+	public BufferedImage getImage() { 
+		return frames[currentFrame]; 
+	}
+	
+	public boolean hasPlayedOnce() { 
+		return playedOnce; 
+	}
+	
+	public void setDelay(long d) { 
+		delay = d; 
+	}
+	
+	public void setFrame(int i) { 
+		currentFrame = i; 
+	}
 	
 }

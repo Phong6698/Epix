@@ -6,11 +6,10 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 /**
- * 
+ * Rainbow Hit (Schuss {@link Player}) 
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *			RainbowHit.java.java Copyright Berufsbildungscenter 2015
+ *			Copyright Berufsbildungscenter 2015
  */
-
 public class RainbowHit {
 	private int x;
 	private int y;
@@ -25,6 +24,12 @@ public class RainbowHit {
 	
 	private boolean remove;
 	
+	
+	/**
+	 * Konstruktor
+	 * @param x
+	 * @param y
+	 */
 	public RainbowHit(int x, int y) {
 		
 		this.x = x;
@@ -62,14 +67,17 @@ public class RainbowHit {
 		
 	}
 	
+	
+	/**
+	 * Update
+	 */
 	public void update() {
 		animation.update();
 		if(animation.hasPlayedOnce()) {
 			remove = true;
 		}
 	}
-	
-	public boolean shouldRemove() { return remove; }
+
 	
 	public void setMapPosition(int x, int y) {
 		xmap = x;
@@ -83,6 +91,15 @@ public class RainbowHit {
 			y + ymap - height / 2,
 			null
 		);
+	}
+	
+	
+	/**
+	 * Ob es geloescht werden sollte
+	 * @return Ob es geloescht werden sollte
+	 */
+	public boolean shouldRemove() { 
+		return remove; 
 	}
 	
 }

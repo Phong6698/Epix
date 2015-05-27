@@ -454,17 +454,17 @@ public class BossState extends GameState {
 	}
 
 	public void keyPressed(int k) {
-		if (k == KeyEvent.VK_LEFT && moveleft_p1 == true){
+		if (k == KeyEvent.VK_LEFT){
 			player.setLeft(true);
 		} else{
 			player.setLeft(false);
 		}
-		if (k == KeyEvent.VK_RIGHT && moveright_p1 == true){
+		if (k == KeyEvent.VK_RIGHT){
 			player.setRight(true);
 		} else {
 			player.setRight(false);
 		}
-			
+		
 		if (k == KeyEvent.VK_DOWN)
 			player.setDown(true);
 		if (k == KeyEvent.VK_UP)
@@ -473,12 +473,12 @@ public class BossState extends GameState {
 			player.setRainbowing();
 		
 		
-		if (k == KeyEvent.VK_A && moveleft_p2 == true){
+		if (k == KeyEvent.VK_A){
 			player_2.setLeft(true);
 		} else{
 			player_2.setLeft(false);
 		}
-		if (k == KeyEvent.VK_D && moveright_p2 == true){
+		if (k == KeyEvent.VK_D ){
 			player_2.setRight(true);
 		} else {
 			player_2.setRight(false);

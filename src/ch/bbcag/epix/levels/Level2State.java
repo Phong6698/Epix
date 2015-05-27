@@ -482,12 +482,12 @@ private User user;
 		if (k == KeyEvent.VK_R)
 			player.setRainbowing();
 
-		if (k == KeyEvent.VK_A && moveleft_p2 == true){
+		if (k == KeyEvent.VK_A){
 			player_2.setLeft(true);
 		} else{
 			player_2.setLeft(false);
 		}
-		if (k == KeyEvent.VK_D && moveright_p2 == true){
+		if (k == KeyEvent.VK_D){
 			player_2.setRight(true);
 		} else {
 			player_2.setRight(false);

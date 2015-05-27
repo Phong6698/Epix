@@ -233,7 +233,22 @@ public class Level2State extends GameState {
 			p.setPosition(shootingPlantPoints[i].x, shootingPlantPoints[i].y);
 			shootingPlant.add(p);
 		}
+		
 
+		/**
+		 * Boss
+		 */
+		boss = new ArrayList<Boss>();
+
+		Boss b;
+		Point[] bossPoint = new Point[] {
+
+		};
+		for (int i = 0; i < bossPoint.length; i++) {
+			b = new Boss(tilemap, player);
+			b.setPosition(bossPoint[i].x, bossPoint[i].y);
+			boss.add(b);
+		}
 	}
 
 	private void spawnCoins() {
@@ -300,6 +315,7 @@ public class Level2State extends GameState {
 			player_2.checkAttackPlants(plant, player);
 			player_2.checkAttackShootingPlants(shootingPlant, player);
 			player_2.checkAttackMagician(magicians, player);
+			player_2.checkAttackBoss(boss, player);
 
 			player_2.checkPowerup(powerups, player_2);
 			player_2.checkCoin(coins);
@@ -316,6 +332,7 @@ public class Level2State extends GameState {
 		player.checkAttackPlants(plant, player);
 		player.checkAttackShootingPlants(shootingPlant, player);
 		player.checkAttackMagician(magicians, player);
+		player.checkAttackBoss(boss, player);
 
 		player.checkPowerup(powerups, player);
 		player.checkCoin(coins);
@@ -353,6 +370,20 @@ public class Level2State extends GameState {
 			e.update(e, player);
 			if (e.isDead()) {
 				shootingPlant.remove(i);
+				i--;
+			} else {
+				if (EpixView.multiplayer == true) {
+					e.checkAttackPlayer(player_2, player);
+				}
+				e.checkAttackPlayer(player, player);
+			}
+		}
+		
+		for (int i = 0; i < boss.size(); i++) {
+			Boss e = boss.get(i);
+			e.update(e, player, false);
+			if (e.isDead()) {
+				boss.remove(i);
 				i--;
 			} else {
 				if (EpixView.multiplayer == true) {
@@ -404,6 +435,10 @@ public class Level2State extends GameState {
 
 		for (int i = 0; i < magicians.size(); i++) {
 			magicians.get(i).draw(g);
+		}
+		
+		for (int i = 0; i < boss.size(); i++) {
+			boss.get(i).draw(g);
 		}
 
 		for (int i = 0; i < powerups.size(); i++) {

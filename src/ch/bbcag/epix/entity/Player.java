@@ -236,10 +236,16 @@ public class Player extends MapObject {
 			Powerup powerup = powerups.get(i);
 
 			// check enemy collision
-			if (intersects(powerup)) {
+			if (intersects(powerup) && !powerup.jetpack) {
 				sfx.get("Powerup").play(0);
 				powerup.update();
 				addPowerupToPlayer(powerup, player);
+			} else if (powerup.jetpack && intersects(powerup) && !jetpack) {
+				sfx.get("Powerup").play(0);
+				powerup.update();
+				addPowerupToPlayer(powerup, player);
+			} else if (powerup.jetpack && intersects(powerup) && jetpack) {
+				
 			}
 
 		}

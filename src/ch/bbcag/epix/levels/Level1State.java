@@ -117,7 +117,9 @@ public class Level1State extends GameState {
 		 * Heart
 		 */
 		Heart heart;
-		Point[] hearthPoints = new Point[] { new Point(2512, 144), };
+		Point[] hearthPoints = new Point[] { 
+				new Point(2512, 144), 
+		};
 		for (int i = 0; i < hearthPoints.length; i++) {
 			heart = new Heart(tilemap);
 			heart.setPosition(hearthPoints[i].x, hearthPoints[i].y);
@@ -128,14 +130,31 @@ public class Level1State extends GameState {
 		 * Jetpack
 		 */
 		Jetpack jetpack;
-		Point[] jetpackPoints = new Point[] { new Point(2000, 240),
-
+		Point[] jetpackPoints = new Point[] { 
+				new Point(2000, 240),
 		};
 		for (int i = 0; i < jetpackPoints.length; i++) {
 			jetpack = new Jetpack(tilemap);
 			jetpack.setPosition(jetpackPoints[i].x, jetpackPoints[i].y);
 			powerups.add(jetpack);
 		}
+		
+		/*
+		 * Jetpack Multiplayer
+		 */
+		if (EpixView.isMultiplayer()){
+			Jetpack jetpack2;
+			Point[] jetpackPoints2 = new Point[] {
+					new Point(2030, 240),
+			};
+
+			for (int i = 0; i < jetpackPoints2.length; i++) {
+				jetpack2 = new Jetpack(tilemap);
+				jetpack2.setPosition(jetpackPoints2[i].x, jetpackPoints2[i].y);
+				powerups.add(jetpack2);
+			}
+		}
+		
 
 		/*
 		 * Shield
@@ -278,7 +297,7 @@ public class Level1State extends GameState {
 		player.checkCoin(coins);
 
 		// check if no enimies in level
-		if (plant.size() == 0 && shootingPlant.size() == 0 && magicians.size() == 0) {
+		if (plant.size() == 0 && shootingPlant.size() == 0 && magicians.size() == 0 && boss.size() == 0) {
 			finished = player.checkFlag(flags);
 		}
 

@@ -115,8 +115,8 @@ public class Level2State extends GameState {
 		 * heart
 		 */
 		Heart heart;
-		Point[] hearthPoints = new Point[] { new Point(1776, 208),
-
+		Point[] hearthPoints = new Point[] { 
+				new Point(1776, 208),
 		};
 		for (int i = 0; i < hearthPoints.length; i++) {
 			heart = new Heart(tilemap);
@@ -128,20 +128,41 @@ public class Level2State extends GameState {
 		 * Jetpack
 		 */
 		Jetpack jetpack;
-		Point[] jetpackPoints = new Point[] { new Point(1018, 240), new Point(1856, 208)
-
+		Point[] jetpackPoints = new Point[] { 
+				new Point(1018, 240), 
+				new Point(1856, 208)
 		};
 		for (int i = 0; i < jetpackPoints.length; i++) {
 			jetpack = new Jetpack(tilemap);
 			jetpack.setPosition(jetpackPoints[i].x, jetpackPoints[i].y);
 			powerups.add(jetpack);
 		}
+		
+		/*
+		 * Jetpack Multiplayer
+		 */
+		if (EpixView.isMultiplayer()){
+			Jetpack jetpack2;
+			Point[] jetpackPoints2 = new Point[] {
+					new Point(1048, 240), 
+					new Point(1886, 208)
+			};
+
+			for (int i = 0; i < jetpackPoints2.length; i++) {
+				jetpack2 = new Jetpack(tilemap);
+				jetpack2.setPosition(jetpackPoints2[i].x, jetpackPoints2[i].y);
+				powerups.add(jetpack2);
+			}
+		}
 
 		/*
 		 * Shield
 		 */
 		Shield shield;
-		Point[] shieldPoints = new Point[] { new Point(1136, 48), new Point(2300, 48), };
+		Point[] shieldPoints = new Point[] { 
+				new Point(1136, 48), 
+				new Point(2300, 48), 
+		};
 		for (int i = 0; i < shieldPoints.length; i++) {
 			shield = new Shield(tilemap);
 			shield.setPosition(shieldPoints[i].x, shieldPoints[i].y);
@@ -158,8 +179,17 @@ public class Level2State extends GameState {
 		plant = new ArrayList<Plant>();
 
 		Plant s;
-		Point[] plantPoints = new Point[] { new Point(370, 176), new Point(462, 144), new Point(1200, 240), new Point(1270, 176), new Point(1741, 80), new Point(1974, 80), new Point(2666, 48),
-				new Point(2673, 176), new Point(2673, 112), };
+		Point[] plantPoints = new Point[] { 
+				new Point(370, 176), 
+				new Point(462, 144), 
+				new Point(1200, 240), 
+				new Point(1270, 176), 
+				new Point(1741, 80), 
+				new Point(1974, 80), 
+				new Point(2666, 48),
+				new Point(2673, 176), 
+				new Point(2673, 112), 
+		};
 		for (int i = 0; i < plantPoints.length; i++) {
 			s = new Plant(tilemap);
 			s.setPosition(plantPoints[i].x, plantPoints[i].y);
@@ -173,7 +203,10 @@ public class Level2State extends GameState {
 		magicians = new ArrayList<Magician>();
 
 		Magician m;
-		Point[] magicanPoints = new Point[] { new Point(1023, 48), new Point(2855, 240), };
+		Point[] magicanPoints = new Point[] { 
+				new Point(1023, 48), 
+				new Point(2855, 240), 
+		};
 		for (int i = 0; i < magicanPoints.length; i++) {
 			m = new Magician(tilemap, player);
 			m.setPosition(magicanPoints[i].x, magicanPoints[i].y);
@@ -186,9 +219,14 @@ public class Level2State extends GameState {
 		shootingPlant = new ArrayList<ShootingPlant>();
 
 		ShootingPlant p;
-		Point[] shootingPlantPoints = new Point[] { new Point(303, 112), new Point(686, 144), new Point(1232, 208), new Point(1295, 144), new Point(3150, 80), new Point(3150, 144),
+		Point[] shootingPlantPoints = new Point[] { 
+				new Point(303, 112), 
+				new Point(686, 144), 
+				new Point(1232, 208), 
+				new Point(1295, 144), 
+				new Point(3150, 80), 
+				new Point(3150, 144),
 				new Point(3150, 208),
-
 		};
 		for (int i = 0; i < shootingPlantPoints.length; i++) {
 			p = new ShootingPlant(tilemap, false);
@@ -205,15 +243,30 @@ public class Level2State extends GameState {
 		 * coin
 		 */
 		Coin coin;
-		Point[] coinPoints = new Point[] { new Point(331, 80),
+		Point[] coinPoints = new Point[] { 
+				new Point(331, 80),
 
-		new Point(914, 112), new Point(946, 112), new Point(978, 112), new Point(1010, 112), new Point(1042, 112), new Point(1074, 112), new Point(1106, 112), new Point(1138, 112),
+				new Point(914, 112), 
+				new Point(946, 112),
+				new Point(978, 112), 
+				new Point(1010, 112),
+				new Point(1042, 112), 
+				new Point(1074, 112),
+				new Point(1106, 112), 
+				new Point(1138, 112),
 
-		new Point(1940, 176), new Point(1940, 208), new Point(1940, 240),
+				new Point(1940, 176),
+				new Point(1940, 208),
+				new Point(1940, 240),
 
-		new Point(2236, 48), new Point(2268, 48), new Point(2332, 48), new Point(2364, 48),
+				new Point(2236, 48),
+				new Point(2268, 48), 
+				new Point(2332, 48), 
+				new Point(2364, 48),
 
-		new Point(2896, 112), new Point(2928, 112), };
+				new Point(2896, 112),
+				new Point(2928, 112), 
+		};
 		for (int i = 0; i < coinPoints.length; i++) {
 			coin = new Coin(tilemap);
 			coin.setPosition(coinPoints[i].x, coinPoints[i].y);
@@ -227,8 +280,8 @@ public class Level2State extends GameState {
 		 * flag
 		 */
 		Flag flag;
-		Point[] flagPoints = new Point[] { new Point(2960, 240),
-
+		Point[] flagPoints = new Point[] { 
+				new Point(2960, 240),
 		};
 		for (int i = 0; i < flagPoints.length; i++) {
 			flag = new Flag(tilemap);
@@ -268,7 +321,7 @@ public class Level2State extends GameState {
 		player.checkCoin(coins);
 
 		// check if no enimies in level
-		if (plant.size() == 0 && shootingPlant.size() == 0 && magicians.size() == 0) {
+		if (plant.size() == 0 && shootingPlant.size() == 0 && magicians.size() == 0 && boss.size() == 0) {
 			finished = player.checkFlag(flags);
 		}
 

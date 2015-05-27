@@ -100,7 +100,9 @@ public class BossState extends GameState {
 		 * damageup
 		 */
 		DamageUp damageUp;
-		Point[] damagUpPoints = new Point[] { new Point(529, 240), new Point(3150, 48),
+		Point[] damagUpPoints = new Point[] { 
+				new Point(529, 240), 
+				new Point(3150, 48),
 
 		};
 		for (int i = 0; i < damagUpPoints.length; i++) {
@@ -113,7 +115,9 @@ public class BossState extends GameState {
 		 * heart
 		 */
 		Heart heart;
-		Point[] hearthPoints = new Point[] { new Point(1232, 112), new Point(2544, 112),
+		Point[] hearthPoints = new Point[] { 
+				new Point(1232, 112),
+				new Point(2544, 112),
 
 		};
 		for (int i = 0; i < hearthPoints.length; i++) {
@@ -126,7 +130,9 @@ public class BossState extends GameState {
 		 * Jetpack
 		 */
 		Jetpack jetpack;
-		Point[] jetpackPoints = new Point[] { new Point(1663, 240), new Point(3116, 208),
+		Point[] jetpackPoints = new Point[] { 
+				new Point(1663, 240), 
+				new Point(3116, 208),
 
 		};
 		for (int i = 0; i < jetpackPoints.length; i++) {
@@ -134,12 +140,31 @@ public class BossState extends GameState {
 			jetpack.setPosition(jetpackPoints[i].x, jetpackPoints[i].y);
 			powerups.add(jetpack);
 		}
+		
+		/*
+		 * Jetpack Multiplayer
+		 */
+		if (EpixView.isMultiplayer()){
+			Jetpack jetpack2;
+			Point[] jetpackPoints2 = new Point[] {
+					new Point(1693, 240), 
+					new Point(3146, 208),
+			};
+
+			for (int i = 0; i < jetpackPoints2.length; i++) {
+				jetpack2 = new Jetpack(tilemap);
+				jetpack2.setPosition(jetpackPoints2[i].x, jetpackPoints2[i].y);
+				powerups.add(jetpack2);
+			}
+		}
 
 		/*
 		 * Shield
 		 */
 		Shield shield;
-		Point[] shieldPoints = new Point[] { new Point(46, 32), new Point(2606, 48), };
+		Point[] shieldPoints = new Point[] { 
+				new Point(46, 32), 
+				new Point(2606, 48), };
 		for (int i = 0; i < shieldPoints.length; i++) {
 			shield = new Shield(tilemap);
 			shield.setPosition(shieldPoints[i].x, shieldPoints[i].y);
@@ -156,8 +181,17 @@ public class BossState extends GameState {
 		plant = new ArrayList<Plant>();
 
 		Plant s;
-		Point[] plantPoints = new Point[] { new Point(366, 240), new Point(528, 240), new Point(1046, 240), new Point(1199, 240), new Point(1390, 240), new Point(1514, 176), new Point(1844, 144),
-				new Point(1966, 144), new Point(2260, 176), new Point(2388, 240), };
+		Point[] plantPoints = new Point[] { 
+				new Point(366, 240), 
+				new Point(528, 240), 
+				new Point(1046, 240), 
+				new Point(1199, 240), 
+				new Point(1390, 240), 
+				new Point(1514, 176), 
+				new Point(1844, 144),
+				new Point(1966, 144), 
+				new Point(2260, 176), 
+				new Point(2388, 240), };
 		for (int i = 0; i < plantPoints.length; i++) {
 			s = new Plant(tilemap);
 			s.setPosition(plantPoints[i].x, plantPoints[i].y);
@@ -170,15 +204,27 @@ public class BossState extends GameState {
 		shootingPlant = new ArrayList<ShootingPlant>();
 
 		ShootingPlant p;
-		Point[] shootingPlantPoints = new Point[] { new Point(400, 48), new Point(432, 80), new Point(464, 112), new Point(496, 144), new Point(528, 176),
+		Point[] shootingPlantPoints = new Point[] { 
+			new Point(400, 48), 
+			new Point(432, 80), 
+			new Point(464, 112),
+			new Point(496, 144),
+			new Point(528, 176),
 
-		new Point(1172, 48), new Point(1140, 80), new Point(1108, 112), new Point(1076, 144), new Point(1042, 176),
-
-		new Point(1454, 48), new Point(1484, 112),
-
-		new Point(1876, 144), new Point(1934, 144),
-
-		new Point(2290, 112), new Point(2322, 48),
+			new Point(1172, 48), 
+			new Point(1140, 80),
+			new Point(1108, 112), 
+			new Point(1076, 144), 
+			new Point(1042, 176),
+		
+			new Point(1454, 48), 
+			new Point(1484, 112),
+		
+			new Point(1876, 144), 
+			new Point(1934, 144),
+		
+			new Point(2290, 112), 
+			new Point(2322, 48),
 
 		};
 		for (int i = 0; i < shootingPlantPoints.length; i++) {
@@ -193,7 +239,12 @@ public class BossState extends GameState {
 		magicians = new ArrayList<Magician>();
 
 		Magician m;
-		Point[] magicanPoints = new Point[] { new Point(655, 240), new Point(928, 240), new Point(1522, 240), new Point(1897, 240), new Point(2253, 240), };
+		Point[] magicanPoints = new Point[] { 
+				new Point(655, 240), 
+				new Point(928, 240), 
+				new Point(1522, 240), 
+				new Point(1897, 240), 
+				new Point(2253, 240), };
 		for (int i = 0; i < magicanPoints.length; i++) {
 			m = new Magician(tilemap, player);
 			m.setPosition(magicanPoints[i].x, magicanPoints[i].y);
@@ -206,7 +257,8 @@ public class BossState extends GameState {
 		boss = new ArrayList<Boss>();
 
 		Boss b;
-		Point[] bossPoint = new Point[] { new Point(2899, 218),
+		Point[] bossPoint = new Point[] { 
+				new Point(2899, 218),
 
 		};
 		for (int i = 0; i < bossPoint.length; i++) {
@@ -223,18 +275,46 @@ public class BossState extends GameState {
 		 * coin
 		 */
 		Coin coin;
-		Point[] coinPoints = new Point[] { new Point(338, 32), new Point(338, 64), new Point(338, 96), new Point(338, 128),
+		Point[] coinPoints = new Point[] { 
+				new Point(338, 32), 
+				new Point(338, 64), 
+				new Point(338, 96), 
+				new Point(338, 128),
 
-		new Point(400, 48), new Point(1172, 48),
-
-		new Point(1360, 112), new Point(1360, 80), new Point(1424, 112), new Point(1424, 144),
-
-		new Point(1454, 48), new Point(1874, 48), new Point(1934, 48), new Point(2316, 48),
-
-		new Point(2354, 112), new Point(2354, 144), new Point(2414, 112), new Point(2414, 80),
-
-		new Point(2638, 48), new Point(2670, 48), new Point(2702, 48), new Point(2734, 48), new Point(2766, 48), new Point(2798, 48), new Point(2830, 48), new Point(2862, 48), new Point(2894, 48),
-				new Point(2926, 48), new Point(2958, 48), new Point(2990, 48), new Point(3022, 48), new Point(3054, 48), new Point(3086, 48), new Point(3118, 48),
+				new Point(400, 48), 
+				new Point(1172, 48),
+		
+				new Point(1360, 112),
+				new Point(1360, 80),
+				new Point(1424, 112),
+				new Point(1424, 144),
+		
+				new Point(1454, 48), 
+				new Point(1874, 48), 
+				new Point(1934, 48), 
+				new Point(2316, 48),
+		
+				new Point(2354, 112), 
+				new Point(2354, 144), 
+				new Point(2414, 112), 
+				new Point(2414, 80),
+		
+				new Point(2638, 48), 
+				new Point(2670, 48),
+				new Point(2702, 48), 
+				new Point(2734, 48), 
+				new Point(2766, 48), 
+				new Point(2798, 48), 
+				new Point(2830, 48), 
+				new Point(2862, 48),
+				new Point(2894, 48),
+				new Point(2926, 48), 
+				new Point(2958, 48), 
+				new Point(2990, 48), 
+				new Point(3022, 48), 
+				new Point(3054, 48),
+				new Point(3086, 48),
+				new Point(3118, 48),
 
 		};
 		for (int i = 0; i < coinPoints.length; i++) {
@@ -292,7 +372,7 @@ public class BossState extends GameState {
 		player.checkCoin(coins);
 
 		// check if no enimies in level
-		if (plant.size() == 0 && shootingPlant.size() == 0 && magicians.size() == 0) {
+		if (plant.size() == 0 && shootingPlant.size() == 0 && magicians.size() == 0 && boss.size() == 0) {
 			finished = player.checkFlag(flags);
 		}
 

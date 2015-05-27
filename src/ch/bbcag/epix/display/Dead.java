@@ -11,6 +11,13 @@ import javax.imageio.ImageIO;
 
 import ch.bbcag.epix.view.GameFrame;
 
+
+/**
+ * Display fuer Todesanzeige
+ *
+ * @author Chiramet Phong Penglerd, Miguel Jorge || ICT Berufsbildungs AG
+ *			Copyright Berufsbildungscenter 2015
+ */
 public class Dead {
 	
 private BufferedImage pauseImage;	
@@ -18,6 +25,10 @@ private BufferedImage pauseImage;
 	private Rectangle2D restartRect;
 	private Rectangle2D quitRect;
 	
+	
+	/**
+	 * Kontruktor
+	 */
 	public Dead() {
 		try {
 			pauseImage = ImageIO.read(getClass().getResourceAsStream("/Displays/Dead.png"));
@@ -29,6 +40,10 @@ private BufferedImage pauseImage;
 	}
 	
 	
+	/**
+	 * Draw
+	 * @param g {@link Graphics2D}
+	 */
 	public void draw(Graphics2D g) {
 
 		g.setColor(new Color(141, 150, 149, 50));
@@ -48,31 +63,25 @@ private BufferedImage pauseImage;
 		g.drawString("Quit", 200, 172);		
 		setQuitRect(g.getFontMetrics().getStringBounds("Quit", g));
 		getQuitRect().setRect(200,172 - g.getFontMetrics().getAscent(), getQuitRect().getWidth(), getQuitRect().getHeight());
-
-
 	}
 
 	
-
-
-
+	/*
+	 * Getter und Setter
+	 */
 	public Rectangle2D getRestartRect() {
 		return restartRect;
 	}
-
 
 	public void setRestartRect(Rectangle2D restartRect) {
 		this.restartRect = restartRect;
 	}
 
-
 	public Rectangle2D getQuitRect() {
 		return quitRect;
 	}
 
-
 	public void setQuitRect(Rectangle2D quitRect) {
 		this.quitRect = quitRect;
 	}
-
 }

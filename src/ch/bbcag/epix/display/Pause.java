@@ -12,6 +12,13 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import ch.bbcag.epix.view.GameFrame;
 
+
+/**
+ * Display fuer pausierung des Spiels
+ *
+ * @author Chiramet Phong Penglerd, Miguel Jorge || ICT Berufsbildungs AG
+ *			Copyright Berufsbildungscenter 2015
+ */
 public class Pause {
 	
 	private BufferedImage pauseImage;	
@@ -20,17 +27,23 @@ public class Pause {
 	private Rectangle2D restartRect;
 	private Rectangle2D quitRect;
 	
+	
+	/**
+	 * Konstruktor
+	 */
 	public Pause() {
 		try {
 			pauseImage = ImageIO.read(getClass().getResourceAsStream("/Displays/Pause.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-
 	}
 	
 	
+	/**
+	 * Draw
+	 * @param g {@link Graphics2D}
+	 */
 	public void draw(Graphics2D g) {
 
 		g.setColor(new Color(141, 150, 149, 50));
@@ -58,40 +71,31 @@ public class Pause {
 	}
 
 	
-
+	/*
+	 * Getter und Setter
+	 */
 	public Rectangle2D getResumeRect() {
 		return resumeRect;
 	}
-
 
 	public void setResumeRect(Rectangle2D resumeRect) {
 		this.resumeRect = resumeRect;
 	}
 
-
 	public Rectangle2D getRestartRect() {
 		return restartRect;
 	}
-
 
 	public void setRestartRect(Rectangle2D restartRect) {
 		this.restartRect = restartRect;
 	}
 
-
 	public Rectangle2D getQuitRect() {
 		return quitRect;
 	}
 
-
 	public void setQuitRect(Rectangle2D quitRect) {
 		this.quitRect = quitRect;
 	}
-
-
-
-
-
-
 }
 	

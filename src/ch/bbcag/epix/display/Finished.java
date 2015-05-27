@@ -11,6 +11,12 @@ import javax.imageio.ImageIO;
 
 import ch.bbcag.epix.view.GameFrame;
 
+/**
+ * Display fuer das beenden des Levels
+ *
+ * @author Chiramet Phong Penglerd, Miguel Jorge || ICT Berufsbildungs AG
+ *			Copyright Berufsbildungscenter 2015
+ */
 public class Finished {
 
 private BufferedImage pauseImage;	
@@ -18,17 +24,23 @@ private BufferedImage pauseImage;
 	private Rectangle2D continueRect;
 	private Rectangle2D restartRect;
 	
+	
+	/**
+	 * Konstruktor
+	 */
 	public Finished() {
 		try {
 			pauseImage = ImageIO.read(getClass().getResourceAsStream("/Displays/Finished.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-
 	}
 	
 	
+	/**
+	 * Draw
+	 * @param g {@link Graphics2D}
+	 */
 	public void draw(Graphics2D g) {
 
 		g.setColor(new Color(141, 150, 149, 50));
@@ -52,29 +64,22 @@ private BufferedImage pauseImage;
 
 	}
 
-	
-
-
-
-
+	/*
+	 * Getter und Setter
+	 */
 	public Rectangle2D getRestartRect() {
 		return restartRect;
 	}
-
 
 	public void setRestartRect(Rectangle2D restartRect) {
 		this.restartRect = restartRect;
 	}
 
-
 	public Rectangle2D getContinueRect() {
 		return continueRect;
 	}
 
-
 	public void setContinueRect(Rectangle2D continueRect) {
 		this.continueRect = continueRect;
 	}
-
-
 }

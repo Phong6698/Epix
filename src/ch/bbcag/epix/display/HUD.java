@@ -12,9 +12,9 @@ import javax.imageio.ImageIO;
 import ch.bbcag.epix.entity.Player;
 
 /**
- * 
+ * HUD Spieler Informations Anzeige
  * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
- *         HUD.java.java Copyright Berufsbildungscenter 2015
+ *         Copyright Berufsbildungscenter 2015
  */
 
 public class HUD {
@@ -26,6 +26,11 @@ public class HUD {
 	
 	private Font font;
 
+	
+	/**
+	 * Kontruktor
+	 * @param p {@link Player}
+	 */
 	public HUD(Player p) {
 
 		setPlayer(p);
@@ -38,9 +43,13 @@ public class HUD {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
+	
+	/**
+	 * Draw
+	 * @param g {@link Graphics2D}
+	 */
 	public void draw(Graphics2D g) {
 
 		float[] scales = { 1f, 1f, 1f, 0.6f };
@@ -71,6 +80,10 @@ public class HUD {
 
 	}
 
+	
+	/*
+	 * Getter und Setter
+	 */
 	public Player getPlayer() {
 		return player;
 	}

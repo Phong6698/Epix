@@ -1,13 +1,18 @@
 package ch.bbcag.epix.dao;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
+
+import ch.bbcag.epix.view.GameFrame;
 
 /**
  * Datenbank Verbindung
@@ -43,11 +48,29 @@ public class Database {
 //		}
 //		catch(FileNotFoundException e){
 //			System.out.println("File nicht gefunden");
-//		}
+//		}	
 		
-		String db = "jdbc:mysql://192.168.3.171:3307/epix";
-		String user = "ws-zpengc.bbcnet";
-		String pw = "1234";
+//		String db = "jdbc:mysql://192.168.3.171:3307/epix";
+//		String user = "ws-zpengc.bbcnet";
+//		String pw = "1234";
+		
+		String db = "";
+		String user = "";
+		String pw = "";
+		try {
+
+			InputStream in = getClass().getResourceAsStream("/Databases/data2.csv");
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			db = br.readLine();
+			user = br.readLine();
+			pw = br.readLine();
+	
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+
 		
 		//Connection aufbauen
 		setCon(DriverManager.getConnection(db, user, pw));

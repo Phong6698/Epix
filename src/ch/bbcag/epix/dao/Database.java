@@ -45,16 +45,16 @@ public class Database {
 //			System.out.println("File nicht gefunden");
 //		}	
 		
-//		String db = "jdbc:mysql://192.168.3.171:3307/epix";
-//		String user = "ws-zpengc.bbcnet";
-//		String pw = "1234";
+		String db = "jdbc:mysql://192.168.3.171:3307/epix";
+		String user = "ws-zpengc.bbcnet";
+		String pw = "1234";
 		
-		String db = "";
-		String user = "";
-		String pw = "";
+//		String db = "";
+//		String user = "";
+//		String pw = "";
 		try {
 
-			InputStream in = getClass().getResourceAsStream("/Databases/data2.csv");
+			InputStream in = getClass().getResourceAsStream("/Databases/data.csv");
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			db = br.readLine();
 			user = br.readLine();

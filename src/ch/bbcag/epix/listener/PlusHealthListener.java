@@ -46,15 +46,12 @@ public class PlusHealthListener implements ActionListener {
 		if (user.getCoin() >= 5) {
 		user.setCoin(user.getCoin() - 5);
 		user.setMaxHealth(user.getMaxHealth() + 5);
-		EpixController.getInstance().coinsUpdate(user, user.getCoin() -5);
+		EpixController.getInstance().coinsUpdate(user, user.getCoin());
 		menuCardCoinLabel.setText("" + user.getCoin());
 		maxHealthBar.setValue(user.getMaxHealth()-50);
-		System.out.println(maxHealthBar.getValue());
-		System.out.println(user.getMaxHealth());
 		CardLayout cardLayout = (CardLayout) getCard().getLayout();
 		cardLayout.show(getCard(), "upgradeCard");
 		}
-		
 	}
 
 

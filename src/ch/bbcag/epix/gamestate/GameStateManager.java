@@ -153,7 +153,7 @@ public class GameStateManager {
 		try {
 			getGameStates()[currentLevel].draw(g);
 		} catch (Exception e) {
-			e.printStackTrace();
+		
 		}
 	}
 

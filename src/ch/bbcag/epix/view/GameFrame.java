@@ -79,7 +79,7 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 		
 		this.level = level;
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(true);
+		this.setResizable(false);
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setPreferredSize(new Dimension((int)(WIDTH * SCALE), (int)(HEIGHT * SCALE)));
@@ -172,6 +172,9 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 				update();			
 			}
 			
+			drawToScreen();
+			draw();	
+			
 			elapsed = System.nanoTime() - start;
 			
 			wait = targetTime - elapsed / 1000000;
@@ -184,8 +187,7 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 				e.printStackTrace();
 			}	
 					
-			drawToScreen();
-			draw();		
+				
 		}		
 	}
 	

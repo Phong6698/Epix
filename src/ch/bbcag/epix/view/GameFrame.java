@@ -9,7 +9,9 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 import ch.bbcag.epix.display.Dead;
@@ -78,6 +80,7 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 		setEpix(epix);
 		
 		this.level = level;
+		this.setTitle("Epix");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.pack();
@@ -88,6 +91,12 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 		this.setFocusable(true);
 		this.requestFocus();
 		this.setVisible(true);
+		try {
+			this.setIconImage(ImageIO.read(getClass().getResourceAsStream("/Others/Epix.png")));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		setPauseDisplay(new Pause());
 		setDeadDisplay(new Dead());

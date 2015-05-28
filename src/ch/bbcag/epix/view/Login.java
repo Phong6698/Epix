@@ -1,8 +1,10 @@
 package ch.bbcag.epix.view;
 
 import java.awt.Font;
+import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -57,6 +59,12 @@ public class Login extends JFrame{
 		login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		login.getContentPane().setLayout(null);
 		login.setResizable(false);
+		try {
+			login.setIconImage(ImageIO.read(getClass().getResourceAsStream("/Others/Epix.png")));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	
 		titelLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		titelLabel.setBounds(48, 11, 141, 23);

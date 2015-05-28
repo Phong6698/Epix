@@ -146,11 +146,18 @@ public class EpixView extends JFrame {
 		EpixController.getInstance().getPlayerStats(user);
 
 		JFrame epix = new JFrame();
+		epix.setTitle("Epix");
 		epix.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		epix.setResizable(false);
 		epix.setBounds(100, 100, 801, 523);
 		epix.setLocationRelativeTo(null);
 		epix.getContentPane().removeAll();
+		try {
+			epix.setIconImage(ImageIO.read(getClass().getResourceAsStream("/Others/Epix.png")));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		multiplayer = false;
 

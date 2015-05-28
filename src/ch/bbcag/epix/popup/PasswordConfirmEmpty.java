@@ -14,7 +14,7 @@ public class PasswordConfirmEmpty extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	public PasswordConfirmEmpty() {
-		JOptionPane.showMessageDialog(null,"Bitte Passwort best�tigen!", null, JOptionPane.WARNING_MESSAGE, null);
+		JOptionPane.showMessageDialog(null,"Bitte Passwort best\u00E4tigen!", null, JOptionPane.WARNING_MESSAGE, null);
 	};
 
 }

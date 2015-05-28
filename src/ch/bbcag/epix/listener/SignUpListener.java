@@ -33,7 +33,6 @@ public class SignUpListener implements ActionListener {
 	 * @param email {@link JTextField}
 	 * @param password {@link JPasswordField}
 	 * @param passwordConfirm {@link JPasswordField}
-	 * @param registrationView {@link JFrame}
 	 */
 	public SignUpListener(JTextField username, JTextField email, JPasswordField password,JPasswordField passwordConfirm){
 		this.setUser(username);

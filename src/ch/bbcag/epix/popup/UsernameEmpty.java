@@ -12,7 +12,7 @@ public class UsernameEmpty extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	public UsernameEmpty() {
-		JOptionPane.showMessageDialog(null,"Bitte Username ausf�llen!", null, JOptionPane.WARNING_MESSAGE, null);
+		JOptionPane.showMessageDialog(null,"Bitte Username ausf\u00FCllen!", null, JOptionPane.WARNING_MESSAGE, null);
 	};
 
 }

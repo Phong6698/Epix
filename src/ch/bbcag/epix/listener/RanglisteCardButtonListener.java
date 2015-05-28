@@ -27,7 +27,7 @@ public class RanglisteCardButtonListener implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals("Zur�ck")) {	
+		if (e.getActionCommand().equals("Zur\u00FCck")) {	
 			CardLayout cardLayout = (CardLayout) getCard().getLayout();
 			cardLayout.show(getCard(), "menuCard");
 		} 	

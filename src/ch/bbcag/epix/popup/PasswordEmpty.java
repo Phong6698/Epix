@@ -14,7 +14,7 @@ public class PasswordEmpty extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	public PasswordEmpty() {
-		JOptionPane.showMessageDialog(null,"Bitte Passwort ausf�llen!", null, JOptionPane.WARNING_MESSAGE, null);
+		JOptionPane.showMessageDialog(null,"Bitte Passwort ausf\u00FCllen!", null, JOptionPane.WARNING_MESSAGE, null);
 	};
 
 }

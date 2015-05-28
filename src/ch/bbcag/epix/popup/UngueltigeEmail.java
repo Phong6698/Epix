@@ -14,7 +14,7 @@ public class UngueltigeEmail extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	public UngueltigeEmail() {
-		JOptionPane.showMessageDialog(null,"Bitte g�ltige E-Mail Adresse eingeben", null, JOptionPane.ERROR_MESSAGE, null);
+		JOptionPane.showMessageDialog(null,"Bitte g\u00FCltige E-Mail Adresse eingeben", null, JOptionPane.ERROR_MESSAGE, null);
 	};
 
 }

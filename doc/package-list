@@ -1,0 +1,15 @@
+ch.bbcag.epix.audio
+ch.bbcag.epix.controller
+ch.bbcag.epix.dao
+ch.bbcag.epix.display
+ch.bbcag.epix.enemies
+ch.bbcag.epix.entity
+ch.bbcag.epix.gamestate
+ch.bbcag.epix.junit
+ch.bbcag.epix.levels
+ch.bbcag.epix.listener
+ch.bbcag.epix.popup
+ch.bbcag.epix.powerups
+ch.bbcag.epix.tilemap
+ch.bbcag.epix.utils
+ch.bbcag.epix.view

@@ -7,7 +7,7 @@ import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 /**
- * Encoder & Decoder
+ * Encoder und Decoder
  * @author Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
  *			Copyright Berufsbildungscenter 2015
  */

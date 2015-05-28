@@ -106,7 +106,8 @@ public class ShootingPlant extends Enemy {
 	/**
 	 * Ob die Pflanze den gegner attackiert
 	 * 
-	 * @param player {@link Player}
+	 * @param playerHit {@link Player}
+	 * @param playerHealth {@link Player}
 	 */	
 	public void checkAttackPlayer(Player playerHit, Player playerHealth){
 		for (int j = 0; j < getPlantshots().size(); j++) {
@@ -194,7 +195,7 @@ public class ShootingPlant extends Enemy {
 	 * Schaut ob der Spieler die Pflanze auf dem Bildschirm sieht
 	 * 
 	 * @param e {@link ShootingPlant}
-	 * @param player {@link Player}
+	 * @param range
 	 * @return ob der Spieler die Plfanze auf dem Bildschirm sieht
 	 */
 	public boolean OnScreen(ShootingPlant e, int range) {

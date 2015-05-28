@@ -89,6 +89,8 @@ public class Level2State extends GameState {
 
 		if (EpixView.isMultiplayer() == true) {
 			player_2 = new Player(tilemap, user);
+			player_2.setCoin(0);
+			player_2.setCollectedCoin(0);
 			player_2.setPosition(80, 40);
 		}
 
@@ -343,6 +345,9 @@ public class Level2State extends GameState {
 
 			player_2.checkPowerup(powerups, player_2);
 			player_2.checkCoin(coins);
+			
+			player.setCoin(player.getCoin() + player_2.getCoin());
+			player_2.setCoin(0);
 		}
 
 		tilemap.setPosition(GameFrame.WIDTH / 3 - player.getx(), GameFrame.HEIGHT / 3 - player.gety());

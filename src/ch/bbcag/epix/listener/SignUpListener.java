@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 
 import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.User;
+import ch.bbcag.epix.view.Login;
 
 /**
  * ActionListner fuer den Button registrieren, traegt einen neuen User in die DB ein
@@ -23,45 +24,58 @@ public class SignUpListener implements ActionListener {
 	private JPasswordField password = null;
 	private JPasswordField passwordConfirm = null;
 	private JTextField email = null;
-	private JFrame login;
+	private JFrame registrationView = null;
 
 	
 	/**
-	 * Konstruktor
+	 * Konstruktor fuer Registrieren
 	 * @param username {@link JTextField}
 	 * @param email {@link JTextField}
 	 * @param password {@link JPasswordField}
 	 * @param passwordConfirm {@link JPasswordField}
-	 * @param login {@link JFrame}
+	 * @param registrationView {@link JFrame}
 	 */
-	public SignUpListener(JTextField username, JTextField email, JPasswordField password,JPasswordField passwordConfirm, JFrame login){
+	public SignUpListener(JTextField username, JTextField email, JPasswordField password,JPasswordField passwordConfirm){
 		this.setUser(username);
 		this.setEmail(email);
 		this.setPassword(password);
 		this.setPasswordConfirm(passwordConfirm);
-		this.setLogin(login);
 	}
+	
+	
+	/**
+	 * Konstruktor fuer zurueck
+	 * @param registrationView {@link JFrame}
+	 */
+	public SignUpListener(JFrame registrationView){
+		this.setRegistrationView(registrationView);
+	}
+	
 	
 	/*
 	 * ActionListner fuer den Button registrieren, traegt einen neuen User in die DB ein
 	 */
 	public void actionPerformed(ActionEvent e) {
-		
-		User newUser = new User();
-		
-		String user = this.getUser().getText();
-		@SuppressWarnings("deprecation")
-		String password = this.getPassword().getText();
-		@SuppressWarnings("deprecation")
-		String passwordConfirm = this.getPasswordConfirm().getText();
-		String email = this.getEmail().getText();
-		
-		newUser.setUsername(user);
-		newUser.setPassword(password);
-		newUser.setPasswordConfirm(passwordConfirm);
-		newUser.setEmail(email);
-
-		EpixController.getInstance().registrieren(newUser);
+		if(e.getActionCommand().equals("Registrieren")){
+			User newUser = new User();
+			
+			String user = this.getUser().getText();
+			@SuppressWarnings("deprecation")
+			String password = this.getPassword().getText();
+			@SuppressWarnings("deprecation")
+			String passwordConfirm = this.getPasswordConfirm().getText();
+			String email = this.getEmail().getText();
+			
+			newUser.setUsername(user);
+			newUser.setPassword(password);
+			newUser.setPasswordConfirm(passwordConfirm);
+			newUser.setEmail(email);
+	
+			EpixController.getInstance().registrieren(newUser);
+		} else if(e.getActionCommand().equals("Zur\u00FCck")){
+			getRegistrationView().dispose();
+			new Login();
+		}
 	}
 	
 
@@ -91,20 +105,20 @@ public class SignUpListener implements ActionListener {
 		this.email = email;
 	}
 
-	public JFrame getLogin() {
-		return login;
-	}
-
-	public void setLogin(JFrame login) {
-		this.login = login;
-	}
-
 	public JPasswordField getPasswordConfirm() {
 		return passwordConfirm;
 	}
 
 	public void setPasswordConfirm(JPasswordField passwordConfirm) {
 		this.passwordConfirm = passwordConfirm;
+	}
+
+	public JFrame getRegistrationView() {
+		return registrationView;
+	}
+
+	public void setRegistrationView(JFrame registrationView) {
+		this.registrationView = registrationView;
 	}
 
 }

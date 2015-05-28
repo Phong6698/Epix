@@ -10,9 +10,10 @@ import javax.swing.JTextField;
 import ch.bbcag.epix.controller.EpixController;
 import ch.bbcag.epix.entity.User;
 import ch.bbcag.epix.view.EpixView;
+import ch.bbcag.epix.view.Registration;
 
 /**
- * Listener fuers Login
+ * Listener fuers LoginView
  * @author  Miguel Jorge, Penglerd Chiramet Phong || ICT Berufsbildungs AG
  *			LoginListener.java.java Copyright Berufsbildungscenter 2015
  */
@@ -25,7 +26,7 @@ public class LoginListener implements ActionListener {
 
 	
 	/**
-	 * 
+	 * Konstruktor fuer Login
 	 * @param username {@link JTextField}
 	 * @param password {@link JPasswordField}
 	 * @param loginView {@link JFrame}
@@ -35,22 +36,37 @@ public class LoginListener implements ActionListener {
 		this.setUsername(username);
 		this.setPassword(password);
 	}
+	
+	
+	/**
+	 * Konstruktor fuer Registrieren
+	 * @param loginView {@link JFrame}
+	 */
+	public LoginListener(JFrame loginView) {
+		this.setLoginView(loginView);
+	}
+	
+	
 
 	public void actionPerformed(ActionEvent e) {
 
-		User loginUser = new User();
-
-		String user = this.getUsername().getText();
-		@SuppressWarnings("deprecation")
-		String password = this.getPassword().getText();
-
-		loginUser.setPassword(password);
-		loginUser.setUsername(user);
-
-		if (EpixController.getInstance().login(loginUser) == true) {
-			loginView.dispose();
-			User player = EpixController.getInstance().playerLogin(user);
-			new EpixView(player);
+		if(e.getActionCommand().equals("Login")){
+			User loginUser = new User();
+			String user = this.getUsername().getText();
+			@SuppressWarnings("deprecation")
+			String password = this.getPassword().getText();
+	
+			loginUser.setPassword(password);
+			loginUser.setUsername(user);
+	
+			if (EpixController.getInstance().login(loginUser) == true) {
+				loginView.dispose();
+				User player = EpixController.getInstance().playerLogin(user);
+				new EpixView(player);
+			}
+		} else if(e.getActionCommand().equals("Registrieren")) {
+			getLoginView().dispose();	
+			new Registration();
 		}
 	}
 

@@ -10,7 +10,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import ch.bbcag.epix.listener.LoginListener;
-import ch.bbcag.epix.listener.RegistrierenListener;
 
 /**
  * Login
@@ -77,7 +76,7 @@ public class Login extends JFrame{
 		login.add(password);
 								
 		registrierenButton.setBounds(251, 120, 106, 23);
-		registrierenButton.addActionListener(new RegistrierenListener(login));
+		registrierenButton.addActionListener(new LoginListener(login));
 		login.add(registrierenButton);
 				
 		loginbButton.setBounds(160, 120, 84, 23);

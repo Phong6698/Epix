@@ -125,11 +125,11 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 		this.requestFocus();
 		this.setVisible(true);
 		
-		setPauseDisplay(new Pause());
-		setDeadDisplay(new Dead());
-		setFinishedDisplay(new Finished());
+		this.setPauseDisplay(new Pause());
+		this.setDeadDisplay(new Dead());
+		this.setFinishedDisplay(new Finished());
 		
-		addMouseListener(this);
+		this.addMouseListener(this);
 	}
 
 	

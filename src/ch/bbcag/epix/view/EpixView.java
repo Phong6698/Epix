@@ -155,7 +155,7 @@ public class EpixView extends JFrame {
 		try {
 			epix.setIconImage(ImageIO.read(getClass().getResourceAsStream("/Others/Epix.png")));
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
+
 			e1.printStackTrace();
 		}
 		
@@ -172,7 +172,7 @@ public class EpixView extends JFrame {
 		try {
 			menuCardCoinImage.setIcon(new ImageIcon(ImageIO.read(getClass().getResourceAsStream(coinSpinPath))));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		menuCardCoinLabel = new JLabel("" + getUser().getCoin());
@@ -194,7 +194,7 @@ public class EpixView extends JFrame {
 		try {
 			menuCardBackgroundImage.setIcon(new ImageIcon(ImageIO.read(getClass().getResource(backgroundPath))));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		menuCardBackgroundImage.setBounds(0, 0, 801, 523);
@@ -212,7 +212,7 @@ public class EpixView extends JFrame {
 		try {
 			upgradeCardCoinImage.setIcon(new ImageIcon(ImageIO.read(getClass().getResource(coinSpinPath))));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		upgradeCard.add(upgradeCardCoinImage);
@@ -303,7 +303,7 @@ public class EpixView extends JFrame {
 		try {
 			level1Button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/Others/Level 1.png"))));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}		
 		levelAuswahlCard.add(level1Button);
@@ -314,7 +314,7 @@ public class EpixView extends JFrame {
 		try {
 			level2Button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/Others/Level 2.png"))));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}		
 		levelAuswahlCard.add(level2Button);
@@ -324,7 +324,7 @@ public class EpixView extends JFrame {
 		try {
 			bossLevelButton.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/Others/Boss Level.png"))));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}		
 		levelAuswahlCard.add(bossLevelButton);
@@ -339,7 +339,7 @@ public class EpixView extends JFrame {
 		try {
 			levelAuswahlCardCoinImage.setIcon(new ImageIcon(ImageIO.read(getClass().getResource(coinSpinPath))));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		levelAuswahlCard.add(levelAuswahlCardCoinImage);
@@ -356,7 +356,7 @@ public class EpixView extends JFrame {
 		try {
 			levelAuswahlCardBackgroundImage.setIcon(new ImageIcon(ImageIO.read(getClass().getResource(backgroundPath))));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		levelAuswahlCardBackgroundImage.setBounds(0, 0, 801, 523);
@@ -376,7 +376,7 @@ public class EpixView extends JFrame {
 		try {
 			ranglisteCardCoinImage.setIcon(new ImageIcon(ImageIO.read(getClass().getResource(coinSpinPath))));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		ranglisteCardCoinLabel = new JLabel("" + getUser().getCoin());
@@ -424,7 +424,6 @@ public class EpixView extends JFrame {
 		try {
 			ranglisteCardBackgroundImage.setIcon(new ImageIcon(ImageIO.read(getClass().getResource(backgroundPath))));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		ranglisteCardBackgroundImage.setBounds(0, 0, 801, 523);
@@ -472,7 +471,7 @@ public class EpixView extends JFrame {
 		try {
 			menuCardCoinImage.setIcon(new ImageIcon(ImageIO.read(getClass().getResource(coinSpinPath))));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		menuCardCoinLabel = new JLabel("" + getUser().getCoin());

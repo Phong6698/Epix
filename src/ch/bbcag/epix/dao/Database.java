@@ -26,28 +26,6 @@ public class Database {
 	 * @throws SQLException
 	 */
 	protected Connection getCon() throws SQLException {
-//		String filename = "Resources/Databases/data.csv"; //File mit allen Informationen
-//		File file = new File(filename);
-//		String [] database = new String[3];
-//		
-//		//Liest alle Informationen aus dem CSV File und speichert sie in eine Liste
-//		try{
-//			Scanner inputStream = new Scanner(file);
-//			int i = 0;
-//			while (inputStream.hasNext()){
-//				String data = inputStream.next();
-//				database[i] = data;
-//				i++;
-//			}
-//			inputStream.close();
-//		}
-//		catch(FileNotFoundException e){
-//			System.out.println("File nicht gefunden");
-//		}	
-		
-//		String db = "jdbc:mysql://192.168.3.171:3307/epix";
-//		String user = "ws-zpengc.bbcnet";
-//		String pw = "1234";
 		
 		String db = "";
 		String user = "";

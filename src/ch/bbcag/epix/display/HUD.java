@@ -65,9 +65,9 @@ public class HUD {
 		g.drawString(getPlayer().getUsername(), 149, 47);
 		g.drawString("" + getPlayer().getCoin(), 246, 47);
 
-		// Player Coordinates
-		g.drawString("x: " + getPlayer().getx(), 20, 43);
-		g.drawString("y: " + getPlayer().gety(), 20, 57);
+//		// Player Coordinates
+//		g.drawString("x: " + getPlayer().getx(), 20, 43);
+//		g.drawString("y: " + getPlayer().gety(), 20, 57);
 
 		// Player health bar
 		g.setColor(new Color(1f, 0f, 0f, .3f));

@@ -94,7 +94,6 @@ public class GameFrame extends JFrame implements Runnable, KeyListener, MouseLis
 		try {
 			this.setIconImage(ImageIO.read(getClass().getResourceAsStream("/Others/Epix.png")));
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		

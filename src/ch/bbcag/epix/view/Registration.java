@@ -65,7 +65,6 @@ public class Registration extends JFrame {
 		try {
 			registration.setIconImage(ImageIO.read(getClass().getResourceAsStream("/Others/Epix.png")));
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		

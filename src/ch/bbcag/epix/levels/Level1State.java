@@ -233,7 +233,11 @@ public class Level1State extends GameState {
 		shootingPlant = new ArrayList<ShootingPlant>();
 
 		ShootingPlant p;
-		Point[] shootingPlantPoints = new Point[] { new Point(700, 70), new Point(1000, 70), new Point(1520, 70), new Point(2610, 70)
+		Point[] shootingPlantPoints = new Point[] { 
+				new Point(700, 70),
+				new Point(1000, 70),
+				new Point(1520, 70),
+				new Point(2610, 70)
 
 		};
 		for (int i = 0; i < shootingPlantPoints.length; i++) {
@@ -254,8 +258,17 @@ public class Level1State extends GameState {
 		 * coin
 		 */
 		Coin coin;
-		Point[] coinPoints = new Point[] { new Point(337, 208), new Point(436, 176), new Point(496, 176), new Point(886, 208), new Point(942, 176), new Point(1234, 176), new Point(1270, 176),
-				new Point(2578, 80), new Point(2635, 80) };
+		Point[] coinPoints = new Point[] { 
+				new Point(337, 208),
+				new Point(436, 176), 
+				new Point(496, 176),
+				new Point(886, 208),
+				new Point(942, 176), 
+				new Point(1234, 176),
+				new Point(1270, 176),
+				new Point(2578, 80),
+				new Point(2635, 80) 
+		};
 		for (int i = 0; i < coinPoints.length; i++) {
 			coin = new Coin(tilemap);
 			coin.setPosition(coinPoints[i].x, coinPoints[i].y);
@@ -273,7 +286,8 @@ public class Level1State extends GameState {
 		 * flag
 		 */
 		Flag flag;
-		Point[] flagPoints = new Point[] { new Point(3152, 240),
+		Point[] flagPoints = new Point[] { 
+				new Point(3152, 240),
 
 		};
 		for (int i = 0; i < flagPoints.length; i++) {

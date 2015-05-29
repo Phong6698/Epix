@@ -62,7 +62,6 @@ public class Login extends JFrame{
 		try {
 			login.setIconImage(ImageIO.read(getClass().getResourceAsStream("/Others/Epix.png")));
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	

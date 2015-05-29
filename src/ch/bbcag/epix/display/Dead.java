@@ -33,8 +33,6 @@ private BufferedImage pauseImage;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-
 	}
 	
 	

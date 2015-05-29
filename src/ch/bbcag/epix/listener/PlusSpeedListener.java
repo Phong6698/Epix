@@ -46,7 +46,7 @@ public class PlusSpeedListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (user.getCoin() >= 5) {
 			user.setCoin(user.getCoin() - 5);
-			user.setMaxMoveSpeed(user.getMaxMoveSpeed() +0.1);
+			user.setMaxMoveSpeed(user.getMaxMoveSpeed() +0.05);
 			user.setMoveSpeed(user.getMoveSpeed() +0.1);
 			EpixController.getInstance().coinsUpdate(user, user.getCoin());
 			menuCardCoinLabel.setText("" + user.getCoin());

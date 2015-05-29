@@ -63,8 +63,8 @@ public class Boss extends Enemy {
 		cheight = 64;
 		range = 224;
 
-		health = maxHealth = 40;
-		damage = 10;
+		health = maxHealth = 400;
+		damage = 50;
 
 		bossshots = new ArrayList<BossShot>();
 

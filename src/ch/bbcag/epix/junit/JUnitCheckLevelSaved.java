@@ -56,7 +56,7 @@ public class JUnitCheckLevelSaved {
 					{ "1", 1, true }, 
 					{ "1", 2, true },
 					{ "1", 3, false }, 
-					{ "test", 0, false },
+					{ "test", 0, true },
 					{ "test", 2, false } });
 		}
 

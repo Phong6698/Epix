@@ -61,8 +61,8 @@ public class Magician extends Enemy {
 		cheight = 32;
 		range = 224;
 
-		health = maxHealth = 40;
-		damage = 10;
+		health = maxHealth = 60;
+		damage = 15;
 
 		magicianshots = new ArrayList<MagicianShot>();
 

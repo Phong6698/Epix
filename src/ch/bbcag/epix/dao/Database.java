@@ -27,26 +27,31 @@ public class Database {
 	 */
 	protected Connection getCon() throws SQLException {
 		
-		String db = "";
-		String user = "";
-		String pw = "";
-		try {
-
-			InputStream in = getClass().getResourceAsStream("/Databases/data.csv");
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
-			db = br.readLine();
-			user = br.readLine();
-			pw = br.readLine();
-	
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		String db = "";
+//		String user = "";
+//		String pw = "";
+//		try {
+//
+//			InputStream in = getClass().getResourceAsStream("/Databases/data.csv");
+//			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+//			db = br.readLine();
+//			user = br.readLine();
+//			pw = br.readLine();
+//	
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//
+//		
+//		//Connection aufbauen
+//		setCon(DriverManager.getConnection(db, user, pw));
+//		
+		//For CYON 
+		//Password in the Dropbox
+		setCon(DriverManager.getConnection("jdbc:mysql://194.126.200.64/lucamart_Epix?user=lucamart_Epix&password="));
 		
-
-		
-		//Connection aufbauen
-		setCon(DriverManager.getConnection(db, user, pw));
 		return con;
 	}
 	

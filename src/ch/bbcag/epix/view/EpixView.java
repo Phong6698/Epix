@@ -310,7 +310,7 @@ public class EpixView extends JFrame {
 		
 
 		level2Button.setBounds(275, 159, 240, 170);
-		EpixController.getInstance().checkLevelSaved(user, level2Button, level1Button);
+//		EpixController.getInstance().checkLevelSaved(user, level2Button, level1Button);
 		try {
 			level2Button.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/Others/Level 2.png"))));
 		} catch (IOException e) {
@@ -320,7 +320,7 @@ public class EpixView extends JFrame {
 		levelAuswahlCard.add(level2Button);
 
 		bossLevelButton.setBounds(535, 159, 240, 170);
-		EpixController.getInstance().checkLevelSaved(user, bossLevelButton, level2Button);
+//		EpixController.getInstance().checkLevelSaved(user, bossLevelButton, level2Button);
 		try {
 			bossLevelButton.setIcon(new ImageIcon(ImageIO.read(getClass().getResource("/Others/Boss Level.png"))));
 		} catch (IOException e) {

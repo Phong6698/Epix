@@ -23,10 +23,10 @@ public class PlayerJDBCdao extends Database implements PlayerDao {
 		 * Auslesen aller User aus der DB
 		 */
 		public List<User> findAllUsers() throws SQLException {
-			String sql = "SELECT * FROM PLAYER";
+//			String sql = "SELECT * FROM PLAYER";
 			List<User> p = new ArrayList<User>();
 			
-			con = getCon();
+			/*con = getCon();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
  
@@ -36,7 +36,7 @@ public class PlayerJDBCdao extends Database implements PlayerDao {
 				user.setPassword(rs.getString("Password"));
 				p.add(user);
 			}
-			closeCon();
+			closeCon();*/
 			return p;
 		}
 
@@ -76,27 +76,27 @@ public class PlayerJDBCdao extends Database implements PlayerDao {
 		}
 		
 		public void coinsUpdate(User player, int coins) throws SQLException{
-			String sql = "UPDATE PLAYER SET coins = ? WHERE Username = ? ;";
+			/*String sql = "UPDATE PLAYER SET coins = ? WHERE Username = ? ;";
 			con = getCon();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, coins);
 			ps.setString(2, player.getUsername());
 			ps.executeUpdate();
-			closeCon();
+			closeCon();*/
 		}
 		
 		public void collectedCoinsUpdate(User player, int collectedCoins) throws SQLException {
-			String sql = "UPDATE PLAYER SET CollectedCoins = ? WHERE Username = ? ;";
+			/*String sql = "UPDATE PLAYER SET CollectedCoins = ? WHERE Username = ? ;";
 			con = getCon();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, collectedCoins);
 			ps.setString(2, player.getUsername());
 			ps.executeUpdate();
-			closeCon();			
+			closeCon();	*/
 		}
 
 		public void getPlayerStats(User user) throws SQLException {
-			String sql = "SELECT * FROM PLAYER Where Username = ?";
+			/*String sql = "SELECT * FROM PLAYER Where Username = ?";
 			con = getCon();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, user.getUsername());
@@ -110,25 +110,25 @@ public class PlayerJDBCdao extends Database implements PlayerDao {
 				user.setMaxMoveSpeed(rs.getDouble("MaxSpeed"));
 				break;
 			}
-			closeCon();
+			closeCon();*/
 		}
 
 		@SuppressWarnings("rawtypes")
 		@Override
 		public Vector<?> getRangliste() throws SQLException {
-			String sql = "SELECT * FROM PLAYER ORDER BY CollectedCoins DESC;";
+			/*String sql = "SELECT * FROM PLAYER ORDER BY CollectedCoins DESC;";
 			con = getCon();
 			ps = con.prepareStatement(sql);
-			rs = ps.executeQuery();
+			rs = ps.executeQuery();*/
 			Vector<Vector> data = new Vector<Vector>();
-			int i = 0;
+			/*int i = 0;
 			while(rs.next() && i < 10) {
 				Vector<Object> row = new Vector<Object>();
 				row.addElement(rs.getString("Username"));
 				row.addElement(rs.getInt("CollectedCoins"));				
 				data.addElement(row);
 				i = i + 1;
-			};
+			};*/
 			return data;
 		}
 

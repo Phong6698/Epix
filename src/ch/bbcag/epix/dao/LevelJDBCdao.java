@@ -15,19 +15,19 @@ public class LevelJDBCdao extends Database implements LevelDao{
 
 	public int getID_Level(String levelName) throws SQLException {
 		
-		String sql = "SELECT * FROM LEVEL WHERE LevelName = ?";
+		/*String sql = "SELECT * FROM LEVEL WHERE LevelName = ?";
 		
 		con = getCon();
 		ps = con.prepareStatement(sql);
 		ps.setString(1, levelName);
-		rs = ps.executeQuery();
+		rs = ps.executeQuery();*/
 		
 		int id_Level = 0;
 
-		while (rs.next()) {
+		/*while (rs.next()) {
 			id_Level = rs.getInt("ID_Level");
 		}
-		closeCon();
+		closeCon();*/
 		
 		return id_Level;
 	}

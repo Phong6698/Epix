@@ -18,17 +18,17 @@ public class SaveJDBCdao extends Database implements SaveDao{
 	@Override
 	public void save(User user, int level_ID) throws SQLException {
 		
-		String sql = "INSERT INTO SAVE (User_ID, Level_ID) VALUES ( ?, ?)";
+		/*String sql = "INSERT INTO SAVE (User_ID, Level_ID) VALUES ( ?, ?)";
 		con = getCon();
 		ps = con.prepareStatement(sql);
 		ps.setString(1, user.getUsername());
 		ps.setInt(2, level_ID);
 		ps.executeUpdate();
-		closeCon();				
+		closeCon();	*/
 	}
 
 	public boolean checkLevelSaved(User user, int level_ID) throws SQLException {
-		String sql = "SELECT * FROM SAVE WHERE User_ID = ? AND Level_ID = ?;";
+		/*String sql = "SELECT * FROM SAVE WHERE User_ID = ? AND Level_ID = ?;";
 		con = getCon();
 		ps = con.prepareStatement(sql);
 		ps.setString(1, user.getUsername());
@@ -39,12 +39,12 @@ public class SaveJDBCdao extends Database implements SaveDao{
 				return true;
 			}
 		}
-		closeCon();	
+		closeCon();	*/
 		return false;
 	}
 
 	public void saveUpgrades(User user) throws SQLException {
-		String sql = "UPDATE PLAYER SET Health = ?, Jump = ?,Damage = ?,Speed= ?, MaxSpeed = ? WHERE Username = ?";
+		/*String sql = "UPDATE PLAYER SET Health = ?, Jump = ?,Damage = ?,Speed= ?, MaxSpeed = ? WHERE Username = ?";
 		con = getCon();
 		ps = con.prepareStatement(sql);
 		ps.setInt(1, user.getMaxHealth());
@@ -55,6 +55,6 @@ public class SaveJDBCdao extends Database implements SaveDao{
 		ps.setString(6, user.getUsername());
 		System.out.println(ps);
 		ps.executeUpdate();
-		closeCon();
+		closeCon();*/
 	}
 }
